@@ -46,7 +46,12 @@
 	    <artifactId>mybatis-spring-boot-starter</artifactId>
 	    <version>${mybatis.version}</version>
 	</dependency>
-	
+	<!-- json -->
+	<dependency>
+		<groupId>org.json</groupId>
+		<artifactId>json</artifactId>
+	</dependency>
+		
 	<!-- springloaded -->
 	<dependency>
 		<groupId>org.springframework</groupId>
