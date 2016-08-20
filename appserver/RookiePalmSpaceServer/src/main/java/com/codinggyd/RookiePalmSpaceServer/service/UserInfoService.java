@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.codinggyd.RookiePalmSpaceServer.bean.ResponseFlag;
 import com.codinggyd.RookiePalmSpaceServer.bean.UserInfo;
 import com.codinggyd.RookiePalmSpaceServer.mapper.UserInfoMapper;
+import com.codinggyd.RookiePalmSpaceServer.util.DateUtil;
 import com.codinggyd.RookiePalmSpaceServer.util.TextUtils;
 
 @Service
@@ -42,5 +43,31 @@ public class UserInfoService {
 	
 		return JSONObject.wrap(responseFlag).toString();
 	}
+	
+	public String register(String phone,String password,String sex){
+		
+		ResponseFlag responseFlag = new ResponseFlag();
+		
+		if(TextUtils.isEmpty(phone) || TextUtils.isEmpty(password) || TextUtils.isEmpty(sex)){
+			responseFlag.status = "failure";
+			responseFlag.msg = "注册信息不完整!";
+		}else{
+			String registerTime = DateUtil.format(System.currentTimeMillis());
+
+			if(mapper.findUser(phone, password) != null){
+				responseFlag.status = "failure";
+				responseFlag.msg = "注册失败,手机号已注册!";
+			}else{
+				UserInfo userInfo = new UserInfo(0, password, phone, registerTime, "", 0, sex, "");
+				int newId = mapper.addUser(userInfo);
+				responseFlag.status = "success";
+//				userInfo.id = newId;
+				responseFlag.msg = JSONObject.wrap(userInfo).toString();
+			}
+		}
+			
+		return JSONObject.wrap(responseFlag).toString();
+	}
+	
 	
 }

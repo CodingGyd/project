@@ -42,12 +42,14 @@ public class UserInfo implements Serializable{
 	 * 用户头像下载链接
 	 */
     public String icon;
+    
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
+ 
 	public String getPassword() {
 		return password;
 	}
