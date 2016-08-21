@@ -5,6 +5,7 @@ import java.util.Date;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.codinggyd.RookiePalmSpaceServer.bean.ResponseFlag;
 import com.codinggyd.RookiePalmSpaceServer.bean.UserInfo;
@@ -12,7 +13,14 @@ import com.codinggyd.RookiePalmSpaceServer.mapper.UserInfoMapper;
 import com.codinggyd.RookiePalmSpaceServer.util.DateUtil;
 import com.codinggyd.RookiePalmSpaceServer.util.TextUtils;
 
+/**
+ * 
+ * @author guoyading
+ *
+ * create at 2016年8月18日 下午5:25:22
+ */
 @Service
+@Transactional
 public class UserInfoService {
 	@Autowired
 	UserInfoMapper mapper;
@@ -59,10 +67,16 @@ public class UserInfoService {
 				responseFlag.msg = "注册失败,手机号已注册!";
 			}else{
 				UserInfo userInfo = new UserInfo(0, password, phone, registerTime, "", 0, sex, "");
-				int newId = mapper.addUser(userInfo);
-				responseFlag.status = "success";
-//				userInfo.id = newId;
-				responseFlag.msg = JSONObject.wrap(userInfo).toString();
+				int result = mapper.addUser(userInfo);
+				if(result > 0 ){
+					int newId = mapper.getNewId();
+					userInfo.id = newId;
+					responseFlag.status = "success";
+					responseFlag.msg = JSONObject.wrap(userInfo).toString();
+				}else{
+					responseFlag.status = "failure";
+					responseFlag.msg = "注册失败,请再试一次!";
+				}
 			}
 		}
 			
