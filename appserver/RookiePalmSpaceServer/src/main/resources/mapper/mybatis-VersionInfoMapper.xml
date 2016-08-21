@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.RookiePalmSpaceServer.mapper.VersionInfoMapper">
+
+	<select id="getNewVersion" resultType="com.codinggyd.RookiePalmSpaceServer.bean.VersionInfo">
+		SELECT  *FROM VERSIONINFO ORDER BY ID DESC LIMIT 1
+	</select>
+</mapper>
