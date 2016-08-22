@@ -9,6 +9,10 @@ import java.io.Serializable;
 public class SourceInfo implements Serializable{
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * 资料编号
      */
     public Integer id;

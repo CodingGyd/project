@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.RookiePalmSpaceServer.mapper.ArticleMapper">
+
+	<resultMap type="com.codinggyd.RookiePalmSpaceServer.bean.ArticleInfo"
+		id="articleList">
+		<id column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="type" property="type" />
+		<result column="content" property="content" />
+		<result column="url" property="url" />
+		<result column="location" property="location" />
+		<result column="time" property="time" />
+		<result column="userId" property="userId" />
+
+	</resultMap>
+
+	<delete id="deleteSingle">
+		DELETE FROM ARTICLEINFO WHERE ID =
+		#{id}
+	</delete>
+	<select id="getAll" resultMap="articleList">
+		SELECT id,title,type,content,url,location,time,userId FROM ARTICLEINFO
+		WHERE 1=1
+		<if test="#{userId} != null">
+			AND userId = #{userId}
+		</if>
+		<if test="type != null">
+			AND type = #{type}
+		</if>
+		ORDER BY ID ASC
+	</select>
+	<insert id="insertSingle"
+		parameterType="com.codinggyd.RookiePalmSpaceServer.bean.ArticleInfo"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO ArticleInfo(title,type,content,url,location,time,userid)
+		values(#{articleInfo.title},
+		#{articleInfo.type},#{articleInfo.content},#{articleInfo.url},#{articleInfo.location},
+		#{articleInfo.time},#{articleInfo.userId})
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<select id="getNewId" resultType="java.lang.Integer">
+		SELECT MAX(id) FROM SOURCEINFO
+	</select>
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM SOURCEINFO WHERE 1=1
+		<if test="#{userId} != null">
+			AND userId = #{userId}
+		</if>
+		<if test="type != null">
+			AND type = #{type}
+		</if>
+	</select>
+
+
+	<update id="updateSingle"
+		parameterType="com.codinggyd.RookiePalmSpaceServer.bean.ArticleInfo"
+		useGeneratedKeys="true" keyProperty="id">
+		UPDATE ArticleInfo SET title = #{articleInfo.title},
+		type
+		=#{articleInfo.type},
+		content =#{articleInfo.content},
+		url=#{articleInfo.url},
+		location=#{articleInfo.location},
+		time=#{articleInfo.time},
+		userId=#{articleInfo.userId}
+		WHERE id=#{articleInfo.id}
+
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</update>
+
+
+	<select id="getArticle"
+		resultType="com.codinggyd.RookiePalmSpaceServer.bean.ArticleInfo">
+		SELECT id,title,type,content,url,location,time,userId FROM
+		ARTICLEINFO WHERE
+		id = #{id}
+	</select>
+</mapper>

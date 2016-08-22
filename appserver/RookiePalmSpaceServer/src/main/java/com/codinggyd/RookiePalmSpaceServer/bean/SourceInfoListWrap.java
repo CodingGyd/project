@@ -7,7 +7,6 @@ public class SourceInfoListWrap {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	public String status ;
 	public List<SourceInfo> data;
 	@Override

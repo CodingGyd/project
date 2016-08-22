@@ -12,8 +12,7 @@
 		=#{curtime},loginCount=loginCount+1 WHERE phone = #{phone}
 	</update>
 
-	<insert id="addUser" keyColumn="id"
-		parameterType="com.codinggyd.RookiePalmSpaceServer.bean.UserInfo"
+	<insert id="addUser" parameterType="com.codinggyd.RookiePalmSpaceServer.bean.UserInfo"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO
 		USERINFO(phone,registerTime,recentLoginTime,loginCount,sex,icon,password)

@@ -10,6 +10,11 @@ import java.io.Serializable;
 public class UserInfo implements Serializable{
 	
 	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * 用户编号
 	 */
     public Integer id;

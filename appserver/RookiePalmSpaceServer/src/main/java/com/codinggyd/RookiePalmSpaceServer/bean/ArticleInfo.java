@@ -8,6 +8,10 @@ import java.io.Serializable;
 public class ArticleInfo implements Serializable {
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * 文章编号
      */
     public Integer id;

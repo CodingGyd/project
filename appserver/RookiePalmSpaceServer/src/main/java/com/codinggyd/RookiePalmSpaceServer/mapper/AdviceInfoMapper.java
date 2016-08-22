@@ -1,6 +1,6 @@
 package com.codinggyd.RookiePalmSpaceServer.mapper;
 
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 import com.codinggyd.RookiePalmSpaceServer.bean.AdviceInfo;
 
@@ -11,5 +11,5 @@ import com.codinggyd.RookiePalmSpaceServer.bean.AdviceInfo;
  * create at 2016年8月21日 下午5:32:13
  */
 public interface AdviceInfoMapper {
-	public List<AdviceInfo> query();
+	public int insertSingle(@Param("adviceinfo") AdviceInfo adviceInfo);
 }

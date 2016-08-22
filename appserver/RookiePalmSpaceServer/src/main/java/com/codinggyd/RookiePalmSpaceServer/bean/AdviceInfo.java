@@ -3,6 +3,10 @@ package com.codinggyd.RookiePalmSpaceServer.bean;
 import java.io.Serializable;
 
 public class AdviceInfo  implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Integer id;
 	public String content;
 	public String time;

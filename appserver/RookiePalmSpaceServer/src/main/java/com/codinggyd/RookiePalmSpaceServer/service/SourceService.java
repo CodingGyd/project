@@ -1,7 +1,5 @@
 package com.codinggyd.RookiePalmSpaceServer.service;
 
-import java.util.List;
-
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,15 +28,10 @@ public class SourceService {
 		if(null == userId || "".equals(userId)){
 			sourceInfoListWrap.status = "without login!";
 		} else {
-			List<SourceInfo> list = null;
-			System.out.println("===type："+type);
-			list = mapper.getAll(userId,type);
-			
-			sourceInfoListWrap.data = list;
-		 
-			if (null == list ){
+			sourceInfoListWrap.data = mapper.getAll(userId,type);
+			if (null == sourceInfoListWrap.data ){
 				sourceInfoListWrap.status = "error";
-			} else if(list.isEmpty()){
+			} else if(sourceInfoListWrap.data.isEmpty()){
 				sourceInfoListWrap.status = "empty";
 			} else{
 				sourceInfoListWrap.status = "success";

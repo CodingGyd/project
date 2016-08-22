@@ -1,8 +1,6 @@
 package com.codinggyd.RookiePalmSpaceServer.bean;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
-import java.util.Date;
 
 /**
  * Created by guoyading on 2015-12-21.

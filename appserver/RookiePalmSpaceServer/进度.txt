@@ -18,3 +18,23 @@
 		</if>
 		ORDER BY ID ASC
 	</select>
+
+2016/8/22
+	解决问题  ： 这段代码在判断type是否为null的时候出错，查不出错误！！！！！！！！！！！！！！！！！！！！！！！！！！
+		     <select id="getAll" resultMap="sourceList">
+		SELECT id,name,type,time,location,remark,url,userId FROM SOURCEINFO WHERE 1=1
+		<if test="#{userId} != null">
+			AND userId = #{userId}
+		</if>
+		<if test="#{type} != null">
+			AND type = #{type}
+		</if>
+		ORDER BY ID ASC
+	</select>
+	把#{type}直接写成type就行，不知道为什么！！！
+		<if test="type != null">
+			AND type = #{type}
+		</if>
+		
+	完成图片管理接口移植
+	完成意见反馈接口移植
