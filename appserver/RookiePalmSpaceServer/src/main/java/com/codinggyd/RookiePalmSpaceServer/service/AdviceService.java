@@ -3,6 +3,8 @@ package com.codinggyd.RookiePalmSpaceServer.service;
 import java.io.IOException;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,20 +25,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class AdviceService {
 	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	public AdviceInfoMapper mapper;
 	
 	public String insertSingle(String adviceInfoJson) throws JsonParseException, JsonMappingException, IOException{
-		ObjectMapper objectMapper = new ObjectMapper();
-		AdviceInfo adviceinfo = objectMapper.readValue(adviceInfoJson, AdviceInfo.class);
-		
-		boolean isInserted = mapper.insertSingle(adviceinfo) >0?true:false;
-	  
-		ResponseFlag responseFlag = new ResponseFlag();
-		responseFlag.status = isInserted? "success":"failed";
-		responseFlag.msg = isInserted? "谢谢您的反馈!":"反馈失败,请稍后再试!";
+		Object object = null;
+		try {
+			ObjectMapper objectMapper = new ObjectMapper();
+			AdviceInfo adviceinfo = objectMapper.readValue(adviceInfoJson, AdviceInfo.class);
+			
+			boolean isInserted = mapper.insertSingle(adviceinfo) >0?true:false;
   
-		Object object = JSONObject.wrap(responseFlag);
+			ResponseFlag responseFlag = new ResponseFlag();
+			responseFlag.status = isInserted? "success":"failed";
+			responseFlag.msg = isInserted? "谢谢您的反馈!":"反馈失败,请稍后再试!";
+  
+			object = JSONObject.wrap(responseFlag);
+		} catch (Exception e) {
+			logger.error(e.toString());
+		}
 		
 		
 		return object.toString();

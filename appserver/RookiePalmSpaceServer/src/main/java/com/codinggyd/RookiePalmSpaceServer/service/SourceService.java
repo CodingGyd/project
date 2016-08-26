@@ -1,6 +1,8 @@
 package com.codinggyd.RookiePalmSpaceServer.service;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @Service
 public class SourceService {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	private SourceMapper mapper;
 	
@@ -25,21 +30,26 @@ public class SourceService {
 	 
 		SourceInfoListWrap sourceInfoListWrap = new SourceInfoListWrap();
 		
-		if(null == userId || "".equals(userId)){
-			sourceInfoListWrap.status = "without login!";
-		} else {
-			sourceInfoListWrap.data = mapper.getAll(userId,type);
-			if (null == sourceInfoListWrap.data ){
-				sourceInfoListWrap.status = "error";
-			} else if(sourceInfoListWrap.data.isEmpty()){
-				sourceInfoListWrap.status = "empty";
-			} else{
-				sourceInfoListWrap.status = "success";
+		String object = null;
+		try {
+			if(null == userId || "".equals(userId)){
+				sourceInfoListWrap.status = "without login!";
+			} else {
+				sourceInfoListWrap.data = mapper.getAll(userId,type);
+				if (null == sourceInfoListWrap.data ){
+					sourceInfoListWrap.status = "error";
+				} else if(sourceInfoListWrap.data.isEmpty()){
+					sourceInfoListWrap.status = "empty";
+				} else{
+					sourceInfoListWrap.status = "success";
+				}
 			}
+			 
+			object = JSONObject.wrap(sourceInfoListWrap).toString();
+		} catch (Exception e) {
+			logger.error(e.toString());
 		}
-		 
-		Object jObject = JSONObject.wrap(sourceInfoListWrap);
-		return jObject.toString();
+		return object;
 	}
 	
 	
@@ -64,7 +74,7 @@ public class SourceService {
 				
 			return object.toString();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("msg", "资料信息保存失败,请稍后再试!");
 			jsonObject.put("id", mapper.getNewId());
@@ -83,17 +93,27 @@ public class SourceService {
 	
 	public String deleteSingle(Integer sourceId){
 		 
-		boolean isDeleted = mapper.deleteSingle(sourceId) > 0? true:false;
-		ResponseFlag responseFlag = new ResponseFlag();
-		responseFlag.status = isDeleted? "success":"failed";
-		responseFlag.msg = isDeleted? "删除成功!":"删除失败,请稍后再试!";
-		Object object = JSONObject.wrap(responseFlag);
-		return object.toString();
+		String object = null;
+		try {
+			boolean isDeleted = mapper.deleteSingle(sourceId) > 0? true:false;
+			ResponseFlag responseFlag = new ResponseFlag();
+			responseFlag.status = isDeleted? "success":"failed";
+			responseFlag.msg = isDeleted? "删除成功!":"删除失败,请稍后再试!";
+			object = JSONObject.wrap(responseFlag).toString();
+		} catch (Exception e) {
+			logger.error(e.toString());
+		}
+		return object;
 	}
 	
 	public int getSourceCount(Integer type){
-		return mapper.getCount(type);
-		 
+		int count = -1;
+		try {
+			count = mapper.getCount(type);
+		} catch (Exception e) {
+			logger.error(e.toString());
+		}
+		return count;
 	}
 	
 }

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +26,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 @Service
 public class ArticleService {
+	
+	private Logger logger = LoggerFactory.getLogger(getClass());
+	
 	@Autowired
 	public ArticleMapper mapper;
 	
@@ -31,22 +36,27 @@ public class ArticleService {
 		 
 		ArticleInfoListWrap articleInfoListWrap = new ArticleInfoListWrap();
 		
-		if(null == userId || "".equals(userId)){
-			articleInfoListWrap.status = "without login!";
-		} else {
-		 
-			articleInfoListWrap.data = mapper.getAll(userId,type);
-		 
-			if (null == articleInfoListWrap.data  ){
-				articleInfoListWrap.status = "error";
-			} else if(articleInfoListWrap.data .isEmpty()){
-				articleInfoListWrap.status = "empty";
-			} else{
-				articleInfoListWrap.status = "success";
+		Object jObject = null;
+		try {
+			if(null == userId || "".equals(userId)){
+				articleInfoListWrap.status = "without login!";
+			} else {
+			 
+				articleInfoListWrap.data = mapper.getAll(userId,type);
+			 
+				if (null == articleInfoListWrap.data  ){
+					articleInfoListWrap.status = "error";
+				} else if(articleInfoListWrap.data .isEmpty()){
+					articleInfoListWrap.status = "empty";
+				} else{
+					articleInfoListWrap.status = "success";
+				}
 			}
+			 
+			jObject = JSONObject.wrap(articleInfoListWrap);
+		} catch (Exception e) {
+			logger.error(e.toString());
 		}
-		 
-		Object jObject = JSONObject.wrap(articleInfoListWrap);
 		return jObject.toString();
 	}
 	

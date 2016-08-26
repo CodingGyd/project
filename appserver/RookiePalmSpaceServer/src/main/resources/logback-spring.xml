@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径 -->
+	<property name="LOG_HOME" value="logs" />
+	<property name="LOG_LEVEL" value="${LOG_LEVEL}" />
+	<property name="LOG_STDOUT_ENABLED" value="true" />
+
+	<!-- 控制台输出 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<filter class="com.codinggyd.RookiePalmSpaceServer.log.LoggerFilter">
+			<enable>${LOG_STDOUT_ENABLED}</enable>
+			<level>DEBUG</level>
+		</filter>
+		<!-- 日志输出编码 -->
+		<layout class="ch.qos.logback.classic.PatternLayout">
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{26} %L - %msg%n</pattern>
+		</layout>
+	</appender>
+	<!-- 按照每天生成日志文件 -->
+	<appender name="ERROR"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>ERROR</level>
+		</filter>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{5} %L -%msg%n</pattern>
+			<charset>utf8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${LOG_HOME}/error/%d{yyyy-MM-dd}.%i.error.log</FileNamePattern>
+			<!--<MaxHistory>30</MaxHistory> -->
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>200MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!-- 按照每天生成日志文件 -->
+	<appender name="MonitorAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>INFO</level>
+		</filter>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %msg%n</pattern>
+			<charset>utf8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${LOG_HOME}/monitor/%d{yyyy-MM-dd}_monitor.log</FileNamePattern>
+			<!--<MaxHistory>30</MaxHistory> -->
+		</rollingPolicy>
+	</appender>
+	<!-- 按照每天生成日志文件 -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+			<level>DEBUG</level>
+		</filter>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{5} - %msg%n</pattern>
+			<charset>utf8</charset>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!--日志文件输出的文件名 -->
+			<FileNamePattern>${LOG_HOME}/info/%d{yyyy-MM-dd}.%i.info.log</FileNamePattern>
+			<!--<MaxHistory>30</MaxHistory> -->
+			<TimeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<MaxFileSize>200MB</MaxFileSize>
+			</TimeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<logger name="java.sql.Connection" level="${LOG_LEVEL}" />
+	<logger name="java.sql.Statement" level="${LOG_LEVEL}" />
+	<logger name="java.sql.PreparedStatement" level="${LOG_LEVEL}" />
+	<logger name="org.springframework" level="error" />
+	<logger name="org.eclipse" level="info" />
+	<logger name="org.hibernate" level="info" />
+	<logger name="org.jboss" level="info" />
+	<logger name="springfox.documentation" level="info" />
+	<logger name="org.mybatis" level="info" />
+	<logger name="org.ibatis" level="info" />
+	<logger name="org.apache.http" level="info" />
+	<logger name="org.apache.http" level="info" />
+	<logger name="com.alibaba.druid" level="info" />
+	<logger name="org.apache.shiro" level="info" />
+	<logger name="org.apache.commons.beanutils" level="info" />
+	<logger name="org.apache.commons.httpclient" level="info" />
+	<logger name="org.apache.axis2" level="info" />
+	<logger name="org.apache.axiom" level="info" />
+	<logger name="httpclient.wire" level="info" />
+	<logger name="com.codinggyd.RookiePalmSpaceServer.log.LogMonitor" level="info">
+		<appender-ref ref="MonitorAppender" />
+	</logger>
+	<!-- 日志输出级别 -->
+	<root level="${LOG_LEVEL}">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="ERROR" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>
