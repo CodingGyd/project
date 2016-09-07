@@ -29,6 +29,7 @@ public class StsController {
 	@RequestMapping(value="/getSts",method={RequestMethod.GET,RequestMethod.POST})
 	public String getSts(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
 		String sts = stsService.doGet(request, response);
+		System.out.println("==sts:"+sts);
 		return sts;
 	}
 }

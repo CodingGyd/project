@@ -32,7 +32,7 @@ public class ArticleController {
 	}
 	
 	@RequestMapping(value="/insertArticle",method={RequestMethod.GET,RequestMethod.POST})
-	public String insertSource(@RequestParam("articleJson") String articleJson) throws JsonParseException, JsonMappingException, IOException{
+	public String insertSource(@RequestParam("article") String articleJson) throws JsonParseException, JsonMappingException, IOException{
 		String result = articleService.insertSingle(articleJson);
 		return result;
 	}
@@ -50,7 +50,7 @@ public class ArticleController {
 	}
 
 	@RequestMapping(value="/modifyArticle",method={RequestMethod.GET,RequestMethod.POST})
-	public String modifyArticle(@RequestParam("articleJson") String articleJson) throws JsonParseException, JsonMappingException, IOException{
+	public String modifyArticle(@RequestParam("article") String articleJson) throws JsonParseException, JsonMappingException, IOException{
 		String result = articleService.modifyArticle(articleJson);
 		return result;
 	}
