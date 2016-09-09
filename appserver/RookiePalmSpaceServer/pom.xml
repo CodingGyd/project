@@ -9,7 +9,7 @@
 	<groupId>com.codinggyd</groupId>
 	<artifactId>RookiePalmSpaceServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>jar</packaging> 
 
 	<name>RookiePalmSpaceServer</name>
 	<url>http://maven.apache.org</url>
@@ -17,7 +17,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<mybatis.version>1.0.0</mybatis.version>
-		<java.version>1.8</java.version>
+		<java.version>1.7</java.version>
 	</properties>
 
 	<dependencies>
@@ -69,11 +69,12 @@
 			<version>1.2.5</version>
 		</dependency>
 
-		<!-- springloaded -->
+		<!-- springloaded --> 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>springloaded</artifactId>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -83,6 +84,47 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+					<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<excludes>
+						<exclude>application.properties</exclude>
+						<exclude>logback.xml</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+        	    <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                	<descriptors>
+                		<descriptor>src/assembly/assembly-bin.xml</descriptor>
+                	</descriptors>
+                	<finalName>${project.build.finalName}</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+					<attach>false</attach>
+                </configuration>
+           	 	<executions>
+					<execution>
+						<id>assembly-bin-distribution</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+     		 </plugin>
 		</plugins>
 	</build>
 </project>
