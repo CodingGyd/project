@@ -1,15 +1,5 @@
 package com.codinggyd.RookiePalmSpaceServer.log;
-/**
- * @Title Log.java
- * @Package: com.gildata.app.core.base.log
- * @Description: TODO (这里用一句话描述这个类的作用) 
- *
- * @Author: huangwk   
- * @Date: 2015年8月12日 上午9:33:03
- *
- * Copyright @ 2015 Corpration Name
- * 
- */
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
  

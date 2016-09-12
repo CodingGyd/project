@@ -1,6 +1,5 @@
 package com.codinggyd.RookiePalmSpaceServer.service;
 
-import java.io.IOException;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Service;
 import com.codinggyd.RookiePalmSpaceServer.bean.AdviceInfo;
 import com.codinggyd.RookiePalmSpaceServer.bean.ResponseFlag;
 import com.codinggyd.RookiePalmSpaceServer.mapper.AdviceInfoMapper;
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -23,14 +20,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @date 2016年8月22日 下午4:09:16
  */
 @Service
-public class AdviceService {
+public class AdviceService{
 	
 	private Logger logger = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	public AdviceInfoMapper mapper;
 	
-	public String insertSingle(String adviceInfoJson) throws JsonParseException, JsonMappingException, IOException{
+	public String insertSingle(String adviceInfoJson) {
 		Object object = null;
 		try {
 			ObjectMapper objectMapper = new ObjectMapper();
