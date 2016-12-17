@@ -9,7 +9,7 @@
 	<groupId>com.codinggyd</groupId>
 	<artifactId>RookiePalmSpaceServer</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging> 
+	<packaging>war</packaging> 
 
 	<name>RookiePalmSpaceServer</name>
 	<url>http://maven.apache.org</url>
