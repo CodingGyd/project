@@ -3,4 +3,5 @@
 /.settings
 .classpath
 .project
+/temp
 /WebRoot/WEB-INF/classes
