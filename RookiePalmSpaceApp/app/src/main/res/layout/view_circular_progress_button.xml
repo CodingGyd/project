@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/cpbProgress"
+        android:layout_width="@dimen/cpb_width"
+        android:layout_height="@dimen/cpb_height"
+        android:layout_marginTop="@dimen/cpb_margin_top"
+        android:textColor="@color/cpb_text_color"
+        android:textSize="@dimen/cpb_text_size"
+        app:cpb_cornerRadius="@dimen/cpb_corner_radius"
+        app:cpb_selectorComplete="@drawable/selector_progress_complete_state"
+        app:cpb_selectorError="@drawable/selector_progress_error_state"
+        app:cpb_selectorIdle="@drawable/selector_progress_idle_state"
+        app:cpb_colorIndicator="@color/cpb_indicator_color"
+        app:cpb_colorIndicatorBackground="@color/cpb_indicator_bg"
+        app:cpb_textProgress="@string/cpb_loading"
+        app:cpb_paddingProgress="@dimen/cpb_padding_progress"
+        app:cpb_colorProgress="@color/cpb_progress_color"
+        app:cpb_textComplete="@string/cpb_load_complete"
+        app:cpb_textError="@string/cpb_load_error"
+        app:cpb_textIdle="@string/cpb_load_idle" />
+</android.support.v7.widget.LinearLayoutCompat>

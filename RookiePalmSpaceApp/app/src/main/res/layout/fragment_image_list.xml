@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_main">
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/tv_photo_count"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/fragment_img_list_item_text_view_photo_count_padding"
+        android:paddingLeft="@dimen/fragment_img_list_item_text_view_photo_count_padding"
+        android:paddingTop="@dimen/fragment_img_list_item_text_view_photo_count_padding"
+        android:text="123张照片" />
+
+    <include
+        android:id="@+id/divider"
+        layout="@layout/view_divider_line_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_img_list_item_divider_height"
+        android:layout_below="@id/tv_photo_count" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/divider"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/ll_progress_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/cpb_progress_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" />
+</RelativeLayout>

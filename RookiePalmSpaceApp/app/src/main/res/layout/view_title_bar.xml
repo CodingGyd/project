@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/action_bar_height"
+    android:background="@color/action_bar_bg_normal"
+    android:orientation="horizontal">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/ll_normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/iv_action_bar_left_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_title_bar_bt"
+                android:padding="@dimen/action_bar_icon_padding"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_dehaze_white"
+                android:visibility="gone" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_action_bar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/action_bar_view_title_margin_left"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="标题"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/action_bar_title_text_size" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:id="@+id/ll_tab"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <RadioGroup
+                android:id="@+id/rg_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <!--android:background="@drawable/shape_title_bar_radiogroup"-->
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/rb_tab_one"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/action_bar_tab_height"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_title_bar_tab_bg_xml"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="@string/technology"
+                    android:textColor="@color/action_bar_tab_text_color"
+                    android:textSize="@dimen/action_bar_tab_text_size" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:id="@+id/rb_tab_two"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/action_bar_tab_height"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_title_bar_tab_bg_xml"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="@string/life"
+                    android:textColor="@color/action_bar_tab_text_color"
+                    android:textSize="@dimen/action_bar_tab_text_size" />
+            </RadioGroup>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical">
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/iv_action_bar_right_icon_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:background="@drawable/selector_title_bar_bt"
+                android:padding="@dimen/action_bar_icon_padding"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_arrow_back_white" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/iv_action_bar_right_icon_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_10"
+                android:layout_toLeftOf="@id/iv_action_bar_right_icon_three"
+                android:background="@drawable/selector_title_bar_bt"
+                android:padding="@dimen/action_bar_icon_padding"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/ic_arrow_back_white" />
+
+            <android.support.v7.widget.AppCompatImageButton
+                android:id="@+id/iv_action_bar_right_icon_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/margin_5"
+                android:layout_toLeftOf="@id/iv_action_bar_right_icon_two"
+                android:background="@drawable/selector_title_bar_bt"
+                android:padding="@dimen/action_bar_icon_padding"
+                android:src="@mipmap/ic_arrow_back_white" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:id="@+id/ll_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tv_cancel_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="10dp"
+            android:gravity="center"
+            android:clickable="true"
+            android:text="取消"
+            android:textColorHint="@color/white"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_search"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:textColor="@color/white"
+            android:hint="@string/search_edit_text_hint" />
+
+        <android.support.v7.widget.AppCompatImageButton
+            android:id="@+id/bt_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_title_bar_bt"
+            android:padding="@dimen/action_bar_icon_padding"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/ic_search_white" />
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

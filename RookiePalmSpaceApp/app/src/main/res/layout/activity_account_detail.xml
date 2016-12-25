@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.gyd.rookiepalmspace.base.view.TitleNavBarView
+        android:id="@+id/titleNavBarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/titleNavBarView"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/form_padding_left"
+        android:paddingRight="@dimen/form_padding_right"
+        android:paddingTop="@dimen/form_padding_top">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_platform"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/account_field_height"
+            android:hint="@string/platform" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_platformAddress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/account_field_height"
+            android:hint="@string/platform_address" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_name"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/account_field_height"
+            android:hint="@string/account" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/account_field_height"
+            android:hint="@string/pwd" />
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/et_remark"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/account_field_height"
+            android:hint="@string/remark" />
+
+        <android.support.v7.widget.AppCompatButton
+            android:id="@+id/bt_action"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/account_field_height"
+            android:text="@string/delete" />
+    </android.support.v7.widget.LinearLayoutCompat>
+
+</RelativeLayout>

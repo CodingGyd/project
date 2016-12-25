@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.gyd.rookiepalmspace.base.view.TitleNavBarView
+        android:id="@+id/titleNavBarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/clearCache"
+            android:background="@drawable/selector_setting_item"
+            android:clickable="true"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:padding="5dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/clear"
+                android:text="清除缓存"
+                android:textSize="16sp" />
+s
+            <android.support.v7.widget.AppCompatTextView
+                android:text=">"
+                android:textSize="24sp"
+                android:layout_alignBaseline="@id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/view_divider_line_horizontal" />
+
+        <RelativeLayout
+            android:id="@+id/checkVersion"
+            android:background="@drawable/selector_setting_item"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            android:padding="5dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="检查更新"
+                android:textSize="16sp" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:text=">"
+                android:textSize="24sp"
+                android:layout_alignBaseline="@id/check"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/view_divider_line_horizontal" />
+
+        <RelativeLayout
+            android:background="@drawable/selector_setting_item"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/advice"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:padding="5dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="建议与反馈"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+        <include layout="@layout/view_divider_line_horizontal" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:clickable="true"
+            android:id="@+id/aboutus"
+            android:background="@drawable/selector_setting_item"
+            android:gravity="center_vertical"
+            android:padding="5dp">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关于我们"
+                android:textSize="16sp" />
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

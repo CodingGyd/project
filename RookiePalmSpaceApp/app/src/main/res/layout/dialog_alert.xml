@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true" >
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="@dimen/dialog_alert_width"
+        android:layout_height="@dimen/dialog_alert_height"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dialog_alert_content_height"
+            android:background="@color/dialog_alert_content_bg"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/dialog_alert_text_default"
+                android:textColor="@color/dialog_alert_text_color"
+                android:textSize="@dimen/dialog_alert_text_size" />
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <include layout="@layout/view_divider_line_horizontal" />
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/dialog_alert_content_bg"
+            android:orientation="horizontal">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_dialog_ok"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/dialog_ok"
+                android:clickable="true"
+                android:background="@drawable/selector_dialog_bg_xml"
+                android:textColor="@color/dialog_alert_ok_text_color"
+                android:textSize="@dimen/dialog_alert_ok_text_size" />
+
+            <include layout="@layout/view_divider_line_vertical" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_dialog_cancel"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/dialog_cancel"
+                android:clickable="true"
+                android:background="@drawable/selector_dialog_bg_xml"
+                android:textColor="@color/dialog_alert_cancel_text_color"
+                android:textSize="@dimen/dialog_alert_cancel_text_size" />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </android.support.v7.widget.LinearLayoutCompat>
+</RelativeLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!-- 基础色 -->
+    <color name="teal_50">#E0F2F1</color>
+    <color name="teal_100">#B2DFDB</color>
+    <color name="teal_200">#80CBC4</color>
+    <color name="teal_300">#4DB6AC</color>
+    <color name="teal_400">#26A69A</color>
+    <color name="teal_500">#009688</color>
+    <color name="teal_600">#00897B</color>
+    <color name="teal_700">#00796B</color>
+    <color name="teal_800">#00695C</color>
+    <color name="teal_900">#004D40</color>
+    <color name="c_333333">#333333</color>
+    <color name="ripper_btn">#5E6265</color>
+    <color name="transpant">#0000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+
+    <!-- 所有activity的背景色 -->
+    <color name="bg_main">@color/white</color>
+    <!-- 所有分割线的背景色 -->
+    <color name="divider_gray">#ebebeb</color>
+
+ <!--   <color name="bg_logion_normal">#4188BE</color>
+    <color name="bg_logion_press">#0F67A2</color>-->
+
+    <color name="bg_logion_normal">@color/teal_400</color>
+    <color name="bg_logion_press">@color/teal_500</color>
+
+   <!--  action bar -->
+    <color name="action_bar_bg_normal">@color/teal_500</color>
+    <color name="action_bar_bg_press">@color/teal_400</color>
+    <color name="action_bar_tab_text_color">@color/white</color>
+    <color name="action_bar_tab_checked">@color/teal_600</color>
+    <color name="action_bar_tab_normal">@color/teal_300</color>
+
+    <!--<color name="action_bar_bg_normal">#4188BE</color>-->
+    <!--<color name="action_bar_bg_press">#0F67B2</color>-->
+    <!--<color name="action_bar_tab_text_color">@color/white</color>-->
+    <!--<color name="action_bar_tab_checked">#0F67A2</color>-->
+    <!--<color name="action_bar_tab_normal">#7BADD2</color>-->
+
+    <!-- CustomAlertDialog -->
+    <color name="dialog_alert_content_bg">@color/white</color>
+    <color name="dialog_alert_view_normal_bg">@color/white</color>
+    <color name="dialog_alert_view_press_bg">@color/divider_gray</color>
+    <color name="dialog_alert_text_color">@color/c_333333</color>
+    <color name="dialog_alert_ok_text_color">@color/c_333333</color>
+    <color name="dialog_alert_cancel_text_color">@color/c_333333</color>
+
+    <!-- CircularProgressButton -->
+    <color name="cpb_progress_bg">@color/teal_50</color>
+    <color name="cpb_blue">@color/teal_500</color>
+    <color name="cpb_blue_dark">@color/teal_600</color>
+
+<!--    <color name="cpb_blue">#4188BE</color>
+    <color name="cpb_blue_dark">#0F67A2</color>-->
+    <color name="cpb_green">#ff99cc00</color>
+    <color name="cpb_green_dark">#ff6d9b00</color>
+    <color name="cpb_grey">#ffdedede</color>
+    <color name="cpb_red">#ffff4444</color>
+    <color name="cpb_red_dark">#ffcd3a3a</color>
+    <color name="cpb_white">@android:color/white</color>
+    <color name="cpb_text_color">@android:color/white</color>
+    <color name="cpb_indicator_color">@color/teal_500</color>
+    <!--<color name="cpb_indicator_color">#4188BE</color>-->
+
+    <color name="cpb_indicator_bg">@android:color/transparent</color>
+    <color name="cpb_progress_color">@color/teal_50</color>
+    <!-- ArticleListActivity -->
+    <color name="activity_article_bg">@color/bg_main</color>
+    <color name="activity_article_title_color">@color/black</color>
+    <color name="activity_article_time_color">#8c8c8c</color>
+    <color name="activity_article_content_color">#8c8c8c</color>
+    <color name="activity_article_location_color">#8c8c8c</color>
+
+
+    <!-- MainActivity -->
+    <color name="activity_main_bg">@color/bg_main</color>
+    <color name="activity_main_float_btn_pressed">@color/teal_400</color>
+    <color name="activity_main_float_btn_normal">@color/teal_300</color>
+    <color name="activity_main_text_recent_update">#A3A3A3</color>
+    <color name="activity_main_text_technology_article">#525252</color>
+    <color name="activity_main_text_life_diary">#525252</color>
+    <color name="activity_main_text_common_web_site">#525252</color>
+    <color name="activity_main_text_electronic_document">#525252</color>
+    <color name="activity_main_img_category_grid_item_text_color">@color/black</color>
+    <color name="activity_main_share_btn">#FCC886</color>
+
+    <!-- 侧滑菜单栏 -->
+    <color name="nav_header_startColor">@color/teal_300</color>
+    <color name="nav_header_centerColor">@color/teal_400</color>
+    <color name="nav_header_endColor">@color/teal_500</color>
+
+
+<!--    <color name="nav_header_startColor">#7BADD2</color>
+    <color name="nav_header_centerColor">#0F67B2</color>
+    <color name="nav_header_endColor">#4188BE</color>-->
+
+    <!-- ImageListActivity -->
+    <color name="activity_img_list_grid_item_img_detail_bg">#55000000</color>
+
+    <color name="activity_img_detail_bg">@color/transpant</color>
+
+    <!-- SettingActivity -->
+    <color name="setting_item_press_bg">#cccccc</color>
+    <color name="setting_item_normal_bg">#ffffff</color>
+    <color name="c666">#ff666666</color>
+
+    <!--UserCenterActivity-->
+    <color name="silver">#C0C0C0</color>
+    <color name="slategray">#708090</color>
+
+</resources>

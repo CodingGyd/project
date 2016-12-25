@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.gyd.rookiepalmspace.base.view.TitleNavBarView
+        android:id="@+id/titleNavBarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_below="@id/titleNavBarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingLeft="@dimen/form_padding_left"
+            android:paddingRight="@dimen/form_padding_right"
+            android:paddingTop="@dimen/form_padding_top">
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/et_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="请输入资源标题" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="3dp"
+                android:text="请选择图片类型" />
+
+            <RadioGroup
+                android:id="@+id/rg_img_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="家人" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_marginTop="-32dp"
+                    android:text="朋友" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="240dp"
+                    android:layout_marginTop="-32dp"
+                    android:text="自拍" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="搞笑" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="120dp"
+                    android:layout_marginTop="-32dp"
+                    android:text="旅游" />
+
+                <android.support.v7.widget.AppCompatRadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="240dp"
+                    android:layout_marginTop="-32dp"
+                    android:text="工作" />
+            </RadioGroup>
+
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/et_remark"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="写点什么吧"
+                android:lines="3" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/bt_choose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="选择资源"
+                android:textSize="16sp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/bt_upload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="开始上传"
+                android:textSize="16sp" />
+
+            <ProgressBar
+                android:id="@+id/bar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progressDrawable="@drawable/bg_horizonta_progress_bar"
+                android:max="100"
+
+                />
+        </android.support.v7.widget.LinearLayoutCompat>
+    </ScrollView>
+</RelativeLayout>

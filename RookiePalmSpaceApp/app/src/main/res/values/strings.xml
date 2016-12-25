@@ -1,0 +1,205 @@
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingTranslation"
+    >
+    <string name="app_name">菜鸟空间</string>
+
+    <string name="app_btn1">有九宫格、有编辑页</string>
+
+    <string name="app_btn2">有九宫格、无编辑页</string>
+    <string name="app_btn3">无九宫格、有编辑页</string>
+
+    <string name="app_btn4">无九宫格、无编辑页</string>
+    <string name="app_derect_share">直接分享</string>
+    <!-- MainActivity -->
+    <string name="title_activity_main">菜鸟空间</string>
+    <string name="title_article_area">文章区</string>
+    <string name="title_image_area">图片区</string>
+    <string name="title_file_area">资料区</string>
+    <string name="title_account_area">账号区</string>
+
+    <string name="recent_update">最近更新:</string>
+    <string name="technology_article">技术文章:</string>
+    <string name="life_diary">学习网站:</string>
+    <string name="electronic_document">电子文档:</string>
+    <string name="common_web_site">常用网址:</string>
+
+    <string name="share">分享</string>
+    <string name="publish">发表</string>
+
+    <string name="navigation_drawer_open">打开侧滑菜单栏</string>
+    <string name="navigation_drawer_close">关闭侧滑菜单栏</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!---侧滑菜单栏-->
+    <string name="nav_menu_title_personal_info">个人信息</string>
+    <string name="nav_menu_title_voice_text">撰写文字</string>
+    <string name="nav_menu_title_upload_file">上传文件</string>
+    <string name="nav_menu_title_add_account">新增账号</string>
+    <string name="nav_menu_title_add_website">新增网址</string>
+    <string name="nav_menu_title_share_file">分享资料</string>
+    <string name="nav_menu_title_location">地理位置</string>
+    <string name="nav_menu_title_settings">设置</string>
+    <string name="nav_menu_title_exit">退出</string>
+
+    <integer-array name="nav_menu_icon">
+        <item name="nav_menu_icon_personal_info">0x7f030009</item>
+        <item name="nav_menu_icon_voice_text">0x7f03000d</item>
+        <item name="nav_menu_icon_upload_file">0x7f030008</item>
+        <item name="nav_menu_icon_add_account">0x7f030001</item>
+        <item name="nav_menu_icon_share_file">0x7f030010</item>
+        <item name="nav_menu_icon_location">0x7f03000b</item>
+        <item name="nav_menu_icon_settings">0x7f03000f</item>
+        <item name="nav_menu_icon_exit">0x7f030005</item>
+    </integer-array>
+
+    <string-array name="img_area_category_list">
+        <item name="family">家人</item>
+        <item name="friends">朋友</item>
+        <item name="selfCamera">自拍</item>
+        <item name="funny">搞笑</item>
+        <item name="tourism">旅游</item>
+        <item name="work">工作</item>
+    </string-array>
+
+    <!-- CustomAlertDialog -->
+    <string name="dialog_ok">确定</string>
+    <string name="dialog_cancel">取消</string>
+    <string name="dialog_alert_text_default">确定要退出吗?</string>
+
+    <!-- CircularProgressButton -->
+    <string name="cpb_load_complete">加载完成</string>
+    <string name="cpb_load_error">加载失败</string>
+    <string name="cpb_load_idle">点击加载</string>
+    <string name="cpb_loading">...</string>
+    <!-- ArticleListActivity -->
+    <string name="technology">技术</string>
+    <string name="life">生活</string>
+    <string name="title_activity_image_list">图片区</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_login">登陆</string>
+
+    <!-- ArticleDetailActivity -->
+    <string name="title_activity_article_detail">文章详情</string>
+
+    <!-- AccountListActivity -->
+    <string name="account_list_activity_name">账号区</string>
+
+    <!-- AccountDetailActivity -->
+    <string name="platform">平台名称</string>
+    <string name="platform_address">平台网址</string>
+    <string name="account">登陆账号</string>
+    <string name="remark">备注</string>
+    <string name="delete">删除</string>
+    <string name="pwd">登陆密码</string>
+    <string name="detail_account">账号详情</string>
+    <string name="add_account">新增账号</string>
+    <string name="add">添 加</string>
+    <string name="modify">修 改</string>
+    <string name="account_empty_prom_info">请输入完整的账号信息!</string>
+    <string name="save">保 存</string>
+    <string name="save_success">保存成功!</string>
+    <string name="delete_alert_message">确定要删除吗?</string>
+    <string name="remove_alert_message">确定要清空吗?</string>
+    <string name="add_alert_message">确定要新增吗?</string>
+    <string name="delete_success">已删除</string>
+    <string name="delete_failure">删除失败!</string>
+
+    <!-- titlebar -->
+    <string name="search_edit_text_hint">想要搜什么?</string>
+    <!-- LoginActivity -->
+    <string name="prompt_phone">输入手机号</string>
+    <string name="prompt_password">输入密码</string>
+    <string name="action_sign_in">登陆</string>
+    <string name="action_register_in">注册</string>
+    <string name="action_sign_in_short">登陆</string>
+    <string name="error_invalid_email">账号无效</string>
+    <string name="error_invalid_password">密码无效</string>
+    <string name="error_repassword_password">两次密码不一致</string>
+    <string name="error_incorrect_password">密码不正确</string>
+    <string name="error_field_required">此处必须填写</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <!-- ArticleEditActivity -->
+    <string name="hint_empty_title">请填写文章标题</string>
+    <string name="hint_empty_content">请填写文章内容</string>
+    <string name="hint_empty_type">请选择文章类型</string>
+    <string name="alert_clear">确定要清空吗?</string>
+    <string name="alert_upload">确定要提交吗?</string>
+    <string name="alert_finish">信息未保存,确定退出?</string>
+    <string name="alert_download">确定下载该资料?</string>
+    <string name="alert_delete">确定要删除吗?</string>
+    <string-array name="articleTypes">
+        <item name="hint">请选择文章类型</item>
+        <item name="technology">技术</item>
+        <item name="life">生活</item>
+    </string-array>
+
+
+    <!-- MapActivity -->
+    <string name="title_activity_map">地理位置</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+
+</resources>

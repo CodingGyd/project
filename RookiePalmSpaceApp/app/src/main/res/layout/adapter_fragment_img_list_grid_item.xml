@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_image"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/activity_img_list_item_card_margin"
+    android:padding="@dimen/activity_img_list_item_card_padding"
+    card_view:cardCornerRadius="@dimen/activity_img_list_item_card_corner_radius"
+    card_view:cardElevation="@dimen/activity_img_list_item_card_elevation">
+
+    <android.support.percent.PercentFrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <!--android:layout_width="@dimen/activity_img_list_item_width"-->
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/iv_img"
+            android:layout_width="0dp"
+            app:layout_widthPercent="100%"
+            android:layout_height="@dimen/activity_img_list_item_height"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher" />
+        <!--android:layout_width="@dimen/activity_img_list_img_info_rl_width"-->
+        <RelativeLayout
+            android:id="@+id/rl_img_info"
+            android:layout_width="0dp"
+            app:layout_widthPercent="100%"
+            android:layout_height="@dimen/activity_img_list_img_info_rl_height"
+            android:layout_gravity="bottom"
+            android:background="@color/activity_img_list_grid_item_img_detail_bg"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/activity_img_list_img_info_rl_padding"
+            android:paddingRight="@dimen/activity_img_list_img_info_rl_padding">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tv_img_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="img3093.jpg"
+                android:textColor="@color/white"
+                android:textSize="@dimen/activity_img_list_img_name_text_size" />
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/iv_img_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:layout_alignParentRight="true"
+                android:src="@mipmap/ic_info_outline_white" />
+        </RelativeLayout>
+    </android.support.percent.PercentFrameLayout>
+</android.support.v7.widget.CardView>
