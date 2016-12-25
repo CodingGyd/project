@@ -26,6 +26,7 @@ public class VersionService {
 	 
 	public String getNewVersion(){
 		String object = null;
+		System.out.println("===v");
 		try{
 			VersionInfo version = mapper.getNewVersion();
 			object = JSONObject.wrap(version).toString();

@@ -26,7 +26,7 @@ public class AdviceController {
 	public AdviceService adviceService;
 	
 	@RequestMapping(value="/insertAdvice",method={RequestMethod.GET,RequestMethod.POST})
-	public String insertSource(@RequestParam("adviceJson") String adviceJson) throws JsonParseException, JsonMappingException, IOException{
+	public String insertSource(@RequestParam("advice") String adviceJson) throws JsonParseException, JsonMappingException, IOException{
 		String result = adviceService.insertSingle(adviceJson);
 		return result;
 	}

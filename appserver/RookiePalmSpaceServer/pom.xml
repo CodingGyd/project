@@ -32,8 +32,20 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<!-- 部署到tomcat服务器上(比如百度云应用引擎)时需要排除SpringBoot 默认内嵌的 tomcat 模块 -->
+				 <exclusion>
+           	 		<groupId>org.springframework.boot</groupId>
+          	 		 <artifactId>spring-boot-starter-tomcat</artifactId>
+        		 </exclusion>
+			</exclusions>
 		</dependency>
-
+		<!-- 本机测试时还是需要springboot的tomcat模块的 ,scope设置为provided-->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-tomcat</artifactId>
+		    <scope>provided</scope>
+		</dependency>
 		<!-- mysql -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -62,12 +74,12 @@
 			<artifactId>aliyun-java-sdk-core</artifactId>
 			<version>2.1.7</version>
 		</dependency>
-		<!-- log4j -->
-		<dependency>
+	<!-- log4j -->
+		<!-- 	<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.5</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- springloaded --> 
 		<dependency>
