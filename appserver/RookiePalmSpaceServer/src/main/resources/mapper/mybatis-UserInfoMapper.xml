@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.RookiePalmSpaceServer.mapper.UserInfoMapper">
+	<select id="findUser" resultType="com.codinggyd.RookiePalmSpaceServer.bean.UserInfo">
+		SELECT *FROM USERINFO WHERE
+		phone=#{phone} and password=#{password}
+	</select>
+	<update id="addLoginCount">
+		UPDATE USERINFO SET recentLoginTime
+		=#{curtime},loginCount=loginCount+1 WHERE phone = #{phone}
+	</update>
+
+	<insert id="addUser" parameterType="com.codinggyd.RookiePalmSpaceServer.bean.UserInfo"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		USERINFO(phone,registerTime,recentLoginTime,loginCount,sex,icon,password)
+		VALUES(#{user.phone},#{user.registerTime},#{user.recentLoginTime},#{user.loginCount},#{user.sex},#{user.icon},#{user.password})
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<select id="getNewId" resultType="java.lang.Integer">
+		SELECT MAX(id) FROM USERINFO
+	</select>
+</mapper>

@@ -1,0 +1,7 @@
+{
+"AccessKeyID" : "hehwY0r5m2rkaPFI",
+"AccessKeySecret" : "Y66X65q1K6huyOTxtzUC4vXyCKcXaj",
+"RoleArn" : "acs:ram::1153526422430308:role/aliyunosstokengeneratorrole",
+"TokenExpireTime" : "3600",
+"PolicyFile": "/sts/policy/all_policy.txt"
+}

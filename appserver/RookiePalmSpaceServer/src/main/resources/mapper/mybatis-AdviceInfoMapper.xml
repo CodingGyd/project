@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.codinggyd.RookiePalmSpaceServer.mapper.AdviceInfoMapper"  >
+	
+	<insert id="insertSingle" parameterType="com.codinggyd.RookiePalmSpaceServer.bean.AdviceInfo"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO ADVICEINFO(content,userid,time) values(#{adviceinfo.content},#{adviceinfo.userId},#{adviceinfo.time})
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+</mapper>

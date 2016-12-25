@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.RookiePalmSpaceServer.mapper.ImageMapper">
+ <!--配置一个resultMap 指定返回的类型 -->  
+    <resultMap id="imageList" type="com.codinggyd.RookiePalmSpaceServer.bean.ImageInfo">  
+        <id column="id" property="id" />  
+        <result column="title" property="title" />  
+        <result column="type" property="type" />  
+        <result column="time" property="time" />  
+        <result column="address" property="address" />  
+        <result column="remark" property="remark" />  
+        <result column="url" property="url" />  
+          <result column="userId" property="userId" />  
+    </resultMap>  
+
+	<select id="getNewId" resultType="java.lang.Integer">
+		SELECT MAX(id) FROM IMAGEINFO
+	</select>
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM IMAGEINFO
+		<if test="#{type} != null">
+			WHERE type=#{type}
+		</if>
+	</select>
+	<delete id="deleteSingle">
+		DELETE FROM IMAGEINFO WHERE ID =
+		#{id}
+	</delete>
+	<select id="getAll" resultMap="imageList">
+		SELECT id,title,type,time,address,remark,url,userId FROM IMAGEINFO WHERE 1=1
+		<if test="#{userId} != null">
+			AND userId = #{userId}
+		</if>
+		<if test="type != null">
+			AND type = #{type}
+		</if>
+		ORDER BY ID ASC
+	</select>
+	<insert id="addImage" keyColumn="id"
+		parameterType="com.codinggyd.RookiePalmSpaceServer.bean.ImageInfo"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO
+		IMAGEINFO(title,type,time,address,remark,url,userId)
+		VALUES(#{imageinfo.title},#{imageinfo.type},#{imageinfo.time},#{imageinfo.address},#{imageinfo.remark},#{imageinfo.url},#{imageinfo.userId})
+		<selectKey resultType="java.lang.Integer" order="AFTER"
+			keyProperty="id">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	
+</mapper>

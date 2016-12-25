@@ -1,0 +1,95 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.3 http://maven.apache.org/xsd/assembly-1.1.3.xsd">
+
+	<id>bin</id>
+	<formats>
+		<format>tar.gz</format>
+	</formats>
+	<includeBaseDirectory>true</includeBaseDirectory>
+	<fileSets>
+		<fileSet>
+			<directory>src/assembly/logs</directory>
+			<outputDirectory>logs</outputDirectory>
+			<fileMode>0766</fileMode>
+			<directoryMode>0766</directoryMode>
+		</fileSet>
+		<fileSet>
+			<directory>src/assembly/root</directory>
+			<outputDirectory />
+		</fileSet>
+		<fileSet>
+			<directory>src/assembly/bin-linux</directory>
+			<outputDirectory>bin</outputDirectory>
+			<directoryMode>0755</directoryMode>
+			<fileMode>0755</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/resources</directory>
+			<outputDirectory>conf</outputDirectory>
+			<fileMode>0664</fileMode>
+			<includes>
+				<include>*.properties</include>
+				<include>*.xml</include>
+				<include>*.dat</include>
+				<include>*.p12</include>
+			</includes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}</directory>
+			<outputDirectory>lib</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+			<fileMode>0444</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>base/target/base</directory>
+			<outputDirectory>base</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+			<fileMode>0444</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>libs/target/libs</directory>
+			<outputDirectory>libs</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+			<fileMode>0444</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>sys/target/sys</directory>
+			<outputDirectory>sys</outputDirectory>
+			<includes>
+				<include>*.jar</include>
+			</includes>
+			<fileMode>0444</fileMode>
+		</fileSet>
+		<fileSet>
+			<directory>conf/target/conf</directory>
+			<outputDirectory>conf</outputDirectory>
+			<includes>
+				<include>*.properties</include>
+				<include>*.xml</include>
+			</includes>
+			<fileMode>0664</fileMode>
+		</fileSet>
+	</fileSets>
+	<dependencySets>
+		<dependencySet>
+			<!-- 是否包含间接依赖 -->
+			<useTransitiveDependencies>true</useTransitiveDependencies>
+			<outputDirectory>bin</outputDirectory>
+			 <outputFileNameMapping>
+        ${artifact.artifactId}-${artifact.baseVersion}.${artifact.extension}
+      </outputFileNameMapping>
+			<!-- 权限 -->
+			<fileMode>0444</fileMode>
+			<!-- 当前项目构件是否包含在这个依赖集合里。 -->
+			<useProjectArtifact>true</useProjectArtifact>
+		</dependencySet>
+	</dependencySets>
+</assembly>
