@@ -42,7 +42,7 @@ public class RecordServlet extends HttpServlet {
 			}else if("queryRecord".equals(action)){
 				showQuery(request,response);
 			}
-			request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
+			request.getRequestDispatcher("./WEB-INF/main.jsp").forward(request, response);
 		}
 		
 	}
