@@ -1,5 +1,6 @@
 package com.gyd.main.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import com.gyd.main.bean.Record;
@@ -20,6 +21,8 @@ public interface RecordDao {
 
  
 		public Record getRecordById(Integer id);
+
+		public List<Record> getRecordByDate(Date startDate, Date endDate);
 		 
 
 }

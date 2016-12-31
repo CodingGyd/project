@@ -1,6 +1,8 @@
 package com.gyd.main.servlet;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.gyd.main.bean.Record;
 import com.gyd.main.service.RecordService;
 import com.gyd.main.service.impl.RecordServiceImpl;
+import com.mysql.jdbc.StringUtils;
 
 public class RecordServlet extends HttpServlet {
 
@@ -36,8 +39,10 @@ public class RecordServlet extends HttpServlet {
 				showAll(request, response); 
 			}else if("showAllRecord".equals(action)){
 				showAll(request, response);
+			}else if("queryRecord".equals(action)){
+				showQuery(request,response);
 			}
-			response.sendRedirect("./main.jsp");
+			request.getRequestDispatcher("/WEB-INF/main.jsp").forward(request, response);
 		}
 		
 	}
@@ -69,7 +74,7 @@ public class RecordServlet extends HttpServlet {
 
 	private boolean showAll(HttpServletRequest request, HttpServletResponse response){
 		try{
-			RecordService recService=new RecordServiceImpl();
+			 RecordService recService=new RecordServiceImpl();
 			 List<Record> records = recService.getRecords();
 			 if(null == records){
 				 request.getSession().setAttribute("records", null);
@@ -83,4 +88,34 @@ public class RecordServlet extends HttpServlet {
 		}
 		return false;
 	}
+	
+	private boolean showQuery(HttpServletRequest request, HttpServletResponse response){
+		try{
+			String startDateStr = request.getParameter("startDate");
+			String endDateStr = request.getParameter("endDate");
+			
+			List<Record> records = null;
+			RecordService recService=new RecordServiceImpl();
+			if(StringUtils.isNullOrEmpty(startDateStr) || StringUtils.isNullOrEmpty(endDateStr)){
+				 records = recService.getRecords();
+			}else{
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				Date startDate = dateFormat.parse(startDateStr);
+				Date endDate = dateFormat.parse(endDateStr);
+				records = recService.getRecordsByDate(startDate, endDate);
+			}
+			
+			 if(null == records){
+				 request.getSession().setAttribute("records", null);
+				 return false;
+			 }else{
+				 request.getSession().setAttribute("records", records);
+				 return true;
+			 }
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }

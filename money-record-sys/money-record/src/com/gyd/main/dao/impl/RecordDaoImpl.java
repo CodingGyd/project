@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.gyd.main.bean.Record;
@@ -148,6 +149,37 @@ public class RecordDaoImpl extends BaseDao<Record> implements RecordDao {
 			e.printStackTrace();
 		}
 		return c;
+	}
+
+	@Override
+	public List<Record> getRecordByDate(Date startDate, Date endDate) {
+		List<Record> lists = new ArrayList<Record>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			try {
+				conn = getConnection();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			pstmt = conn.prepareStatement("select *from mr_records where spendtime >= ? and spendtime<=?");
+			pstmt.setObject(1, startDate);
+			pstmt.setObject(2, endDate);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Record c = new Record();
+				c.setId(rs.getInt("id"));
+				c.setName(rs.getString("name"));
+				c.setPrice(rs.getDouble("price"));
+				c.setRemark(rs.getString("remark"));
+				c.setSpendtime(rs.getDate("spendtime"));
+				lists.add(c);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return lists;
 	}
  
 }

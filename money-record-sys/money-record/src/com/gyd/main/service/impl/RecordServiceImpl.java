@@ -1,5 +1,6 @@
 package com.gyd.main.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import com.gyd.main.bean.Record;
@@ -34,6 +35,11 @@ public class RecordServiceImpl implements RecordService {
 	@Override
 	public Record getRecordById(Integer id) {
 		return recordDao.getRecordById(id);
+	}
+
+	@Override
+	public List<Record> getRecordsByDate(Date startDate, Date endDate) {
+		return recordDao.getRecordByDate(startDate,endDate);
 	}
 	 
 }
