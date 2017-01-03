@@ -38,7 +38,7 @@ public class RegisterServlet extends HttpServlet {
 		if(flag){
 			User u = regService.getUser(username, password);
 			request.getSession().setAttribute("user", u);
-			response.sendRedirect("./WEB-INF/main.jsp");
+			response.sendRedirect("./main.jsp");
 		}else{
 			response.sendRedirect("./register.jsp");
 		}
