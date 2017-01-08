@@ -1,0 +1,10 @@
+svn库工程
+菜鸟空间app工程RookiePalmSpaceApp
+菜鸟空间app服务端工程appserver/RookiePalmSpaceServer
+日常开销登记平台工程money-record
+个人网站工程mine
+
+日期 				变更情况
+20170108.1       		新增项目包mine.war
+
+20170108.2			mine工程-三个子模块-网站开发、桌面程序、联系我，添加展示信息
