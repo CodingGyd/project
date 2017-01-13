@@ -1,0 +1,37 @@
+2017-01-13 23:51:27.194 INFO  c.c.App - Starting App on NB-GUOYD with PID 10672 (D:\developer\project\mine-server\mine-server\target\classes started by guoyd in D:\developer\project\mine-server\mine-server)
+2017-01-13 23:51:27.199 DEBUG c.c.App - Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2017-01-13 23:51:27.199 INFO  c.c.App - No active profile set, falling back to default profiles: default
+2017-01-13 23:51:27.580 INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-01-13 23:51:28.444 WARN  o.m.s.m.ClassPathMapperScanner - No MyBatis mapper was found in '[com.codinggyd]' package. Please check your configuration.
+2017-01-13 23:51:29.573 INFO  o.a.c.c.StandardService - Starting service Tomcat
+2017-01-13 23:51:29.574 INFO  o.a.c.c.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.4
+2017-01-13 23:51:29.712 INFO  o.a.c.c.C.[.[.[/mine-server] - Initializing Spring embedded WebApplicationContext
+2017-01-13 23:51:30.986 DEBUG o.a.i.l.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-01-13 23:51:31.620 INFO  o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8181"]
+2017-01-13 23:51:31.645 INFO  o.a.c.h.Http11NioProtocol - Starting ProtocolHandler [http-nio-8181]
+2017-01-13 23:51:31.660 INFO  o.a.t.u.n.NioSelectorPool - Using a shared selector for servlet write/read
+2017-01-13 23:51:31.704 INFO  c.c.App - Started App in 5.189 seconds (JVM running for 5.665)
+2017-01-13 23:51:41.480 INFO  o.a.c.c.C.[.[.[/mine-server] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-01-13 23:51:41.604 DEBUG c.c.c.FuncController - callback({"id":null,"password":"123","phone":"15974154924","registerTime":null,"recentLoginTime":null,"loginCount":0,"sex":null,"icon":null})
+2017-01-13 23:52:21.334 DEBUG c.c.c.FuncController - callback({"id":null,"password":"123","phone":"15974154924","registerTime":null,"recentLoginTime":null,"loginCount":0,"sex":null,"icon":null})
+2017-01-13 23:52:33.104 DEBUG c.c.c.FuncController - callback({"id":null,"password":"123","phone":"15974154924","registerTime":null,"recentLoginTime":null,"loginCount":0,"sex":null,"icon":null})
+2017-01-13 23:54:43.563 INFO  c.c.App - Starting App on NB-GUOYD with PID 9500 (D:\developer\project\mine-server\mine-server\target\classes started by guoyd in D:\developer\project\mine-server\mine-server)
+2017-01-13 23:54:43.568 DEBUG c.c.App - Running with Spring Boot v1.4.0.RELEASE, Spring v4.3.2.RELEASE
+2017-01-13 23:54:43.569 INFO  c.c.App - No active profile set, falling back to default profiles: default
+2017-01-13 23:54:43.908 INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 5.2.4.Final
+2017-01-13 23:54:44.716 WARN  o.m.s.m.ClassPathMapperScanner - No MyBatis mapper was found in '[com.codinggyd]' package. Please check your configuration.
+2017-01-13 23:54:45.765 INFO  o.a.c.c.StandardService - Starting service Tomcat
+2017-01-13 23:54:45.767 INFO  o.a.c.c.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.5.4
+2017-01-13 23:54:45.889 INFO  o.a.c.c.C.[.[.[/mine-server] - Initializing Spring embedded WebApplicationContext
+2017-01-13 23:54:47.033 DEBUG o.a.i.l.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-01-13 23:54:47.598 INFO  o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8181"]
+2017-01-13 23:54:47.618 INFO  o.a.c.h.Http11NioProtocol - Starting ProtocolHandler [http-nio-8181]
+2017-01-13 23:54:47.633 INFO  o.a.t.u.n.NioSelectorPool - Using a shared selector for servlet write/read
+2017-01-13 23:54:47.670 INFO  c.c.App - Started App in 4.778 seconds (JVM running for 5.229)
+2017-01-13 23:54:56.660 INFO  o.a.c.c.C.[.[.[/mine-server] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-01-13 23:54:56.801 DEBUG c.c.c.FuncController - jQuery111006842932475265115_1484322895743({"id":null,"password":"123","phone":"15974154924","registerTime":null,"recentLoginTime":null,"loginCount":0,"sex":null,"icon":null})
+2017-01-13 23:54:59.125 DEBUG c.c.c.FuncController - jQuery111006842932475265115_1484322895743({"id":null,"password":"123","phone":"15974154924","registerTime":null,"recentLoginTime":null,"loginCount":0,"sex":null,"icon":null})
+2017-01-13 23:55:16.582 DEBUG c.c.c.FuncController - jQuery1110028915430163033307_1484322915824({"id":null,"password":"123","phone":"15974154924","registerTime":null,"recentLoginTime":null,"loginCount":0,"sex":null,"icon":null})
+2017-01-13 23:55:37.182 DEBUG c.c.c.FuncController - jQuery1110028915430163033307_1484322915824({"id":null,"password":"123","phone":"15974154924","registerTime":null,"recentLoginTime":null,"loginCount":0,"sex":null,"icon":null})
+2017-01-13 23:55:39.929 DEBUG c.c.c.FuncController - jQuery1110032516229688189924_1484322939114({"id":null,"password":"123","phone":"15974154924","registerTime":null,"recentLoginTime":null,"loginCount":0,"sex":null,"icon":null})
+2017-01-13 23:55:43.663 DEBUG c.c.c.FuncController - jQuery1110032516229688189924_1484322939114({"id":null,"password":"123","phone":"15974154924","registerTime":null,"recentLoginTime":null,"loginCount":0,"sex":null,"icon":null})

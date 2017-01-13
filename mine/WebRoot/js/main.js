@@ -76,4 +76,19 @@
 		$("#div-mobile-developer").hide("active");
 		$("#div-contact-me").show("active");
 	});
+	
+	$("#testBt").click(function(){
+		$.ajax({  
+            type: "GET",  
+            url: "http://localhost:8181/mine-server/api/func/login?username=guoyading&password=123",  
+            dataType: "jsonp",  
+            success:function(data){
+                alert(data.phone);
+              },
+              error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+              }});
+	});
  });
