@@ -1,0 +1,33 @@
+2017-01-15 00:51:00.685 INFO  c.c.App - Starting App on NB-GUOYD with PID 20960 (D:\developer\project\mine-server\mine-login\target\classes started by guoyd in D:\developer\project\mine-server\mine-login)
+2017-01-15 00:51:00.690 DEBUG c.c.App - Running with Spring Boot v1.3.0.RELEASE, Spring v4.2.3.RELEASE
+2017-01-15 00:51:00.691 INFO  c.c.App - No profiles are active
+2017-01-15 00:51:00.823 INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 5.2.2.Final
+2017-01-15 00:51:02.570 DEBUG o.a.i.l.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-01-15 00:51:03.209 INFO  o.a.c.c.StandardService - Starting service Tomcat
+2017-01-15 00:51:03.210 INFO  o.a.c.c.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.28
+2017-01-15 00:51:03.325 INFO  o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+2017-01-15 00:51:04.501 INFO  o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2017-01-15 00:51:04.520 INFO  o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2017-01-15 00:51:04.537 INFO  o.a.t.u.n.NioSelectorPool - Using a shared selector for servlet write/read
+2017-01-15 00:51:04.572 INFO  c.c.App - Started App in 4.565 seconds (JVM running for 5.062)
+2017-01-15 00:51:21.397 INFO  c.c.App - Starting App on NB-GUOYD with PID 20104 (D:\developer\project\mine-server\mine-login\target\classes started by guoyd in D:\developer\project\mine-server\mine-login)
+2017-01-15 00:51:21.402 DEBUG c.c.App - Running with Spring Boot v1.3.0.RELEASE, Spring v4.2.3.RELEASE
+2017-01-15 00:51:21.402 INFO  c.c.App - No profiles are active
+2017-01-15 00:51:21.571 INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 5.2.2.Final
+2017-01-15 00:51:23.220 DEBUG o.a.i.l.LogFactory - Logging initialized using 'class org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2017-01-15 00:51:24.088 INFO  o.a.c.c.StandardService - Starting service Tomcat
+2017-01-15 00:51:24.089 INFO  o.a.c.c.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.28
+2017-01-15 00:51:24.211 INFO  o.a.c.c.C.[.[.[/mine-server] - Initializing Spring embedded WebApplicationContext
+2017-01-15 00:51:25.418 INFO  o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2017-01-15 00:51:25.436 INFO  o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2017-01-15 00:51:25.453 INFO  o.a.t.u.n.NioSelectorPool - Using a shared selector for servlet write/read
+2017-01-15 00:51:25.484 INFO  c.c.App - Started App in 4.716 seconds (JVM running for 5.184)
+2017-01-15 00:51:28.773 INFO  o.a.c.c.C.[.[.[/mine-server] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2017-01-15 00:51:37.777 DEBUG c.c.m.U.findUser - ==>  Preparing: SELECT id,phone,password FROM USERINFO WHERE phone=? and password=? 
+2017-01-15 00:51:37.810 DEBUG c.c.m.U.findUser - ==> Parameters: 15974154924(String), 123(String)
+2017-01-15 00:51:37.858 DEBUG c.c.m.U.findUser - <==      Total: 0
+2017-01-15 00:51:37.860 DEBUG c.c.s.i.UserServiceImpl - 用户名15974154924,密码123,验证登录失败
+2017-01-15 00:51:50.053 DEBUG c.c.m.U.findUser - ==>  Preparing: SELECT id,phone,password FROM USERINFO WHERE phone=? and password=? 
+2017-01-15 00:51:50.054 DEBUG c.c.m.U.findUser - ==> Parameters: 15974154924(String), 123456(String)
+2017-01-15 00:51:50.095 DEBUG c.c.m.U.findUser - <==      Total: 1
+2017-01-15 00:51:50.154 DEBUG c.c.s.i.UserServiceImpl - 用户登录信息{"password":"123456","phone":"15974154924","id":1}
