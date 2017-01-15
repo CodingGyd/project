@@ -52,7 +52,7 @@
           <li role="presentation" id="li-contact-me"><a href="#" id="alink-contact-me">联系我</a></li>
         </ul>
         <h3 class="text-muted">定个小目标,先挣一个亿</h3>
-        <input type="button" value="测试跨域访问" name="testBt" id="testBt"/>
+        <input type="button" value="测试跨域访问1" name="testBt" id="testBt"/>
       </div>
   	<div id="div-main-page">
       <div class="jumbotron">
@@ -98,46 +98,42 @@
       </div>
 </div>
     <div id="div-desktop-programe-developer">
-    	 <p>
-        	<img src="image/project-ui/javase/tankewar.png" class="img-rounded" >
-        </p>
-         <p>
-        	<img src="image/project-ui/javase/plane.png" class="img-rounded" >
-        </p>
-          <p>
-        	<img src="image/project-ui/javase/mine.png" class="img-rounded" >
-        </p>
-         <p>
-        	<img src="image/project-ui/javase/lianliankan.png" class="img-rounded" >
-        </p>
-        <p>
-        	<img src="image/project-ui/javase/lianliankan2.png" class="img-rounded" >
-        </p>
+        	<img src="image/project-ui/javase/tankewar.png" class="img-thumbnail" >
+        	<img src="image/project-ui/javase/plane.png" class="img-thumbnail" >
+        	<img src="image/project-ui/javase/mine.png" class="img-thumbnail" >
+        	<img src="image/project-ui/javase/lianliankan.png" class="img-thumbnail" >
+        	<img src="image/project-ui/javase/lianliankan2.png" class="img-thumbnail" >
      
     </div>
     <div id="div-website-developer">
-        <p>
-        	<img src="image/project-ui/javaee/website_project_list.png" class="img-rounded" >
-        </p>
-         <p>
+        	<img src="image/project-ui/javaee/website_project_list.png" class="img-thumbnail" >
         	<img src="image/project-ui/javaee/login.png" class="img-rounded" >
-        </p>
-          <p>
-        	<img src="image/project-ui/javaee/register.png" class="img-rounded" >
-        </p>
-         <p>
-        	<img src="image/project-ui/javaee/mainpage.png" class="img-rounded" >
-        </p>
-        <p>
-        	<img src="image/project-ui/javaee/selectclass.png" class="img-rounded" >
-        </p>
-           <p>
-        	<img src="image/project-ui/javaee/hrms.png" class="img-rounded" >
-        </p>
+        	<img src="image/project-ui/javaee/register.png" class="img-thumbnail" >
+        	<img src="image/project-ui/javaee/mainpage.png" class="img-thumbnail" >
+        	<img src="image/project-ui/javaee/selectclass.png" class="img-thumbnail" >
+        	<img src="image/project-ui/javaee/hrms.png" class="img-thumbnail" >
+ 
     </div>
         <div id="div-mobile-developer">
-    	移动开发
-    	 <h3 class="text-muted">定个小目标,先挣一个亿</h3>
+        <p>
+        	<img src="image/project-ui/android/books-main.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+        	<img src="image/project-ui/android/books-main1.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+           	<img src="image/project-ui/android/books-detail.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+            <img src="image/project-ui/android/books-buy.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+   		    <img src="image/project-ui/android/books-cart.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+   		    <img src="image/project-ui/android/books-my.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+   		</p>
+   		      <p>
+        	<img src="image/project-ui/android/music-main.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+        	<img src="image/project-ui/android/music-list.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+           	<img src="image/project-ui/android/music-online.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+            <img src="image/project-ui/android/music-online.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+   		    <img src="image/project-ui/android/music-online2.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+   		    <img src="image/project-ui/android/music-online3.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+   			<img src="image/project-ui/android/music-online4.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+   			<img src="image/project-ui/android/music-usermenu.png" class="img-thumbnail" >&nbsp;&nbsp;&nbsp;
+   			
+   		</p>
     </div>
     <div id="div-contact-me">
    

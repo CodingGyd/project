@@ -105,18 +105,22 @@ body {
 }
 
 #div-desktop-programe-developer {
+	text-align:center;
 	display: none;
 }
 
 #div-website-developer {
+	text-align:center;
 	display: none;
 }
 
 #div-mobile-developer {
+	text-align:center;
 	display: none;
 }
 
 #div-contact-me {
+	text-align:center;
 	display: none;
 }
 }

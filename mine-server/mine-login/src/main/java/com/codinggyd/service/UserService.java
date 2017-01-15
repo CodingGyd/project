@@ -12,6 +12,7 @@ package com.codinggyd.service;
  *
  * Copyright @ 2017 Corpration Name
  */
+
 public interface UserService {
 	
 	public String login(String phone,String password);

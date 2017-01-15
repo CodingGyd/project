@@ -42,11 +42,13 @@
         <artifactId>mine-login</artifactId>
         <version>${project.version}</version>
       </dependency>
+	  
 	    <dependency>
         <groupId>com.codinggyd</groupId>
         <artifactId>mine-core</artifactId>
         <version>${project.version}</version>
       </dependency>
+	 
     </dependencies>
   </dependencyManagement>
   <dependencies>

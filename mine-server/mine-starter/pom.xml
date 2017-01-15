@@ -38,6 +38,10 @@
 			<groupId>com.codinggyd</groupId>
 			<artifactId>mine-login</artifactId>
 		</dependency>
+				<dependency>
+			<groupId>com.codinggyd</groupId>
+			<artifactId>mine-core</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<!-- 为jar包取名 -->

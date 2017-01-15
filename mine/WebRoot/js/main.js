@@ -76,11 +76,11 @@
 		$("#div-mobile-developer").hide("active");
 		$("#div-contact-me").show("active");
 	});
-	
+	 
 	$("#testBt").click(function(){
 		$.ajax({  
             type: "GET",  
-            url: "http://localhost:8181/mine-server/api/func/login?username=guoyading&password=123",  
+            url: "http://localhost:8181/mine-server/api/func/login?phone=15974154924&password=123456",  
             dataType: "jsonp",  
             success:function(data){
                 alert(data.phone);
