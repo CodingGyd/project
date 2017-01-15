@@ -52,7 +52,7 @@
           <li role="presentation" id="li-contact-me"><a href="#" id="alink-contact-me">联系我</a></li>
         </ul>
         <h3 class="text-muted">定个小目标,先挣一个亿</h3>
-        <input type="button" value="测试跨域访问1" name="testBt" id="testBt"/>
+<!--         <input type="button" value="测试跨域访问1" name="testBt" id="testBt"/> -->
       </div>
   	<div id="div-main-page">
       <div class="jumbotron">
