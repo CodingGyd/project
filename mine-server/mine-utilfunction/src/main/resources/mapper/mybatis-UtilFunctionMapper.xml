@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.mapper.UtilFunctionMapper">
+  <resultMap id="utilFunctions" type="com.codinggyd.bean.UtilFunction">
+        <id column="id" property="id" />
+        <result column="title" property="title" />
+        <result column="content" property="content" />
+          <result column="updatetime" property="updatetime" />
+            <result column="readingcount" property="readingcount" />
+    </resultMap>
+
+	<select id="findUtilFunctions" resultMap="utilFunctions">
+		SELECT id,title,content,updatetime,readingcount FROM mine_utilfunction
+	</select>
+</mapper>
