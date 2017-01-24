@@ -155,11 +155,6 @@
 		</div>
 		<div id="div-util-function">
 			<div class="list-group">
-				<a href="#" class="list-group-item"> 计算输入日期区间包含2月29日的次数 </a> <a
-					href="#" class="list-group-item">Dapibus ac facilisis in</a> <a
-					href="#" class="list-group-item">Morbi leo risus</a> <a href="#"
-					class="list-group-item">Porta ac consectetur ac</a> <a href="#"
-					class="list-group-item">Vestibulum at eros</a>
 			</div>
 		</div>
 

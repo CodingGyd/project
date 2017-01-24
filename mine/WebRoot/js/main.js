@@ -2,13 +2,14 @@
  $(document).ready(function(e) {
 		$.ajax({  
             type: "POST",  
-            url: "http://localhost:8181/mine-server/api/func/login?phone=15974154924&password=123456",  
+            url: "http://localhost:8181/mine-server/api/func/utilfunctions",  
             dataType: "jsonp",  
+            jsonp: "callback",
             success:function(data){
-//            	for ( var j = 0, j < 10; j++ ) {   
-            		$(".list-group").append("<a href='#' class='list-group-item'>"+data.phone+" </a>");
-//            	}  
- 
+         
+            	$.each(data, function(idx, obj) {
+            	    $(".list-group").append("<a href='http://www.baidu.com' target='_blank' class='list-group-item'>"+obj.title+" </a>");
+            	});
               },
               error:function(XMLHttpRequest, textStatus, errorThrown) {
                 alert(XMLHttpRequest.status);
