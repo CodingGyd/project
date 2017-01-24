@@ -8,7 +8,7 @@
             success:function(data){
          
             	$.each(data, function(idx, obj) {
-            	    $(".list-group").append("<a href='http://www.baidu.com' target='_blank' class='list-group-item'>"+obj.title+" </a>");
+            	    $(".list-group").append("<a href='./utilfunction_detail.jsp' class='list-group-item'>"+obj.title+" </a>");
             	});
               },
               error:function(XMLHttpRequest, textStatus, errorThrown) {
