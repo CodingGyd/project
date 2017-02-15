@@ -8,7 +8,23 @@
             success:function(data){
          
             	$.each(data, function(idx, obj) {
-            	    $(".list-group").append("<a href='./utilfunction_detail.jsp' class='list-group-item'>"+obj.title+" </a>");
+            	    $(".util-function-list-group").append("<a href='#' class='list-group-item'>"+obj.title+" </a>");
+            	});
+              },
+              error:function(XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+              }});
+		$.ajax({  
+            type: "POST",  
+            url: "http://localhost:8181/mine-server/api/func/utilfunctions",  
+            dataType: "jsonp",  
+            jsonp: "callback",
+            success:function(data){
+         
+            	$.each(data, function(idx, obj) {
+            	    $(".it-technology-list-group").append("<a href='#' class='list-group-item'>"+obj.title+" </a>");
             	});
               },
               error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -22,12 +38,14 @@
 		$("#li-website-developer").removeClass("active");
 		$("#li-mobile-developer").removeClass("active");
 		$("#li-util-function").removeClass("active");
+		$("#li-it-technology").removeClass("active");
 		$("#li-main-page").addClass("active");
 		
 		$("#div-desktop-programe-developer").hide("active");
 		$("#div-website-developer").hide("active");
 		$("#div-mobile-developer").hide("active");
 		$("#div-util-function").hide("active");
+		$("#div-it-technology").hide("active");
 		$("#div-main-page").show("active");
 		
 	});
@@ -38,6 +56,7 @@
 			$("#li-mobile-developer").removeClass("active");
 			$("#li-util-function").removeClass("active");
 			$("#li-website-developer").removeClass("active");
+			$("#li-it-technology").removeClass("active");
 			$("#li-desktop-programe-developer").addClass("active");
 			
 			
@@ -45,6 +64,7 @@
 			$("#div-mobile-developer").hide("active");
 			$("#div-util-function").hide("active");
 			$("#div-main-page").hide("active");
+			$("#div-it-technology").hide("active");
 			$("#div-desktop-programe-developer").show("active");
 		});
 	
@@ -54,43 +74,65 @@
 		$("#li-mobile-developer").removeClass("active");
 		$("#li-util-function").removeClass("active");
 		$("#li-desktop-programe-developer").removeClass("active");
+		$("#li-it-technology").removeClass("active");
 		$("#li-website-developer").addClass("active");
 		
 		$("#div-mobile-developer").hide("active");
 		$("#div-util-function").hide("active");
 		$("#div-main-page").hide("active");
 		$("#div-desktop-programe-developer").hide("active");
+		$("#div-it-technology").hide("active");
 		$("#div-website-developer").show("active");
 	});
 	
-	 //点击桌面程序
+	 //点击移动开发
 	$("#alink-mobile-developer").click(function(){
 		$("#li-main-page").removeClass("active");
 		$("#li-util-function").removeClass("active");
 		$("#li-website-developer").removeClass("active");
 		$("#li-desktop-programe-developer").removeClass("active");
+		$("#li-it-technology").removeClass("active");
 		$("#li-mobile-developer").addClass("active");
 		
 		$("#div-util-function").hide("active");
 		$("#div-main-page").hide("active");
 		$("#div-desktop-programe-developer").hide("active");
 		$("#div-website-developer").hide("active");
+		$("#div-it-technology").hide("active");
 		$("#div-mobile-developer").show("active");
 	});
 	
-	 //点击联系我
+	 //点击功能函数
 	$("#alink-util-function").click(function(){
 		$("#li-main-page").removeClass("active");
 		$("#li-mobile-developer").removeClass("active");
 		$("#li-desktop-programe-developer").removeClass("active");
 		$("#li-website-developer").removeClass("active");
+		$("#li-it-technology").removeClass("active");
 		$("#li-util-function").addClass("active");
 		
 		$("#div-main-page").hide("active");
 		$("#div-desktop-programe-developer").hide("active");
 		$("#div-website-developer").hide("active");
 		$("#div-mobile-developer").hide("active");
+		$("#div-it-technology").hide("active");
 		$("#div-util-function").show("active");
 	});
  
+	 //点击IT资讯
+	$("#alink-it-technology").click(function(){
+		$("#li-main-page").removeClass("active");
+		$("#li-mobile-developer").removeClass("active");
+		$("#li-desktop-programe-developer").removeClass("active");
+		$("#li-website-developer").removeClass("active");
+		$("#li-util-function").removeClass("active");
+		$("#li-it-technology").addClass("active");
+		
+		$("#div-main-page").hide("active");
+		$("#div-desktop-programe-developer").hide("active");
+		$("#div-website-developer").hide("active");
+		$("#div-mobile-developer").hide("active");
+		$("#div-util-function").hide("active");
+		$("#div-it-technology").show("active");
+	});
  });

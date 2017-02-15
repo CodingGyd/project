@@ -54,6 +54,8 @@
 					id="alink-mobile-developer">移动开发</a></li>
 				<li role="presentation" id="li-util-function"><a href="#"
 					id="alink-util-function">工具函数</a></li>
+				<li role="presentation" id="li-it-technology"><a href="#"
+					id="alink-it-technology">IT资讯</a></li>
 			</ul>
 			<h3 class="text-muted">定个小目标,先挣一个亿</h3>
 			<!--         <input type="button" value="测试跨域访问1" name="testBt" id="testBt"/> -->
@@ -154,10 +156,13 @@
 			</p>
 		</div>
 		<div id="div-util-function">
-			<div class="list-group">
+			<div class="util-function-list-group">
 			</div>
 		</div>
-
+		<div id="div-it-technology">
+			<div class="it-technology-list-group">
+			</div>
+		</div>
 	</div>
 	<!-- /container -->
 
