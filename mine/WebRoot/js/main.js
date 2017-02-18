@@ -18,13 +18,13 @@
               }});
 		$.ajax({  
             type: "POST",  
-            url: "http://localhost:8181/mine-server/api/func/utilfunctions",  
+            url: "http://localhost:8181/mine-server/api/func/learnsite",  
             dataType: "jsonp",  
             jsonp: "callback",
             success:function(data){
          
             	$.each(data, function(idx, obj) {
-            	    $(".it-technology-list-group").append("<a href='#' class='list-group-item'>"+obj.title+" </a>");
+            	    $(".it-technology-list-group").append("<a href="+obj.url+" target='_blank' class='list-group-item'>"+obj.title+" </a>");
             	});
               },
               error:function(XMLHttpRequest, textStatus, errorThrown) {

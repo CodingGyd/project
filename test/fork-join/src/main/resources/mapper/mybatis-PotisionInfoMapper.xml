@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.mapper.PotisionInfoMapper">
+	<select id="save" resultType="Integer">
+		INSERT INTO HS_POSITION_HIS
+		(L_DATE,FUNDCODE,COMBIID,SECUCODE,MARKETID,CURRENTAMOUNT,MARKETVALUE,BUYAMOUNT,
+		BUYBALANCE,SALEAMOUNT,SALEBALANCE,BUYFEE,SALEFEE,ONLINEAMOUNT,OFFLINEAMOUNT,TURNINVEST,
+		C_POSITION_FLAG,C_NET_PRICE,FileName,FLAG)
+		VALUES
+
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(
+			#{item.lDate},
+			#{item.fundcode},
+			#{item.combiId},
+			#{item.secucode},
+			#{item.marketId},
+			#{item.currentAmount},
+			#{item.marketValue},
+			#{item.buyAmout},
+			#{item.buyBalance},
+			#{item.saleAmout},
+			#{item.saleBalance},
+			#{item.bufFee},
+			#{item.saleFee},
+			#{item.onlineAmount},
+			#{item.offlineAmout},
+			#{item.turnInvest},
+			#{item.positionFlag},
+			#{item.price},
+			#{item.filename},
+			#{item.flag}
+			)
+		</foreach>
+	</select>
+</mapper>
