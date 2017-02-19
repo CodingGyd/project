@@ -22,5 +22,5 @@ public interface ILearnSiteService {
 //	@MineMethod(value="TEST_LEARN_SERVICE")
 	public List<LearnSite> listLearnSite();
 	@MineMethod(value="TEST_LEARN_SERVICE")
-	public List<LearnSite> listLearnSite(Integer name);
+	public List<LearnSite> listLearnSite(List name);
 }

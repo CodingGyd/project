@@ -18,7 +18,7 @@ import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.MineFieldBean;
 import com.codinggyd.bean.MineFuncBean;
 import com.codinggyd.bean.MineServiceBean;
-import com.codinggyd.util.MineFieldTypeTool;
+import com.codinggyd.util.MineFieldTypeUtils;
 
 /**
  * 应用程序数据初始化加载类
@@ -101,7 +101,7 @@ public class MineServiceHandler implements ApplicationContextAware, Initializing
 					Method method = classes.getMethod(methodName);
 					//获得字段类型
 					Class<?> fieldTypeClass = method.getReturnType();
-					int fieldType = MineFieldTypeTool.getFieldType(fieldTypeClass);
+					int fieldType = MineFieldTypeUtils.getFieldType(fieldTypeClass);
 					mineField.setType(fieldType);
 					
 					funcBean.addField(mineField);

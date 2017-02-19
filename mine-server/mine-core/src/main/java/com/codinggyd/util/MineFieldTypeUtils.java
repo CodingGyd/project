@@ -5,7 +5,9 @@ import java.math.BigDecimal;
 import java.sql.Time;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,9 +23,9 @@ import org.slf4j.LoggerFactory;
  *
  * Copyright @ 2017 Corpration Name
  */
-public class MineFieldTypeTool {
+public class MineFieldTypeUtils {
 	private static final Map<Class<?>,Integer> fieldTypesMap;
-	static final Logger logger = LoggerFactory.getLogger(MineFieldTypeTool.class);
+	static final Logger logger = LoggerFactory.getLogger(MineFieldTypeUtils.class);
 
 	static {
 		
@@ -52,6 +54,10 @@ public class MineFieldTypeTool {
 		fieldTypesMap.put(Time.class, 7);
 		
 		fieldTypesMap.put(byte[].class, 8);
+		
+		fieldTypesMap.put(List.class, 9);
+		fieldTypesMap.put(Set.class, 10);
+
 
 	}
 	
@@ -68,4 +74,5 @@ public class MineFieldTypeTool {
 			return 6;
 		}
 	}
+	
 }

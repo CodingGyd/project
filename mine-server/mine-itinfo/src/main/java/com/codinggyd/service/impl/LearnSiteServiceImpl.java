@@ -49,7 +49,7 @@ public class LearnSiteServiceImpl implements ILearnSiteService{
 	 * 测试框架用
 	 */
 	@Override
-	public List<LearnSite> listLearnSite(Integer name) {
+	public List<LearnSite> listLearnSite(List name) {
 	List<LearnSite> learnSiteList = mapper.findLearnSite();
 		
 		if(CollectionUtils.isEmpty(learnSiteList)){
