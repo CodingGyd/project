@@ -6,7 +6,6 @@ import java.util.Date;
 import org.springframework.stereotype.Component;
 
 import com.codinggyd.annotation.MineFuncData;
-import com.codinggyd.annotation.MineService;
 
 /**
  * 
@@ -97,6 +96,12 @@ public class LearnSite implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	@Override
+	public String toString() {
+		return "LearnSite [id=" + id + ", title=" + title + ", content=" + content + ", updatetime=" + updatetime
+				+ ", readingcount=" + readingcount + ", url=" + url + "]";
 	}
 
 }

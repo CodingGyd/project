@@ -55,6 +55,11 @@ public class MineFieldTypeTool {
 
 	}
 	
+	/**
+	 * 返回类型对应的整型代码
+	 * @param colType
+	 * @return
+	 */
 	public static int getFieldType(Class<?> colType) {
 		if (fieldTypesMap.containsKey(colType)) {
 			return fieldTypesMap.get(colType);

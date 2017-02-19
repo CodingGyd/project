@@ -19,7 +19,8 @@ import com.codinggyd.bean.LearnSite;
  */
 public interface ILearnSiteService {
 	
-	@MineMethod(value="TEST_LEARN_SERVICE")
+//	@MineMethod(value="TEST_LEARN_SERVICE")
 	public List<LearnSite> listLearnSite();
-	
+	@MineMethod(value="TEST_LEARN_SERVICE")
+	public List<LearnSite> listLearnSite(Integer name);
 }

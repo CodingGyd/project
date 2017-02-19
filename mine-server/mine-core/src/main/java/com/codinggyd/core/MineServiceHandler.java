@@ -15,9 +15,9 @@ import org.springframework.stereotype.Component;
 import com.codinggyd.annotation.MineFuncData;
 import com.codinggyd.annotation.MineMethod;
 import com.codinggyd.annotation.MineService;
-import com.codinggyd.func.MineField;
-import com.codinggyd.func.MineFuncBean;
-import com.codinggyd.func.MineServiceBean;
+import com.codinggyd.bean.MineFieldBean;
+import com.codinggyd.bean.MineFuncBean;
+import com.codinggyd.bean.MineServiceBean;
 import com.codinggyd.util.MineFieldTypeTool;
 
 /**
@@ -89,7 +89,7 @@ public class MineServiceHandler implements ApplicationContextAware, Initializing
 			
 			for (String fieldName : fieldNames) {
 				
-				MineField mineField = new MineField();
+				MineFieldBean mineField = new MineFieldBean();
 				
 				//获得字段名
 				mineField.setName(fieldName);

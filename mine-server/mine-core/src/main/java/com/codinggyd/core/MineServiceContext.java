@@ -6,8 +6,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.codinggyd.func.MineFuncBean;
-import com.codinggyd.func.MineServiceBean;
+import com.codinggyd.bean.MineFuncBean;
+import com.codinggyd.bean.MineServiceBean;
 
 /**
  * 
