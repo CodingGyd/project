@@ -40,7 +40,6 @@ public class MineServiceHandler implements ApplicationContextAware, Initializing
 	
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		logger.debug("=========afterPropertiesSet");
 		preParserMineServiceBean();
 		preParserMineFuncData();
 	}
@@ -49,6 +48,7 @@ public class MineServiceHandler implements ApplicationContextAware, Initializing
 	 * 初始化所有service类对象
 	 */
 	private void preParserMineServiceBean(){
+		logger.debug("测试接口初始化");
 		Map<String, Object> serviceBeansMap = applicationContext.getBeansWithAnnotation(MineService.class);
 		if (null == serviceBeansMap) {
 			return;
@@ -69,6 +69,7 @@ public class MineServiceHandler implements ApplicationContextAware, Initializing
 				}
 			}
 		}
+		logger.debug("测试接口初始化完毕");
 	}
 	
 	/**

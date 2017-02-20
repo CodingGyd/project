@@ -45,19 +45,4 @@ public class LearnSiteServiceImpl implements ILearnSiteService{
 		return learnSiteList;
 	}
 
-	/**
-	 * 测试框架用
-	 */
-	@Override
-	public List<LearnSite> listLearnSite(List name) {
-	List<LearnSite> learnSiteList = mapper.findLearnSite();
-		
-		if(CollectionUtils.isEmpty(learnSiteList)){
-			logger.debug("暂未收录任何IT资讯网站");
-			return null;
-		}
-		
-		return learnSiteList;
-	}
-
 }
