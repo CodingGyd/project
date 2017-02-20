@@ -33,7 +33,7 @@ public abstract class MineServiceContext {
 		mineServiceBeansMap = new ConcurrentHashMap<>();
 		mineFuncBeansMap = new ConcurrentHashMap<>();
 	}
-	final Logger logger = LoggerFactory.getLogger(getClass());
+	private static final Logger logger = LoggerFactory.getLogger(MineServiceContext.class);
 	 
 	/**
 	 * 新增service对象
@@ -41,8 +41,12 @@ public abstract class MineServiceContext {
 	 * @param mineServiceBean
 	 */
 	public static void addMineServiceBean(String serviceId, MineServiceBean mineServiceBean) {
-		if (null == mineServiceBean) {
+		if (null == mineServiceBean || null == serviceId) {
 			return ;
+		}
+		if (null != mineServiceBeansMap.get(serviceId)) {
+			logger.error("{}接口已存在",serviceId);
+			return;
 		}
 		mineServiceBeansMap.put(serviceId, mineServiceBean);
 	}
@@ -62,7 +66,7 @@ public abstract class MineServiceContext {
 	 * @param mineFuncBean
 	 */
 	public static void addMineFuncBean(String fundId, MineFuncBean mineFuncBean) {
-		if (null == mineFuncBean) {
+		if (null == mineFuncBean || null == fundId) {
 			return ;
 		}
 		mineFuncBeansMap.put(fundId, mineFuncBean);

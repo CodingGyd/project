@@ -34,33 +34,33 @@ public abstract class MineServiceExecuter {
 	 * @throws Exception
 	 */
 	public static String invoke(String requestJson) throws Exception{
-		try {
-			JsonNode jsonNode = objectMapper.readTree(requestJson);
-			String serviceId = jsonNode.get("ServiceId").asText();//解析要执行的业务类
-			JsonNode params = jsonNode.get("Params");//解析业务类方法的参数
-			
-			MineServiceBean mineServiceBean = MineServiceContext.getMineServiceBean(serviceId);
-			Method method = mineServiceBean.getMethod();
-			Class<?>[] paramsType = method.getParameterTypes();
-		 
-			int paramsSize = params.size();
-			if (paramsType.length != paramsSize) {
-				logger.error("9999,提交参数个数不一致!");
-			    return null;
-			}
-			//解析请求参数,与业务方法参数类型进行一一转换
-			Object[] args = new Object[paramsType.length];
-			for (int i = 0;i < paramsType.length;i++) {
-				Class<?> cs = paramsType[i];
-				JsonNode node = params.get(i);
-				args[i] = objectMapper.reader().treeToValue(node, cs);
-			}
-			Object result = method.invoke(mineServiceBean.getService(), args);
-			return wrapResult(MineResponseCode.SUCCESS_CODE, result);
-		} catch(Exception e) {
-			logger.error("系统异常,{},{}",MineResponseCode.ERROR_CODE,e);
-			return wrapResult(MineResponseCode.ERROR_CODE, "");
+		JsonNode jsonNode = objectMapper.readTree(requestJson);
+		String serviceId = jsonNode.get("ServiceId").asText();//解析要执行的业务类
+		JsonNode params = jsonNode.get("Params");//解析业务类方法的参数
+		
+		MineServiceBean mineServiceBean = MineServiceContext.getMineServiceBean(serviceId);
+		if (null == mineServiceBean) {
+			logger.error("不存在的接口地址{}",serviceId);
+			return wrapResult(MineResponseCode.ERROR_CODE, "不存在的接口地址");
 		}
+		Method method = mineServiceBean.getMethod();
+		Class<?>[] paramsType = method.getParameterTypes();
+		 
+		int paramsSize = params.size();
+		if (paramsType.length != paramsSize) {
+			logger.error("9999,提交参数个数不一致!");
+			return wrapResult(MineResponseCode.ERROR_CODE, "提交参数个数不一致");
+		}
+		//解析请求参数,与业务方法参数类型进行一一转换
+		Object[] args = new Object[paramsType.length];
+		for (int i = 0;i < paramsType.length;i++) {
+			Class<?> cs = paramsType[i];
+			JsonNode node = params.get(i);
+			args[i] = objectMapper.reader().treeToValue(node, cs);
+		}
+		Object result = method.invoke(mineServiceBean.getService(), args);
+		return wrapResult(MineResponseCode.SUCCESS_CODE, result);
+	 
 	}
 	
 	/**
@@ -69,12 +69,11 @@ public abstract class MineServiceExecuter {
 	 * @return
 	 * @throws IOException 
 	 */
-	private static String wrapResult(Integer responseCode, Object result) throws IOException{
+	private static String wrapResult(Integer responseCode, Object result) throws Exception{
 		MineResponseBean mineResponseBean = new MineResponseBean();
 		mineResponseBean.setCode(responseCode);
 		mineResponseBean.setData(result);
-        String json = objectMapper.writeValueAsString(mineResponseBean);
-		return json;
+		return objectMapper.writeValueAsString(mineResponseBean);
 	}
 	
 }
