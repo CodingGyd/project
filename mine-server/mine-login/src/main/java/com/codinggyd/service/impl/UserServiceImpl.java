@@ -5,9 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.UserInfo;
 import com.codinggyd.mapper.UserInfoMapper;
-import com.codinggyd.service.UserService;
+import com.codinggyd.service.IUserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,7 +25,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Copyright @ 2017 Corpration Name
  */
 @Service
-public class UserServiceImpl implements UserService{
+@MineService
+public class UserServiceImpl implements IUserService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired

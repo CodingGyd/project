@@ -3,6 +3,10 @@ package com.codinggyd.bean;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.springframework.stereotype.Component;
+
+import com.codinggyd.annotation.MineFuncData;
+
 /**
  * 
  * 
@@ -15,6 +19,8 @@ import java.util.Date;
  * 
  *        Copyright @ 2017 Corpration Name
  */
+@Component
+@MineFuncData(name="MINE_UTIL_FUNCTION",fieldNames={"title","content","updatetime","readingcount"})
 public class UtilFunction implements Serializable {
 
 	/**

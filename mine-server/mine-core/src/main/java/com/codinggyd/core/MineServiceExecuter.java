@@ -1,14 +1,14 @@
 package com.codinggyd.core;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.codinggyd.bean.MineServiceBean;
-import com.codinggyd.util.DateUtils;
-import com.codinggyd.util.MineFieldTypeUtils;
+import com.codinggyd.bean.resp.MineResponseBean;
+import com.codinggyd.constant.MineResponseCode;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -36,8 +36,8 @@ public abstract class MineServiceExecuter {
 	public static String invoke(String requestJson) throws Exception{
 		try {
 			JsonNode jsonNode = objectMapper.readTree(requestJson);
-			String serviceId = jsonNode.get("ServiceId").asText();
-			JsonNode params = jsonNode.get("Params");
+			String serviceId = jsonNode.get("ServiceId").asText();//解析要执行的业务类
+			JsonNode params = jsonNode.get("Params");//解析业务类方法的参数
 			
 			MineServiceBean mineServiceBean = MineServiceContext.getMineServiceBean(serviceId);
 			Method method = mineServiceBean.getMethod();
@@ -45,38 +45,21 @@ public abstract class MineServiceExecuter {
 		 
 			int paramsSize = params.size();
 			if (paramsType.length != paramsSize) {
-				logger.error("9999参数个数不一致!");
+				logger.error("9999,提交参数个数不一致!");
 			    return null;
 			}
 			//解析请求参数,与业务方法参数类型进行一一转换
 			Object[] args = new Object[paramsType.length];
 			for (int i = 0;i < paramsType.length;i++) {
 				Class<?> cs = paramsType[i];
-				Integer code = MineFieldTypeUtils.getFieldType(cs);
-				String className = cs.getSimpleName();
 				JsonNode node = params.get(i);
-				String nodeValue = node.asText();
-				if ("List".equals(className)) {
-					List<?> data = objectMapper.readValue(nodeValue, List.class);
-					args[i] = data;
-				} else if ("Integer".equals(className) || "int".equals(className)){
-					args[i] = Integer.parseInt(nodeValue);
-				}  else if ("String".equals(className) || "string".equals(className)) {
-					args[i] = nodeValue;
-				} else if ("Double".equals(className) || "double".equals(className)) {
-					args[i] = Double.parseDouble(nodeValue);
-				} else if ("Float".equals(className) || "float".equals(className)) {
-					args[i] = Float.parseFloat(nodeValue);
-				} else if ("Date".equals(className)) {
-					args[i] = DateUtils.formatDate(nodeValue);
-				}
+				args[i] = objectMapper.reader().treeToValue(node, cs);
 			}
 			Object result = method.invoke(mineServiceBean.getService(), args);
-			String jsonResult = wrapResult(result);
-			return jsonResult;
+			return wrapResult(MineResponseCode.SUCCESS_CODE, result);
 		} catch(Exception e) {
-			logger.error("9999参数类型转换异常,{}",e);
-			return null;
+			logger.error("系统异常,{},{}",MineResponseCode.ERROR_CODE,e);
+			return wrapResult(MineResponseCode.ERROR_CODE, "");
 		}
 	}
 	
@@ -84,10 +67,14 @@ public abstract class MineServiceExecuter {
 	 * 将业务方法执行的结果集封装为json字符串
 	 * @param result
 	 * @return
+	 * @throws IOException 
 	 */
-	private static String wrapResult(Object result){
-		
-		return null;
+	private static String wrapResult(Integer responseCode, Object result) throws IOException{
+		MineResponseBean mineResponseBean = new MineResponseBean();
+		mineResponseBean.setCode(responseCode);
+		mineResponseBean.setData(result);
+        String json = objectMapper.writeValueAsString(mineResponseBean);
+		return json;
 	}
 	
 }

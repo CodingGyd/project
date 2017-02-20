@@ -63,7 +63,9 @@ public class MineServiceHandler implements ApplicationContextAware, Initializing
 					MineServiceBean mineServiceBean = new MineServiceBean();
 					mineServiceBean.setMethod(method);
 					mineServiceBean.setService(object);
+					mineServiceBean.setServiceId(mineMethod.value());
 					MineServiceContext.addMineServiceBean(mineMethod.value(), mineServiceBean);
+					logger.debug("初始化接口地址={}",mineMethod.value());
 				}
 			}
 		}

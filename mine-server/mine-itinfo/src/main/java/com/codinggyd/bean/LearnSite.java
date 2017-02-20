@@ -19,7 +19,7 @@ import com.codinggyd.annotation.MineFuncData;
  * 
  *        Copyright @ 2017 Corpration Name
  */
-@MineFuncData(name="TEST_MINE_FUNC_DATA",fieldNames={"title","content","url"})
+@MineFuncData(name="MINE_LIST_LEARN_SITE",fieldNames={"title","content","url"})
 @Component
 public class LearnSite implements Serializable {
 

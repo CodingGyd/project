@@ -21,7 +21,7 @@ public class MineController extends BaseController{
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST })
 	public void run(HttpServletRequest request, HttpServletResponse response){
 		OutputStream outputStream = null;
-		String contentJson = "{\"ServiceId\":\"TEST_LEARN_SERVICE\",\"Params\":[1]}";
+		String contentJson = "{\"ServiceId\":\"TEST_LEARN_SERVICE\",\"Params\":[[1,2]]}";
 		try {
 			String result = MineServiceExecuter.invoke(contentJson);
 			outputStream = response.getOutputStream();

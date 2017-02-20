@@ -1,6 +1,10 @@
 package com.codinggyd.bean;
 
 import java.io.Serializable;
+
+import org.springframework.stereotype.Component;
+
+import com.codinggyd.annotation.MineFuncData;
 /**
  * 
  * 
@@ -13,6 +17,8 @@ import java.io.Serializable;
  *
  * Copyright @ 2017 Corpration Name
  */
+@Component
+@MineFuncData(name="MINE_USER_LOGIN", fieldNames={"phone", "password"})
 public class UserInfo implements Serializable{
 	
 	/**

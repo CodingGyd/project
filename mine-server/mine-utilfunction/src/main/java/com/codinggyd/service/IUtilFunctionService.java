@@ -1,9 +1,6 @@
 package com.codinggyd.service;
 
-import java.util.List;
-
 import com.codinggyd.annotation.MineMethod;
-import com.codinggyd.bean.LearnSite;
 
 /**
  * 
@@ -17,10 +14,7 @@ import com.codinggyd.bean.LearnSite;
  *
  * Copyright @ 2017 Corpration Name
  */
-public interface ILearnSiteService {
-	
-//	@MineMethod(value="TEST_LEARN_SERVICE")
-	public List<LearnSite> listLearnSite();
-	@MineMethod(value="MINE_LIST_LEARN_SITE")
-	public List<LearnSite> listLearnSite(List name);
+public interface IUtilFunctionService {
+	@MineMethod("MINE_UTIL_FUNCTION")
+	public String getUtilFunction();
 }

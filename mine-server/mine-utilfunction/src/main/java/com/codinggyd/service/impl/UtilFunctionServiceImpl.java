@@ -7,9 +7,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.UtilFunction;
 import com.codinggyd.mapper.UtilFunctionMapper;
-import com.codinggyd.service.UtilFunctionService;
+import com.codinggyd.service.IUtilFunctionService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -25,7 +26,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Copyright @ 2017 Corpration Name
  */
 @Service
-public class UtilFunctionServiceImpl implements UtilFunctionService{
+@MineService
+public class UtilFunctionServiceImpl implements IUtilFunctionService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
