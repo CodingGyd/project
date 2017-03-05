@@ -44,122 +44,18 @@
 
 		<div class="header">
 			<ul class="nav nav-pills pull-right" role="tablist">
-				<li role="presentation" class="active" id="li-main-page"><a
-					href="#" id="alink-main-page">主页</a></li>
-				<li role="presentation" id="li-desktop-programe-developer"><a
-					href="#" id="alink-desktop-programe-developer">小游戏开发</a></li>
-				<li role="presentation" id="li-website-developer"><a href="#"
-					id="alink-website-developer">网站开发</a></li>
-				<li role="presentation" id="li-mobile-developer"><a href="#"
-					id="alink-mobile-developer">移动开发</a></li>
-				<li role="presentation" id="li-util-function"><a href="#"
+				<li role="presentation" class="active" id="li-util-function"><a href="#"
 					id="alink-util-function">工具函数</a></li>
 				<li role="presentation" id="li-it-technology"><a href="#"
-					id="alink-it-technology">IT资讯</a></li>
+					id="alink-it-technology">IT学习</a></li>
 			</ul>
 			<h3 class="text-muted">定个小目标,先挣一个亿</h3>
-			<!--         <input type="button" value="测试跨域访问1" name="testBt" id="testBt"/> -->
-		</div>
-		<div id="div-main-page">
-			<div class="jumbotron">
-
-				<p>
-					<img src="image/logo.JPG" alt="我" class="img-circle">
-				</p>
-				<h1>代码改变世界!</h1>
-				<!--   <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-        <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
-			</div>
-
-			<div class="row marketing">
-				<div class="col-lg-6">
-					<h4>我是谁</h4>
-					<p>大学毕业已经一年, 目前在一家互联网金融公司就职, 担任产品技术开发工程师.</p>
-
-					<h4>网站开发</h4>
-					<p>
-						熟悉html、javascript、jquery、css、div、ajax等网页开发技术.<br />
-						熟悉servlet、jsp、javabean等服务器端开发技术.<br />
-						熟悉Struts、Spring、Hibernate等框架技术.<br /> 熟悉Apache Ignite、Apache
-						Cassandra、ElasticSearch等前沿技术.<br />
-					</p>
-
-					<h4>数据库开发</h4>
-					<p>熟悉MySql、Sqlserver等主流数据库开发技术.</p>
-				</div>
-
-				<div class="col-lg-6">
-					<h4>我的编程语言</h4>
-					<p>JAVA编程语言.</p>
-
-					<h4>移动开发</h4>
-					<p>
-						熟悉Android API,四大组件、五大布局、网络编程、消息机制等Android开发技术.<br />
-						了解各种开源框架的使用(用过slidingmenu、volley、androidpn、androidannotation、imageloader等第三方框架).<br />
-					</p>
-
-					<h4>开发工具</h4>
-					<p>熟悉Eclipse、MyEclipse、Android Studio等各种主流开发工具以及SVN、GIT团队协作工具.</p>
-				</div>
-			</div>
-		</div>
-		<div id="div-desktop-programe-developer">
-			<img src="image/project-ui/javase/tankewar.png" class="img-thumbnail">
-			<img src="image/project-ui/javase/plane.png" class="img-thumbnail">
-			<img src="image/project-ui/javase/mine.png" class="img-thumbnail">
-			<img src="image/project-ui/javase/lianliankan.png"
-				class="img-thumbnail"> <img
-				src="image/project-ui/javase/lianliankan2.png" class="img-thumbnail">
-
-		</div>
-		<div id="div-website-developer">
-			<img src="image/project-ui/javaee/website_project_list.png"
-				class="img-thumbnail"> <img
-				src="image/project-ui/javaee/login.png" class="img-rounded">
-			<img src="image/project-ui/javaee/register.png" class="img-thumbnail">
-			<img src="image/project-ui/javaee/mainpage.png" class="img-thumbnail">
-			<img src="image/project-ui/javaee/selectclass.png"
-				class="img-thumbnail"> <img
-				src="image/project-ui/javaee/hrms.png" class="img-thumbnail">
-
-		</div>
-		<div id="div-mobile-developer">
-			<p>
-				<img src="image/project-ui/android/books-main.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/books-main1.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/books-detail.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/books-buy.png" class="img-thumbnail">&nbsp;&nbsp;&nbsp;
-				<img src="image/project-ui/android/books-cart.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/books-my.png" class="img-thumbnail">&nbsp;&nbsp;&nbsp;
-			</p>
-			<p>
-				<img src="image/project-ui/android/music-main.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/music-list.png" class="img-thumbnail">&nbsp;&nbsp;&nbsp;
-				<img src="image/project-ui/android/music-online.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/music-online.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/music-online2.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/music-online3.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/music-online4.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp; <img
-					src="image/project-ui/android/music-usermenu.png"
-					class="img-thumbnail">&nbsp;&nbsp;&nbsp;
-
-			</p>
-		</div>
+ 		</div>
 		<div id="div-util-function">
 			<div class="util-function-list-group">
 			</div>
 		</div>
-		<div id="div-it-technology">
+		<div id="div-it-technology"  style="display: none;">
 			<div class="it-technology-list-group">
 			</div>
 		</div>
