@@ -16,8 +16,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Copyright @ 2017 Corpration Name
  */
 @SpringBootApplication
-public class App {
+public class ServerApp {
 	public static void main(String[] args) {
-		SpringApplication.run(App.class, args);
+		SpringApplication.run(ServerApp.class, args);
 	}
 }

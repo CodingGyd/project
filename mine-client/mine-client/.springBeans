@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:com.codinggyd.ServerApp</config>
+		<config>java:com.codinggyd.ClientApp</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

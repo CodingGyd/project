@@ -9,8 +9,14 @@
             success:function(data){
          
             	$.each(data, function(idx, obj) {
-            	    $(".util-function-list-group").append("<a href='#' class='list-group-item'>"+obj.title+" </a>");
+              		var content = obj.content;
+            	    $(".util-function-list-group").append("<a href='#' class='list-group-item' title='"+content+"'>"+obj.title+" </a>");
             	});
+            	   $(".list-group-item").on("click",function(){
+                   	$("#model-content").empty();
+                   	$("#model-content").append("<pre id='util-content'>"+$(this).attr("title")+"</pre>");
+                   	$("#myModal").modal('show');
+                   });
               },
               error:function(XMLHttpRequest, textStatus, errorThrown) {
                 alert(XMLHttpRequest.status);
@@ -51,4 +57,5 @@
 		$("#div-util-function").hide("active");
 		$("#div-it-technology").show("active");
 	});
+	
  });
