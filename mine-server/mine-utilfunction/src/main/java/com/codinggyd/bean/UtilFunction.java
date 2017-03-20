@@ -86,4 +86,10 @@ public class UtilFunction implements Serializable {
 		this.id = id;
 	}
 
+	@Override
+	public String toString() {
+		return "UtilFunction [id=" + id + ", title=" + title + ", content=" + content + ", updatetime=" + updatetime
+				+ ", readingcount=" + readingcount + "]";
+	}
+
 }

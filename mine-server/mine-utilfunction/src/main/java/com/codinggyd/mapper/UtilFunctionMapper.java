@@ -3,6 +3,7 @@ package com.codinggyd.mapper;
 import java.util.List;
 
 import com.codinggyd.bean.UtilFunction;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 /**
  * 
  * 
@@ -16,5 +17,5 @@ import com.codinggyd.bean.UtilFunction;
  * Copyright @ 2017 Corpration Name
  */
 public interface UtilFunctionMapper {
-	public List<UtilFunction> findUtilFunctions();
+	public List<UtilFunction> findUtilFunctions(PageBounds pageBounds);
 }

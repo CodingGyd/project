@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.LocalCacheScope;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -25,6 +26,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 
 import com.alibaba.druid.pool.DruidDataSourceFactory;
+import com.github.miemiedev.mybatis.paginator.OffsetLimitInterceptor;
 
 @Configuration
 //加上这个注解，使得支持事务
@@ -74,6 +76,17 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
 		SqlSessionFactory sessionFactory = null;
       try {
     	  sessionFactory = bean.getObject();
+    	  //设置分页拦截器
+    	// 配置分页插件
+			Interceptor interceptor = new OffsetLimitInterceptor();
+			Properties p = new Properties();
+			p.setProperty("dialectClass", "com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect");
+			p.setProperty("cacheEnabled", "false");
+			p.setProperty("useCache", "false");
+			p.setProperty("useCache", "false");
+			interceptor.setProperties(p);
+			sessionFactory.getConfiguration().setCacheEnabled(false);
+			sessionFactory.getConfiguration().addInterceptor(interceptor);
       } catch (Exception e) {
           e.printStackTrace();
       }
