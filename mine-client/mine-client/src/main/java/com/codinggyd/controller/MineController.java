@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class MineController {
  
-	@RequestMapping("foo")
-	public String foo() {
+	@RequestMapping("")
+	public String index() {
 		return "index";
 	}
 

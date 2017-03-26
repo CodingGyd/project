@@ -55,10 +55,10 @@
 	 //点击IT学习
 	$("#alink-it-technology").click(function(){
 		$("#li-util-function").removeClass("active");
-		$("#li-data-import").removeClass("active");
+		$("#li-data-export").removeClass("active");
 		$("#li-it-technology").addClass("active");
 		$("#div-util-function").hide("active");
-		$("#div-data-import").hide("active");
+		$("#div-data-export").hide("active");
 		$("#div-it-technology").show("active");
 	});
 	

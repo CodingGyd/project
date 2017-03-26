@@ -41,14 +41,14 @@ public class DataExportController {
 			String charactSet = "ISO8859_1";
 			response.setContentType("application/vnd.ms-excel;charset="+charactSet);  
 			response.setCharacterEncoding(charactSet);
-			String filename = "测试_123456";
+			String filename = "导出数据";
  			response.setHeader("Content-disposition", "attachment; filename=" + new String(filename.getBytes("gb2312"), charactSet) + ".xls");// 组装名称和格式  
  			
 			outputStream = response.getOutputStream();
 			service.dataExport(outputStream,script);
 		} catch (Exception e) {
 			logger.error("导出发生错误,{}",e);
-		}  
+ 		}  
 	
         return null;
     }  
