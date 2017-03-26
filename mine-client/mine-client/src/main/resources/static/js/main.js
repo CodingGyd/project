@@ -113,7 +113,7 @@
  		var condition="(\\w+\\.){0,1}\\w+\\s*(>|<|>=|<=|=|LIKE|IS)\\s*'?(\\w+\\.){0,1}[\\w%]+'?";//条件的正则表达式 匹配如 a=b 或 a is b..
  		var conditions=condition+"(\\s+(AND|OR)\\s*"+condition+"\\s*)*";//多个条件 匹配如 a=b and c like 'r%' or d is null 
  		var where="(WHERE\\s+"+conditions+"){0,1}";
- 		var pattern="\\s*SELECT\\s+"+top+"(\\*|"+ownerenables+"\\s+"+from+")\\s*"+where+"\\s*"; //匹配最终sql的正则表达式
+ 		var pattern="\\s*SELECT\\s+"+top+"(\\*|"+ownerenables+")\\s+"+from+"\\s*"+where+"\\s*"; //匹配最终sql的正则表达式
  		var reg = new RegExp(pattern);  
  		if(reg.test(script)){
  			return true;

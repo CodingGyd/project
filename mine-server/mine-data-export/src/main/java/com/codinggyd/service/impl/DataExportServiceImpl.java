@@ -70,7 +70,7 @@ public class DataExportServiceImpl implements IDataExportService{
 	 */
 	private List<String> getFieldNameList(List<Map<String,Object>> execScriptResult){
 		Set<String> result = null;
-		Set<String> temp = null;
+		Set<String> temp;
 		int size = execScriptResult.size();
 		for(int i = 0; i<size; i++){
 			temp = execScriptResult.get(i).keySet();
@@ -92,7 +92,7 @@ public class DataExportServiceImpl implements IDataExportService{
 	 * @param script
 	 * @return
 	 */
-	private boolean checkScript(String script){
+	private static boolean checkScript(String script){
 		
 		if (StringUtils.isEmpty(script)){
 			return false;
@@ -102,13 +102,13 @@ public class DataExportServiceImpl implements IDataExportService{
 		String columns=column+"(,\\s*"+column+")*"; //多列正则表达式 匹配如 product p,category c,warehouse w
 		String ownerenable="((\\w+\\.){0,1}\\w+\\s*(\\w+\\s*){0,1})";//一列的正则表达式 匹配如 a.product p
 		String ownerenables=ownerenable+"(,\\s*"+ownerenable+")*";//多列正则表达式 匹配如 a.product p,a.category c,b.warehouse w
-		String top = "(\\s*TOP\\s+[0-9]{1,}\\s*){0,1}";//匹配如TOP 1 
+		String top = "(\\s*TOP\\s+[0-9]{1,}\\s+){0,1}";//匹配如TOP 1 
 		String from="FROM\\s+"+columns;
 		String condition="(\\w+\\.){0,1}\\w+\\s*(>|<|>=|<=|=|LIKE|IS)\\s*'?(\\w+\\.){0,1}[\\w%]+'?";//条件的正则表达式 匹配如 a=b 或 a is b..
 		String conditions=condition+"(\\s+(AND|OR)\\s*"+condition+"\\s*)*";//多个条件 匹配如 a=b and c like "r%" or d is null 
 		String where="(WHERE\\s+"+conditions+"){0,1}";
-		String pattern="\\s*SELECT\\s+"+top+"(\\*|"+ownerenables+"\\s+"+from+")\\s*"+where+"\\s*"; //匹配最终sql的正则表达式
-	                
+		String pattern="\\s*SELECT\\s+"+top+"(\\*|"+ownerenables+")\\s+"+from+"\\s*"+where+"\\s*"; //匹配最终sql的正则表达式
+
 		if (script.toUpperCase().matches(pattern)) {
 			return true;
 		} 

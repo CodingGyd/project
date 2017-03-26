@@ -24,7 +24,7 @@ public abstract class BaseExportUtil<T> {
 
 	protected static final String SHEET_NAME_DEFAULT = "导出数据";//默认导出sheet名称
 	protected static final Integer SHEET_MAX_ROW_SIZE = 65000;//excel2003版的xls格式只允许一个sheet最多有65536条记录
-	protected static final Integer SHEET_DATA_START_INDEX = 7;//excel数据生成的起始行
+	protected static final Integer SHEET_DATA_START_INDEX = 1;//excel数据生成的起始行
 	
 	/**
 	 * 设置单元格信息
