@@ -40,7 +40,7 @@ public class UtilFunctionServiceImpl implements IUtilFunctionService{
 	@Override
 	public String getUtilFunction() {
 		int page = 1; //页号
-		int pageSize = 1; //每页数据条数
+		int pageSize = 10; //每页数据条数
 		String sortString = "id.desc";//如果你想排序的话逗号分隔可以排序多列
 		PageBounds pageBounds = new PageBounds(page, pageSize , Order.formString(sortString));
 		pageBounds.setContainsTotalCount(true);
@@ -63,7 +63,7 @@ public class UtilFunctionServiceImpl implements IUtilFunctionService{
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 		 
-			String json = objectMapper.writeValueAsString(data);
+			String json = objectMapper.writeValueAsString(userinfo);
 			return json;
 		} catch (Exception e) {
 			logger.error("查询功能函数信息失败",e.getMessage());

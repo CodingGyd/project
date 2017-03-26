@@ -42,6 +42,10 @@
 			<groupId>com.codinggyd</groupId>
 			<artifactId>mine-itinfo</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.codinggyd</groupId>
+			<artifactId>mine-data-export</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<!-- 为jar包取名 -->

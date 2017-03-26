@@ -14,5 +14,8 @@
 	<select id="findUtilFunctions" resultMap="utilFunctions">
 		SELECT id,title,content,updatetime,readingcount FROM mine_utilfunction
 	</select>
-	 
+	 	<!-- 查询数据库表的字段信息 -->
+	<select id="execSql" resultType="java.util.LinkedHashMap">
+		SELECT TOP 100000 * FROM ( ${script} ) TEMP
+	</select>
 </mapper>
