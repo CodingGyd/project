@@ -2,6 +2,7 @@ package com.codinggyd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 /**
  * 
@@ -16,7 +17,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Copyright @ 2017 Corpration Name
  */
 @SpringBootApplication
-public class ServerApp {
+public class ServerApp extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApp.class, args);
 	}

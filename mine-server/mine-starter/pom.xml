@@ -8,7 +8,7 @@
 	</parent>
 	<artifactId>mine-starter</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>mine-starter</name>
 <!-- 	<url>http://maven.apache.org</url>
@@ -46,10 +46,15 @@
 			<groupId>com.codinggyd</groupId>
 			<artifactId>mine-data-export</artifactId>
 		</dependency>
+	 	<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-tomcat</artifactId>
+				<scope>provided</scope>
+		</dependency>  
 	</dependencies>
 	<build>
 		<!-- 为jar包取名 -->
-		<finalName>mine-starter</finalName>
+		<finalName>mine-server</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

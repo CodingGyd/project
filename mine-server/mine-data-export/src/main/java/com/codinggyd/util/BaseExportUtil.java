@@ -41,12 +41,10 @@ public abstract class BaseExportUtil<T> {
 	
 	/**
 	 * 
-	 * @param t 数据是按t条件筛选导出的
-	 * @param startTime 数据开始时间
-	 * @param endTime 数据结束时间
-	 * @param outputStream 输出流
-	 * @param data 导出数据集合
-	 * @param type  导出数据sheet类型
+	 * @param outputStream
+	 * @param titles
+	 * @param data
+	 * @throws Exception
 	 */
 	public abstract void export(ServletOutputStream outputStream,List<String> titles,List<T> data)  throws Exception ;
 }

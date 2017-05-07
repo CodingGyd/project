@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codinggyd.service.impl.UserServiceImpl;
 
 
-@RestController  
 @RequestMapping("/api/func/")
 public class LoginController {  
 	
@@ -24,7 +23,7 @@ public class LoginController {
 		
 		String callback = request.getParameter("callback");
 		result = callback+"("+result+")";
-        return result;
+        return "index";
     }  
       
 }  

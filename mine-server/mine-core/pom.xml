@@ -67,15 +67,28 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+ 		 <dependency>
+   		  <groupId>org.springframework.boot</groupId>
+  		  <artifactId>spring-boot-starter-tomcat</artifactId>
+  		  <scope>provided</scope>
+		</dependency> 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		 	<!--  部署到tomcat服务器上(比如百度云应用引擎)时需要排除springboot默认内嵌的tomcat模块 -->
+		<!--   	<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>    -->
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-	 
+	 	
 		<!-- datasource -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
