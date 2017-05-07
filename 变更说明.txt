@@ -6,6 +6,7 @@ svn库工程
 
 
 日期 				变更情况
+20170507.1			mine-starer工程，修改数据库连接池配置，解决mysql重连丢失连接的问题：The last packet successfully received from the server was 20,820,001 milliseconds ago
 20170326.1			新增mine-data-export工程，界面新增通用数据查询导出模块
 20170320.1			mine-core工程，添加数据库分页插件
 20170318.1			mine-client工程，工具函数模块-开发完成点击超链接弹出函数详情功能
