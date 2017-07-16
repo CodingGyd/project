@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Implementation-Title: utils
-Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: guoyd
-Implementation-Vendor-Id: com.gyd
-Build-Jdk: 1.8.0_73
-Created-By: Maven Integration for Eclipse
-Implementation-Vendor: Pivotal Software, Inc.
-
