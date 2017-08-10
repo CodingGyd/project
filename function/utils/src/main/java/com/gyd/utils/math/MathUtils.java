@@ -10,7 +10,7 @@ public class MathUtils {
 	 * @return
 	 */
 	public static Double getMax(List<Double> data){
-		if (null == data || data.size() <= 0) {
+		if (null == data || data.isEmpty()) {
 			return null;
 		}
 		
@@ -32,7 +32,7 @@ public class MathUtils {
 	 * @return
 	 */
 	public static Double getMin(List<Double> data){
-		if (null == data || data.size() <= 0) {
+		if (null == data || data.isEmpty()) {
 			return null;
 		}
 		Double min = data.get(0);
@@ -53,7 +53,7 @@ public class MathUtils {
 	 * @return
 	 */
 	public static Double getAvg(List<Double> data){
-		if (null == data || data.size() <= 0) {
+		if (null == data || data.isEmpty()) {
 			return null;
 		}
 		Double sum = 0d;
@@ -72,7 +72,7 @@ public class MathUtils {
 	 * @return
 	 */
 	public static Double getSum(List<Double> data){
-		if (null == data || data.size() <= 0) {
+		if (null == data || data.isEmpty()) {
 			return null;
 		}
 		Double sum = 0d;
@@ -135,7 +135,7 @@ public class MathUtils {
 	 * @return
 	 */
 	public static Double getVariance(List<Double> data) {
-		if (null == data || data.size() <= 0) {
+		if (null == data || data.isEmpty()) {
 			return null;
 		}
 		
@@ -153,8 +153,7 @@ public class MathUtils {
 			}
 			sum1 += Math.pow(unitNv-avg, 2);
 		}
-		Double variance = sum1/(count-1);
-		return variance;
+		return sum1/(count-1);
 	}
 	
 	/**
@@ -164,7 +163,7 @@ public class MathUtils {
 	 * @return
 	 */
 	public static double getMiddle(List<Double> datas) {
-		if (null == datas || datas.size() <= 0) {
+		if (null == datas || datas.isEmpty()) {
 			return 0;
 		}
 		 
@@ -176,7 +175,7 @@ public class MathUtils {
 		
 		//升序排序
 		Collections.sort(datas);
-		double middle = 0d;
+		double middle;
 		if (length % 2 == 0) {
 			//偶数
 			middle = (datas.get((length/2)-1)+datas.get((length+2)/2-1))/2;
