@@ -3,7 +3,7 @@
 	 //加载功能函数模块基础数据
 	 $.ajax({  
             type: "POST",  
-            url: "http://localhost:8181/mine-server/api/func/utilfunctions",  
+            url: "http://180.76.134.57:8080/mine-server/api/func/utilfunctions",  
             dataType: "jsonp",  
             jsonp: "callback",
             success:function(data){
@@ -26,7 +26,7 @@
 	 //加载IT学习模块基础数据
 		$.ajax({  
             type: "POST",  
-            url: "http://localhost:8181/mine-server/api/func/learnsite",  
+            url: "http://180.76.134.57:8080/mine-server/api/func/learnsite",  
             dataType: "jsonp",  
             jsonp: "callback",
             success:function(data){
@@ -86,7 +86,7 @@
 			  alert("脚本不合法!");
 			  return false;
 		  }
-	    $.download('http://localhost:8181/mine-server/api/func/data-export', 'POST', script); // 下载文件
+	    $.download('http://180.76.134.57:8080/mine-server/api/func/data-export', 'POST', script); // 下载文件
 	});
 	
 	
