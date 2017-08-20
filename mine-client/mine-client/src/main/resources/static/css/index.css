@@ -410,3 +410,11 @@ img {
 #footer p a {
 	color: #231C25;
 }
+
+/*文章分类*/
+#c_right .s_article_category {
+	width: 260px;
+	height: 280px;
+	border: 1px solid #ccc;
+	background: #fff;
+}

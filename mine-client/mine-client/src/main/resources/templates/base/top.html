@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head th:replace="base/head ::common_header">
+<head th:replace="base/v1_1/head ::common_header">
 </head>
 <body>
 
 	<div th:fragment="top" class="header">
-		<ul class="nav nav-pills pull-right" role="tablist">
-			<li role="presentation" class="active" id="li-util-function"><a
-				href="#" id="alink-util-function">工具函数</a></li>
-			<li role="presentation" id="li-it-technology"><a href="#"
-				id="alink-it-technology">IT学习</a></li>
-			<li role="presentation" id="li-data-export"><a href="#"
-				id="alink-data-export">通用导出</a></li>
-		</ul>
-		<h3 class="text-muted">定个小目标,先挣一个亿</h3>
+	 <!--header start-->
+   		 <div id="header">
+     		<h1>顺顺郭的博客</h1>
+     		<p>定个小目标, 先挣一个亿~</p>    
+    	 </div>
+     <!--header end-->
+		 <!--nav-->
+     	<div id="nav">
+	        <ul>
+	         <li><a href="index">首页</a></li>
+	           <li><a href="tarticle">编程随笔</a></li>
+	         <li><a href="shuo">疯言疯语</a></li>
+	         <!-- <li><a href="xc">旅游相册</a></li>  -->
+	          <li><a href="about">关于我</a></li>
+	         <li><a href="guestbook">留言板</a></li>
+	         <div class="clear"></div>
+	        </ul>
+      </div>
 	</div>
 
 </body>
