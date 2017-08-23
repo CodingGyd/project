@@ -2,26 +2,18 @@ package com.codinggyd;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.web.SpringBootServletInitializer;
 
 @SpringBootApplication
-public class ClientApp extends WebMvcConfigurerAdapter{
+public class ClientApp extends SpringBootServletInitializer{
     public static void main( String[] args ) {
        SpringApplication.run(ClientApp.class, args);
     }
-    
-    
-	@Override
-	public void addViewControllers(ViewControllerRegistry registry) {
-		
-		registry.addViewController("/").setViewName("redirect:index");//首页
-		registry.addViewController("/tarticle").setViewName("/tarticle");//编程文章
-		registry.addViewController("/index").setViewName("index");//首页
-		registry.addViewController("/guestbook").setViewName("guestbook");//留言板
-		registry.addViewController("/about").setViewName("about");//关于我
-		registry.addViewController("/xc").setViewName("xc");//相册
-		registry.addViewController("/shuo").setViewName("shuo");//碎言碎语
+	
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(ClientApp.class);
+    }
 
-	}
 } 
