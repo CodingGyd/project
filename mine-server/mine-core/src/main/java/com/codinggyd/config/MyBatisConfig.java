@@ -1,4 +1,4 @@
-package com.codinggyd.dbconfig;
+package com.codinggyd.config;
 import java.util.Map;
 import java.util.Properties;
 
