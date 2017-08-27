@@ -39,7 +39,6 @@ public class LearnSiteServiceImpl implements ILearnSiteService{
 		
 		if(CollectionUtils.isEmpty(learnSiteList)){
 			logger.debug("暂未收录任何IT资讯网站");
-			return null;
 		}
 		
 		return learnSiteList;

@@ -69,7 +69,7 @@ public abstract class MineServiceExecuter {
 	 * @return
 	 * @throws IOException 
 	 */
-	private static String wrapResult(Integer responseCode, Object result) throws Exception{
+	private static String wrapResult(String responseCode, Object result) throws Exception{
 		MineResponseBean mineResponseBean = new MineResponseBean();
 		mineResponseBean.setCode(responseCode);
 		mineResponseBean.setData(result);

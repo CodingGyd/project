@@ -16,10 +16,10 @@ public abstract class MineResponseCode {
 	/**
 	 * 系统异常
 	 */
-	public static final Integer ERROR_CODE = 9999;
+	public static final String ERROR_CODE = "9999";
 	
 	/**
 	 * 成功
 	 */
-	public static final Integer SUCCESS_CODE = 1000;
+	public static final String SUCCESS_CODE = "0000";
 }

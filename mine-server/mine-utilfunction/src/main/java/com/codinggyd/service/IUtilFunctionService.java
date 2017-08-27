@@ -1,6 +1,9 @@
 package com.codinggyd.service;
 
+import java.util.List;
+
 import com.codinggyd.annotation.MineMethod;
+import com.codinggyd.bean.UtilFunction;
 
 /**
  * 
@@ -16,5 +19,5 @@ import com.codinggyd.annotation.MineMethod;
  */
 public interface IUtilFunctionService {
 	@MineMethod("MINE_UTIL_FUNCTION")
-	public String getUtilFunction();
+	public List<UtilFunction> getUtilFunction();
 }

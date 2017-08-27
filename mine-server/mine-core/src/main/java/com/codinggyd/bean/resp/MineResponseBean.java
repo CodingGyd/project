@@ -21,15 +21,15 @@ public class MineResponseBean implements Serializable{
 	/**
 	 * 响应码
 	 */
-	private Integer code;
+	private String code;
 	/**
 	 * 数据
 	 */
 	private Object data;
-	public Integer getCode() {
+	public String getCode() {
 		return code;
 	}
-	public void setCode(Integer code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	public Object getData() {

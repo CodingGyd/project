@@ -11,13 +11,14 @@
  
 	 $.ajax({  
             type: "POST",  
-            url: "http://180.76.134.57:8080/mine-server/api/func/utilfunctions",  
-            dataType: "jsonp",  
-            jsonp: "callback",
+              url: "http://127.0.0.1:8080/mine-client/data/utilfunction",  
+          	  dataType: "json",  
+           // url: "http://180.76.134.57:8080/mine-server/api/func/utilfunctions",  
+           // dataType: "jsonp",  
+          //  jsonp: "callback",
             success:function(data){
              	$.each(data, function(idx, obj) {
               		var content = obj.content;
-              	
             	    $(".article_list_container").append("<a href='#' class='list-group-item' title='"+content+"'>"+obj.title+" </a>");
             	});
               },
@@ -32,10 +33,9 @@
  function loadTarticleLearnSiteList() {
 
 		$.ajax({  
-         type: "POST",  
-         url: "http://180.76.134.57:8080/mine-server/api/func/learnsite",  
-         dataType: "jsonp",  
-         jsonp: "callback",
+         type: "POST",
+         url: "http://127.0.0.1:8080/mine-client/data/itinfo",  
+         dataType: "json",  
          success:function(data){
       
          	$.each(data, function(idx, obj) {
