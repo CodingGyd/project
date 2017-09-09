@@ -33,7 +33,7 @@ public class UtilFunctionServiceImpl implements IUtilFunctionService{
 	public String getUtilFunction() {
 		String requestJson = "{\"ServiceId\":\"MINE_UTIL_FUNCTION\",\"Params\":[]}";
 		String responseData = HttpClientUtil.sendPost2(SysConstant.SERVER_URL, requestJson);
-		
+		System.out.println("客户端数据长度:"+responseData.length());
 	 
 		String result = null;
 		if (StringUtils.isEmpty(responseData)) {

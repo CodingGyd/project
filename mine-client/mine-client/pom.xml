@@ -5,7 +5,7 @@
 	<groupId>com.codinggyd</groupId>
 	<artifactId>mine-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>mine-client</name>
 	<url>http://maven.apache.org</url>
@@ -25,15 +25,9 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<!-- 部署到tomcat服务器上(比如百度云应用引擎)时需要排除springboot默认内嵌的tomcat模块 -->
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.springframework.boot</groupId>
+		 
 		</dependency>
 
 		<dependency>
@@ -69,16 +63,39 @@
 	</dependencies>
 
 	<build>
+ 
 		<!-- 为jar包取名 -->
 		<finalName>mine-client</finalName>
 		<plugins>
-			<plugin>
+<!-- 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
+				<configuration>
+					<mainClass>com.codinggyd.ClientApp</mainClass>
+				</configuration>
+			</plugin> -->
+			
+			<plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.4.1</version>
+                <executions>
+                    <execution>
+                        <id>make-tar</id>
+                        <!-- 绑定到package生命周期阶段上 -->
+                        <phase>package</phase>
+                        <goals>
+                            <!-- 绑定到package生命周期阶段上 -->
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <descriptors> <!--描述文件路径-->
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 		</plugins>
-		<!-- <resources> <resource> <directory>src/main/java</directory> <includes> 
-			<include>**/*.xml</include> </includes> <filtering>true</filtering> </resource> 
-			</resources> -->
+	 
 	</build>
 </project>
