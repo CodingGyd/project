@@ -1,7 +1,7 @@
 @echo off
 setlocal
 
-set PROJECT=mine-client
+set PROJECT=mine-server
 set JAVA_VERSION="1.8"
 
 set AUTH_AGENT_HOME=%~dp0..\
@@ -27,7 +27,7 @@ goto :eof
 
 :run
 echo AUTH_AGENT_HOME=%cd%
-start "%PROJECT%" "%JAVA_CMD%" -classpath conf;lib/mine-client-0.0.1-SNAPSHOT.jar org.springframework.boot.loader.JarLauncher
+start "%PROJECT%" "%JAVA_CMD%" -classpath conf;lib/mine-server-0.0.1-SNAPSHOT.jar org.springframework.boot.loader.JarLauncher
 goto :eof
 
 :stop

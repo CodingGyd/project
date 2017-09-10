@@ -65,12 +65,12 @@
 		<resources>
 			<resource>
 				<directory>src/main/resources</directory>
-				<excludes></excludes>
+				<includes>  
+	                 <include>**/*</include>  
+           	    </includes>  
 			</resource>
 		</resources>
-		<!-- 为jar包取名 -->
-		<finalName>mine-client</finalName>
-			<plugins>
+  			<plugins>
  		<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
@@ -84,31 +84,39 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin> 
-			<plugin>
+	<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>2.6</version>
+				<configuration>
+					<excludes>
+						<exclude>application.properties</exclude>
+						<exclude>logback-*.xml</exclude>
+					</excludes>
+				</configuration>
 			</plugin>
-			<plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4.1</version>
-                <executions>
-                    <execution>
-                        <id>make-tar</id>
-                        <!-- 绑定到package生命周期阶段上 -->
-                        <phase>package</phase>
-                        <goals>
-                            <!-- 绑定到package生命周期阶段上 -->
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptors> <!--描述文件路径-->
-                                <descriptor>src/main/assembly/assembly.xml</descriptor>
-                            </descriptors>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/assembly.xml</descriptor>
+					</descriptors>
+					<finalName>${project.build.finalName}</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+					<attach>false</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assembly-distribution</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 </project>

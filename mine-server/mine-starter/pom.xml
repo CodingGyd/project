@@ -6,11 +6,11 @@
 		<artifactId>mine-server</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>mine-starter</artifactId>
+	<artifactId>mine-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
-	<name>mine-starter</name>
+	<name>mine-server</name>
 <!-- 	<url>http://maven.apache.org</url>
  -->
 	<properties>
@@ -52,23 +52,62 @@
 				<scope>provided</scope>
 		</dependency>  
 	</dependencies>
-	<build>
-		<!-- 为jar包取名 -->
-		<finalName>mine-server</finalName>
-		<plugins>
-			<plugin>
+		<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>  
+	                 <include>**/*</include>  
+           	    </includes>  
+			</resource>
+		</resources>
+  			<plugins>
+ 		<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin> 
+	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<excludes>
+						<exclude>application.properties</exclude>
+						<exclude>logback-*.xml</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+	<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<descriptors>
+						<descriptor>src/main/assembly/assembly.xml</descriptor>
+					</descriptors>
+					<finalName>${project.build.finalName}</finalName>
+					<appendAssemblyId>false</appendAssemblyId>
+					<attach>false</attach>
+				</configuration>
+				<executions>
+					<execution>
+						<id>assembly-distribution</id>
+						<phase>package</phase>
+						<goals>
+							<goal>single</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
-		<!-- <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-		</resources> -->
 	</build>
 </project>

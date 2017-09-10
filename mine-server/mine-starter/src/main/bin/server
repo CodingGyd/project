@@ -3,7 +3,7 @@
 # Auth Agent startup script
 #
 
-PROJECT=mine-client
+PROJECT=mine-server
 JAVA_VERSION="1.8"
 
 SCRIPT_PATH=$(dirname $(readlink -f $0))
@@ -68,7 +68,7 @@ start() {
     echo -n "AUTH_AGENT_HOME="
     pwd
 
-    nohup "$JAVA_CMD"  -classpath conf:lib/mine-client-0.0.1-SNAPSHOT.jar org.springframework.boot.loader.JarLauncher > /dev/null 2>&1 &
+    nohup "$JAVA_CMD"  -classpath conf:lib/mine-server-0.0.1-SNAPSHOT.jar org.springframework.boot.loader.JarLauncher > /dev/null 2>&1 &
 
     echo -ne "Starting process"
     for i in {1..10}; do
