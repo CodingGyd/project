@@ -218,10 +218,10 @@ public class HttpClientUtil {
         }
         return result;
     }    
-    public static void main(String[] args) {
+  /*  public static void main(String[] args) {
 		String requestJson = "{\"ServiceId\":\"MINE_LIST_LEARN_SITE\",\"Params\":[]}";
 		String responseData = HttpClientUtil.sendPost2("http://180.76.134.57:8080/mine-server/api/func/", requestJson);
 		System.out.println(responseData);
-	}
+	}*/
 
 }

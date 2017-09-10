@@ -27,7 +27,7 @@ goto :eof
 
 :run
 echo AUTH_AGENT_HOME=%cd%
-start "%PROJECT%" "%JAVA_CMD%" -jar  -Dloader.path="conf,lib,resource" -Dloader.main="com.codinggyd.ClientApp" lib/mine-client-0.0.1-SNAPSHOT.jar
+start "%PROJECT%" "%JAVA_CMD%" -jar  -Dloader.path="conf,lib" -Dloader.main="com.codinggyd.ClientApp" lib/mine-client-0.0.1-SNAPSHOT.jar
 goto :eof
 
 :stop

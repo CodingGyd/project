@@ -6,39 +6,41 @@
 	<formats>
 		<format>tar.gz</format>
 		<format>zip</format>
-		<format>jar</format>
+	<!-- 	<format>jar</format> -->
 	</formats>
 
 	<fileSets>
+		 
 		<fileSet>
-			<directory>${project.basedir}\src\main\resources</directory>
+			<directory>src\main\resources</directory>
 			 <includes>
-   		   	  <include>\static</include>
-       		  <include>\templates</include>
+   		   	  <include>*.properties</include>
+       		  <include>*.xml</include>
     	     </includes>
-			<outputDirectory>\resource</outputDirectory>
+			<outputDirectory>conf</outputDirectory>
+			 <fileMode>0664</fileMode>
 		</fileSet>
 		<fileSet>
-			<directory>${project.basedir}\src\main\resources</directory>
-			 <includes>
-   		   	  <include>application.properties</include>
-       		  <include>logback-spring.xml</include>
-    	     </includes>
-			<outputDirectory>\conf</outputDirectory>
+			<directory>src\main\bin</directory>
+			<outputDirectory>bin</outputDirectory>
+			<fileMode>0755</fileMode>
 		</fileSet>
-		<fileSet>
-			<directory>${project.basedir}\src\main\bin</directory>
-			<outputDirectory>\bin</outputDirectory>
-		</fileSet>
-	 
+<!-- 	         <fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory>lib</outputDirectory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <fileMode>0444</fileMode>
+        </fileSet> -->
 	</fileSets>
-	<dependencySets>
+   <dependencySets>
 		<dependencySet>
 			<useProjectArtifact>true</useProjectArtifact>
 			<outputDirectory>lib</outputDirectory>
-			<!-- 将scope为runtime的依赖包打包到lib目录下。 -->
+			 
 			<scope>runtime</scope>
 		</dependencySet>
-	</dependencySets>
-
+	</dependencySets>  
+ 
 </assembly>

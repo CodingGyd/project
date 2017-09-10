@@ -68,7 +68,7 @@ start() {
     echo -n "DFS_HOME="
     pwd
 
-    nohup "$JAVA_CMD" -jar  -Dloader.path="conf,lib,resource"  -Dloader.main="com.codinggyd.ClientApp" lib/mine-client-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
+    nohup "$JAVA_CMD" -jar  -Dloader.path="conf,lib"  -Dloader.main="com.codinggyd.ClientApp" lib/mine-client-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
 
     echo -ne "Starting process"
     for i in {1..10}; do
