@@ -26,7 +26,8 @@
                  <p class="dd_text_1"    th:text="${obj.content}"/>
                <p class="dd_text_2">
                <span class="left author">顺顺</span><span class="left sj" th:text="${obj.updatetime}"></span>
-               <span class="left fl">分类:<a href="#" title="学无止境">学无止境</a></span><span class="left yd"><a href="#" title="阅读全文">阅读全文</a>
+               <span class="left fl">分类:<a href="#" title="学无止境">学无止境</a></span><span class="left yd">
+                <a href="/detail" target='_blank' th:href="@{/detail?content={content}(content=${obj.content})}" title="阅读全文">阅读全文</a>
                </span>
                 <div class="clear"></div>
                </p>

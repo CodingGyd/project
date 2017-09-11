@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -90,6 +91,13 @@ public class MineController {
 		}
 		model.put("articleList",list2);  
 		return "index";
+	}
+	
+	//编程文章
+	@RequestMapping("/detail")
+	public String article_dt(@ModelAttribute(value = "content") String content,Map<String,Object> model) {
+		model.put("content",content);  
+		return "article_dt";
 	}
 	 
 	//编程文章

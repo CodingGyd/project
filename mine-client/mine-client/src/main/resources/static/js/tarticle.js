@@ -20,7 +20,8 @@
              
              	$.each(data, function(idx, obj) {
               		var content = obj.content;
-            	    $(".article_list_container").append("<a href='#' class='list-group-item' title='"+content+"'>"+obj.title+" </a>");
+              		
+            	    $(".article_list_container").append("<a href='/detail?content="+content+"' target='_blank' class='list-group-item' title='"+content+"'>"+obj.title+" </a>");
             	});
               },
               error:function(XMLHttpRequest, textStatus, errorThrown) {
@@ -40,7 +41,8 @@
          success:function(data){
           
          	$.each(data, function(idx, obj) {
-         	    $(".article_list_container").append("<a href="+obj.url+" target='_blank' class='list-group-item'>"+obj.title+" </a>");
+         		var content = obj.content;
+         	    $(".article_list_container").append("<a href='/detail?content="+content+"' target='_blank' class='list-group-item'>"+obj.title+" </a>");
          	});
            },
            error:function(XMLHttpRequest, textStatus, errorThrown) {

@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base/head ::common_header"></head>
+
+<body>
+	 
+	<!--header start-->
+	<div th:replace="base/top :: top"></div>
+	<!--header end-->
+	<!--content start-->
+	<div id="content">
+		<p th:text="${content}"/>   
+	</div>
+	<!--content end-->
+	<!--footer start-->
+	<div th:replace="base/bottom :: bottom"></div>
+	<!--footer end-->
+	  
+</body>
+</html>
