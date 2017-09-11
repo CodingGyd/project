@@ -17,16 +17,15 @@
            </div>
           <div class="content_text">
            <!--wz-->
-           <div class="wz">
-            <h3><a href="#" title="浅谈：html5和html的区别">浅谈：html5和html的区别</a></h3>
+           
+           <div class="wz" th:each="obj, objStat: ${articleList}">
+            <h3><a href="#"  th:title="呵呵额呵呵呵" th:text="${obj.title}"></a></h3>
              <dl>
                <dt><img src="images/s.jpg" width="200"  height="123" alt=""/></dt>
                <dd>
-                 <p class="dd_text_1">最近看群里聊天聊得最火热的莫过于手机网站和html5这两个词。可能有人会问，这两者有什么关系呢？随着这移动互联
-                 网快速发展的时代，尤其是4G时代已经来临的时刻，加上微软对"XP系统"不提供更新补丁、维护的情况下。
-               html5+css3也逐渐的成为新一代web前端技术.....</p>
+                 <p class="dd_text_1"    th:text="${obj.content}"/>
                <p class="dd_text_2">
-               <span class="left author">段亮</span><span class="left sj">时间:2014-8-9</span>
+               <span class="left author">顺顺</span><span class="left sj" th:text="${obj.updatetime}"></span>
                <span class="left fl">分类:<a href="#" title="学无止境">学无止境</a></span><span class="left yd"><a href="#" title="阅读全文">阅读全文</a>
                </span>
                 <div class="clear"></div>
@@ -36,12 +35,7 @@
              </dl>
             </div>
            <!--wz end-->
-     
-     
-     
-           
-              
-                             
+                     
            </div>
          </div>
          <!--left end-->
@@ -50,7 +44,7 @@
           <div class="s_about">
           <h2>关于顺顺郭</h2>
            <img src="images/my.jpg" width="230" height="230" alt="博主"/>
-           <p>姓名：XXX</p>
+           <p>姓名：顺顺郭</p>
            <p>职业：JAVA后端开发</p>
            <p>简介：</p>
            <p>
@@ -91,7 +85,7 @@
            <!--end-->
            <div class="link">
             <h2>友情链接</h2>
-            <p><a href="http://www.duanliang920.com">段亮个人博客</a></p>
+            <p><a href="http://www.baidu.com" target="_blank">度娘</a></p>
            </div>
          </div>
          <!--right end-->
