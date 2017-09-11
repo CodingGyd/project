@@ -1,8 +1,18 @@
 package com.codinggyd.bean;
 
 import java.io.Serializable;
-import java.util.Date;
 
+/**
+ * 
+ * @Title: Article.java
+ * @Package: com.codinggyd.bean
+ * @Description: 文章信息实体类
+ * 
+ * @Author: guoyd
+ * @Date: 2017年9月11日
+ *
+ * Copyright @ 2017 Corpration Name
+ */
 public class Article implements Serializable {
 	/**
 	 * 
