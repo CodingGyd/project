@@ -164,7 +164,7 @@ img {
 }
 
 .wz dl {
-	width: 730px;
+	width: 100%;
 	margin-top: 3px;
 }
 
@@ -183,7 +183,8 @@ img {
 
 .wz dl dd {
 	float: left;
-	width: 505px;
+	/* width: 505px; */
+	padding:5px;
 	overflow: hidden;
 	margin-left: 5px;
 }
@@ -253,6 +254,10 @@ img {
 
 .wz dl dd .dd_text_2 .yd a:hover {
 	color: #f36;
+}
+
+.wz .article_item{
+	margin:5px;
 }
 /*left end*/
 /*right*/
