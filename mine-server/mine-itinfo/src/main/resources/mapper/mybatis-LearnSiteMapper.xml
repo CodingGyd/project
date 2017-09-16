@@ -6,15 +6,14 @@
 	<resultMap id="learnSites" type="com.codinggyd.bean.LearnSite">
 		<id column="id" property="id" />
 		<result column="title" property="title" />
-		<result column="content" property="content" />
+		<result column="desc" property="desc" />
 		<result column="updatetime" property="updatetime" />
 		<result column="readingcount" property="readingcount" />
 		<result column="url" property="url" />
 	</resultMap>
 
 	<select id="findLearnSite" resultMap="learnSites">
-		SELECT
-		id,title,content,updatetime,readingcount,url FROM mine_learnsite
+		SELECT id,title,descs,updatetime,readingcount,url FROM mine_articles
 	</select>
 
 </mapper>

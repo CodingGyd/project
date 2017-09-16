@@ -19,7 +19,7 @@ import com.codinggyd.annotation.MineFuncData;
  * 
  *        Copyright @ 2017 Corpration Name
  */
-@MineFuncData(name="MINE_LIST_LEARN_SITE",fieldNames={"title","content","url"})
+@MineFuncData(name="MINE_LIST_LEARN_SITE",fieldNames={"title","descs","url"})
 @Component
 public class LearnSite implements Serializable {
 
@@ -35,7 +35,7 @@ public class LearnSite implements Serializable {
 	/**
 	 * IT资讯描述
 	 */
-	public String content;
+	public String descs;
 
 	/**
 	 * 更新时间
@@ -58,13 +58,7 @@ public class LearnSite implements Serializable {
 		this.title = title;
 	}
 
-	public String getContent() {
-		return content;
-	}
-
-	public void setContent(String content) {
-		this.content = content;
-	}
+	 
 
 	public Date getUpdatetime() {
 		return updatetime;
@@ -98,10 +92,14 @@ public class LearnSite implements Serializable {
 		this.url = url;
 	}
 
-	@Override
-	public String toString() {
-		return "LearnSite [id=" + id + ", title=" + title + ", content=" + content + ", updatetime=" + updatetime
-				+ ", readingcount=" + readingcount + ", url=" + url + "]";
+	public String getDescs() {
+		return descs;
 	}
+
+	public void setDescs(String descs) {
+		this.descs = descs;
+	}
+
+	 
 
 }

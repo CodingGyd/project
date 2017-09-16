@@ -2,7 +2,9 @@ package com.codinggyd.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -36,7 +38,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ArticleServiceImpl implements IArticleService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
- 
+	
+	private  static final String PATTERN = "yyyy-MM-dd";
+	
 	public MinePageBean<Article> getArticleList(Paginator paginator) {
   	
 		//学习网站相关博文
@@ -94,14 +98,14 @@ public class ArticleServiceImpl implements IArticleService{
 							String title = temp.get("title").asText();
 							Integer readingcount = temp.get("readingcount").asInt();
 							String updatetime = temp.get("updatetime").asText();
-							String content = temp.get("content").asText();
+							String descs = temp.get("descs").asText();
 							
 							Article article = new Article();
 							article.setId(id);
 							article.setTitle(title);
 							article.setReadingcount(readingcount);
-							article.setUpdatetime(updatetime);
-							article.setContent(content);
+							article.setUpdatetime(formatDateStr(updatetime));
+							article.setDescs(descs);
 							result.add(article);
 						}
 					}
@@ -156,8 +160,8 @@ public class ArticleServiceImpl implements IArticleService{
 							article.setId(id);
 							article.setTitle(title);
 							article.setReadingcount(readingcount);
-							article.setUpdatetime(updatetime);
-							article.setContent(content);
+							article.setUpdatetime(formatDateStr(updatetime));
+							article.setDescs(content);
 							result.add(article);
 						}
 					}
@@ -174,4 +178,14 @@ public class ArticleServiceImpl implements IArticleService{
 		return result;
 	}
 
+	private String formatDateStr(String time) {
+		try {
+			
+			return DateFormatUtils.format(Long.parseLong(time), PATTERN, Locale.CHINESE);
+		} catch (Exception e) {
+			logger.error("日期字段格式化出错,{}",e);
+		}
+		return null;
+	}
+	 
 }

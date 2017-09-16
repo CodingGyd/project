@@ -26,7 +26,7 @@ public class Article implements Serializable {
 	/**
 	 * 内容
 	 */
-	public String content;
+	public String descs;
 
 	/**
 	 * 更新时间
@@ -46,12 +46,13 @@ public class Article implements Serializable {
 		this.title = title;
 	}
 
-	public String getContent() {
-		return content;
+ 
+	public String getDescs() {
+		return descs;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setDescs(String descs) {
+		this.descs = descs;
 	}
 
 	public String getUpdatetime() {
