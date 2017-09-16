@@ -2,15 +2,20 @@ package com.codinggyd.core;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.codinggyd.bean.MineServiceBean;
+import com.codinggyd.bean.requ.MineRequestBean;
 import com.codinggyd.bean.resp.MineResponseBean;
 import com.codinggyd.constant.MineResponseCode;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
+import com.github.miemiedev.mybatis.paginator.domain.Paginator;
 
 /**
  * 
@@ -33,10 +38,13 @@ public abstract class MineServiceExecuter {
 	 * @param requestJson
 	 * @throws Exception
 	 */
-	public static String invoke(String requestJson) throws Exception{
-		JsonNode jsonNode = objectMapper.readTree(requestJson);
-		String serviceId = jsonNode.get("ServiceId").asText();//解析要执行的业务类
-		JsonNode params = jsonNode.get("Params");//解析业务类方法的参数
+	public static String invoke(MineRequestBean mineRequestBean) throws Exception{
+//		JsonNode jsonNode = objectMapper.readTree(requestJson);
+//		String serviceId = jsonNode.get("serviceId").asText();//解析要执行的业务类
+//		JsonNode params = jsonNode.get("params");//解析业务类方法的参数
+		
+		String serviceId = mineRequestBean.getServiceId();//解析要执行的业务类
+		JsonNode[] params = mineRequestBean.getParams();//解析业务类方法的参数
 		
 		MineServiceBean mineServiceBean = MineServiceContext.getMineServiceBean(serviceId);
 		if (null == mineServiceBean) {
@@ -46,7 +54,7 @@ public abstract class MineServiceExecuter {
 		Method method = mineServiceBean.getMethod();
 		Class<?>[] paramsType = method.getParameterTypes();
 		 
-		int paramsSize = params.size();
+		int paramsSize = params.length;
 		if (paramsType.length != paramsSize) {
 			logger.error("9999,提交参数个数不一致!");
 			return wrapResult(MineResponseCode.ERROR_CODE, "提交参数个数不一致");
@@ -55,7 +63,7 @@ public abstract class MineServiceExecuter {
 		Object[] args = new Object[paramsType.length];
 		for (int i = 0;i < paramsType.length;i++) {
 			Class<?> cs = paramsType[i];
-			JsonNode node = params.get(i);
+			JsonNode node = params[i];
 			args[i] = objectMapper.reader().treeToValue(node, cs);
 		}
 		Object result = method.invoke(mineServiceBean.getService(), args);
@@ -69,10 +77,26 @@ public abstract class MineServiceExecuter {
 	 * @return
 	 * @throws IOException 
 	 */
-	private static String wrapResult(String responseCode, Object result) throws Exception{
+	@SuppressWarnings("rawtypes")
+	private static String wrapResult(String responseCode, Object data) throws Exception{
 		MineResponseBean mineResponseBean = new MineResponseBean();
 		mineResponseBean.setCode(responseCode);
+		
+		List<Object> result = new ArrayList<>();
+		List<Object> extras = new ArrayList<>();
+		if (data instanceof PageList) {
+			PageList temp = (PageList) data;
+			Paginator pageInfo = temp.getPaginator();
+			result.add(temp);
+			extras.add(pageInfo);
+		} else {
+			result.add(data);
+		}
+		
 		mineResponseBean.setData(result);
+		mineResponseBean.setExtras(extras);
+		
+		
 		return objectMapper.writeValueAsString(mineResponseBean);
 	}
 	

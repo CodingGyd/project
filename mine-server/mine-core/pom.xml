@@ -107,6 +107,11 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.15</version>
 		</dependency>
+			<dependency>
+				<groupId>com.codinggyd</groupId>
+				<artifactId>common-api</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 <!-- 		<dependency>
     <groupId>com.microsoft.sqlserver</groupId>
     <artifactId>sqljdbc4</artifactId>

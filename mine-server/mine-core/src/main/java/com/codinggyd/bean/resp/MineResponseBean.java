@@ -1,6 +1,7 @@
 package com.codinggyd.bean.resp;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -25,7 +26,9 @@ public class MineResponseBean implements Serializable{
 	/**
 	 * 数据
 	 */
-	private Object data;
+	private List<Object> data;
+	
+	private List<Object> extras;
 	public String getCode() {
 		return code;
 	}
@@ -35,8 +38,14 @@ public class MineResponseBean implements Serializable{
 	public Object getData() {
 		return data;
 	}
-	public void setData(Object data) {
+	public List<Object> getExtras() {
+		return extras;
+	}
+	public void setExtras(List<Object> extras) {
+		this.extras = extras;
+	}
+	public void setData(List<Object> data) {
 		this.data = data;
 	}
-	
+	 
 }

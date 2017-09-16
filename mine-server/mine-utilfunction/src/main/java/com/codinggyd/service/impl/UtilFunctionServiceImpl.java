@@ -2,6 +2,7 @@ package com.codinggyd.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.UtilFunction;
 import com.codinggyd.mapper.UtilFunctionMapper;
 import com.codinggyd.service.IUtilFunctionService;
-import com.github.miemiedev.mybatis.paginator.domain.Order;
+import com.codinggyd.util.PageBoundUtils;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 
 /**
@@ -35,19 +36,29 @@ public class UtilFunctionServiceImpl implements IUtilFunctionService{
 	private UtilFunctionMapper mapper;
 	
 	@Override
-	public List<UtilFunction> getUtilFunction() {
-		int page = 1; //页号
-		int pageSize = 100; //每页数据条数
-		String sortString = "id.desc";//如果你想排序的话逗号分隔可以排序多列
-		PageBounds pageBounds = new PageBounds(page, pageSize , Order.formString(sortString));
-		pageBounds.setContainsTotalCount(true);
-		List<UtilFunction> userinfo = mapper.findUtilFunctions(pageBounds);
+	public List<UtilFunction> getUtilFunction(String[] pageInfo) {
 		
-		if(null == userinfo){
-			logger.debug("暂未收录任何功能函数");
+		PageBounds pageBounds = null;
+		if (null != pageInfo) {
+			try {
+				pageBounds = PageBoundUtils.getPageBounds(pageInfo);
+			} catch (Exception e) {
+				logger.error("解析分页参数出错,{},{}",pageInfo,e);
+				return null;
+			}
+		}
+		List<UtilFunction> userinfo = null;
+		if (null != pageBounds) {
+			userinfo = mapper.findUtilFunctions(pageBounds);
+		} else {
+			userinfo = mapper.findUtilFunctions();
+		}
+		 
+		if(CollectionUtils.isEmpty(userinfo)){
+			logger.error("当前条件下没有查到数据,分页参数{}",pageInfo);
 		}
 		return userinfo;
 	 
 	}
-
+	
 }

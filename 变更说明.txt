@@ -6,7 +6,8 @@ svn库工程
 
 
 日期 				变更情况
-20170909.1			mine-client\mine-server工程，maven打包配置说
+20170916.1			mine-client\mine-server工程，引入分页神器bootstrap-paginator.js；引入jquery模板神器jquery-jtemplates_uncompressed.js；功能持续开发中
+20170909.1			mine-client\mine-server工程，maven打包配置
 20170820.1			mine-client工程，网站页面改版开发进行中V1.1
 20170716.1			utils工程,包含了各种常用的工具类
 20170507.1			mine-starer工程，修改数据库连接池配置，解决mysql重连丢失连接的问题：The last packet successfully received from the server was 20,820,001 milliseconds ago

@@ -3,6 +3,8 @@ package com.codinggyd.mapper;
 import java.util.List;
 
 import com.codinggyd.bean.LearnSite;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
+import com.github.miemiedev.mybatis.paginator.domain.PageList;
 
 /**
  * 
@@ -17,5 +19,7 @@ import com.codinggyd.bean.LearnSite;
  * Copyright @ 2017 Corpration Name
  */
 public interface LearnSiteMapper {
+	public PageList<LearnSite> findLearnSite(PageBounds pageBounds);
 	public List<LearnSite> findLearnSite();
+
 }

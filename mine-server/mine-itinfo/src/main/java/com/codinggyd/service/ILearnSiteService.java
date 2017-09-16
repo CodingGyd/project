@@ -20,5 +20,5 @@ import com.codinggyd.bean.LearnSite;
 public interface ILearnSiteService {
 	
 	@MineMethod(value="MINE_LIST_LEARN_SITE")
-	public List<LearnSite> listLearnSite();
+	public List<LearnSite> listLearnSite(String[] pageInfo);
 }

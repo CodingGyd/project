@@ -19,5 +19,5 @@ import com.codinggyd.bean.UtilFunction;
  */
 public interface IUtilFunctionService {
 	@MineMethod("MINE_UTIL_FUNCTION")
-	public List<UtilFunction> getUtilFunction();
+	public List<UtilFunction> getUtilFunction(String[] pageinfo);
 }

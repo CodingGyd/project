@@ -1,5 +1,8 @@
 package com.codinggyd.service;
 
+import com.codinggyd.bean.Article;
+import com.codinggyd.bean.MinePageBean;
+import com.codinggyd.bean.Paginator;
 
 /**
  * 
@@ -14,5 +17,5 @@ package com.codinggyd.service;
  * Copyright @ 2017 Corpration Name
  */
 public interface IArticleService {
-	public String getArticleList(Integer curPage);
+	public MinePageBean<Article> getArticleList(Paginator paginator);
 }

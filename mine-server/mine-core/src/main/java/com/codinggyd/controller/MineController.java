@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codinggyd.bean.requ.MineRequestBean;
 import com.codinggyd.core.MineServiceExecuter;
 
  
@@ -34,8 +35,9 @@ public class MineController extends BaseController{
 	 * @throws Exception 
 	 */
 	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST },  consumes = "application/json;charset=UTF-8",produces = MediaType.APPLICATION_JSON_VALUE)
-	public String run(HttpServletRequest request, HttpServletResponse response,@RequestBody String requestBean) throws Exception{
+	public String run(HttpServletRequest request, HttpServletResponse response,@RequestBody MineRequestBean requestBean) throws Exception{
  		String result = MineServiceExecuter.invoke(requestBean);
+ 		System.out.println("服务器发送的数据："+result);
  		System.out.println("服务器的数据长度:"+result.length());
  		return result;
  		//这里有问题，客户端打印的数据长度不一致,有待解决@@

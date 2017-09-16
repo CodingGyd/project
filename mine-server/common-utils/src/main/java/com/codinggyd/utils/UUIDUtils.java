@@ -1,4 +1,4 @@
-package com.gyd.utils;
+package com.codinggyd.utils;
 
 import java.util.UUID;
 

@@ -1,19 +1,46 @@
 // JavaScript Document
 $(document).ready(function(e) {
-	initPager();
+	loadArticle(1,2);
 });
 
-function initPager() {
+//分页加载文章列表
+function loadArticle(page,limit) {
+	 $.ajax({
+         type: "Post",
+         url: "/article_page",
+         dataType: "json",
+         data:{"page":page,"limit" :limit},
+         async:true,
+         success: function(data){
+        	 
+	        	// 设置模板  
+	            $("#result").setTemplateElement("template");  
+	            // 给模板加载数据  
+	            $("#result").processTemplate(data);  
+             
+        	 	var page = data.paginator.page;
+        	 	var limit = data.paginator.limit;
+        	 	var totalPages = data.paginator.totalPages;
+        	 	initPager(page,limit,totalPages);
+        	 	
+        	 	 // 滚动到顶部
+	            pageScroll();
+        	 }
+         });
+}
 
+//初始化分页插件
+function initPager( page, limit, totalPages) {
+	
 	var options = {
 
 		bootstrapMajorVersion : 3, // 版本
 
-		currentPage : 1, // 当前页数
+		currentPage : page, // 当前页数
 
-		totalPages : 5, // 总页数
+		totalPages : totalPages, // 总页数
 
-		numberOfPages : 5,
+		numberOfPages : totalPages,
 
 		itemTexts : function(type, page, current) {
 			switch (type) {
@@ -46,16 +73,21 @@ function initPager() {
 
 			$.ajax({
 
-				url : "/page",
+				url : "/article_page",
 
 				type : "Post",
 
 				dataType : "json",
 
-				data : {"page":page},
+				data : {"page":page,"limit" :limit},
 
 				success : function(data) {
-					alert(data);
+				 	// 设置模板  
+		            $("#result").setTemplateElement("template");  
+		            // 给模板加载数据  
+		            $("#result").processTemplate(data);  
+		            // 滚动到顶部
+		            pageScroll();
 				}
 
 			});
@@ -67,3 +99,8 @@ function initPager() {
 	$('#pageUl').bootstrapPaginator(options);
 
 }
+
+//滚动到顶部
+function pageScroll() { 
+	$('html,body').animate({scrollTop:0},'slow');
+} 

@@ -166,6 +166,7 @@ img {
 .wz dl {
 	width: 100%;
 	margin-top: 3px;
+	margin-bottom:5px;
 }
 
 .wz dl dt {
@@ -255,10 +256,15 @@ img {
 .wz dl dd .dd_text_2 .yd a:hover {
 	color: #f36;
 }
-
+ 
 .wz .article_item{
 	margin:5px;
 }
+
+.template{  
+        display: none;  
+}  
+    
 /*left end*/
 /*right*/
 #c_right {

@@ -12,6 +12,8 @@ import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.LearnSite;
 import com.codinggyd.mapper.LearnSiteMapper;
 import com.codinggyd.service.ILearnSiteService;
+import com.codinggyd.util.PageBoundUtils;
+import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 
 /**
  * 
@@ -34,8 +36,24 @@ public class LearnSiteServiceImpl implements ILearnSiteService{
 	private LearnSiteMapper mapper;
 	
 	@Override
-	public List<LearnSite> listLearnSite() {
-		List<LearnSite> learnSiteList = mapper.findLearnSite();
+	public List<LearnSite> listLearnSite(String[] pageInfo) {
+		
+		PageBounds pageBounds = null;
+		if (null != pageInfo) {
+			try {
+				pageBounds = PageBoundUtils.getPageBounds(pageInfo);
+			} catch (Exception e) {
+				logger.error("解析分页参数出错,{},{}",pageInfo,e);
+				return null;
+			}
+		}
+		
+		List<LearnSite> learnSiteList = null;
+		if (null != pageBounds) {
+			learnSiteList = mapper.findLearnSite(pageBounds);
+		} else {
+			learnSiteList = mapper.findLearnSite();
+		}
 		
 		if(CollectionUtils.isEmpty(learnSiteList)){
 			logger.debug("暂未收录任何IT资讯网站");

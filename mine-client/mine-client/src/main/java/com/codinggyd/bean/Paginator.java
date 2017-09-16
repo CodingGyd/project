@@ -1,4 +1,4 @@
-package com.github.miemiedev.mybatis.paginator.domain;
+package com.codinggyd.bean;
 
 import java.io.Serializable;
 

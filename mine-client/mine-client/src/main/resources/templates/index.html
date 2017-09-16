@@ -5,10 +5,13 @@
 
 <body>
 		<script th:src="@{js/index.js}"></script>
-
+		<script th:src="@{js/jquery-jtemplates.js}"></script>
+		<script th:src="@{js/jquery-jtemplates_uncompressed.js}"></script>
 	<!--header start-->
+	<a name="top"></a>
 	<div th:replace="base/top :: top"></div>
 	<!--header end-->
+
 	<!--content start-->
 	<div id="content">
 		<!--left-->
@@ -19,9 +22,43 @@
 				</h2>
 			</div>
 			<div class="content_text">
-
+			<div id="result"></div>
+		<!-- jquery template -->
+		<textarea id="template"  class="template">
+			{#foreach $T.data as record}  
+			 	<div class="wz row">
+					<div class="col-sm-12">
+						<div class="thumbnail article_item">
+							<h3>{$T.record.id}
+								<a href="#" th:title="呵呵额呵呵呵">{$T.record.title}</a>
+							</h3>
+							<dl>
+								<dd>
+									<p class="dd_text_1"><span>{$T.record.content}</span></p>
+									<p class="dd_text_2">
+										<span class="left author">顺顺</span>
+										<span class="left sj">{$T.record.updatetime}</span> 
+										<span class="left fl">分类:<a
+											href="#" title="学无止境">学无止境</a>
+										</span>
+										<span class="left yd">
+								 			<a href="/detail" target='_blank'
+										
+											title="阅读全文">阅读全文</a>
+										</span>
+										<div class="clear"></div>
+										</p>
+									</dd>
+								<div class="clear"></div>
+							</dl>
+						</div>
+						</div>
+					</div>  
+			 {#/for}  
+			
+		    </textarea>
 				<!--item-->
-				<div class="wz row" th:each="obj, objStat: ${articleList}">
+			<!-- 	<div class="wz row" th:each="obj, objStat: ${articleList}">
 					<div class="col-sm-12">
 						<div class="thumbnail article_item">
 							<h3>
@@ -45,10 +82,11 @@
 							</dl>
 						</div>
 					</div>
-				</div>
+				</div> -->
 				<!--item end-->
+			
 				<!-- 分页 -->
-				<nav aria-label="Page navigation" style="text-align: right;">
+				<nav aria-label="Page navigation" style="text-align: right;padding-right:25px">
 					<ul class="pagination pagination-sm" id="pageUl"></ul>
 				</nav>
 <!-- 				<nav aria-label="Page navigation" style="text-align: right;">
@@ -128,6 +166,7 @@
 					<a href="http://www.baidu.com" target="_blank">度娘</a>
 				</p>
 			</div>
+				<a href="#top">返回顶部</a>
 		</div>
 		<!--right end-->
 		<div class="clear"></div>
@@ -136,5 +175,6 @@
 	<!--footer start-->
 	<div th:replace="base/bottom :: bottom"></div>
 	<!--footer end-->
+	<script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
 </body>
 </html>
