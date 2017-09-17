@@ -42,8 +42,7 @@
 											href="#" title="学习网站">学习网站</a>
 										</span>
 										<span class="left yd">
-								 			<a href="/detail" target='_blank'
-										
+								 			<a href="/article_dt/{$T.record.id}" target="_blank"
 											title="阅读全文">阅读全文</a>
 										</span>
 										<div class="clear"></div>
@@ -57,53 +56,13 @@
 			 {#/for}  
 			
 		    </textarea>
-				<!--item-->
-			<!-- 	<div class="wz row" th:each="obj, objStat: ${articleList}">
-					<div class="col-sm-12">
-						<div class="thumbnail article_item">
-							<h3>
-								<a href="#" th:title="呵呵额呵呵呵" th:text="${obj.title}"></a>
-							</h3>
-							<dl>
-								<dd>
-									<p class="dd_text_1" th:text="${obj.content}" />
-									<p class="dd_text_2">
-										<span class="left author">顺顺</span><span class="left sj"
-											th:text="${obj.updatetime}"></span> <span class="left fl">分类:<a
-											href="#" title="学无止境">学无止境</a></span><span class="left yd"> <a
-											href="/detail" target='_blank'
-											th:href="@{/detail?content={content}(content=${obj.content})}"
-											title="阅读全文">阅读全文</a>
-										</span>
-									<div class="clear"></div>
-									</p>
-								</dd>
-								<div class="clear"></div>
-							</dl>
-						</div>
-					</div>
-				</div> -->
-				<!--item end-->
+			<!-- jquery template end -->
 			
 				<!-- 分页 -->
 				<nav aria-label="Page navigation" style="text-align: right;padding-right:25px">
 					<ul class="pagination pagination-sm" id="pageUl"></ul>
 				</nav>
-<!-- 				<nav aria-label="Page navigation" style="text-align: right;">
-					<ul class="pagination pagination-sm">
-						<li><a href="#" aria-label="Previous"> <span
-								aria-hidden="true">&laquo;</span>
-						</a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a href="#" aria-label="Next"> <span
-								aria-hidden="true">&raquo;</span>
-						</a></li>
-					</ul>
-				</nav> -->
+
 			</div>
 		</div>
 		<!--left end-->

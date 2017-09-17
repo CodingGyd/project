@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.mapper.ArticleMapper">
+ 
+	
+	<update id="updateArticle">
+       	INSERT INTO mine_articles 
+       				(title, descs, content,htmlContent,updatetime,readingcount,type)
+		VALUES(
+					#{article.title},
+					#{article.descs},
+					#{article.content},				
+					#{article.htmlContent},	
+					#{article.updatetime},				
+					#{article.readingcount},
+					#{article.type}
+			   )
+		 
+	</update>
+	 
+	 
+</mapper>

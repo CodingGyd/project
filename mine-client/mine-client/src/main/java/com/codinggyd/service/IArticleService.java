@@ -18,4 +18,7 @@ import com.codinggyd.bean.Paginator;
  */
 public interface IArticleService {
 	public MinePageBean<Article> getArticleList(Paginator paginator);
+	
+	public Article findArticleDetail(String id);
+	
 }

@@ -14,9 +14,7 @@ public class ClientApp extends WebMvcConfigurerAdapter{
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		
 		registry.addViewController("/").setViewName("redirect:index");//首页
-		registry.addViewController("/tarticle").setViewName("tarticle");//编程文章
 		registry.addViewController("/index").setViewName("index");//首页
 		registry.addViewController("/guestbook").setViewName("guestbook");//留言板
 		registry.addViewController("/about").setViewName("about");//关于我

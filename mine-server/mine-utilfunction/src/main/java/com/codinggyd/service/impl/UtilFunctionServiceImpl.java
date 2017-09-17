@@ -55,7 +55,7 @@ public class UtilFunctionServiceImpl implements IUtilFunctionService{
 		}
 		 
 		if(CollectionUtils.isEmpty(userinfo)){
-			logger.error("当前条件下没有查到数据,分页参数{}",pageInfo);
+			logger.error("当前条件下没有查到数据,分页参数{}",pageInfo != null? pageInfo.toString() :"");
 		}
 		return userinfo;
 	 

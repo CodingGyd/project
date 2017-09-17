@@ -24,10 +24,20 @@ public class Article implements Serializable {
 	 */
 	public String title;
 	/**
-	 * 内容
+	 * 描述
 	 */
 	public String descs;
+	
+	/**
+	 * 原始内容
+	 */
+	private String content;
 
+	/**
+	 * html内容
+	 */
+	private String htmlContent;
+	
 	/**
 	 * 更新时间
 	 */
@@ -37,6 +47,10 @@ public class Article implements Serializable {
 	 */
 	private Integer readingcount;
 	 
+	/**
+	 * 文章类型
+	 */
+	private String type;
 	
 	public String getTitle() {
 		return title;
@@ -77,6 +91,30 @@ public class Article implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getHtmlContent() {
+		return htmlContent;
+	}
+
+	public void setHtmlContent(String htmlContent) {
+		this.htmlContent = htmlContent;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	 

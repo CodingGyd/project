@@ -6,11 +6,11 @@
 		<artifactId>mine-server</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>mine-itinfo</artifactId>
+	<artifactId>mine-articles</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>mine-itinfo</name>
+	<name>mine-articles</name>
 <!-- 	<url>http://maven.apache.org</url>
  -->
 	<properties>

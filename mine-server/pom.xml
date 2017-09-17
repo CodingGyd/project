@@ -29,8 +29,7 @@
 		<module>mine-starter</module>
 		<module>mine-login</module>
 		<module>mine-core</module>
-		<module>mine-utilfunction</module>
-		<module>mine-itinfo</module>
+		<module>mine-articles</module>
 		<module>mine-data-export</module>
 	</modules>
 	<dependencyManagement>
@@ -53,12 +52,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.codinggyd</groupId>
-				<artifactId>mine-utilfunction</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.codinggyd</groupId>
-				<artifactId>mine-itinfo</artifactId>
+				<artifactId>mine-articles</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>

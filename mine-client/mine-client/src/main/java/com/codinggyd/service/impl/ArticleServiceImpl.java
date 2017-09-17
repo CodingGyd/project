@@ -41,12 +41,16 @@ public class ArticleServiceImpl implements IArticleService{
 	
 	private  static final String PATTERN = "yyyy-MM-dd";
 	
+	@Override
+	public Article findArticleDetail(String id) {
+		return getServerArticleDetail(id);
+	}
+	
 	public MinePageBean<Article> getArticleList(Paginator paginator) {
   	
-		//学习网站相关博文
+		//加载博文列表
 		List<Article> articles = new ArrayList<>();
-		articles.addAll(getServerLearnSite());
-		articles.addAll(getServerUtilFunction());
+		articles.addAll(getServerArticleList());
 		
 		if (CollectionUtils.isEmpty(articles)) {
 			logger.error("获取文章数据为空!");
@@ -67,17 +71,17 @@ public class ArticleServiceImpl implements IArticleService{
 	
 	
 	/**
-	 * 加载学习网站数据
+	 * 加载文章列表
 	 * @return
 	 */
-	private List<Article> getServerLearnSite() {
-		String requestJson = "{\"serviceId\":\"MINE_LIST_LEARN_SITE\",\"params\":[null]}";
+	private List<Article> getServerArticleList() {
+		String requestJson = "{\"serviceId\":\"MINE_ARTICLE_LIST\",\"params\":[null]}";
 
 		String responseData = HttpClientUtil.sendPost2(SysConstant.SERVER_URL, requestJson);
  	 
 		List<Article> result = new ArrayList<>();
 		if (StringUtils.isEmpty(responseData)) {
-			logger.error("接口MINE_LIST_LEARN_SITE返回数据为空");
+			logger.error("接口MINE_ARTICLE_LIST返回数据为空");
  		} else {
  			
  			ObjectMapper mapper = new ObjectMapper();
@@ -88,96 +92,41 @@ public class ArticleServiceImpl implements IArticleService{
 					JsonNode resultJson = node.get("data").get(0);
 					
 					if (null == resultJson) {
-						logger.error("接口MINE_LIST_LEARN_SITE返回数据为空");
+						logger.error("接口MINE_ARTICLE_LIST返回数据为空");
 					} else {
 						//解析json格式数据
 						int size = resultJson.size();
 						for (int i=0;i<size;i++) {
 							JsonNode temp = resultJson.get(i);
-							Integer id = temp.get("id").asInt();
-							String title = temp.get("title").asText();
-							Integer readingcount = temp.get("readingcount").asInt();
-							String updatetime = temp.get("updatetime").asText();
-							String descs = temp.get("descs").asText();
-							
+							Integer id = temp.get("id").asInt(0);
+							String title = temp.get("title").asText("");
+							Integer readingcount = temp.get("readingcount").asInt(0);
+							String updatetime = temp.get("updatetime").asText("");
+							String descs = temp.get("descs").asText("");
+							String type = temp.get("type").asText("");
 							Article article = new Article();
 							article.setId(id);
 							article.setTitle(title);
 							article.setReadingcount(readingcount);
 							article.setUpdatetime(formatDateStr(updatetime));
 							article.setDescs(descs);
+							article.setType(type);
 							result.add(article);
 						}
 					}
 					
 				} else {
-					logger.error("接口MINE_LIST_LEARN_SITE错误,响应码{}",code);
+					logger.error("接口MINE_ARTICLE_LIST错误,响应码{}",code);
 				}
 			} catch (Exception e) {
-				logger.error("接口MINE_LIST_LEARN_SITE返回数据有误,{},{}",responseData,e);
+				logger.error("接口MINE_ARTICLE_LIST返回数据有误,{},{}",responseData,e);
 			}
  			
  		}
 		
 		return result;
 	}
- 
-	/**
-	 * 加载功能函数数据
-	 * @return
-	 */
-	private List<Article> getServerUtilFunction() {
-		String requestJson = "{\"serviceId\":\"MINE_UTIL_FUNCTION\",\"params\":[null]}";
-
-		String responseData = HttpClientUtil.sendPost2(SysConstant.SERVER_URL, requestJson);
- 	 
-		List<Article> result = new ArrayList<>();
-		if (StringUtils.isEmpty(responseData)) {
-			logger.error("接口MINE_UTIL_FUNCTION返回数据为空");
- 		} else {
- 			
- 			ObjectMapper mapper = new ObjectMapper();
- 			try {
-				JsonNode node = mapper.readTree(responseData);
-				String code = node.get("code").asText();
-				if (SysConstant.RESPONSE_CODE_SUCCESS.equals(code)) {
-					JsonNode resultJson = node.get("data").get(0);
-					
-					if (null == resultJson) {
-						logger.error("接口MINE_UTIL_FUNCTION返回数据为空");
-					} else {
-						//解析json格式数据
-						int size = resultJson.size();
-						for (int i=0;i<size;i++) {
-							JsonNode temp = resultJson.get(i);
-							Integer id = temp.get("id").asInt();
-							String title = temp.get("title").asText();
-							Integer readingcount = temp.get("readingcount").asInt();
-							String updatetime = temp.get("updatetime").asText();
-							String content = temp.get("content").asText();
-							
-							Article article = new Article();
-							article.setId(id);
-							article.setTitle(title);
-							article.setReadingcount(readingcount);
-							article.setUpdatetime(formatDateStr(updatetime));
-							article.setDescs(content);
-							result.add(article);
-						}
-					}
-					
-				} else {
-					logger.error("接口MINE_UTIL_FUNCTION错误,响应码{}",code);
-				}
-			} catch (Exception e) {
-				logger.error("接口MINE_UTIL_FUNCTION返回数据有误,{},{}",responseData,e);
-			}
- 			
- 		}
-		
-		return result;
-	}
-
+	 
 	private String formatDateStr(String time) {
 		try {
 			
@@ -186,6 +135,61 @@ public class ArticleServiceImpl implements IArticleService{
 			logger.error("日期字段格式化出错,{}",e);
 		}
 		return null;
+	}
+	
+	
+	/**
+	 * 加载文章详情
+	 * @return
+	 */
+	private Article getServerArticleDetail(String id) {
+		String requestJson = "{\"serviceId\":\"MINE_ARTICLE_DETAIL\",\"params\":["+id+"]}";
+
+		String responseData = HttpClientUtil.sendPost2(SysConstant.SERVER_URL, requestJson);
+ 	 
+		Article result = null;
+		if (StringUtils.isEmpty(responseData)) {
+			logger.error("接口MINE_ARTICLE_DETAIL返回数据为空");
+ 		} else {
+ 			
+ 			ObjectMapper mapper = new ObjectMapper();
+ 			try {
+				JsonNode node = mapper.readTree(responseData);
+				String code = node.get("code").asText();
+				if (SysConstant.RESPONSE_CODE_SUCCESS.equals(code)) {
+					JsonNode temp = node.get("data").get(0);
+					
+					if (null == temp) {
+						logger.error("接口MINE_ARTICLE_DETAIL返回数据为空");
+					} else {
+						//解析json格式数据
+					  
+ 							String title = temp.get("title").asText("");
+							Integer readingcount = temp.get("readingcount").asInt(0);
+							String updatetime = temp.get("updatetime").asText("");
+							String descs = temp.get("descs").asText("");
+							String type = temp.get("type").asText("");
+							String htmlContent = temp.get("htmlContent").asText("");
+							result = new Article();
+							result.setId(Integer.parseInt(id));
+							result.setTitle(title);
+							result.setReadingcount(readingcount);
+							result.setUpdatetime(formatDateStr(updatetime));
+							result.setDescs(descs);
+							result.setType(type);
+							result.setHtmlContent(htmlContent);
+						}
+					
+				} else {
+					logger.error("接口MINE_ARTICLE_DETAIL错误,响应码{}",code);
+				}
+			} catch (Exception e) {
+				logger.error("接口MINE_ARTICLE_DETAIL返回数据有误,{},{}",responseData,e);
+			}
+ 			
+ 		}
+		
+		return result;
 	}
 	 
 }

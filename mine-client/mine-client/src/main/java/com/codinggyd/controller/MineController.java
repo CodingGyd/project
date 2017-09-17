@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -26,17 +27,6 @@ public class MineController {
 	private IArticleService service;
 	final Logger logger = LoggerFactory.getLogger(getClass());
  
-//	//首页
-//	@RequestMapping(value={"/","/index"})
-//	public String index(HttpServletRequest request,HttpServletResponse response) {
-//		String curPage = request.getParameter("curPage");
-//		PageList<Article> articles = service.getArticleList(Integer.parseInt(curPage));
-////		 asadsa
-//		request.setAttribute("articleList", articles);
-//		request.setAttribute("pageinfo", articles.getPaginator());
-//
-//		return "index";
-//	}
 	
 	//分页获取文章列表
 	@RequestMapping(value={"/article_page"})
@@ -54,10 +44,16 @@ public class MineController {
 	
 	
 	//文章详情
-	@RequestMapping("/detail")
-	public String article_dt(@ModelAttribute(value = "content") String content,Map<String,Object> model) {
-		model.put("content",content);  
+	@RequestMapping("/article_dt/{id}")
+	public String article_dt(@PathVariable String id,Map<String,Object> model) {
+		model.put("article",service.findArticleDetail(id));
 		return "article_dt";
+	}
+	
+	//文章详情
+	@RequestMapping("/load_article")
+	public @ResponseBody Article loadArticle(@ModelAttribute(value = "id") String id) {
+		return service.findArticleDetail(id);
 	}
   
 }

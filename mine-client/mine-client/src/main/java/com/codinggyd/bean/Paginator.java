@@ -30,7 +30,8 @@ public class Paginator implements Serializable {
     /**
      * 总页数
      */
-    private int totalPages;
+    @SuppressWarnings("unused")
+	private int totalPages;
 
     public Paginator(int page, int limit, int totalCount) {
         super();

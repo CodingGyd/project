@@ -36,11 +36,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.codinggyd</groupId>
-			<artifactId>mine-utilfunction</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.codinggyd</groupId>
-			<artifactId>mine-itinfo</artifactId>
+			<artifactId>mine-articles</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.codinggyd</groupId>
@@ -69,7 +65,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.3</version>
 				<configuration>
 					<source>${java.version}</source>
 					<target>${java.version}</target>
@@ -78,7 +73,6 @@
 	<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.6</version>
 				<configuration>
 					<excludes>
 						<exclude>application.properties</exclude>
@@ -89,7 +83,6 @@
 	<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-assembly-plugin</artifactId>
-				<version>2.6</version>
 				<configuration>
 					<descriptors>
 						<descriptor>src/main/assembly/assembly.xml</descriptor>

@@ -4,18 +4,25 @@
 <head th:replace="base/head ::common_header"></head>
 
 <body>
-	 
+	<link th:href="@{/editormd/css/editormd.min.css}" rel="stylesheet" type="text/css" />
+	<link th:href="@{/editormd/css/editormd.preview.min.css}" rel="stylesheet" type="text/css" />
+     
+    <script th:src="@{/editormd/editormd.min.js}"></script>
+    <script th:src="@{/editormd/lib/marked.min.js}"></script>
+    <script th:src="@{/editormd/lib/prettify.min.js}"></script>
+    <script th:src="@{/js/article_dt.js}"></script>
+ 
 	<!--header start-->
 	<div th:replace="base/top :: top"></div>
 	<!--header end-->
-	<!--content start-->
-	<div id="content">
-		<p th:text="${content}"/>   
-	</div>
+ 	<!--content start-->
+
+	<div class="content" id="content" th:utext="${article.htmlContent}"></div>
+ 
 	<!--content end-->
 	<!--footer start-->
 	<div th:replace="base/bottom :: bottom"></div>
 	<!--footer end-->
-	  
+
 </body>
 </html>
