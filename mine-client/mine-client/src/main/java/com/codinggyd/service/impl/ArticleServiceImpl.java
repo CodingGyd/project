@@ -170,6 +170,7 @@ public class ArticleServiceImpl implements IArticleService{
 							String descs = temp.get("descs").asText("");
 							String type = temp.get("type").asText("");
 							String htmlContent = temp.get("htmlContent").asText("");
+							String content = temp.get("content").asText("");
 							result = new Article();
 							result.setId(Integer.parseInt(id));
 							result.setTitle(title);
@@ -178,6 +179,7 @@ public class ArticleServiceImpl implements IArticleService{
 							result.setDescs(descs);
 							result.setType(type);
 							result.setHtmlContent(htmlContent);
+							result.setContent(content);
 						}
 					
 				} else {

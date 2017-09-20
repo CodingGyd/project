@@ -18,7 +18,7 @@
 	</select>
 
 	<select id="findDetailById" resultType="com.codinggyd.bean.Article">
-		SELECT id,title,descs,updatetime,readingcount,url,type,htmlContent FROM mine_articles
+		SELECT id,title,descs,updatetime,readingcount,url,type,htmlContent,content FROM mine_articles
 		WHERE id = #{id}
 	</select>
 	

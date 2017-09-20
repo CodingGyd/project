@@ -29,7 +29,11 @@ public class Article implements Serializable {
 	public String descs;
 	
 	/**
-	 * 格式化的文章内容
+	 * md格式的文章内容
+	 */
+	public String content;
+	/**
+	 * html格式的文章内容
 	 */
 	public String htmlContent;
 
@@ -102,6 +106,14 @@ public class Article implements Serializable {
 
 	public void setHtmlContent(String htmlContent) {
 		this.htmlContent = htmlContent;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	 

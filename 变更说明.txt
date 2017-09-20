@@ -6,6 +6,7 @@ svn库工程
 
 
 日期 				变更情况
+20170920.1			解决预览通过markdown编辑器编辑保存的文章时页面样式异常的问题
 20170917.1			引入markdown文本编辑神器
 20170917.1			新增mine-sys后台工程，为后台管理系统
 20170916.1			mine-client\mine-server工程，引入分页神器bootstrap-paginator.js；引入jquery模板神器jquery-jtemplates_uncompressed.js；功能持续开发中

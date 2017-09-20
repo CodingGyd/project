@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codinggyd.bean.Article;
 import com.codinggyd.service.IArticleService;
@@ -30,7 +31,7 @@ public class MineController {
 
 	private static final String PATTERN = "yyyy-MM-dd HH:mm.ss.SSS";
 	@RequestMapping(value="/update",method = { RequestMethod.GET, RequestMethod.POST })
-	public String update(HttpServletRequest request,HttpServletResponse response) {
+	public @ResponseBody String update(HttpServletRequest request,HttpServletResponse response) {
 		
 		Article articles = new Article();
 		articles.setTitle(request.getParameter("title"));

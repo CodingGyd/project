@@ -6,10 +6,14 @@
 <body>
 	<link th:href="@{/editormd/css/editormd.min.css}" rel="stylesheet" type="text/css" />
 	<link th:href="@{/editormd/css/editormd.preview.min.css}" rel="stylesheet" type="text/css" />
-     
+       <script th:src="@{/editormd/lib/marked.min.js}"></script>
+     <script th:src="@{/editormd/lib/prettify.min.js}"></script>
+     <script th:src="@{/editormd/lib/raphael.min.js}"></script>
+     <script th:src="@{/editormd/lib/underscore.min.js}"></script>
+     <script th:src="@{/editormd/lib/sequence-diagram.min.js}"></script>
+     <script th:src="@{/editormd/lib/flowchart.min.js}"></script>
+	<script th:src="@{/editormd/lib/jquery.flowchart.min.js}"></script>
     <script th:src="@{/editormd/editormd.min.js}"></script>
-    <script th:src="@{/editormd/lib/marked.min.js}"></script>
-    <script th:src="@{/editormd/lib/prettify.min.js}"></script>
     <script th:src="@{/js/article_dt.js}"></script>
  
 	<!--header start-->
@@ -17,12 +21,23 @@
 	<!--header end-->
  	<!--content start-->
 
-	<div class="content" id="content" th:utext="${article.htmlContent}"></div>
+	<div class="content" id="content">
+		<textarea  style="display:none;" th:utext="${article.content}"></textarea>
+	</div>
  
 	<!--content end-->
 	<!--footer start-->
 	<div th:replace="base/bottom :: bottom"></div>
 	<!--footer end-->
-
+	<script type="text/javascript">
+	  editormd.markdownToHTML("content",{
+          htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            emoji           : true,
+            taskList        : true,
+            tex             : true,  // 默认不解析
+            flowChart       : true,  // 默认不解析
+            sequenceDiagram : true,  // 默认不解析
+        });
+	</script>
 </body>
 </html>

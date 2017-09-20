@@ -49,7 +49,7 @@ function addListener(){
 		  var htmlContent=$("#editorhtml").val();
 		  //获取第一个textarea的值，即md值
 		   var content=$("#editormd").val();
-		    
+		  
 			 $.ajax({
 		         type: "POST",
 		         url: "/update",
@@ -62,7 +62,7 @@ function addListener(){
 		      		  //重置
 		      		  $("#editormd").val("");
 		        	 }
-		         });
+		         }); 
 		});
 }
 
