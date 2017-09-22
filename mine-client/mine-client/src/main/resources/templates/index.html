@@ -7,30 +7,34 @@
 		<script th:src="@{js/index.js}"></script>
 		<script th:src="@{js/jquery-jtemplates.js}"></script>
 		<script th:src="@{js/jquery-jtemplates_uncompressed.js}"></script>
-	<!--header start-->
-	<a name="top"></a>
-	<div th:replace="base/top :: top"></div>
-	<!--header end-->
+	
+	<div class="Wrapper">
+		
+		<!--header start-->
+		<a name="top"></a>
+		<div th:replace="base/top :: top"></div>
+		<!--header end-->
 
-	<!--content start-->
-	<div id="content">
-		<!--left-->
-		<div class="left" id="c_left">
-			<div class="s_tuijian">
-				<h2>
-					博文<span>列表</span>
-				</h2>
-			</div>
+		<!--content start-->
+		<div id="content">
+			<!--left-->
+			<div class="left" id="c_left">
+				<div class="s_tuijian">
+					<h2>
+						博文<span>列表</span>
+					</h2>
+				</div>
 			<div class="content_text">
+			<input type="hidden" name="type_dm" id="type_dm" value=""/>
 			<div id="result"></div>
-		<!-- jquery template -->
-		<textarea id="template"  class="template">
-			{#foreach $T.data as record}  
+			<!-- jquery template -->
+			<textarea id="template"  class="template">
+				{#foreach $T.data as record}  
 			 	<div class="wz row">
 					<div class="col-sm-12">
 						<div class="thumbnail article_item">
 							<h3>{$T.record.id}
-								<a href="#" th:title="呵呵额呵呵呵">{$T.record.title}</a>
+								<a href="/article_dt/{$T.record.id}"  target="_blank">{$T.record.title}</a>
 							</h3>
 							<dl>
 								<dd>
@@ -39,7 +43,7 @@
 										<span class="left author">顺顺</span>
 										<span class="left sj">{$T.record.updatetime}</span> 
 										<span class="left fl">分类:<a
-											href="#" title="学习网站">学习网站</a>
+											href="javascript:void(0);" onclick="showArticleListOfType({$T.record.type})"  title="{$T.record.typeName}">{$T.record.typeName}</a>
 										</span>
 										<span class="left yd">
 								 			<a href="/article_dt/{$T.record.id}" target="_blank"
@@ -68,7 +72,7 @@
 		<!--left end-->
 		<!--right-->
 		<div class="right" id="c_right">
-			<div class="s_about">
+<!-- 			<div class="s_about">
 				<h2>分类</h2>
 				<br />
 				<p>
@@ -82,7 +86,23 @@
 				<p>
 					<a href="#">java</a>&nbsp;&nbsp;<a href="#">nginx</a>&nbsp;&nbsp;
 				</p>
-			</div>
+			</div> -->
+			
+		  <div class="s_about" >
+				<h2>分类</h2>
+				<br />
+				<p>
+				<div id="resultTypeList"></div>
+			 	</p>
+			 	<br />
+			</div> 
+			<!-- jquery template -->
+			<textarea id="templateType" class="template">
+					{#foreach $T.data as record}  
+					&nbsp;&nbsp;<a href="javascript:void(0);" onclick="showArticleListOfType({$T.record.dm})">{$T.record.ms}</a>&nbsp;&nbsp; 
+			 		{#/for}  
+		   	</textarea>
+		   	<!-- jquery template end-->
 			<!--栏目分类-->
 			<div class="lanmubox">
 				<div class="hd">
@@ -125,12 +145,13 @@
 					<a href="http://www.baidu.com" target="_blank">度娘</a>
 				</p>
 			</div>
-				<a href="#top">返回顶部</a>
 		</div>
 		<!--right end-->
 		<div class="clear"></div>
 	</div>
 	<!--content end-->
+	
+ 	</div>	
 	<!--footer start-->
 	<div th:replace="base/bottom :: bottom"></div>
 	<!--footer end-->

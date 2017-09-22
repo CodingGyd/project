@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.mapper.SysConstMapper">
+	<resultMap id="consts" type="com.codinggyd.bean.SysConst">
+		<id column="id" property="id" />
+		<result column="lb" property="lb" />
+		<result column="lbmc" property="lbmc" />
+		<result column="dm" property="dm" />
+		<result column="ms" property="ms" />
+		<result column="updatetime" property="updatetime" />
+	</resultMap>
+
+	<select id="listConst" resultMap="consts">
+ 		SELECT 	id,lb,lbmc,dm,ms,updatetime 
+ 				FROM mine_sysconst  
+ 				WHERE 1=1
+ 				<if test="lbs != null and lbs.size() > 0">
+ 					AND lb IN (
+ 						<foreach collection="lbs" index="index" item="item" separator=",">
+ 							#{item}
+ 						</foreach>
+ 					)
+ 				</if>
+	</select>
+
+</mapper>

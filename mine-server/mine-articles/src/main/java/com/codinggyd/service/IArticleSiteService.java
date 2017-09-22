@@ -20,7 +20,7 @@ import com.codinggyd.bean.Article;
 public interface IArticleSiteService {
 	
 	@MineMethod(value="MINE_ARTICLE_LIST")
-	public List<Article> listArticle(String[] pageInfo);
+	public List<Article> listArticle(String type,String[] pageInfo);
 	
 	@MineMethod(value="MINE_ARTICLE_DETAIL")
 	public Article listDetail(String id);

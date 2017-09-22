@@ -1,6 +1,9 @@
 package com.codinggyd.service;
 
+import java.util.List;
+
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleType;
 import com.codinggyd.bean.MinePageBean;
 import com.codinggyd.bean.Paginator;
 
@@ -17,8 +20,12 @@ import com.codinggyd.bean.Paginator;
  * Copyright @ 2017 Corpration Name
  */
 public interface IArticleService {
-	public MinePageBean<Article> getArticleList(Paginator paginator);
 	
+	//加载文章列表
+	public MinePageBean<Article> getArticleList(Paginator paginator,String type_dm);
+	//加载文章详情
 	public Article findArticleDetail(String id);
+	//加载文章分类
+	public List<ArticleType> findArticleTypes();
 	
 }

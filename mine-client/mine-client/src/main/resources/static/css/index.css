@@ -6,11 +6,14 @@
 	padding: 0px;
 }
 
-body {
+html,body {
+	height:100%;
 	font-size: 14px;
 	font-family: "微软雅黑";
 	background: #E3E3E5 url(../images/bg.jpg) 50% top scroll no-repeat;
 	color: #5d5d5d;
+	margin:0;
+    padding:0;
 }
 
 a {
@@ -38,6 +41,17 @@ img {
 	border: 0px;
 }
 /*end*/
+
+/*Wrapper start*/
+
+.Wrapper {  
+  min-height: 100%;  
+   height: auto !important; 
+}  
+     
+ 
+/*Wraper end*/
+/*head start*/
 #header {
 	width: 1000px;
 	margin: 0 auto;
@@ -99,6 +113,7 @@ img {
 #content {
 	width: 1000px;
 	margin: 5px auto;
+	 padding-bottom: 80px; //页脚高度+页脚与容器的距离
 }
 
 #c_left {
@@ -405,20 +420,24 @@ img {
 }
 /*right end*/
 /*content end*/
-#footer {
-	width: 1000px;
-	height: 50px;
-	margin: 10px auto;
+.footer {
+	  height: 60px;  /* 页脚高度 */
+     margin-top: -60px;  /*  一个页脚高度的负外边距   */
+	/*   width: 1000px;
 	border-top: 1px solid #ccc;
+ 	clear: both; 
+	position: relative;  
+	margin-top: -120px;  
+ 	height: 120px;     */
 }
 
-#footer p {
+.footer p {
 	text-align: center;
 	font-size: 14px;
 	color: #231C25;
 }
 
-#footer p a {
+.footer p a {
 	color: #231C25;
 }
 

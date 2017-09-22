@@ -15,17 +15,18 @@
 	<script th:src="@{/editormd/lib/jquery.flowchart.min.js}"></script>
     <script th:src="@{/editormd/editormd.min.js}"></script>
     <script th:src="@{/js/article_dt.js}"></script>
- 
-	<!--header start-->
-	<div th:replace="base/top :: top"></div>
-	<!--header end-->
- 	<!--content start-->
-
-	<div class="content" id="content">
-		<textarea  style="display:none;" th:utext="${article.content}"></textarea>
+ 	<div class="Wrapper">
+		<!--header start-->
+		<div th:replace="base/top :: top"></div>
+		<!--header end-->
+	 	<!--content start-->
+	
+		<div class="content" id="content">
+			<textarea  style="display:none;" th:utext="${article.content}"></textarea>
+		</div>
+	 
+		<!--content end-->
 	</div>
- 
-	<!--content end-->
 	<!--footer start-->
 	<div th:replace="base/bottom :: bottom"></div>
 	<!--footer end-->

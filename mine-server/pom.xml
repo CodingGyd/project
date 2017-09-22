@@ -31,6 +31,7 @@
 		<module>mine-core</module>
 		<module>mine-articles</module>
 		<module>mine-data-export</module>
+		<module>mine-sysconst</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
@@ -58,6 +59,11 @@
 			<dependency>
 				<groupId>com.codinggyd</groupId>
 				<artifactId>mine-data-export</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.codinggyd</groupId>
+				<artifactId>mine-sysconst</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>

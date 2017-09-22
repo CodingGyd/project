@@ -64,9 +64,14 @@ public abstract class MineServiceExecuter {
 		//解析请求参数,与业务方法参数类型进行一一转换
 		Object[] args = new Object[paramsType.length];
 		for (int i = 0;i < paramsType.length;i++) {
-			Class<?> cs = paramsType[i];
-			JsonNode node = params[i];
-			args[i] = objectMapper.reader().treeToValue(node, cs);
+			try {
+				Class<?> cs = paramsType[i];
+				JsonNode node = params[i];
+				args[i] = objectMapper.reader().treeToValue(node, cs);
+			} catch (Exception e) {
+				logger.error("参数类型转换异常,{}",e);
+				return wrapResult(MineResponseCode.ERROR_CODE, "参数["+i+"]类型转换异常");
+			}
 		}
 		Object result = method.invoke(mineServiceBean.getService(), args);
 		return wrapResult(MineResponseCode.SUCCESS_CODE, result);

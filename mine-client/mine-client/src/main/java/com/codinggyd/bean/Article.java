@@ -47,10 +47,13 @@ public class Article implements Serializable {
 	private Integer readingcount;
 	
 	/**
-	 * 类型
+	 * 类型代码
 	 */
 	private String type;
-	
+	/**
+	 * 类型名称
+	 */
+	private String typeName;
 	public String getTitle() {
 		return title;
 	}
@@ -114,6 +117,14 @@ public class Article implements Serializable {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 	 

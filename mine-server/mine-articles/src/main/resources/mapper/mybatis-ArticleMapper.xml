@@ -14,12 +14,20 @@
 	</resultMap>
 
 	<select id="findArticle" resultMap="articles">
-		SELECT id,title,descs,updatetime,readingcount,url,type FROM mine_articles
+ 		SELECT 	A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName
+ 				FROM mine_articles A 
+ 				INNER JOIN mine_sysconst B 
+ 				ON A.type = B.dm AND B.lb = '100' 
+ 				<if test="type != null and type != ''">
+ 					AND B.dm = #{type}
+ 				</if>
 	</select>
 
 	<select id="findDetailById" resultType="com.codinggyd.bean.Article">
-		SELECT id,title,descs,updatetime,readingcount,url,type,htmlContent,content FROM mine_articles
-		WHERE id = #{id}
+		SELECT A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName,htmlContent,content FROM mine_articles A
+		INNER JOIN mine_sysconst B 
+ 				ON A.type = B.dm AND B.lb = '100' 
+		WHERE A.id = #{id}
 	</select>
 	
 

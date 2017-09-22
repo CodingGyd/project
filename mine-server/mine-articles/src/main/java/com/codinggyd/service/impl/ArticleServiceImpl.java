@@ -36,7 +36,7 @@ public class ArticleServiceImpl implements IArticleSiteService{
 	private ArticleMapper mapper;
 	
 	@Override
-	public List<Article> listArticle(String[] pageInfo) {
+	public List<Article> listArticle(String type,String[] pageInfo) {
 		
 		PageBounds pageBounds = null;
 		if (null != pageInfo) {
@@ -50,13 +50,13 @@ public class ArticleServiceImpl implements IArticleSiteService{
 		
 		List<Article> articleList = null;
 		if (null != pageBounds) {
-			articleList = mapper.findArticle(pageBounds);
+			articleList = mapper.findArticle(type,pageBounds);
 		} else {
-			articleList = mapper.findArticle();
+			articleList = mapper.findArticle(type);
 		}
 		
 		if(CollectionUtils.isEmpty(articleList)){
-			logger.debug("暂未收录任何IT资讯网站");
+			logger.debug("未查到任何文章信息");
 		}
 		
 		return articleList;

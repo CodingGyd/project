@@ -21,8 +21,8 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
  * Copyright @ 2017 Corpration Name
  */
 public interface ArticleMapper {
-	public PageList<Article> findArticle(PageBounds pageBounds);
-	public List<Article> findArticle();
+	public PageList<Article> findArticle(@Param("type") String type, PageBounds pageBounds);
+	public List<Article> findArticle(@Param("type") String type);
 	
 	public Article findDetailById(@Param("id") String id);
 
