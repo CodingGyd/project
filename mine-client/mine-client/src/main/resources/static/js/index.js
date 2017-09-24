@@ -6,10 +6,62 @@ var initLimit = 5;
 //当前选择的文章分类
 var type_dm;
 $(document).ready(function(e) {
+	//加载文章分类
 	loadArticleType();
+	//加载文章列表
 	loadArticle(initPage,initLimit);
+	//加载最新文章
+	loadLatestArticles();
+ 	//加载随机文章
+	loadRandomArticles(); 
+  	//加载精心推荐
+	loadTuijArticles(); 
 	addListener();
 });
+//精心推荐
+function loadTuijArticles(){
+	 $.ajax({
+        type: "Post",
+        url: "/latest_article",
+        async:true,
+        success: function(data){
+	        	// 设置模板  
+	            $("#tuij-articles-ul").setTemplateElement("templateTuijArticles");  
+	            // 给模板加载数据  
+	            $("#tuij-articles-ul").processTemplate(data);  
+       	 }
+        });
+}
+
+//随机文章
+function loadRandomArticles(){
+	 $.ajax({
+        type: "Post",
+        url: "/latest_article",
+        async:true,
+        success: function(data){
+	        	// 设置模板  
+	            $("#random-articles-ul").setTemplateElement("templateRandomArticles");  
+	            // 给模板加载数据  
+	            $("#random-articles-ul").processTemplate(data);  
+       	 }
+        });
+}
+
+//最新文章
+function loadLatestArticles(){
+	 $.ajax({
+         type: "Post",
+         url: "/latest_article",
+         async:true,
+         success: function(data){
+	        	// 设置模板  
+	            $("#latest-articles-ul").setTemplateElement("templateLatestArticles");  
+	            // 给模板加载数据  
+	            $("#latest-articles-ul").processTemplate(data);  
+        	 }
+         });
+}
 
 //查询分类下的文章列表
 function showArticleListOfType(type){

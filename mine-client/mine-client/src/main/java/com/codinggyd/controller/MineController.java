@@ -1,8 +1,6 @@
  
 package com.codinggyd.controller;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +40,14 @@ public class MineController {
 		return data;
 	}
 	
+	//最新文章
+	@RequestMapping(value={"/latest_article"})
+	public @ResponseBody MinePageBean<Article> latestArticle(HttpServletRequest request,HttpServletResponse response) {
+		MinePageBean<Article> data = service.getLatestArticleList();
+		return data;
+	}
+	
+	
 	//文章分类
 	@RequestMapping(value={"/article_types"})
 	public @ResponseBody MinePageBean<ArticleType> listTypes(HttpServletRequest request,HttpServletResponse response) {
@@ -55,5 +61,7 @@ public class MineController {
 		model.put("article",service.findArticleDetail(id));
 		return "article_dt";
 	}
+	
+	
   
 }

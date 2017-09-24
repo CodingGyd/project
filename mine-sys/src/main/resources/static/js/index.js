@@ -4,6 +4,8 @@ var editor;
 $(document).ready(function(e) {
 	//初始化文章编辑器
 	initEditor();
+	//加载文章分类
+	loadArticleType();
 	addListener();
 });
 
@@ -36,7 +38,19 @@ function initEditor(){
 	  });
 	
 }
-
+function loadArticleType() {
+	 $.ajax({
+        type: "Post",
+        url: "/article_types",
+        async:true,
+        success: function(data){
+        	alert("==")
+	        	 //遍历生成select
+        		$(data).each(function (index, r) {
+        			$("#article_type").append("<option value='"+r.dm+"'>"+r.ms+"</option>"); //为Select追加一个Option(下拉项)
+        		});
+        }});
+}
 //控件添加今监听器
 function addListener(){
 	$('#btn_submit').click(function() {
@@ -45,15 +59,16 @@ function addListener(){
 		  var title=$("#article_title").val();
 		  //获取文章概述
 		  var descs=$("#article_descs").val();
+		  //获取文章分类$
+		  var type =$('#article_type option:selected').val();
 		  //获取第二个textarea的值，即生成的HTML代码
 		  var htmlContent=$("#editorhtml").val();
 		  //获取第一个textarea的值，即md值
 		   var content=$("#editormd").val();
-		  
 			 $.ajax({
 		         type: "POST",
 		         url: "/update",
-		         data:{"title":title,"descs" :descs,"content":content,"htmlContent":htmlContent},
+		         data:{"title":title,"descs" :descs,"content":content,"htmlContent":htmlContent,"type":type},
 		         async:true,
 		         success: function(data){
 		        	   	alert("发表成功");

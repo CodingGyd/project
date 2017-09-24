@@ -2,6 +2,7 @@
 package com.codinggyd.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleType;
 import com.codinggyd.service.IArticleService;
  
  
@@ -40,10 +42,18 @@ public class MineController {
 		articles.setDescs(request.getParameter("descs"));
 		articles.setUpdatetime(DateUtils.formatDate(new Date(), PATTERN));
 		articles.setReadingcount(0);
-		articles.setType("0");
+		articles.setType(request.getParameter("type"));
 		service.updateArticle(articles);
 		return "success";
 	}
 
   
+	//文章分类
+	@RequestMapping(value={"/article_types"})
+	public @ResponseBody List<ArticleType> listTypes(HttpServletRequest request,HttpServletResponse response) {
+		List<ArticleType> data = service.findArticleTypes();
+		return data;
+	}
+	
+	
 }

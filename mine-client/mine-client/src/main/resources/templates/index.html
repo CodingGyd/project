@@ -21,7 +21,7 @@
 			<div class="left" id="c_left">
 				<div class="s_tuijian">
 					<h2>
-						博文<span>列表</span>
+						文章<span>列表</span>
 					</h2>
 				</div>
 			<div class="content_text">
@@ -33,7 +33,7 @@
 			 	<div class="wz row">
 					<div class="col-sm-12">
 						<div class="thumbnail article_item">
-							<h3>{$T.record.id}
+							<h3>
 								<a href="/article_dt/{$T.record.id}"  target="_blank">{$T.record.title}</a>
 							</h3>
 							<dl>
@@ -61,33 +61,15 @@
 			
 		    </textarea>
 			<!-- jquery template end -->
-			
 				<!-- 分页 -->
 				<nav aria-label="Page navigation" style="text-align: right;padding-right:25px">
 					<ul class="pagination pagination-sm" id="pageUl"></ul>
 				</nav>
-
 			</div>
 		</div>
 		<!--left end-->
 		<!--right-->
 		<div class="right" id="c_right">
-<!-- 			<div class="s_about">
-				<h2>分类</h2>
-				<br />
-				<p>
-					<a href="#">spring</a>&nbsp;&nbsp;&nbsp; <a href="#">mybatis</a>&nbsp;&nbsp;
-				</p>
-				<br />
-				<p>
-					<a href="#">linux</a>&nbsp;&nbsp;<a href="#">phantomjs</a>&nbsp;&nbsp;
-				</p>
-				<br />
-				<p>
-					<a href="#">java</a>&nbsp;&nbsp;<a href="#">nginx</a>&nbsp;&nbsp;
-				</p>
-			</div> -->
-			
 		  <div class="s_about" >
 				<h2>分类</h2>
 				<br />
@@ -103,46 +85,63 @@
 			 		{#/for}  
 		   	</textarea>
 		   	<!-- jquery template end-->
+		   	
 			<!--栏目分类-->
+		    <!-- 最新文章 template  -->
 			<div class="lanmubox">
-				<div class="hd">
-					<ul>
-						<li>精心推荐</li>
-						<li>最新文章</li>
-						<li class="hd_3">随机文章</li>
-					</ul>
-				</div>
-				<div class="bd">
-					<ul>
-						<li><a href="#" title="网站项目实战开发（-）">网站项目实战开发（-）</a></li>
-						<li><a href="#" title="关于响应式布局">关于响应式布局</a></li>
-						<li><a href="#" title="如何创建个人博客网站">如何创建个人博客网站</a></li>
-						<li><a href="#" title="网站项目实战开发（二）">网站项目实战开发（二）</a></li>
-						<li><a href="#" title="为什么新站前期排名老是浮动？(转)">为什么新站前期排名老是浮动？(转)</a></li>
-					</ul>
-					<ul>
-						<li><a href="#" title="网站项目实战开发（-）">网站项目实战开发（-）</a></li>
-						<li><a href="#" title="关于响应式布局">关于响应式布局</a></li>
-						<li><a href="#" title="如何创建个人博客网站">如何创建个人博客网站</a></li>
-						<li><a href="#" title="网站项目实战开发（二）">网站项目实战开发（二）</a></li>
-						<li><a href="#" title="为什么新站前期排名老是浮动？(转)">为什么新站前期排名老是浮动？(转)</a></li>
-					</ul>
-					<ul>
-						<li><a href="#" title="网站项目实战开发（-）">网站项目实战开发（-）</a></li>
-						<li><a href="#" title="关于响应式布局">关于响应式布局</a></li>
-						<li><a href="#" title="如何创建个人博客网站">如何创建个人博客网站</a></li>
-						<li><a href="#" title="网站项目实战开发（二）">网站项目实战开发（二）</a></li>
-						<li><a href="#" title="为什么新站前期排名老是浮动？(转)">为什么新站前期排名老是浮动？(转)</a></li>
-					</ul>
-
-
-				</div>
+			   <h2>最新文章</h2>
+			   <br />
+			   <div class="bd">
+					<ul id="latest-articles-ul"></ul>
+					<textarea id="templateLatestArticles" class="template" style="display:none;">
+							{#foreach $T.data as record}  
+								<li><a href="/article_dt/{$T.record.id}"  target="_blank">{$T.record.title}</a></li>
+			 				{#/for}  
+		  		 	</textarea>
+		  		 	</div>
 			</div>
+			<!-- 最新文章 template  end-->
+			
+			<!-- 随机文章 template  -->
+			 <div class="lanmubox bd">
+					 <h2>随机文章</h2>		
+					  <br />		
+					  <div class="bd">	
+					<ul id="random-articles-ul"></ul>
+					<textarea id="templateRandomArticles" class="template" style="display:none;">
+							{#foreach $T.data as record}  
+								<li><a href="/article_dt/{$T.record.id}"  target="_blank">{$T.record.title}</a></li>
+			 				{#/for}  
+		  		 	</textarea>
+		  		 	</div>
+				
+			</div>
+			
+			<!-- 随机文章 template  end-->
+			
+			<!-- 精心推荐 template  -->
+			<div class="lanmubox">
+					 <h2>精心推荐</h2>		
+					 <br />	
+					  <div class="bd">	
+					<ul id="tuij-articles-ul"></ul>
+					<textarea id="templateTuijArticles" class="template" style="display:none;">
+							{#foreach $T.data as record}  
+								<li><a href="/article_dt/{$T.record.id}"  target="_blank">{$T.record.title}</a></li>
+			 				{#/for}  
+		  		 	</textarea>
+		  		 	</div>
+			</div>
+			<!-- 精心推荐 template  end-->
+			
 			<!--end-->
 			<div class="link">
 				<h2>友情链接</h2>
 				<p>
-					<a href="http://www.baidu.com" target="_blank">度娘</a>
+					<a href="http://www.baidu.com" target="_blank">度娘</a> &nbsp;&nbsp; &nbsp;&nbsp;
+					<a href="http://www.baidu.com" target="_blank">你大爷家</a><br/>
+					<a href="http://www.baidu.com" target="_blank">丈母娘家</a>&nbsp;&nbsp;
+					<a href="http://www.baidu.com" target="_blank">七大姑八大姨家</a>
 				</p>
 			</div>
 		</div>
@@ -155,6 +154,6 @@
 	<!--footer start-->
 	<div th:replace="base/bottom :: bottom"></div>
 	<!--footer end-->
-	<script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
+	 <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script> 
 </body>
 </html>

@@ -12,6 +12,7 @@ import com.codinggyd.bean.MineServiceBean;
 import com.codinggyd.bean.requ.MineRequestBean;
 import com.codinggyd.bean.resp.MineResponseBean;
 import com.codinggyd.constant.MineResponseCode;
+import com.codinggyd.utils.CommonUtils;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
@@ -31,18 +32,13 @@ import com.github.miemiedev.mybatis.paginator.domain.Paginator;
 public abstract class MineServiceExecuter {
 	final static Logger logger = LoggerFactory.getLogger(MineServiceExecuter.class);
 
-	static ObjectMapper objectMapper = new ObjectMapper();
-
+	static ObjectMapper objectMapper = CommonUtils.getMappingInstance();
 	/**
 	 * 解析json请求参数，动态执行业务方法
 	 * @param requestJson
 	 * @throws Exception
 	 */
 	public static String invoke(String requestJson) throws Exception{
-//		JsonNode jsonNode = objectMapper.readTree(requestJson);
-//		String serviceId = jsonNode.get("serviceId").asText();//解析要执行的业务类
-//		JsonNode params = jsonNode.get("params");//解析业务类方法的参数
-		
 		
 		MineRequestBean mineRequestBean = objectMapper.readValue(requestJson, MineRequestBean.class);
 		String serviceId = mineRequestBean.getServiceId();//解析要执行的业务类

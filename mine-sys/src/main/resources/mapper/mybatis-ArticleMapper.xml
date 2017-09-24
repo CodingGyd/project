@@ -3,7 +3,14 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.codinggyd.mapper.ArticleMapper">
- 
+ 	<resultMap id="consts" type="com.codinggyd.bean.ArticleType">
+		<id column="id" property="id" />
+		<result column="lb" property="lb" />
+		<result column="lbmc" property="lbmc" />
+		<result column="dm" property="dm" />
+		<result column="ms" property="ms" />
+		<result column="updatetime" property="updatetime" />
+	</resultMap>
 	
 	<update id="updateArticle">
        	INSERT INTO mine_articles 
@@ -19,6 +26,13 @@
 			   )
 		 
 	</update>
-	 
+
+
+
+	<select id="listArticleType" resultMap="consts">
+ 		SELECT 	id,lb,lbmc,dm,ms,updatetime 
+ 				FROM mine_sysconst  
+ 				WHERE lb=100
+	</select>
 	 
 </mapper>

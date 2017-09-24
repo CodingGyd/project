@@ -1,0 +1,5 @@
+	<textarea id="templateLatestArticles" class="template" style="display:none;">
+							{#foreach $T.data as record}  
+								<li><a href="/article_dt/{$T.record.id}"  target="_blank">{$T.record.title}</a></li>
+			 				{#/for}  
+		  		 	</textarea>

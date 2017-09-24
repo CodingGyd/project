@@ -21,6 +21,7 @@
  				<if test="type != null and type != ''">
  					AND B.dm = #{type}
  				</if>
+				ORDER BY A.updatetime DESC
 	</select>
 
 	<select id="findDetailById" resultType="com.codinggyd.bean.Article">
@@ -28,6 +29,15 @@
 		INNER JOIN mine_sysconst B 
  				ON A.type = B.dm AND B.lb = '100' 
 		WHERE A.id = #{id}
+	</select>
+	
+		<select id="findLatestArticle" resultMap="articles">
+ 		SELECT 	A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName
+ 				FROM mine_articles A 
+ 				INNER JOIN mine_sysconst B 
+ 				ON A.type = B.dm AND B.lb = '100' 
+ 				ORDER BY A.updatetime DESC
+ 				LIMIT #{top}
 	</select>
 	
 

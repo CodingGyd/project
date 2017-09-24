@@ -3,10 +3,8 @@ package com.codinggyd.service.impl;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
-import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -43,13 +41,11 @@ public class ArticleServiceImpl implements IArticleService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	
+	private static final String SERVER_LATEST_ARTICLE_LIST="MINE_LATEST_ARTICLE";//数据接口地址-最新文章
 	private static final String SERVER_ARTICLE_LIST="MINE_ARTICLE_LIST";//数据接口地址-文章列表
 	private static final String SERVER_ARTICLE_DETAIL="MINE_ARTICLE_DETAIL";//数据接口地址-文章详情
 	private static final String SERVER_ARTICLE_TYPE="MINE_CONST";//数据接口地址-文章分类
-
 	
-	
-	private static final String PATTERN = "yyyy-MM-dd";
 	private static ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public Article findArticleDetail(String id) {
@@ -79,7 +75,61 @@ public class ArticleServiceImpl implements IArticleService{
 		 
 	}
 	
- 
+	@Override
+	public MinePageBean<Article> getLatestArticleList() {
+ 		//加载最新文章
+		List<Article> articles = new ArrayList<>();
+		articles.addAll(getServerLatestArticleList());
+		
+		if (CollectionUtils.isEmpty(articles)) {
+			logger.error("获取最新文章数据为空!");
+			return null;
+		}
+		return new MinePageBean<Article>(null,articles);
+	}
+	
+	/**
+	 * 加载最新文章
+	 * @return
+	 */
+	private List<Article> getServerLatestArticleList() {
+		List<Article> result = new ArrayList<>();
+
+		String responseData = requestServer(SERVER_LATEST_ARTICLE_LIST, 5);
+ 	 
+		if (StringUtils.isEmpty(responseData)) {
+			logger.error("接口[{}]返回数据为空",SERVER_LATEST_ARTICLE_LIST);
+ 		} else {
+ 		
+ 			try {
+				JsonNode node = mapper.readTree(responseData);
+				String code = node.get("code").asText();
+				if (SysConstant.RESPONSE_CODE_SUCCESS.equals(code)) {
+					JsonNode resultJson = node.get("data").get(0);
+					
+					if (null == resultJson) {
+						logger.error("接口[{}]返回数据为空",SERVER_LATEST_ARTICLE_LIST);
+					} else {
+						//解析json格式数据
+						int size = resultJson.size();
+						for (int i=0;i<size;i++) {
+							JsonNode temp = resultJson.get(i);
+							result.add(formatArticleBean(temp));
+						}
+					}
+					
+				} else {
+					logger.error("接口[{}]错误,响应码{}",SERVER_LATEST_ARTICLE_LIST,code);
+				}
+			} catch (Exception e) {
+				logger.error("接口[{}]返回数据有误,{},{}",SERVER_LATEST_ARTICLE_LIST,responseData,e);
+			}
+ 			
+ 		}
+		
+		return result;
+	}
+	
 	/**
 	 * 加载文章列表
 	 * @param type_dm 文章分类代码
@@ -88,29 +138,12 @@ public class ArticleServiceImpl implements IArticleService{
 	 */
 	private List<Article> getServerArticleList(String type_dm,String[] pageInfo) {
 		List<Article> result = new ArrayList<>();
-
-		List<Object> params = new ArrayList<>();
-		params.add(type_dm);//文章分类
-		params.add(pageInfo);//分页信息
 		
-		Map<String,Object> dataMap = new HashMap<>();
-		dataMap.put("serviceId", SERVER_ARTICLE_LIST);
-		dataMap.put("params", params);
-		
-		String requestJson = null;
-		try {
-			requestJson = mapper.writeValueAsString(dataMap);
-		} catch (JsonProcessingException e1) {
-			logger.error("格式化请求参数出错,");
-			return result; 
-		}
-
-		String responseData = HttpClientUtil.sendPost2(SysConstant.SERVER_URL, requestJson);
+		String responseData = requestServer(SERVER_ARTICLE_LIST, type_dm,pageInfo);
  	 
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_LIST);
  		} else {
- 			
  		
  			try {
 				JsonNode node = mapper.readTree(responseData);
@@ -125,22 +158,7 @@ public class ArticleServiceImpl implements IArticleService{
 						int size = resultJson.size();
 						for (int i=0;i<size;i++) {
 							JsonNode temp = resultJson.get(i);
-							Integer id = temp.get("id").asInt(0);
-							String title = temp.get("title").asText("");
-							Integer readingcount = temp.get("readingcount").asInt(0);
-							String updatetime = temp.get("updatetime").asText("");
-							String descs = temp.get("descs").asText("");
-							String type = temp.get("type").asText("");
-							String typeName = temp.get("typeName").asText("");
-							Article article = new Article();
-							article.setId(id);
-							article.setTitle(title);
-							article.setReadingcount(readingcount);
-							article.setUpdatetime(formatDateStr(updatetime));
-							article.setDescs(descs);
-							article.setType(type);
-							article.setTypeName(typeName);
-							result.add(article);
+							result.add(formatArticleBean(temp));
 						}
 					}
 					
@@ -163,25 +181,8 @@ public class ArticleServiceImpl implements IArticleService{
 	private Article getServerArticleDetail(String id) {
 
 		Article result = null;
-
-		List<Object> params = new ArrayList<>();
-		params.add(id);//文章编号
-		
-		Map<String,Object> dataMap = new HashMap<>();
-		dataMap.put("serviceId", SERVER_ARTICLE_DETAIL);
-		dataMap.put("params", params);
-		
-		String requestJson = null;
-		try {
-			requestJson = mapper.writeValueAsString(dataMap);
-		} catch (JsonProcessingException e1) {
-			logger.error("格式化请求参数出错,");
-			return result; 
-		}
-		
-		
-		String responseData = HttpClientUtil.sendPost2(SysConstant.SERVER_URL, requestJson);
- 	 
+		String responseData = requestServer(SERVER_ARTICLE_DETAIL, id);
+	 
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_DETAIL);
  		} else {
@@ -197,25 +198,7 @@ public class ArticleServiceImpl implements IArticleService{
 						logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_DETAIL);
 					} else {
 						//解析json格式数据
-					  
- 							String title = temp.get("title").asText("");
-							Integer readingcount = temp.get("readingcount").asInt(0);
-							String updatetime = temp.get("updatetime").asText("");
-							String descs = temp.get("descs").asText("");
-							String type = temp.get("type").asText("");
-							String htmlContent = temp.get("htmlContent").asText("");
-							String content = temp.get("content").asText("");
-							String typeName = temp.get("typeName").asText("");
-							result = new Article();
-							result.setId(Integer.parseInt(id));
-							result.setTitle(title);
-							result.setReadingcount(readingcount);
-							result.setUpdatetime(formatDateStr(updatetime));
-							result.setDescs(descs);
-							result.setType(type);
-							result.setHtmlContent(htmlContent);
-							result.setTypeName(typeName);
-							result.setContent(content);
+							result =formatArticleBean(temp);
 						}
 					
 				} else {
@@ -301,16 +284,57 @@ public class ArticleServiceImpl implements IArticleService{
 		
 		return result;
 	}
-	 
-	 
-	private String formatDateStr(String time) {
-		try {
-			
-			return DateFormatUtils.format(Long.parseLong(time), PATTERN, Locale.CHINESE);
-		} catch (Exception e) {
-			logger.error("日期字段格式化出错,{}",e);
+	
+	private String requestServer(String serviceId,Object...args) {
+		List<Object> params = new ArrayList<>();
+		
+		if (null != args) {
+			for (int i=0;i<args.length;i++) {
+				params.add(args[i]);
+			}
 		}
-		return null;
+		
+		Map<String,Object> dataMap = new HashMap<>();
+		dataMap.put("serviceId", serviceId);
+		dataMap.put("params", params);
+		
+		String requestJson = null;
+		try {
+			requestJson = mapper.writeValueAsString(dataMap);
+		} catch (JsonProcessingException e1) {
+			logger.error("格式化请求参数出错,");
+			return null; 
+		}
+		return HttpClientUtil.sendPost2(SysConstant.SERVER_URL, requestJson);
 	}
 	
+	private Article formatArticleBean(JsonNode jsonNode) {
+		Integer id = jsonNode.get("id").asInt(0);
+		String title = jsonNode.get("title").asText("");
+		Integer readingcount = jsonNode.get("readingcount").asInt(0);
+		String updatetime = jsonNode.get("updatetime").asText("");
+		String descs = jsonNode.get("descs").asText("");
+		String type = jsonNode.get("type").asText("");
+		String typeName = jsonNode.get("typeName").asText("");
+		String htmlContent = jsonNode.get("htmlContent").asText("");
+		String content = jsonNode.get("content").asText("");
+		
+		Article article = new Article();
+		article.setId(id);
+		article.setTitle(title);
+		article.setReadingcount(readingcount);
+		article.setUpdatetime(formatDateStr(updatetime));
+		article.setDescs(descs);
+		article.setType(type);
+		article.setTypeName(typeName);
+		article.setHtmlContent(htmlContent);
+		article.setContent(content);
+		return article;
+		
+	}
+	 
+	private String formatDateStr(String time) {
+		return !StringUtils.isEmpty(time) && time.length() >= 10 ? time.substring(0,10) : ""; 
+	}
+
 }

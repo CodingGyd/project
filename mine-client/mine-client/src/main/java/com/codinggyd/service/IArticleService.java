@@ -23,6 +23,8 @@ public interface IArticleService {
 	
 	//加载文章列表
 	public MinePageBean<Article> getArticleList(Paginator paginator,String type_dm);
+	//加载最新文章
+	public MinePageBean<Article> getLatestArticleList();
 	//加载文章详情
 	public Article findArticleDetail(String id);
 	//加载文章分类

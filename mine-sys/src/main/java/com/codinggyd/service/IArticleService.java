@@ -1,6 +1,9 @@
 package com.codinggyd.service;
 
+import java.util.List;
+
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleType;
 
 /**
  * 
@@ -16,4 +19,7 @@ import com.codinggyd.bean.Article;
  */
 public interface IArticleService {
 	public void updateArticle(Article article);
+	
+	//加载文章分类
+	public List<ArticleType> findArticleTypes();
 }

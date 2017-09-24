@@ -19,9 +19,28 @@ import com.codinggyd.bean.Article;
  */
 public interface IArticleSiteService {
 	
+	/**
+	 * 文章列表
+	 * @param type 文章分类
+	 * @param pageInfo 分页参数
+	 * @return
+	 */
 	@MineMethod(value="MINE_ARTICLE_LIST")
 	public List<Article> listArticle(String type,String[] pageInfo);
 	
+	/**
+	 * 文章详情
+	 * @param id 文章id
+	 * @return
+	 */
 	@MineMethod(value="MINE_ARTICLE_DETAIL")
 	public Article listDetail(String id);
+	
+	/**
+	 * 最新文章
+	 * @param top 要获取的最新文章数量
+	 * @return  最新的5篇文章
+	 */
+	@MineMethod(value="MINE_LATEST_ARTICLE")
+	public List<Article> listLatestArticle(Integer top);
 }

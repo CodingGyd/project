@@ -25,6 +25,7 @@ a {
 }
 
 .right {
+ontenttent
 	float: right;
 }
 
@@ -53,7 +54,7 @@ img {
 /*Wraper end*/
 /*head start*/
 #header {
-	width: 1000px;
+	width: 1200px;
 	margin: 0 auto;
 }
 
@@ -71,7 +72,7 @@ img {
 }
 
 #nav {
-	width: 1000px;
+	width: 1200px;
 	margin: 20px auto;
 }
 
@@ -111,19 +112,19 @@ img {
 }
 /*header end*/
 #content {
-	width: 1000px;
+	width: 1200px;
 	margin: 5px auto;
-	 padding-bottom: 80px; //页脚高度+页脚与容器的距离
+	 padding-bottom: 80px;  
 }
 
 #c_left {
-	width: 730px;
+	width: 830px;
 	background: #fff;
 	border-radius: 1px;
 }
 
 #c_left .s_tuijian {
-	width: 710px;
+	width: 810px;
 	height: 68px;
 	margin-left: 10px;
 	background: url("../images/r_line.jpg") bottom left repeat-x;
@@ -145,12 +146,12 @@ img {
 }
 /*文章*/
 #c_left .content_text {
-	width: 730px;
+	width: 830px;
 	margin-top: 5px;
 }
 
 #c_left .content_text .wz {
-	width: 725px;
+	width: 825px;
 	margin: 5px 0px 10px 0px;
 	color: #1D1A1A;
 }
@@ -283,17 +284,17 @@ img {
 /*left end*/
 /*right*/
 #c_right {
-	width: 260px;
+	width: 360px;
 }
 
 #c_right .s_about {
-	width: 260px;
+	width: 360px;
 	border: 1px solid #ccc;
 	background: #fff;
 }
 
 #c_right .s_about h2 {
-	width: 230px;
+	width: 330px;
 	margin: 0 auto;
 	font-size: 16px;
 	color: #333;
@@ -326,22 +327,22 @@ img {
 }
 /*随机、最新文章*/
 #c_right .lanmubox {
-	width: 260px;
-	height: 180px;
+	width: 360px;
+	height: 220px;
 	border: 1px solid #ccc;
 	margin-top: 5px;
 	background: #fff;
 }
 
 .lanmubox .hd {
-	width: 260px;
+	width: 360px;
 	height: 30px;
 	border-bottom: 1px solid #ddd;
 }
 
 .lanmubox .hd ul li {
 	float: left;
-	width: 85px;
+	width: 100px;
 	height: 30px;
 	line-height: 30px;
 	text-align: center;
@@ -349,7 +350,7 @@ img {
 }
 
 .lanmubox .hd .hd_3 {
-	width: 88px;
+	width: 100px;
 }
 
 .lanmubox .hd ul li.on {
@@ -361,7 +362,7 @@ img {
 }
 
 .lanmubox .bd {
-	width: 260px;
+	width: 360px;
 	height: 145px;
 	zoom: 1;
 	background: url("../images/list.png") 5px 5px no-repeat;
@@ -369,7 +370,10 @@ img {
 }
 
 .lanmubox .bd ul li {
-	width: 230px;
+	width: 330px;
+	text-overflow:ellipsis; 
+	-o-text-overflow:ellipsis; 
+	overflow:hidden;
 	padding-left: 25px;
 	height: 29px;
 	line-height: 29px;
@@ -383,6 +387,15 @@ img {
 	-o-transition: all 0.5s;
 }
 
+.lanmubox h2 {
+	width: 330px;
+margin: 0 auto;
+font-size: 16px;
+color: #333;
+padding: 10px 0px 3px 10px;
+border-bottom: 1px solid #555;
+}
+
 .lanmubox .bd ul li a {
 	color: #444;
 	font-size: 14px;
@@ -393,7 +406,7 @@ img {
 }
 /*link*/
 #c_right .link {
-	width: 260px;
+	width: 360px;
 	height: 180px;
 	border: 1px solid #ccc;
 	margin-top: 5px;
@@ -412,7 +425,7 @@ img {
 }
 
 .link p a {
-	color: #444;
+	color: #23527c;
 }
 
 .link p a:hover {

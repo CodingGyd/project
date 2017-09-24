@@ -1,11 +1,14 @@
 package com.codinggyd.service.impl;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleType;
 import com.codinggyd.mapper.ArticleMapper;
 import com.codinggyd.service.IArticleService;
 
@@ -31,5 +34,10 @@ public class ArticleServiceImpl implements IArticleService{
 	
 	public void updateArticle(Article article) {
 		mapper.updateArticle(article);
+	}
+
+	@Override
+	public List<ArticleType> findArticleTypes() {
+		return mapper.listArticleType();
 	}
 }

@@ -67,4 +67,8 @@ public class ArticleServiceImpl implements IArticleSiteService{
 		return mapper.findDetailById(id);
 	}
 
+	@Override
+	public List<Article> listLatestArticle(Integer top) {
+		return mapper.findLatestArticle(top);
+	}
 }

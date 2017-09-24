@@ -21,7 +21,12 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<scope>test</scope>
+		    <scope>test</scope> 
+		</dependency>
+		 <dependency><!--这里是spring-boot的解决办法-->
+  			<groupId>org.springframework.boot</groupId>
+ 			 <artifactId>spring-boot-starter-test</artifactId>
+ 		    <scope>test</scope>  
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

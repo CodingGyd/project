@@ -1,8 +1,11 @@
 package com.codinggyd.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleType;
 
 /**
  * 
@@ -18,4 +21,6 @@ import com.codinggyd.bean.Article;
  */
 public interface ArticleMapper {
  	public void updateArticle(@Param("article") Article article);
+ 	
+	public List<ArticleType> listArticleType();
 }
