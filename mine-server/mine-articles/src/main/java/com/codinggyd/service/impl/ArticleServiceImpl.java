@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.Article;
+import com.codinggyd.cache.RedisClientUtils;
 import com.codinggyd.mapper.ArticleMapper;
 import com.codinggyd.service.IArticleSiteService;
 import com.codinggyd.util.PageBoundUtils;
@@ -64,7 +65,14 @@ public class ArticleServiceImpl implements IArticleSiteService{
 
 	@Override
 	public Article listDetail(String id) {
-		return mapper.findDetailById(id);
+		Article article = (Article) RedisClientUtils.getFromCache(id);
+		if (null != article) {
+			logger.debug("id[{}],查的是缓存",id);
+			return article;
+		}
+		article = mapper.findDetailById(id);
+		RedisClientUtils.cache(id, article);//缓存
+		return article;
 	}
 
 	@Override

@@ -44,6 +44,10 @@
 		</dependency>
 		<dependency>
 			<groupId>com.codinggyd</groupId>
+			<artifactId>mine-job</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.codinggyd</groupId>
 			<artifactId>mine-sysconst</artifactId>
 		</dependency>
 	 	<dependency>

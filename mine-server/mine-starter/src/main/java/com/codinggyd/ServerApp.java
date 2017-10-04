@@ -3,6 +3,7 @@ package com.codinggyd;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 
@@ -17,6 +18,7 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
  * Copyright @ 2017 Corpration Name
  */
 @SpringBootApplication
+@EnableScheduling
 public class ServerApp extends SpringBootServletInitializer{
 	public static void main(String[] args) {
 		SpringApplication.run(ServerApp.class, args);
