@@ -1,10 +1,12 @@
 package com.codinggyd.service.impl;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,7 @@ public class ArticleServiceImpl implements IArticleService{
 	private static final String SERVER_ARTICLE_TYPE="MINE_CONST";//数据接口地址-文章分类
 	
 	private static ObjectMapper mapper = new ObjectMapper();
+	private static final String PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
 	@Override
 	public Article findArticleDetail(String id) {
 		return getServerArticleDetail(id);
@@ -334,7 +337,12 @@ public class ArticleServiceImpl implements IArticleService{
 	}
 	 
 	private String formatDateStr(String time) {
+//		1506220375000
+		try {
+			DateUtils.parseDate(time, PATTERN);
+		} catch (ParseException e) {
+			
+		}
 		return !StringUtils.isEmpty(time) && time.length() >= 10 ? time.substring(0,10) : ""; 
 	}
-
 }
