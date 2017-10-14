@@ -23,7 +23,7 @@ public class ConstJob {
 	
 	private static final String TABLE_CONST = "SYSCONST";
 	
-	@Scheduled(cron = "0/20 * * * * ?") 
+	@Scheduled(cron = "0 0/50 4-8 * * ?") 
 	public void job() {
 		logger.debug("===开始缓存常量===");
 		List<SysConst2> sysConstList = service.getAllConst();

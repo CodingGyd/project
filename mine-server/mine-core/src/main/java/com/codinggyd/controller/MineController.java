@@ -9,7 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codinggyd.bean.requ.MineRequestBean;
+import com.codinggyd.constant.SYSSecurityConstant;
 import com.codinggyd.core.MineServiceExecuter;
+import com.codinggyd.utils.AESUtils;
+import com.codinggyd.utils.ZipUtils;
 
  
 /**
@@ -33,14 +37,19 @@ public class MineController extends BaseController{
 	 * @param response
 	 * @throws Exception 
 	 */
-	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST },  consumes = "application/json;charset=UTF-8",produces = MediaType.APPLICATION_JSON_VALUE)
-	public String run(HttpServletRequest request, HttpServletResponse response,@RequestBody String requestJson) throws Exception{
-		logger.info("POST 数据:{}",requestJson);
- 		String result = MineServiceExecuter.invoke(requestJson);
- 		System.out.println("服务器的数据长度:"+result.length());
- 		return result;
+	@RequestMapping(method = { RequestMethod.GET, RequestMethod.POST },  consumes = "application/json",produces = MediaType.APPLICATION_JSON_VALUE)
+	public void run(HttpServletRequest request, HttpServletResponse response,@RequestBody byte[] data) throws Exception{
+		
+
+		data = AESUtils.decrypt(data, SYSSecurityConstant.HTTP_POST_AES_KEY, 16);
+		data = ZipUtils.gunzip(data);
+		String requestJson = new String(data);
+		MineRequestBean mineRequestBean = objectMapper.readValue(requestJson, MineRequestBean.class);
+		logger.info("POST 参数:{}",requestJson);
+ 		String result = MineServiceExecuter.invoke(mineRequestBean);
+// 		return result;
  		//这里有问题，客户端打印的数据长度不一致,有待解决@@
-//		response(request, response, result);
+		response(request, response, result,mineRequestBean);
 	}
 	 
 }

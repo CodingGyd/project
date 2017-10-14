@@ -11,8 +11,7 @@
 	<packaging>jar</packaging>
 
 	<name>mine-core</name>
-<!-- 	<url>http://maven.apache.org</url>
- -->
+	<!-- <url>http://maven.apache.org</url> -->
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -21,22 +20,20 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-		    <scope>test</scope> 
+			<scope>test</scope>
 		</dependency>
-		 <dependency><!--这里是spring-boot的解决办法-->
-  			<groupId>org.springframework.boot</groupId>
- 			 <artifactId>spring-boot-starter-test</artifactId>
- 		    <scope>test</scope>  
+		<dependency><!--这里是spring-boot的解决办法 -->
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
-	<!-- 	<dependency>
-			<groupId>com.fasterxml.jackson.datatype</groupId>
-			<artifactId>jackson-datatype-joda</artifactId>
-		</dependency> -->
-				<dependency>
+		<!-- <dependency> <groupId>com.fasterxml.jackson.datatype</groupId> <artifactId>jackson-datatype-joda</artifactId> 
+			</dependency> -->
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
@@ -51,7 +48,7 @@
 			<groupId>commons-collections</groupId>
 			<artifactId>commons-collections</artifactId>
 		</dependency>
-		 <!-- mybatis -->
+		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis.spring.boot</groupId>
 			<artifactId>mybatis-spring-boot-starter</artifactId>
@@ -62,40 +59,36 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
-        <dependency>
-       		 <groupId>com.github.miemiedev</groupId>
-     		 <artifactId>mybatis-paginator</artifactId>
-    	  	<version>1.2.17</version>
-    	</dependency>
- 		   <dependency>
-   		  <groupId>org.springframework.boot</groupId>
-  		  <artifactId>spring-boot-starter-tomcat</artifactId>
-  		  <scope>provided</scope>
-		</dependency>  
+		<dependency>
+			<groupId>com.github.miemiedev</groupId>
+			<artifactId>mybatis-paginator</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		 	<!--  部署到tomcat服务器上(比如百度云应用引擎)时需要排除springboot默认内嵌的tomcat模块 -->
-		   <!--  	<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>    -->
+			<!-- 部署到tomcat服务器上(比如百度云应用引擎)时需要排除springboot默认内嵌的tomcat模块 -->
+			<!-- <exclusions> <exclusion> <groupId>org.springframework.boot</groupId> 
+				<artifactId>spring-boot-starter-tomcat</artifactId> </exclusion> </exclusions> -->
 		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 		</dependency>
-	 	
+
 		<!-- datasource -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
 			<version>1.0.15</version>
 		</dependency>
-			<!-- poi excel -->
+		<!-- poi excel -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
@@ -107,32 +100,38 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.15</version>
 		</dependency>
-			<dependency>
-				<groupId>com.codinggyd</groupId>
-				<artifactId>common-api</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			
-			   <dependency>
-            <groupId>commons-codec</groupId>
-            <artifactId>commons-codec</artifactId>
-            <version>1.10</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-collections4</artifactId>
-            <version>4.1</version>
-        </dependency>
-        
-        		<dependency>
+		<dependency>
+			<groupId>com.codinggyd</groupId>
+			<artifactId>common-api</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.10</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.1</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.4</version>
 		</dependency>
-<dependency>
-    <groupId>redis.clients</groupId>
-    <artifactId>jedis</artifactId>
-</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
 
 	</dependencies>
 </project>

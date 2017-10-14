@@ -69,19 +69,23 @@ public class RedisClientUtils {
 	}
 	
 	public static void cache(String key,Object value) {
+		Jedis jedis = null;
 		try {
-			Jedis jedis = jedisPool.getResource();
+			jedis = jedisPool.getResource();
 			Transaction transaction = jedis.multi();
 			transaction.append(key.getBytes(),SerializeUtils.serialize(value));
 			transaction.exec();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			release(jedis);
 		}
 	}
 	
 	public static <T extends Serializable> void cache2(String tableName,ICacheKey<T> cacheKey,List<T> list) {
+		Jedis jedis = null;
 		try {
-			Jedis jedis = getInstance().getResource();
+			jedis = getInstance().getResource();
 			Transaction transaction = jedis.multi();
 			for (T t : list) {
 				transaction.append(SerializeUtils.serialize(tableName+":"+cacheKey.getCacheKey(t)), SerializeUtils.serialize(t));
@@ -89,15 +93,26 @@ public class RedisClientUtils {
 			transaction.exec();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			release(jedis);
 		}
 	}
 	
 	public static Object getFromCache(String key) {
-		byte[] bytes = getInstance().getResource().get(key.getBytes());
-		if (null == bytes) {
-			return null;
+		Jedis jedis = null;
+		Object object = null;
+		try {
+			jedis = getInstance().getResource();
+			byte[] bytes = jedis.get(key.getBytes());
+			if (null == bytes) {
+				return null;
+			}
+			object = SerializeUtils.unserialize(bytes);
+		} catch(Exception e) {
+		} finally {
+			release(jedis);
 		}
-		return SerializeUtils.unserialize(bytes);
+		return object;
 	}
 	
 	public static void release(Jedis jedis) {

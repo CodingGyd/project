@@ -1,12 +1,10 @@
 package com.codinggyd.service.impl;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -49,7 +47,6 @@ public class ArticleServiceImpl implements IArticleService{
 	private static final String SERVER_ARTICLE_TYPE="MINE_CONST";//数据接口地址-文章分类
 	
 	private static ObjectMapper mapper = new ObjectMapper();
-	private static final String PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
 	@Override
 	public Article findArticleDetail(String id) {
 		return getServerArticleDetail(id);
@@ -149,6 +146,7 @@ public class ArticleServiceImpl implements IArticleService{
  		} else {
  		
  			try {
+ 				
 				JsonNode node = mapper.readTree(responseData);
 				String code = node.get("code").asText();
 				if (SysConstant.RESPONSE_CODE_SUCCESS.equals(code)) {
@@ -176,7 +174,7 @@ public class ArticleServiceImpl implements IArticleService{
 		
 		return result;
 	}
-	
+ 
 	/**
 	 * 加载文章详情
 	 * @return
@@ -241,7 +239,7 @@ public class ArticleServiceImpl implements IArticleService{
 			return result; 
 		}
 
-		String responseData = HttpClientUtil.sendPost2(SysConstant.SERVER_URL, requestJson);
+		String responseData = HttpClientUtil.sendPost(SysConstant.SERVER_URL, requestJson);
  	 
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_TYPE);
@@ -308,7 +306,7 @@ public class ArticleServiceImpl implements IArticleService{
 			logger.error("格式化请求参数出错,");
 			return null; 
 		}
-		return HttpClientUtil.sendPost2(SysConstant.SERVER_URL, requestJson);
+		return HttpClientUtil.sendPost(SysConstant.SERVER_URL, requestJson);
 	}
 	
 	private Article formatArticleBean(JsonNode jsonNode) {
@@ -321,7 +319,7 @@ public class ArticleServiceImpl implements IArticleService{
 		String typeName = jsonNode.get("typeName").asText("");
 		String htmlContent = jsonNode.get("htmlContent").asText("");
 		String content = jsonNode.get("content").asText("");
-		
+		logger.debug("==="+title);
 		Article article = new Article();
 		article.setId(id);
 		article.setTitle(title);
@@ -337,12 +335,7 @@ public class ArticleServiceImpl implements IArticleService{
 	}
 	 
 	private String formatDateStr(String time) {
-//		1506220375000
-		try {
-			DateUtils.parseDate(time, PATTERN);
-		} catch (ParseException e) {
-			
-		}
 		return !StringUtils.isEmpty(time) && time.length() >= 10 ? time.substring(0,10) : ""; 
 	}
+	 
 }

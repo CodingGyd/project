@@ -38,9 +38,8 @@ public abstract class MineServiceExecuter {
 	 * @param requestJson
 	 * @throws Exception
 	 */
-	public static String invoke(String requestJson) throws Exception{
+	public static String invoke(MineRequestBean mineRequestBean) throws Exception{
 		
-		MineRequestBean mineRequestBean = objectMapper.readValue(requestJson, MineRequestBean.class);
 		String serviceId = mineRequestBean.getServiceId();//解析要执行的业务类
 		JsonNode[] params = mineRequestBean.getParams();//解析业务类方法的参数
 		

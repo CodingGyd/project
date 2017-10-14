@@ -27,7 +27,7 @@ goto :eof
 
 :run
 echo AUTH_AGENT_HOME=%cd%
-start "%PROJECT%" "%JAVA_CMD%" -classpath conf;lib/mine-server-0.0.1-SNAPSHOT.jar org.springframework.boot.loader.JarLauncher
+start "%PROJECT%" "%JAVA_CMD%" -classpath conf;lib/mine-starter-0.0.1-SNAPSHOT.jar org.springframework.boot.loader.JarLauncher
 goto :eof
 
 :stop
