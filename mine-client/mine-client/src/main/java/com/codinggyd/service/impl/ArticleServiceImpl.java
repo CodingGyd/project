@@ -40,7 +40,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ArticleServiceImpl implements IArticleService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
-	
+	private static final String SERVER_RANDOM_ARTICLE_LIST="MINE_RANDOM_ARTICLE";//数据接口地址-随机文章
 	private static final String SERVER_LATEST_ARTICLE_LIST="MINE_LATEST_ARTICLE";//数据接口地址-最新文章
 	private static final String SERVER_ARTICLE_LIST="MINE_ARTICLE_LIST";//数据接口地址-文章列表
 	private static final String SERVER_ARTICLE_DETAIL="MINE_ARTICLE_DETAIL";//数据接口地址-文章详情
@@ -88,6 +88,61 @@ public class ArticleServiceImpl implements IArticleService{
 		return new MinePageBean<Article>(null,articles);
 	}
 	
+	@Override
+	public MinePageBean<Article> getRandomArticleList() {
+ 		//加载随机文章
+		List<Article> articles = new ArrayList<>();
+		articles.addAll(getServerRandomArticleList());
+		
+		if (CollectionUtils.isEmpty(articles)) {
+			logger.error("获取随机文章数据为空!");
+			return null;
+		}
+		return new MinePageBean<Article>(null,articles);
+	}
+	
+	/**
+	 * 加载随机文章
+	 * @return
+	 */
+	private List<Article> getServerRandomArticleList() {
+		List<Article> result = new ArrayList<>();
+
+		String responseData = HttpClientUtil.requestServer(SERVER_RANDOM_ARTICLE_LIST, 10);
+ 	 
+		if (StringUtils.isEmpty(responseData)) {
+			logger.error("接口[{}]返回数据为空",SERVER_RANDOM_ARTICLE_LIST);
+ 		} else {
+ 		
+ 			try {
+				JsonNode node = mapper.readTree(responseData);
+				String code = node.get("code").asText();
+				if (SysConstant.RESPONSE_CODE_SUCCESS.equals(code)) {
+					JsonNode resultJson = node.get("data").get(0);
+					
+					if (null == resultJson) {
+						logger.error("接口[{}]返回数据为空",SERVER_RANDOM_ARTICLE_LIST);
+					} else {
+						//解析json格式数据
+						int size = resultJson.size();
+						for (int i=0;i<size;i++) {
+							JsonNode temp = resultJson.get(i);
+							result.add(formatArticleBean(temp));
+						}
+					}
+					
+				} else {
+					logger.error("接口[{}]错误,响应码{}",SERVER_RANDOM_ARTICLE_LIST,code);
+				}
+			} catch (Exception e) {
+				logger.error("接口[{}]返回数据有误,{},{}",SERVER_RANDOM_ARTICLE_LIST,responseData,e);
+			}
+ 			
+ 		}
+		
+		return result;
+	}
+	
 	/**
 	 * 加载最新文章
 	 * @return
@@ -95,7 +150,7 @@ public class ArticleServiceImpl implements IArticleService{
 	private List<Article> getServerLatestArticleList() {
 		List<Article> result = new ArrayList<>();
 
-		String responseData = requestServer(SERVER_LATEST_ARTICLE_LIST, 5);
+		String responseData = HttpClientUtil.requestServer(SERVER_LATEST_ARTICLE_LIST, 10);
  	 
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_LATEST_ARTICLE_LIST);
@@ -139,7 +194,7 @@ public class ArticleServiceImpl implements IArticleService{
 	private List<Article> getServerArticleList(String type_dm,String[] pageInfo) {
 		List<Article> result = new ArrayList<>();
 		
-		String responseData = requestServer(SERVER_ARTICLE_LIST, type_dm,pageInfo);
+		String responseData = HttpClientUtil.requestServer(SERVER_ARTICLE_LIST, type_dm,pageInfo);
  	 
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_LIST);
@@ -182,7 +237,7 @@ public class ArticleServiceImpl implements IArticleService{
 	private Article getServerArticleDetail(String id) {
 
 		Article result = null;
-		String responseData = requestServer(SERVER_ARTICLE_DETAIL, id);
+		String responseData = HttpClientUtil.requestServer(SERVER_ARTICLE_DETAIL, id);
 	 
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_DETAIL);
@@ -286,29 +341,6 @@ public class ArticleServiceImpl implements IArticleService{
 		return result;
 	}
 	
-	private String requestServer(String serviceId,Object...args) {
-		List<Object> params = new ArrayList<>();
-		
-		if (null != args) {
-			for (int i=0;i<args.length;i++) {
-				params.add(args[i]);
-			}
-		}
-		
-		Map<String,Object> dataMap = new HashMap<>();
-		dataMap.put("serviceId", serviceId);
-		dataMap.put("params", params);
-		
-		String requestJson = null;
-		try {
-			requestJson = mapper.writeValueAsString(dataMap);
-		} catch (JsonProcessingException e1) {
-			logger.error("格式化请求参数出错,");
-			return null; 
-		}
-		return HttpClientUtil.sendPost(SysConstant.SERVER_URL, requestJson);
-	}
-	
 	private Article formatArticleBean(JsonNode jsonNode) {
 		Integer id = jsonNode.get("id").asInt(0);
 		String title = jsonNode.get("title").asText("");
@@ -319,8 +351,7 @@ public class ArticleServiceImpl implements IArticleService{
 		String typeName = jsonNode.get("typeName").asText("");
 		String htmlContent = jsonNode.get("htmlContent").asText("");
 		String content = jsonNode.get("content").asText("");
-		logger.debug("==="+title);
-		Article article = new Article();
+ 		Article article = new Article();
 		article.setId(id);
 		article.setTitle(title);
 		article.setReadingcount(readingcount);
@@ -337,5 +368,6 @@ public class ArticleServiceImpl implements IArticleService{
 	private String formatDateStr(String time) {
 		return !StringUtils.isEmpty(time) && time.length() >= 10 ? time.substring(0,10) : ""; 
 	}
+
 	 
 }

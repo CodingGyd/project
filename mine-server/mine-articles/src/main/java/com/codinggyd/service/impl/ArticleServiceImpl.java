@@ -1,5 +1,7 @@
  package com.codinggyd.service.impl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -14,6 +16,7 @@ import com.codinggyd.cache.RedisClientUtils;
 import com.codinggyd.mapper.ArticleMapper;
 import com.codinggyd.service.IArticleSiteService;
 import com.codinggyd.util.PageBoundUtils;
+import com.codinggyd.utils.MathUtils;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 
 /**
@@ -78,5 +81,32 @@ public class ArticleServiceImpl implements IArticleSiteService{
 	@Override
 	public List<Article> listLatestArticle(Integer top) {
 		return mapper.findLatestArticle(top);
+	}
+
+	@Override
+	public List<Article> listRandomArticle(Integer top) {
+		//1.查找表里所有的id
+		List<Integer> ids = mapper.findArticleIds();
+		if (CollectionUtils.isEmpty(ids)) {
+			logger.error("文章表中没有数据!");
+			return null;
+		}
+		//2.从1中查到的id列表中随机出top个id,sets保存随机id在id列表中的位置
+		int max = ids.size()-1;
+		int min = 0;
+		HashSet<Integer> sets = new HashSet<>();
+		MathUtils.randomSet(min, max, top,top, sets);
+		if (CollectionUtils.isEmpty(sets)) {
+			logger.error("获取随机文章为0篇！");
+			return null;
+		}
+		//3.获取随机id集合
+		List<Integer> randomIds = new ArrayList<>();
+		for (Integer idPos : sets) {
+			randomIds.add(ids.get(idPos));
+		}
+		//4.查询随机文章
+		List<Article> randArticles = mapper.findRandomArticle(randomIds);
+		return randArticles;
 	}
 }

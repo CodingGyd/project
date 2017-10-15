@@ -16,15 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codinggyd.bean.Article;
 import com.codinggyd.bean.ArticleType;
+import com.codinggyd.bean.DailEssays;
 import com.codinggyd.bean.MinePageBean;
 import com.codinggyd.bean.Paginator;
 import com.codinggyd.service.IArticleService;
+import com.codinggyd.service.IDailyEssayService;
  
  
 @Controller
 public class MineController {
 	@Autowired
-	private IArticleService service;
+	private IArticleService articleService;
+	@Autowired
+	private IDailyEssayService dailyService;
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	
 	//分页获取文章列表
@@ -35,7 +39,7 @@ public class MineController {
 		String type_dm = request.getParameter("type_dm");
 		Paginator paginator = new Paginator(Integer.parseInt(page),Integer.parseInt(limit),Integer.MAX_VALUE);
 		
-		MinePageBean<Article> data = service.getArticleList(paginator,type_dm);
+		MinePageBean<Article> data = articleService.getArticleList(paginator,type_dm);
 	 
 		return data;
 	}
@@ -43,25 +47,35 @@ public class MineController {
 	//最新文章
 	@RequestMapping(value={"/latest_article"})
 	public @ResponseBody MinePageBean<Article> latestArticle(HttpServletRequest request,HttpServletResponse response) {
-		MinePageBean<Article> data = service.getLatestArticleList();
+		MinePageBean<Article> data = articleService.getLatestArticleList();
 		return data;
 	}
-	
+	//随机文章
+	@RequestMapping(value={"/random_article"})
+	public @ResponseBody MinePageBean<Article> randomArticle(HttpServletRequest request,HttpServletResponse response) {
+		MinePageBean<Article> data = articleService.getRandomArticleList();
+		return data;
+	}
 	
 	//文章分类
 	@RequestMapping(value={"/article_types"})
 	public @ResponseBody MinePageBean<ArticleType> listTypes(HttpServletRequest request,HttpServletResponse response) {
-		MinePageBean<ArticleType> data = new MinePageBean<>(null, service.findArticleTypes());
+		MinePageBean<ArticleType> data = new MinePageBean<>(null, articleService.findArticleTypes());
 		return data;
 	}
 	
 	//文章详情
 	@RequestMapping("/article_dt/{id}")
 	public String article_dt(@PathVariable String id,Map<String,Object> model) {
-		model.put("article",service.findArticleDetail(id));
+		model.put("article",articleService.findArticleDetail(id));
 		return "article_dt";
 	}
 	
-	
+	//随笔
+	@RequestMapping(value={"/daily_essays"})
+	public @ResponseBody MinePageBean<DailEssays> dailyEssays(HttpServletRequest request,HttpServletResponse response) {
+		MinePageBean<DailEssays> data = dailyService.getDailyEssays();
+		return data;
+	}
   
 }

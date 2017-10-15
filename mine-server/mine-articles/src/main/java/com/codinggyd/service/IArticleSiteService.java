@@ -39,8 +39,16 @@ public interface IArticleSiteService {
 	/**
 	 * 最新文章
 	 * @param top 要获取的最新文章数量
-	 * @return  最新的5篇文章
+	 * @return  最新的top篇文章
 	 */
 	@MineMethod(value="MINE_LATEST_ARTICLE")
 	public List<Article> listLatestArticle(Integer top);
+	
+	/**
+	 * 随机文章
+	 * @param top 要获取的随机文章数量
+	 * @return  随机的top篇文章
+	 */
+	@MineMethod(value="MINE_RANDOM_ARTICLE")
+	public List<Article> listRandomArticle(Integer top);
 }

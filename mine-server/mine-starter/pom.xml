@@ -38,6 +38,10 @@
 			<groupId>com.codinggyd</groupId>
 			<artifactId>mine-articles</artifactId>
 		</dependency>
+	   <dependency>
+			<groupId>com.codinggyd</groupId>
+			<artifactId>mine-dailyessays</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.codinggyd</groupId>
 			<artifactId>mine-data-export</artifactId>

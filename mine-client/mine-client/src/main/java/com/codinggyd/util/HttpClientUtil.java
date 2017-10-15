@@ -6,6 +6,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +14,9 @@ import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * 
@@ -29,7 +33,30 @@ import org.springframework.util.CollectionUtils;
 public class HttpClientUtil {
 
 	private static final Logger logger = LoggerFactory.getLogger(HttpClientUtil.class);
-  
+	private static ObjectMapper mapper = new ObjectMapper();
+
+	public static String requestServer(String serviceId,Object...args) {
+		List<Object> params = new ArrayList<>();
+		
+		if (null != args) {
+			for (int i=0;i<args.length;i++) {
+				params.add(args[i]);
+			}
+		}
+		
+		Map<String,Object> dataMap = new HashMap<>();
+		dataMap.put("serviceId", serviceId);
+		dataMap.put("params", params);
+		
+		String requestJson = null;
+		try {
+			requestJson = mapper.writeValueAsString(dataMap);
+		} catch (JsonProcessingException e1) {
+			logger.error("格式化请求参数出错,");
+			return null; 
+		}
+		return HttpClientUtil.sendPost(SysConstant.SERVER_URL, requestJson);
+	}
 	/**
 	 * 向指定 URL 发送POST方法的请求C_DEPT_MANAGER_LIST
 	 * 

@@ -14,8 +14,8 @@ $(document).ready(function(e) {
 	loadLatestArticles();
  	//加载随机文章
 	loadRandomArticles(); 
-  	//加载精心推荐
-	loadTuijArticles(); 
+//  	//加载精心推荐
+//	loadTuijArticles(); 
 	addListener();
 });
 //精心推荐
@@ -37,7 +37,7 @@ function loadTuijArticles(){
 function loadRandomArticles(){
 	 $.ajax({
         type: "Post",
-        url: "/latest_article",
+        url: "/random_article",
         async:true,
         success: function(data){
 	        	// 设置模板  

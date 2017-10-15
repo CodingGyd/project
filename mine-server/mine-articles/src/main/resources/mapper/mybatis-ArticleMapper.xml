@@ -40,5 +40,17 @@
  				LIMIT #{top}
 	</select>
 	
-
+	<select id="findRandomArticle" resultMap="articles">
+ 		SELECT 	A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName
+ 				FROM mine_articles A 
+ 				INNER JOIN mine_sysconst B 
+ 				ON A.type = B.dm AND B.lb = '100' 
+ 				WHERE A.id IN(
+ 					<foreach collection="ids" item="id" separator=",">
+ 						#{id}
+ 					</foreach>
+ 				)
+ 				ORDER BY A.updatetime DESC
+ 				 
+	</select>
 </mapper>

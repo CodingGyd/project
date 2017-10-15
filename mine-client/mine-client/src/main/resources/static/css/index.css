@@ -328,7 +328,7 @@ img {
 /*随机、最新文章*/
 #c_right .lanmubox {
 	width: 360px;
-	height: 220px;
+	height: 350px;
 	border: 1px solid #ccc;
 	margin-top: 5px;
 	background: #fff;
@@ -363,9 +363,9 @@ img {
 
 .lanmubox .bd {
 	width: 360px;
-	height: 145px;
+	height: 290px;
 	zoom: 1;
-	background: url("../images/list.png") 5px 5px no-repeat;
+	background: url("../images/list.png") 5px 5px repeat-y;
 	overflow: hidden;
 }
 

@@ -3,6 +3,7 @@ package com.codinggyd.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import com.codinggyd.bean.Article;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
@@ -30,5 +31,12 @@ public interface ArticleMapper {
 
 	//最新文章
 	public List<Article> findLatestArticle(@Param("top") Integer top);
+	
+	//随机文章
+	public List<Article> findRandomArticle(@Param("ids") List<Integer> ids);
+	
+	//文章主键集合
+	@Select("SELECT ID FROM mine_articles")
+	public List<Integer> findArticleIds();
 
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head th:replace="base/head ::common_header"></head>
+
+<body>
+		<script th:src="@{js/daily.js}"></script>
+		<script th:src="@{js/jquery-jtemplates.js}"></script>
+		<script th:src="@{js/jquery-jtemplates_uncompressed.js}"></script>
+ 	<div class="Wrapper">
+    <!--header start-->
+     <div th:replace="base/top :: top"></div>
+     <!--header end-->
+    <!--content start-->
+    <div id="content">
+ 			<ul class="say_box" id="daily-list"></ul>
+					<textarea id="templateDailys" class="template" style="display:none;">
+							{#foreach $T.data as record}  
+								 <div class="sy">
+                         			<p>{$T.record.content}</p>
+                    			 </div>
+                 				 <span class="dateview">{$T.record.updatetime}</span>
+			 				{#/for}  
+		  		 	</textarea>
+         <!--  <ul class="say_box">
+                     <div class="sy">
+                         <p> 那个可以任意挥霍的年纪，人们叫它'青春'。</p>
+                     </div>
+                  <span class="dateview">2017-8-27</span>
+          </ul> -->
+     </div>
+    <!--content end-->
+    </div>
+    <!--footer start-->
+  	 <div th:replace="base/bottom :: bottom"></div>
+    <!--footer end-->
+    <script type="text/javascript">jQuery(".lanmubox").slide({easing:"easeOutBounce",delayTime:400});</script>
+    <script  type="text/javascript" src="js/nav.js"></script>
+</body>
+</html>

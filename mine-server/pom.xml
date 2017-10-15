@@ -29,6 +29,7 @@
 		<module>mine-login</module>
 		<module>mine-core</module>
 		<module>mine-articles</module>
+		<module>mine-dailyessays</module>
 		<module>mine-data-export</module>
 		<module>mine-sysconst</module>
 		<module>mine-job</module>
@@ -54,6 +55,11 @@
 			<dependency>
 				<groupId>com.codinggyd</groupId>
 				<artifactId>mine-articles</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.codinggyd</groupId>
+				<artifactId>mine-dailyessays</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 			<dependency>
