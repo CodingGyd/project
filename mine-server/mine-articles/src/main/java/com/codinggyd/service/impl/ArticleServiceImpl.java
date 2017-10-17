@@ -68,13 +68,27 @@ public class ArticleServiceImpl implements IArticleSiteService{
 
 	@Override
 	public Article listDetail(String id) {
-		Article article = (Article) RedisClientUtils.getFromCache(id);
+		Article article = null;
+		try {
+			article = (Article) RedisClientUtils.getFromCache(id);
+		} catch (Exception e) {
+			logger.error("缓存 读取出错,{}",e);
+		}
 		if (null != article) {
 			logger.debug("id[{}],查的是缓存",id);
 			return article;
 		}
-		article = mapper.findDetailById(id);
-		RedisClientUtils.cache(id, article);//缓存
+		try {
+			article = mapper.findDetailById(id);
+		} catch (Exception e) {
+			logger.error("数据库 读取出错,{}",e);
+			return null;
+		}
+		try {
+			RedisClientUtils.cache(id, article);//缓存
+		} catch (Exception e) {
+			logger.error("缓存写入出错,{}",e);
+		}
 		return article;
 	}
 
