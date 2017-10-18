@@ -45,7 +45,8 @@ public class ArticleServiceImpl implements IArticleService{
 	private static final String SERVER_ARTICLE_LIST="MINE_ARTICLE_LIST";//数据接口地址-文章列表
 	private static final String SERVER_ARTICLE_DETAIL="MINE_ARTICLE_DETAIL";//数据接口地址-文章详情
 	private static final String SERVER_ARTICLE_TYPE="MINE_CONST";//数据接口地址-文章分类
-	
+	private static final String SERVER_ARTICLE_UPDATE_READ_COUNT="MINE_ARTICLE_UPDATE_READ_COUNT";//数据接口地址-更新文章阅读数
+
 	private static ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public Article findArticleDetail(String id) {
@@ -367,6 +368,17 @@ public class ArticleServiceImpl implements IArticleService{
 	 
 	private String formatDateStr(String time) {
 		return !StringUtils.isEmpty(time) && time.length() >= 10 ? time.substring(0,10) : ""; 
+	}
+
+	@Override
+	public void updateReadCount(Integer id) {
+		String responseData = HttpClientUtil.requestServer(SERVER_ARTICLE_UPDATE_READ_COUNT, id);
+		 
+		if (StringUtils.isEmpty(responseData)) {
+			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_UPDATE_READ_COUNT);
+ 		}  else {
+ 			logger.debug("调用文章阅读数量更新接口,返回接口{}",responseData);
+ 		}
 	}
 
 	 

@@ -12,7 +12,7 @@ import com.codinggyd.bean.Paginator;
  * 
  * @Title:  IArticleService.java
  * @Package: com.codinggyd.service
- * @Description: 文章列表获取
+ * @Description: 文章操作
  *
  * @author: guoyd
  * @Date: 2017年9月14日 下午10:01:16
@@ -31,5 +31,7 @@ public interface IArticleService {
 	public Article findArticleDetail(String id);
 	//加载文章分类
 	public List<ArticleType> findArticleTypes();
+	//更新文章阅读数量
+	public void updateReadCount(Integer id);
 	
 }

@@ -19,6 +19,7 @@ import com.codinggyd.bean.ArticleType;
 import com.codinggyd.bean.DailEssays;
 import com.codinggyd.bean.MinePageBean;
 import com.codinggyd.bean.Paginator;
+import com.codinggyd.config.SpringContextHolder;
 import com.codinggyd.service.IArticleService;
 import com.codinggyd.service.IDailyEssayService;
  
@@ -30,7 +31,7 @@ public class MineController {
 	@Autowired
 	private IDailyEssayService dailyService;
 	final Logger logger = LoggerFactory.getLogger(getClass());
-	
+ 
 	//分页获取文章列表
 	@RequestMapping(value={"/article_page"})
 	public @ResponseBody MinePageBean<Article> page(HttpServletRequest request,HttpServletResponse response) {
@@ -67,7 +68,20 @@ public class MineController {
 	//文章详情
 	@RequestMapping("/article_dt/{id}")
 	public String article_dt(@PathVariable String id,Map<String,Object> model) {
-		model.put("article",articleService.findArticleDetail(id));
+
+		Article article = articleService.findArticleDetail(id);
+		if (null != article) {
+			model.put("article",article);
+			//浏览量加1
+			SpringContextHolder.executorService.submit(new Runnable() {
+				
+				@Override
+				public void run() {
+					articleService.updateReadCount(Integer.parseInt(id));
+				}
+			});
+		}
+		
 		return "article_dt";
 	}
 	

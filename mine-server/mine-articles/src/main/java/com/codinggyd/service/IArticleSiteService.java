@@ -51,4 +51,12 @@ public interface IArticleSiteService {
 	 */
 	@MineMethod(value="MINE_RANDOM_ARTICLE")
 	public List<Article> listRandomArticle(Integer top);
+	
+	/**
+	 * 更新文章数量，阅读数量加一
+	 * @param id 文章ID
+	 */
+	@MineMethod(value="MINE_ARTICLE_UPDATE_READ_COUNT")
+	public String updateReadCount(Integer articleId);
+	
 }

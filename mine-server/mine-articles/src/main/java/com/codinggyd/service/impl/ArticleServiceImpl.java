@@ -41,28 +41,30 @@ public class ArticleServiceImpl implements IArticleSiteService{
 	
 	@Override
 	public List<Article> listArticle(String type,String[] pageInfo) {
-		
-		PageBounds pageBounds = null;
-		if (null != pageInfo) {
-			try {
-				pageBounds = PageBoundUtils.getPageBounds(pageInfo);
-			} catch (Exception e) {
-				logger.error("解析分页参数出错,{},{}",pageInfo,e);
-				return null;
-			}
-		}
-		
 		List<Article> articleList = null;
-		if (null != pageBounds) {
-			articleList = mapper.findArticle(type,pageBounds);
-		} else {
-			articleList = mapper.findArticle(type);
+		try {
+			PageBounds pageBounds = null;
+			if (null != pageInfo) {
+				try {
+					pageBounds = PageBoundUtils.getPageBounds(pageInfo);
+				} catch (Exception e) {
+					logger.error("解析分页参数出错,{},{}",pageInfo,e);
+					return null;
+				}
+			}
+			
+			if (null != pageBounds) {
+				articleList = mapper.findArticle(type,pageBounds);
+			} else {
+				articleList = mapper.findArticle(type);
+			}
+			
+			if(CollectionUtils.isEmpty(articleList)){
+				logger.debug("未查到任何文章信息");
+			}
+		} catch (Exception e) {
+			logger.error("查询文章列表出错,{}",e);
 		}
-		
-		if(CollectionUtils.isEmpty(articleList)){
-			logger.debug("未查到任何文章信息");
-		}
-		
 		return articleList;
 	}
 
@@ -94,33 +96,57 @@ public class ArticleServiceImpl implements IArticleSiteService{
 
 	@Override
 	public List<Article> listLatestArticle(Integer top) {
-		return mapper.findLatestArticle(top);
+		List<Article> articles= null;
+		try {
+			articles = mapper.findLatestArticle(top);
+		} catch (Exception e) {
+			logger.error("产生最新文章出错,{}",e);
+			return articles;
+		}
+		return articles;
 	}
 
 	@Override
 	public List<Article> listRandomArticle(Integer top) {
-		//1.查找表里所有的id
-		List<Integer> ids = mapper.findArticleIds();
-		if (CollectionUtils.isEmpty(ids)) {
-			logger.error("文章表中没有数据!");
-			return null;
+		List<Article> randArticles = null;
+		try {
+			//1.查找表里所有的id
+			List<Integer> ids = mapper.findArticleIds();
+			if (CollectionUtils.isEmpty(ids)) {
+				logger.error("文章表中没有数据!");
+				return randArticles;
+			}
+			//2.从1中查到的id列表中随机出top个id,sets保存随机id在id列表中的位置
+			int max = ids.size()-1;
+			int min = 0;
+			HashSet<Integer> sets = new HashSet<>();
+			MathUtils.randomSet(min, max, top,top, sets);
+			if (CollectionUtils.isEmpty(sets)) {
+				logger.error("获取随机文章为0篇！");
+				return randArticles;
+			}
+			//3.获取随机id集合
+			List<Integer> randomIds = new ArrayList<>();
+			for (Integer idPos : sets) {
+				randomIds.add(ids.get(idPos));
+			}
+			//4.查询随机文章
+			randArticles = mapper.findRandomArticle(randomIds);
+		} catch (Exception e) {
+			logger.error("产生随机文章出错,{}",e);
+			return randArticles;
 		}
-		//2.从1中查到的id列表中随机出top个id,sets保存随机id在id列表中的位置
-		int max = ids.size()-1;
-		int min = 0;
-		HashSet<Integer> sets = new HashSet<>();
-		MathUtils.randomSet(min, max, top,top, sets);
-		if (CollectionUtils.isEmpty(sets)) {
-			logger.error("获取随机文章为0篇！");
-			return null;
-		}
-		//3.获取随机id集合
-		List<Integer> randomIds = new ArrayList<>();
-		for (Integer idPos : sets) {
-			randomIds.add(ids.get(idPos));
-		}
-		//4.查询随机文章
-		List<Article> randArticles = mapper.findRandomArticle(randomIds);
 		return randArticles;
+	}
+
+	@Override
+	public synchronized String updateReadCount(Integer articleId) {
+		try {
+			mapper.updateArticleReadCount(articleId);
+		} catch (Exception e) {
+			logger.error("更新出错,{}",e);
+			return "error";
+		}
+		return "success";
 	}
 }

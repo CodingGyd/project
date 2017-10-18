@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.codinggyd.bean.Article;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
@@ -38,5 +39,9 @@ public interface ArticleMapper {
 	//文章主键集合
 	@Select("SELECT ID FROM mine_articles")
 	public List<Integer> findArticleIds();
+	
+	//文章阅读数量加1
+	@Update("UPDATE mine_articles SET readingcount = readingcount+1 WHERE id=#{id}")
+	public void updateArticleReadCount(@Param("id") Integer id);
 
 }
