@@ -42,7 +42,7 @@ public class CustomFormatTrackingHSSFListener implements HSSFListener {
 
 	public CustomFormatTrackingHSSFListener(
 			HSSFListener childListener, Locale locale) {
-		childListener = childListener;
+		this.childListener = childListener;
 		formatter = new HSSFDataFormatter(locale);
 		defaultFormat = NumberFormat.getInstance(locale);
 	}
