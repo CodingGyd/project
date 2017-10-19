@@ -20,7 +20,7 @@ public class SQLServerDialect extends Dialect{
 		return selectIndex + ( selectDistinctIndex == selectIndex ? 15 : 6 );
 	}
 
-
+	@Override
     protected String getLimitString(String sql, String offsetName,int offset, String limitName, int limit) {
 		if ( offset > 0 ) {
 			throw new UnsupportedOperationException( "sql server has no offset" );

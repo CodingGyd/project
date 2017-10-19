@@ -52,7 +52,7 @@ public class ArticleServiceImpl implements IArticleService{
 	public Article findArticleDetail(String id) {
 		return getServerArticleDetail(id);
 	}
-	
+	@Override
 	public MinePageBean<Article> getArticleList(Paginator paginator,String type_dm) {
   	
 		//加载博文列表

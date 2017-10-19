@@ -12,7 +12,7 @@ public class OracleDialect extends Dialect{
     public OracleDialect(MappedStatement mappedStatement, Object parameterObject, PageBounds pageBounds) {
         super(mappedStatement, parameterObject, pageBounds);
     }
-
+    @Override
     protected String getLimitString(String sql, String offsetName,int offset, String limitName, int limit) {
 		sql = sql.trim();
 		boolean isForUpdate = false;

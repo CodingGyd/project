@@ -39,7 +39,7 @@ public class ConstJob {
 //			}
 			
 			RedisClientUtils.cache2(TABLE_CONST, new ICacheKey<SysConst2>() {
-
+				@Override
 				public String getCacheKey(SysConst2 t) {
 					return t.getLb();
 				}

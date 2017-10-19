@@ -31,7 +31,7 @@ public class DB2Dialect extends Dialect{
 	private static boolean hasDistinct(String sql) {
 		return sql.toLowerCase().indexOf("select distinct")>=0;
 	}
-
+	@Override
     protected String getLimitString(String sql, String offsetName,int offset, String limitName, int limit) {
 		int startOfSelect = sql.toLowerCase().indexOf("select");
 

@@ -9,7 +9,7 @@ public class SybaseDialect extends Dialect{
         super(mappedStatement, parameterObject, pageBounds);
     }
 
-
+    @Override
     protected String getLimitString(String sql, String offsetName,int offset, String limitName, int limit) {
 		throw new UnsupportedOperationException( "paged queries not supported" );
 	}

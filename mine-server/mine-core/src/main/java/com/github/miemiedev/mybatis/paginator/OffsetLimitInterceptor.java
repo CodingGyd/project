@@ -59,6 +59,7 @@ public class OffsetLimitInterceptor implements Interceptor{
     boolean asyncTotalCount = false;
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
 	public Object intercept(final Invocation invocation) throws Throwable {
         final Executor executor = (Executor) invocation.getTarget();
         final Object[] queryArgs = invocation.getArgs();
@@ -110,6 +111,7 @@ public class OffsetLimitInterceptor implements Interceptor{
 			if (pageBounds.isContainsTotalCount()) {
 				executor.getTransaction().getConnection();
 				Callable<Paginator> countTask = new Callable() {
+					@Override
 					public Object call() throws Exception {
 						Integer count;
 						count = SQLHelp.getCount(ms, executor.getTransaction(), parameter, boundSql, dialect);
@@ -121,6 +123,7 @@ public class OffsetLimitInterceptor implements Interceptor{
 				};
 				Future<Paginator> countFutrue = call(countTask, async);
 				Future<List> _listFuture = call(new Callable<List>() {
+					@Override
 					public List call() throws Exception {
 						try {
 							List result= (List) invocation.proceed();
@@ -140,6 +143,7 @@ public class OffsetLimitInterceptor implements Interceptor{
 				}
 			}else{
 				Future<List> listFuture = call(new Callable<List>() {
+					@Override
 					public List call() throws Exception {
 						try {
 							List result= (List) invocation.proceed();
@@ -220,11 +224,11 @@ public class OffsetLimitInterceptor implements Interceptor{
 		
 		return builder.build();
 	}
-
+	@Override
 	public Object plugin(Object target) {
 		return Plugin.wrap(target, this);
 	}
-
+	@Override
 	public void setProperties(Properties properties) {
         PropertiesHelper propertiesHelper = new PropertiesHelper(properties);
 		String dialectClass = propertiesHelper.getRequiredString("dialectClass");
@@ -241,6 +245,7 @@ public class OffsetLimitInterceptor implements Interceptor{
 		public BoundSqlSqlSource(BoundSql boundSql) {
 			this.boundSql = boundSql;
 		}
+		@Override
 		public BoundSql getBoundSql(Object parameterObject) {
 			return boundSql;
 		}

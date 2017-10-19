@@ -27,18 +27,17 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import com.codinggyd.excel.CustomXSSFSheetXMLHandler.SheetContentsHandler;
-
-
+ 
 /**
- * @Title Excel07Reader.java
- * @Package: com.hundsun.gildata.cloud.user.excel
+ * 
+ * @Title:  Excel07Reader.java
+ * @Package: com.codinggyd.excel
  * @Description: xlsx格式的excel解析工具类
  *
- * @Author: guoyd   
- * @Date:  2016年11月16日 下午19:01:34
+ * @author: guoyd
+ * @Date: 2016年11月16日 下午19:01:34
  *
  * Copyright @ 2016 Corpration Name
- * 
  */
 public class Excel07Reader implements ExcelReader{
 
@@ -175,6 +174,7 @@ public class Excel07Reader implements ExcelReader{
 	 * @throws ParserConfigurationException
 	 * @throws SAXException
 	 */
+	@Override
 	public Map<Integer,List<String>> process() throws IOException, OpenXML4JException, ParserConfigurationException, SAXException {
 		ReadOnlySharedStringsTable strings = new ReadOnlySharedStringsTable(this.xlsxPackage);
 		XSSFReader xssfReader = new XSSFReader(this.xlsxPackage);

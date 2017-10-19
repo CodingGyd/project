@@ -28,6 +28,7 @@ public class SysConstServiceImpl2 implements ISysConstService2{
 
 	@Autowired
 	private SysConstMapper2 mapper;
+	@Override
 	public List<SysConst2> getAllConst() {
 		return mapper.listConst(null);
 	}

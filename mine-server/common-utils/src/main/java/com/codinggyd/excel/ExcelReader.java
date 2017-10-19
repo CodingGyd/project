@@ -11,7 +11,7 @@ import org.xml.sax.SAXException;
 
 /**
  * @Title ExcelReader.java
- * @Package: com.hundsun.gildata.cloud.user.excel
+ * @Package: com.codinggyd.excel
  * @Description: xlsx、xls格式的excel解析工具接口类
  *
  * @Author: guoyd   

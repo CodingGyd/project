@@ -127,7 +127,9 @@ public class Paginator implements Serializable {
      * 开始行，可以用于oracle分页使用 (1-based)。
      */
     public int getStartRow() {
-        if (getLimit() <= 0 || totalCount <= 0) return 0;
+        if (getLimit() <= 0 || totalCount <= 0) {
+        	return 0;
+        }
         return page > 0 ? (page - 1) * getLimit() + 1 : 0;
     }
 
@@ -191,12 +193,15 @@ public class Paginator implements Serializable {
     }
 
     private static int computeLastPageNumber(int totalItems, int pageSize) {
-        if (pageSize <= 0) return 1;
+        if (pageSize <= 0) {
+        	return 1;
+        }
         int result = (int) (totalItems % pageSize == 0 ?
                 totalItems / pageSize
                 : totalItems / pageSize + 1);
-        if (result <= 1)
+        if (result <= 1) {
             result = 1;
+        }
         return result;
     }
 

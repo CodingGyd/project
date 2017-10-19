@@ -210,16 +210,21 @@ public class CustomXSSFSheetXMLHandler extends DefaultHandler {
            cellRef = attributes.getValue("r");
            String cellType = attributes.getValue("t");
            String cellStyleStr = attributes.getValue("s");
-           if ("b".equals(cellType))
+           if ("b".equals(cellType)) {
                nextDataType = xssfDataType.BOOLEAN;
-           else if ("e".equals(cellType))
+           }
+           else if ("e".equals(cellType)) {
                nextDataType = xssfDataType.ERROR;
-           else if ("inlineStr".equals(cellType))
+           }
+           else if ("inlineStr".equals(cellType)) {
                nextDataType = xssfDataType.INLINE_STRING;
-           else if ("s".equals(cellType))
+           }
+           else if ("s".equals(cellType)) {
                nextDataType = xssfDataType.SST_STRING;
-           else if ("str".equals(cellType))
+           }
+           else if ("str".equals(cellType)) {
                nextDataType = xssfDataType.FORMULA;
+           }
            else {
                // Number, but almost certainly with a special style or format
                XSSFCellStyle style = null;
@@ -234,8 +239,9 @@ public class CustomXSSFSheetXMLHandler extends DefaultHandler {
                if (style != null) {
                    this.formatIndex = style.getDataFormat();
                    this.formatString = style.getDataFormatString();
-                   if (this.formatString == null)
+                   if (this.formatString == null) {
                        this.formatString = BuiltinFormats.getBuiltinFormat(this.formatIndex);
+                   }
                }
            }
        }
@@ -317,8 +323,9 @@ public class CustomXSSFSheetXMLHandler extends DefaultHandler {
                            thisStr = value.toString();
                 	   }
                    }
-                   else
+                   else {
                 	   thisStr = value.toString();
+                   }
                    break;
 
                default:

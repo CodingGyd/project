@@ -15,7 +15,7 @@ public class H2Dialect extends Dialect {
     public H2Dialect(MappedStatement mappedStatement, Object parameterObject, PageBounds pageBounds) {
         super(mappedStatement, parameterObject, pageBounds);
     }
-
+    @Override
     protected String getLimitString(String sql, String offsetName,int offset, String limitName, int limit) {
 		return new StringBuffer(sql.length() + 40).
 			append(sql).

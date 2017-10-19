@@ -33,15 +33,18 @@ import org.apache.poi.hssf.record.SSTRecord;
 import org.apache.poi.hssf.record.StringRecord;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
-
+ 
 /**
- * @Title Excel03Reader.java
- * @Package: com.hundsun.gildata.cloud.user.excel
+ * 
+ * 
+ * @Title:  Excel03Reader.java
+ * @Package: com.codinggyd.excel
  * @Description: xls格式的excel解析工具类
  *
- * @Author: guoyd
+ * @author: guoyd
  * @Date: 2016年11月17日 上午10:01:34
- * 
+ *
+ * Copyright @ 2016 Corpration Name
  */
 public class Excel03Reader implements HSSFListener, ExcelReader {
 	private int minColumns;
@@ -115,6 +118,7 @@ public class Excel03Reader implements HSSFListener, ExcelReader {
 	/**
 	 * Initiates the processing of the XLS file to CSV
 	 */
+	@Override
 	public Map<Integer,List<String>> process() throws IOException {
 		MissingRecordAwareHSSFListener listener = new MissingRecordAwareHSSFListener(this);
 		formatListener = new CustomFormatTrackingHSSFListener(listener);
@@ -304,11 +308,12 @@ public class Excel03Reader implements HSSFListener, ExcelReader {
 		}
 
 		// Update column and row count
-		if (thisRow > -1)
+		if (thisRow > -1) {
 			lastRowNumber = thisRow;
-		if (thisColumn > -1)
+		}
+		if (thisColumn > -1) {
 			lastColumnNumber = thisColumn;
-	
+		}
 		// Handle end of row
 		if (record instanceof LastCellOfRowDummyRecord) {
 			// Print out any missing commas if needed

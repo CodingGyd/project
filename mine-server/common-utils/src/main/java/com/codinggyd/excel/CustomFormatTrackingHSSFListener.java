@@ -28,11 +28,11 @@ import org.apache.poi.util.POILogger;
  */
 public class CustomFormatTrackingHSSFListener implements HSSFListener {
 	private static POILogger logger = POILogFactory.getLogger(CustomFormatTrackingHSSFListener.class);
-	private final HSSFListener _childListener;
-	private final HSSFDataFormatter _formatter;
-	private final NumberFormat _defaultFormat;
-	private final Map<Integer, FormatRecord> _customFormatRecords = new HashMap<Integer, FormatRecord>();
-	private final List<ExtendedFormatRecord> _xfRecords = new ArrayList<ExtendedFormatRecord>();
+	private final HSSFListener childListener;
+	private final HSSFDataFormatter formatter;
+	private final NumberFormat defaultFormat;
+	private final Map<Integer, FormatRecord> customFormatRecords = new HashMap<Integer, FormatRecord>();
+	private final List<ExtendedFormatRecord> xfRecords = new ArrayList<ExtendedFormatRecord>();
 
 
 	public CustomFormatTrackingHSSFListener(HSSFListener childListener) {
@@ -42,17 +42,17 @@ public class CustomFormatTrackingHSSFListener implements HSSFListener {
 
 	public CustomFormatTrackingHSSFListener(
 			HSSFListener childListener, Locale locale) {
-		_childListener = childListener;
-		_formatter = new HSSFDataFormatter(locale);
-		_defaultFormat = NumberFormat.getInstance(locale);
+		childListener = childListener;
+		formatter = new HSSFDataFormatter(locale);
+		defaultFormat = NumberFormat.getInstance(locale);
 	}
 
 	protected int getNumberOfCustomFormats() {
-		return _customFormatRecords.size();
+		return customFormatRecords.size();
 	}
 
 	protected int getNumberOfExtendedFormats() {
-		return _xfRecords.size();
+		return xfRecords.size();
 	}
 
 
@@ -62,18 +62,18 @@ public class CustomFormatTrackingHSSFListener implements HSSFListener {
 		processRecordInternally(record);
 
 		// Now pass on to our child
-		_childListener.processRecord(record);
+		childListener.processRecord(record);
 	}
 
 	
 	public void processRecordInternally(Record record) {
 		if (record instanceof FormatRecord) {
 			FormatRecord fr = (FormatRecord) record;
-			_customFormatRecords.put(Integer.valueOf(fr.getIndexCode()), fr);
+			customFormatRecords.put(Integer.valueOf(fr.getIndexCode()), fr);
 		}
 		if (record instanceof ExtendedFormatRecord) {
 			ExtendedFormatRecord xr = (ExtendedFormatRecord) record;
-			_xfRecords.add(xr);
+			xfRecords.add(xr);
 		}
 	}
 
@@ -97,7 +97,7 @@ public class CustomFormatTrackingHSSFListener implements HSSFListener {
 		String formatString = getFormatString(cell);
 
 		if (formatString == null) {
-			return _defaultFormat.format(value);
+			return defaultFormat.format(value);
 		}
 		if(formatString.equals("m/d/yy")){
     	    formatString = "yyyy/mm/dd";
@@ -106,14 +106,14 @@ public class CustomFormatTrackingHSSFListener implements HSSFListener {
 		
 		// Format, using the nice new
 		// HSSFDataFormatter to do the work for us
-		return _formatter.formatRawCellContents(value, formatIndex, formatString);
+		return formatter.formatRawCellContents(value, formatIndex, formatString);
 	}
 
 	
 	public String getFormatString(int formatIndex) {
 		String format = null;
 		if (formatIndex >= HSSFDataFormat.getNumberOfBuiltinBuiltinFormats()) {
-			FormatRecord tfr = _customFormatRecords.get(Integer.valueOf(formatIndex));
+			FormatRecord tfr = customFormatRecords.get(Integer.valueOf(formatIndex));
 			if (tfr == null) {
 				logger.log( POILogger.ERROR, "Requested format at index " + formatIndex
 						+ ", but it wasn't found");
@@ -138,7 +138,7 @@ public class CustomFormatTrackingHSSFListener implements HSSFListener {
 
 	
 	public int getFormatIndex(CellValueRecordInterface cell) {
-		ExtendedFormatRecord xfr = _xfRecords.get(cell.getXFIndex());
+		ExtendedFormatRecord xfr = xfRecords.get(cell.getXFIndex());
 		if (xfr == null) {
 			logger.log( POILogger.ERROR, "Cell " + cell.getRow() + "," + cell.getColumn()
 					+ " uses XF with index " + cell.getXFIndex() + ", but we don't have that");

@@ -63,7 +63,9 @@ public class PropertiesHelper {
 	}
 	
 	public void setProperties(Properties props) {
-		if(props == null) throw new IllegalArgumentException("properties must be not null");
+		if(props == null) {
+			throw new IllegalArgumentException("properties must be not null");
+		}
 		this.p = props;
 	}
 	
@@ -239,7 +241,9 @@ public class PropertiesHelper {
 	}
 
 	public Properties getStartsWithProperties(String prefix) {
-		if(prefix == null) throw new IllegalArgumentException("'prefix' must be not null");
+		if(prefix == null) {
+			throw new IllegalArgumentException("'prefix' must be not null");
+		}
 		
 		Properties props = getProperties();
 		Properties result = new Properties();
@@ -378,7 +382,7 @@ public class PropertiesHelper {
 	public Collection<Object> values() {
 		return p.values();
 	}
-	
+	@Override
 	public String toString() {
 		return p.toString();
 	}

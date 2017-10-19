@@ -62,7 +62,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
 			// "true");
 			bean.setConfigurationProperties(sqlSessionFactoryProperties);
 			bean.setSqlSessionFactoryBuilder(new SqlSessionFactoryBuilder() {
-
+				@Override
 				public SqlSessionFactory build(org.apache.ibatis.session.Configuration config) {
 					config.setCacheEnabled(false);
 					config.setLocalCacheScope(LocalCacheScope.STATEMENT);

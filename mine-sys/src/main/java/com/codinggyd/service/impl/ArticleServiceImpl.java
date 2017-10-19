@@ -31,7 +31,7 @@ public class ArticleServiceImpl implements IArticleService{
 	
 	@Autowired
 	private ArticleMapper mapper;
-	
+	@Override
 	public void updateArticle(Article article) {
 		mapper.updateArticle(article);
 	}

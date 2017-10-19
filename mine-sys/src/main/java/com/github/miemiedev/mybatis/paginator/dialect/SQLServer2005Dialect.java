@@ -34,6 +34,7 @@ public class SQLServer2005Dialect extends Dialect{
 	 * @param limit           Maximum number of rows to be returned by the query
 	 * @return A new SQL statement with the LIMIT clause applied.
 	 */
+    @Override
     protected String getLimitString(String sql, String offsetName,int offset, String limitName, int limit) {
 		StringBuffer pagingBuilder = new StringBuffer();
 		String orderby = getOrderByPart(sql);
