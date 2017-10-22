@@ -21,7 +21,8 @@ function initEditor(){
 	           syncScrolling : "single",
 	           //你的lib目录的路径
 	           path    : "editormd/lib/",
-	           imageUpload: false,//关闭图片上传功能
+	           imageUpload: true,//打开图片上传功能
+	           imageUploadURL : "/sys/imgupload",
 	          /*  theme: "dark",//工具栏主题
 	           previewTheme: "dark",//预览主题
 	           editorTheme: "pastel-on-dark",//编辑主题 */
@@ -41,11 +42,10 @@ function initEditor(){
 function loadArticleType() {
 	 $.ajax({
         type: "Post",
-        url: "/article_types",
+        url: "/sys/article_types",
         async:true,
         success: function(data){
-        	alert("==")
-	        	 //遍历生成select
+ 	        	 //遍历生成select
         		$(data).each(function (index, r) {
         			$("#article_type").append("<option value='"+r.dm+"'>"+r.ms+"</option>"); //为Select追加一个Option(下拉项)
         		});
@@ -67,7 +67,7 @@ function addListener(){
 		   var content=$("#editormd").val();
 			 $.ajax({
 		         type: "POST",
-		         url: "/update",
+		         url: "/sys/update",
 		         data:{"title":title,"descs" :descs,"content":content,"htmlContent":htmlContent,"type":type},
 		         async:true,
 		         success: function(data){

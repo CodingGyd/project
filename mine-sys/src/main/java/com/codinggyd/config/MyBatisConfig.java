@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
@@ -100,6 +102,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
   
   @Configuration
   public static class DataSourceConfig implements EnvironmentAware{
+	    final Logger logger = LoggerFactory.getLogger(getClass());
 
   		private RelaxedPropertyResolver propertyResolver;
 
@@ -110,6 +113,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
   		
   	    public DataSource dbH2DataSource() {
   			try {
+  				logger.debug("datasource loaded...");
   				Map<String, Object> map = propertyResolver.getSubProperties("spring.datasource");
   				return DruidDataSourceFactory.createDataSource(map);
   			} catch (Exception e) {

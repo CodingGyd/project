@@ -3,7 +3,7 @@
 # Auth Agent startup script
 #
 
-PROJECT=mine-server
+PROJECT=mine-starter
 JAVA_VERSION="1.8"
 
 SCRIPT_PATH=$(dirname $(readlink -f $0))
