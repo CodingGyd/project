@@ -11,6 +11,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.session.defaults.DefaultSqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
 import org.springframework.context.EnvironmentAware;
@@ -98,22 +100,22 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
       return new SqlSessionTemplate(sqlSessionFactory);
   }
   
-  @Configuration
   public static class DataSourceConfig implements EnvironmentAware{
 
   		private RelaxedPropertyResolver propertyResolver;
+  		final Logger logger = LoggerFactory.getLogger(getClass());
 
   		@Override
   		public void setEnvironment(Environment env) {
   			this.propertyResolver = new RelaxedPropertyResolver(env);
   		}
-  		
+  		@Bean(name = "dataSource")
   	    public DataSource dbH2DataSource() {
   			try {
-  				Map<String, Object> map = propertyResolver.getSubProperties("spring.datasource");
+  				Map<String, Object> map = propertyResolver.getSubProperties("spring.datasource.");
   				return DruidDataSourceFactory.createDataSource(map);
   			} catch (Exception e) {
-  				e.printStackTrace();
+  				logger.error("数据库连接池初始化失败,{}",e);
   			}
   			return null;
   		}
