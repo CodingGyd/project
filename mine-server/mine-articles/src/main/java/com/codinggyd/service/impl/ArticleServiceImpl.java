@@ -108,6 +108,11 @@ public class ArticleServiceImpl implements IArticleSiteService{
 
 	@Override
 	public List<Article> listRandomArticle(Integer top) {
+		
+		if (null == top) {
+			return null;
+		}
+		
 		List<Article> randArticles = null;
 		try {
 			//1.查找表里所有的id
@@ -116,8 +121,14 @@ public class ArticleServiceImpl implements IArticleSiteService{
 				logger.error("文章表中没有数据!");
 				return randArticles;
 			}
+			
 			//2.从1中查到的id列表中随机出top个id,sets保存随机id在id列表中的位置
-			int max = ids.size()-1;
+			int size = ids.size();
+			if (top > size) {
+				return mapper.findRandomArticle(ids);
+			}
+			
+			int max = size-1;
 			int min = 0;
 			HashSet<Integer> sets = new HashSet<>();
 			MathUtils.randomSet(min, max, top,top, sets);
