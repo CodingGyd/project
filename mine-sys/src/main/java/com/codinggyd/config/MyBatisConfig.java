@@ -110,11 +110,10 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
   		public void setEnvironment(Environment env) {
   			this.propertyResolver = new RelaxedPropertyResolver(env);
   		}
-  		
+  		@Bean(name = "dataSource")
   	    public DataSource dbH2DataSource() {
   			try {
-  				logger.debug("datasource loaded...");
-  				Map<String, Object> map = propertyResolver.getSubProperties("spring.datasource");
+   				Map<String, Object> map = propertyResolver.getSubProperties("spring.datasource.");
   				return DruidDataSourceFactory.createDataSource(map);
   			} catch (Exception e) {
   				e.printStackTrace();

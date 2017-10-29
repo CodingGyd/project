@@ -1,87 +1,88 @@
-// JavaScript Document
-var editor;
-
-$(document).ready(function(e) {
-	//初始化文章编辑器
-	initEditor();
-	//加载文章分类
-	loadArticleType();
-	addListener();
-});
-
-//初始化文章编辑器
-function initEditor(){
-	
-	editor=$(function() {
-	      editormd("test-editormd", {
-	           width   : "90%",
-	           height  : 640,
-	           //markdown : md,
-	           codeFold : true,
-	           syncScrolling : "single",
-	           //你的lib目录的路径
-	           path    : "editormd/lib/",
-	           imageUpload: true,//打开图片上传功能
-	           imageUploadURL : "/sys/imgupload",
-	          /*  theme: "dark",//工具栏主题
-	           previewTheme: "dark",//预览主题
-	           editorTheme: "pastel-on-dark",//编辑主题 */
-	           emoji: true,
-	           taskList: true, 
-	           tocm: true,         // Using [TOCM]
-	           tex: true,                   // 开启科学公式TeX语言支持，默认关闭
-	           flowChart: true,             // 开启流程图支持，默认关闭
-	           sequenceDiagram: true,       // 开启时序/序列图支持，默认关闭,
-	          //这个配置在simple.html中并没有，但是为了能够提交表单，使用这个配置可以让构造出来的HTML代码直接在第二个隐藏的textarea域中，方便post提交表单。
-	           saveHTMLToTextarea : true            
-	      });
-
-	  });
-	
-}
-function loadArticleType() {
-	 $.ajax({
-        type: "Post",
-        url: "/sys/article_types",
-        async:true,
-        success: function(data){
- 	        	 //遍历生成select
-        		$(data).each(function (index, r) {
-        			$("#article_type").append("<option value='"+r.dm+"'>"+r.ms+"</option>"); //为Select追加一个Option(下拉项)
-        		});
-        }});
-}
-//控件添加今监听器
-function addListener(){
-	$('#btn_submit').click(function() {
+$(function(){
+			$('.wu-side-tree a').bind("click",function(){
+				var title = $(this).text();
+				var url = $(this).attr('data-link');
+				var iconCls = $(this).attr('data-icon');
+				var iframe = $(this).attr('iframe')==1?true:false;
+				addTab(title,url,iconCls,iframe);
+			});	
+		})
 		
-		  //获取文章标题
-		  var title=$("#article_title").val();
-		  //获取文章概述
-		  var descs=$("#article_descs").val();
-		  //获取文章分类$
-		  var type =$('#article_type option:selected').val();
-		  //获取第二个textarea的值，即生成的HTML代码
-		  var htmlContent=$("#editorhtml").val();
-		  //获取第一个textarea的值，即md值
-		   var content=$("#editormd").val();
-			 $.ajax({
-		         type: "POST",
-		         url: "/sys/update",
-		         data:{"title":title,"descs" :descs,"content":content,"htmlContent":htmlContent,"type":type},
-		         async:true,
-		         success: function(data){
-		        	   	alert("发表成功");
-			      	 //重置
-		      		  $("#editorhtml").val("");
-		      		  //重置
-		      		  $("#editormd").val("");
-		        	 }
-		         }); 
+		/**
+		* Name 载入树形菜单 
+		*/
+		$('#wu-side-tree').tree({
+			url:'modules/menu.php',
+			cache:false,
+			onClick:function(node){
+				var url = node.attributes['url'];
+				if(url==null || url == ""){
+					return false;
+				}
+				else{
+					addTab(node.text, url, '', node.attributes['iframe']);
+				}
+			}
 		});
-}
-
-//滚动到顶部
-function pageScroll() { 
-	$('html,body').animate({scrollTop:0},'slow');
-} 
+		
+		/**
+		* Name 选项卡初始化
+		*/
+		$('#wu-tabs').tabs({
+			tools:[{
+				iconCls:'icon-reload',
+				border:false,
+				handler:function(){
+					$('#wu-datagrid').datagrid('reload');
+				}
+			}]
+		});
+			
+		/**
+		* Name 添加菜单选项
+		* Param title 名称
+		* Param href 链接
+		* Param iconCls 图标样式
+		* Param iframe 链接跳转方式（true为iframe，false为href）
+		*/	
+		function addTab(title, href, iconCls, iframe){
+			var tabPanel = $('#wu-tabs');
+			if(!tabPanel.tabs('exists',title)){
+				var content = '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:100%;"></iframe>';
+				if(iframe){
+					tabPanel.tabs('add',{
+						title:title,
+						content:content,
+						iconCls:iconCls,
+						fit:true,
+						cls:'pd3',
+						closable:true
+					});
+				}
+				else{
+					tabPanel.tabs('add',{
+						title:title,
+						href:href,
+						iconCls:iconCls,
+						fit:true,
+						cls:'pd3',
+						closable:true
+					});
+				}
+			}
+			else
+			{
+				tabPanel.tabs('select',title);
+			}
+		}
+		/**
+		* Name 移除菜单选项
+		*/
+		function removeTab(){
+			var tabPanel = $('#wu-tabs');
+			var tab = tabPanel.tabs('getSelected');
+			if (tab){
+				var index = tabPanel.tabs('getTabIndex', tab);
+				tabPanel.tabs('close', index);
+			}
+		}

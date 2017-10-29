@@ -11,6 +11,31 @@
 		<result column="ms" property="ms" />
 		<result column="updatetime" property="updatetime" />
 	</resultMap>
+	<resultMap id="articles" type="com.codinggyd.bean.Article">
+		<id column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="descs" property="descs" />
+		<result column="updatetime" property="updatetime" />
+		<result column="readingcount" property="readingcount" />
+		<result column="url" property="url" />
+		<result column="type" property="type" />
+	</resultMap>
+	
+	<select id="listArticleType" resultMap="consts">
+ 		SELECT 	id,lb,lbmc,dm,ms,updatetime 
+ 				FROM mine_sysconst  
+ 				WHERE lb=100
+	</select>
+	 
+
+	<select id="findArticles" resultMap="articles">
+ 		SELECT 	A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName
+ 				FROM mine_articles A 
+ 				INNER JOIN mine_sysconst B 
+ 				ON A.type = B.dm AND B.lb = '100' 
+ 				 
+				ORDER BY A.updatetime DESC
+	</select>
 	
 	<update id="updateArticle">
        	INSERT INTO mine_articles 
@@ -26,13 +51,5 @@
 			   )
 		 
 	</update>
-
-
-
-	<select id="listArticleType" resultMap="consts">
- 		SELECT 	id,lb,lbmc,dm,ms,updatetime 
- 				FROM mine_sysconst  
- 				WHERE lb=100
-	</select>
-	 
+	
 </mapper>

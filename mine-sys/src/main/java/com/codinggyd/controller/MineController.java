@@ -2,6 +2,7 @@
 package com.codinggyd.controller;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.http.client.utils.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,8 +26,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleTable;
 import com.codinggyd.bean.ArticleType;
 import com.codinggyd.service.IArticleService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
  
  
 @Controller
@@ -41,6 +46,26 @@ public class MineController {
 	final Logger logger = LoggerFactory.getLogger(getClass());
 
 	private static final String PATTERN = "yyyy-MM-dd HH:mm.ss.SSS";
+	private static ObjectMapper om = new ObjectMapper();
+	@RequestMapping(value="/articlelist",method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody String getArticleList(HttpServletRequest request,HttpServletResponse response) {
+		
+		ArticleTable articleTable = new ArticleTable();
+		articleTable.setTotal(0);
+		List<Article> articles = service.findArticles();
+		if (CollectionUtils.isNotEmpty(articles)) {
+			articleTable.setRows(articles);
+			articleTable.setTotal(articles.size());
+		}
+		String result = null;
+		try {
+			result = om.writeValueAsString(articleTable);
+		} catch (JsonProcessingException e) {
+			logger.error("序列化result出错,{}",e);
+		}
+ 		return result;
+	}
+	
 	@RequestMapping(value="/update",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String update(HttpServletRequest request,HttpServletResponse response) {
 		

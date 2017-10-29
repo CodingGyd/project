@@ -23,4 +23,7 @@ public interface ArticleMapper {
  	public void updateArticle(@Param("article") Article article);
  	
 	public List<ArticleType> listArticleType();
+	
+	public List<Article> findArticles();
+
 }

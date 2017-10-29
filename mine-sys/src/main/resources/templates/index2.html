@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+ <head>
+ 	<meta charset="UTF-8" />
+		<title>顺顺郭的博客</title>
+		<meta name="keywords" content="顺顺郭的博客" />
+ </head>
+     <link th:href="@{editormd/css/editormd.min.css}" rel="stylesheet" type="text/css" />
+    <script th:src="@{js/jquery-2.2.0.js}"></script>
+    <script th:src="@{editormd/editormd.min.js}"></script>
+      <script th:src="@{js/article_edit.js}"></script>
+  
+<body>
+	
+	<input type="text" name="article_title" id="article_title" placeholder="文章标题"/><br/>
+	<input type="text" name="article_descs" id="article_descs"  placeholder="文章描述"/>
+ 	<select id="article_type">
+ 	</select>	
+    <!-- editormd start -->
+    <div class="editormd" id="test-editormd">
+	    <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" id="editormd"></textarea>
+	    <!-- 第二个隐藏文本域，用来构造生成的HTML代码，方便表单POST提交，这里的name可以任意取，后台接受时以这个name键为准 -->
+	    <!-- html textarea 需要开启配置项 saveHTMLToTextarea == true -->
+	    <textarea class="editormd-html-textarea" name="editorhtml" id="editorhtml"></textarea>       
+    </div>
+    <!-- editormd end --> 
+    
+    
+    <!-- editormd 保存 --> 
+ 
+    <button id="btn_submit">提交博文</button><br/>
+
+      <!-- editormd 测试 end --> 
+      
+</body>
+</html>

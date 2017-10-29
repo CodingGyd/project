@@ -40,4 +40,9 @@ public class ArticleServiceImpl implements IArticleService{
 	public List<ArticleType> findArticleTypes() {
 		return mapper.listArticleType();
 	}
+
+	@Override
+	public List<Article> findArticles() {
+		return mapper.findArticles();
+	}
 }

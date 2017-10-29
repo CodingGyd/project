@@ -22,4 +22,7 @@ public interface IArticleService {
 	
 	//加载文章分类
 	public List<ArticleType> findArticleTypes();
+	
+	//加载文章列表
+	public List<Article> findArticles();
 }
