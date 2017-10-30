@@ -69,7 +69,7 @@ function addListener(){
 		   var content=$("#editormd").val();
 			 $.ajax({
 		         type: "POST",
-		         url: "/sys/update",
+		         url: "/sys/insert",
 		         data:{"title":title,"descs" :descs,"content":content,"htmlContent":htmlContent,"type":type},
 		         async:true,
 		         success: function(data){

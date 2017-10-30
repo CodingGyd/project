@@ -1,33 +1,9 @@
 <div class="easyui-layout">
-	
-	<table id="dg" class="easyui-datagrid" title="" style="width:1200px;height:auto"
-			data-options="
-				iconCls: 'icon-edit',
-				singleSelect: true,
-				toolbar: '#tb',
-				url: 'sys/articlelist',
-				method: 'get',
-				onClickRow: onClickRow
-			">
-		<thead>
-			<tr>
-			 	<th data-options="field:'id',width:80">编号</th>
-				<th data-options="field:'title',width:300,editor:'text'">标题</th>
-				<th data-options="field:'desc',width:80,align:'center',editor:'text'">描述</th>
-				<th data-options="field:'type',width:60,align:'center'">类型</th>
-				<th data-options="field:'updatetime',width:160,align:'center'">更新时间</th>
- 				<th data-options="field:'readingcount',width:80,align:'right',editor:'numberbox'">浏览量</th>
- 			</tr>
-		</thead>
-	</table>
- 
 	<div id="tb" style="height:auto">
 		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="append()">新增文章</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true" onclick="removeit()">删除文章</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-save',plain:true" onclick="accept()">提交修改</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-undo',plain:true" onclick="reject()">还原修改</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true" onclick="getChanges()">获取改动行数</a>
 	</div>
+	<table id="dg" class="easyui-datagrid" title="" style="width:1200px;height:auto">
+	</table>
 	</div>
 <script th:src="@{js/article_list.js}"></script>
 	 

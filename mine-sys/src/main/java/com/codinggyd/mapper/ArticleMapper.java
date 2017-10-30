@@ -21,6 +21,9 @@ import com.codinggyd.bean.ArticleType;
  */
 public interface ArticleMapper {
  	public void updateArticle(@Param("article") Article article);
+ 	public void insertArticle(@Param("article") Article article);
+ 	public void deleteArticle(@Param("id") Integer id);
+
  	
 	public List<ArticleType> listArticleType();
 	

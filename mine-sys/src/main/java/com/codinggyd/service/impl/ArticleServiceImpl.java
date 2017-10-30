@@ -35,7 +35,10 @@ public class ArticleServiceImpl implements IArticleService{
 	public void updateArticle(Article article) {
 		mapper.updateArticle(article);
 	}
-
+	@Override
+	public void insertArticle(Article article) {
+		mapper.insertArticle(article);
+	}
 	@Override
 	public List<ArticleType> findArticleTypes() {
 		return mapper.listArticleType();
@@ -45,4 +48,8 @@ public class ArticleServiceImpl implements IArticleService{
 	public List<Article> findArticles() {
 		return mapper.findArticles();
 	}
+	@Override
+	public void deleteArticle(Integer id) {
+		 mapper.deleteArticle(id);
+ 	}
 }

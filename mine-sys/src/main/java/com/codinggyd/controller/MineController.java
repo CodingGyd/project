@@ -2,7 +2,6 @@
 package com.codinggyd.controller;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -66,21 +66,37 @@ public class MineController {
  		return result;
 	}
 	
-	@RequestMapping(value="/update",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/insert",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String update(HttpServletRequest request,HttpServletResponse response) {
 		
-		Article articles = new Article();
-		articles.setTitle(request.getParameter("title"));
-		articles.setContent(request.getParameter("content"));
-		articles.setHtmlContent(request.getParameter("htmlContent"));
-		articles.setDescs(request.getParameter("descs"));
-		articles.setUpdatetime(DateUtils.formatDate(new Date(), PATTERN));
-		articles.setReadingcount(0);
-		articles.setType(request.getParameter("type"));
-		service.updateArticle(articles);
+		Article article = new Article();
+		article.setTitle(request.getParameter("title"));
+		article.setContent(request.getParameter("content"));
+		article.setHtmlContent(request.getParameter("htmlContent"));
+		article.setDescs(request.getParameter("descs"));
+		article.setUpdatetime(DateUtils.formatDate(new Date(), PATTERN));
+		article.setReadingcount(0);
+		article.setType(request.getParameter("type"));
+		
+		service.insertArticle(article);
+		return "success";
+	}
+	
+	@RequestMapping(value="/updatebatch",method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody String updatebatch(@RequestBody Article article) {
+	
+		service.updateArticle(article);
+		
 		return "success";
 	}
 
+	@RequestMapping(value="/delete",method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody String delete(Integer id) {
+	
+		service.deleteArticle(id);
+		
+		return "success";
+	}
   
 	//文章分类
 	@RequestMapping(value={"/article_types"})

@@ -38,9 +38,19 @@
 	</select>
 	
 	<update id="updateArticle">
-       	INSERT INTO mine_articles 
+		UPDATE mine_articles SET 
+						title = #{article.title},
+						descs = #{article.descs},
+						updatetime = #{article.updatetime},				
+						readingcount = #{article.readingcount},
+						type = #{article.type}
+		WHERE id = #{article.id}
+	</update>
+	
+	<insert id="insertArticle">
+		  	INSERT INTO mine_articles 
        				(title, descs, content,htmlContent,updatetime,readingcount,type)
-		VALUES(
+			VALUES(
 					#{article.title},
 					#{article.descs},
 					#{article.content},				
@@ -48,8 +58,10 @@
 					#{article.updatetime},				
 					#{article.readingcount},
 					#{article.type}
-			   )
-		 
-	</update>
-	
+			   )  
+		</insert>
+		<update id="deleteArticle">
+			DELETE FROM mine_articles WHERE id = #{id}
+		</update>
+		
 </mapper>

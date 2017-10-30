@@ -52,6 +52,7 @@ public class Article implements Serializable {
 	 */
 	private String type;
 	
+	private boolean editing;//easyui 表格对象属性
 	public String getTitle() {
 		return title;
 	}
@@ -115,6 +116,14 @@ public class Article implements Serializable {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public boolean isEditing() {
+		return editing;
+	}
+
+	public void setEditing(boolean editing) {
+		this.editing = editing;
 	}
 
 	 
