@@ -20,7 +20,7 @@ function initEditor(){
 	           codeFold : true,
 	           syncScrolling : "single",
 	           //你的lib目录的路径
-	           path    : "editormd/lib/",
+	           path    : "/editormd/lib/",
 	           imageUpload: true,//打开图片上传功能
 	           imageUploadURL : "/sys/imgupload",
 	          /*  theme: "dark",//工具栏主题
@@ -41,17 +41,17 @@ function initEditor(){
 }
 function loadArticleType() {
 	 $.ajax({
-        type: "Post",
-        url: "/sys/article_types",
-        async:true,
-        success: function(data){
- 	        	 //遍历生成select
+       type: "Post",
+       url: "/sys/article_types",
+       async:true,
+       success: function(data){
+	        	 //遍历生成select
 				$("#article_type").append("<option value='-1'>选择文章分类</option>"); //为Select追加一个Option(下拉项)
 
-        		$(data).each(function (index, r) {
-        			$("#article_type").append("<option value='"+r.dm+"'>"+r.ms+"</option>"); //为Select追加一个Option(下拉项)
-        		});
-        }});
+       		$(data).each(function (index, r) {
+       			$("#article_type").append("<option value='"+r.dm+"'>"+r.ms+"</option>"); //为Select追加一个Option(下拉项)
+       		});
+       }});
 }
 //控件添加今监听器
 function addListener(){

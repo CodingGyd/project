@@ -5,6 +5,10 @@ $(function(){
 			width:1200,
 			height:800,
 			singleSelect:true,
+			 onDblClickRow: function (index, row) {  
+                 alert(index);
+                 addTab("编辑文章", "modules/article_update", "icon-application-form-edit", "0");
+		        },  
 			idField:'id',
 			url:'sys/articlelist',
 			columns:[[
@@ -44,6 +48,7 @@ $(function(){
 			         async:true,
 			         success: function(data){
 			        	   	alert("修改成功!");
+			        	   	$('#dg').datagrid('reload');
 			        	 }
 			         }); 
 
@@ -91,7 +96,43 @@ $(function(){
 	function cancelrow(target){
 		$('#dg').datagrid('cancelEdit', getRowIndex(target));
 	}
-
+	/**
+	* Name 添加菜单选项
+	* Param title 名称
+	* Param href 链接
+	* Param iconCls 图标样式
+	* Param iframe 链接跳转方式（true为iframe，false为href）
+	*/	
+	function addTab(title, href, iconCls, iframe){
+		var tabPanel = $('#wu-tabs');
+		if(!tabPanel.tabs('exists',title)){
+			var content = '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:100%;"></iframe>';
+			if(iframe){
+				tabPanel.tabs('add',{
+					title:title,
+					content:content,
+					iconCls:iconCls,
+					fit:true,
+					cls:'pd3',
+					closable:true
+				});
+			}
+			else{
+				tabPanel.tabs('add',{
+					title:title,
+					href:href,
+					iconCls:iconCls,
+					fit:true,
+					cls:'pd3',
+					closable:true
+				});
+			}
+		}
+		else
+		{
+			tabPanel.tabs('select',title);
+		}
+	}
 
 //	var editIndex = undefined;
 //		function endEditing(){

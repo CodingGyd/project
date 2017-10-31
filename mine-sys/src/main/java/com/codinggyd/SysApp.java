@@ -18,7 +18,8 @@ public class SysApp extends WebMvcConfigurerAdapter{
 		
 		registry.addViewController("/").setViewName("index");//后台管理系统入口
 		registry.addViewController("/modules/main").setViewName("modules/main");//首页
-		registry.addViewController("/modules/article_edit").setViewName("modules/article_edit");//文章编辑
+		registry.addViewController("/modules/article_add").setViewName("modules/article_add");//文章新增
+		registry.addViewController("/modules/article_update").setViewName("modules/article_update");//文章修改
 		registry.addViewController("/modules/article_list").setViewName("modules/article_list");//文章列表
 		
 		registry.addViewController("/index2").setViewName("index2");//

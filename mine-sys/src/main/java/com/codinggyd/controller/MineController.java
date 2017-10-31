@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.http.client.utils.DateUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +74,7 @@ public class MineController {
 		article.setContent(request.getParameter("content"));
 		article.setHtmlContent(request.getParameter("htmlContent"));
 		article.setDescs(request.getParameter("descs"));
-		article.setUpdatetime(DateUtils.formatDate(new Date(), PATTERN));
+		article.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
 		article.setReadingcount(0);
 		article.setType(request.getParameter("type"));
 		
@@ -84,7 +84,7 @@ public class MineController {
 	
 	@RequestMapping(value="/updatebatch",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String updatebatch(@RequestBody Article article) {
-	
+		if (null != article) article.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
 		service.updateArticle(article);
 		
 		return "success";
