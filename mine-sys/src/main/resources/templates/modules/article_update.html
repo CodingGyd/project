@@ -8,6 +8,8 @@
      <script th:src="@{../editormd/editormd.min.js}"></script>
 <div class="easyui-layout" id="easyui-layout-article-update">
 	 <div style="width:100%;padding:10px">
+	 	<input type="hidden" name="article_id" id="article_id"/>
+	 
 	<input class="easyui-textbox" style="width:200px;height:25px" name="article_title" id="article_title" placeholder="文章标题"/>
  	<input class="easyui-textbox" style="width:200px;height:25px" name="article_descs" id="article_descs" placeholder="文章描述"/>
 	<select  id="article_type" style="width:150px"></select>	

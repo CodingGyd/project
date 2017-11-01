@@ -27,7 +27,11 @@
  				WHERE lb=100
 	</select>
 	 
-
+	<select id="queryArticle" resultType="com.codinggyd.bean.Article">
+		SELECT id,title,descs,updatetime,readingcount,url,type,htmlContent,content FROM mine_articles
+		WHERE id = #{id}
+	</select>
+	
 	<select id="findArticles" resultMap="articles">
  		SELECT 	A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName
  				FROM mine_articles A 
@@ -46,6 +50,18 @@
 						type = #{article.type}
 		WHERE id = #{article.id}
 	</update>
+	
+	<update id="updateArticleContent">
+		UPDATE mine_articles SET 
+						title = #{article.title},
+						descs = #{article.descs},
+						content= #{article.content},
+						htmlContent = #{article.htmlContent},
+						updatetime = #{article.updatetime},				
+ 						type = #{article.type}
+		WHERE id = #{article.id}
+	</update>
+	
 	
 	<insert id="insertArticle">
 		  	INSERT INTO mine_articles 

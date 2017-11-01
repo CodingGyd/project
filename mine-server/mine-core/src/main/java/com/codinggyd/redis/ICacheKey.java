@@ -1,4 +1,4 @@
-package com.codinggyd.cache;
+package com.codinggyd.redis;
 
 import java.io.Serializable;
 

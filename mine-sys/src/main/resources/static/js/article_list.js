@@ -6,8 +6,7 @@ $(function(){
 			height:800,
 			singleSelect:true,
 			 onDblClickRow: function (index, row) {  
-                 alert(index);
-                 addTab("编辑文章", "modules/article_update", "icon-application-form-edit", "0");
+                  addTab("编辑文章", "modules/article_update?id="+row.id, "icon-application-form-edit", "0");
 		        },  
 			idField:'id',
 			url:'sys/articlelist',
@@ -41,15 +40,17 @@ $(function(){
 				updateActions(index);
 				  $.ajax({
 			         type: "Post",
-			         url: "/sys/updatebatch",
-		         dataType:"json",
+			         url: "/sys/update_notwithcontent",
+		         dataType:"text",
 		         contentType:"application/json;charset=utf-8",
   			  		data:JSON.stringify(row),
 			         async:true,
 			         success: function(data){
-			        	   	alert("修改成功!");
-			        	   	$('#dg').datagrid('reload');
-			        	 }
+			        	   	$('#dg').datagrid('reload',{});
+			        	 },
+			        error:function(){
+			        	alert("Error");
+			        }
 			         }); 
 
 			},
@@ -105,6 +106,10 @@ $(function(){
 	*/	
 	function addTab(title, href, iconCls, iframe){
 		var tabPanel = $('#wu-tabs');
+		if(tabPanel.tabs('exists',title)){
+ 			tabPanel.tabs("close",title);
+		}
+		
 		if(!tabPanel.tabs('exists',title)){
 			var content = '<iframe scrolling="auto" frameborder="0"  src="'+ href +'" style="width:100%;height:100%;"></iframe>';
 			if(iframe){
@@ -133,70 +138,7 @@ $(function(){
 			tabPanel.tabs('select',title);
 		}
 	}
-
-//	var editIndex = undefined;
-//		function endEditing(){
-//			if (editIndex == undefined){return true}
-//			if ($('#dg').datagrid('validateRow', editIndex)){
-//			 	var ed = $('#dg').datagrid('getEditor', {index:editIndex,field:'id'});
-//				$('#dg').datagrid('endEdit', editIndex);  
-//				editIndex = undefined;
-//				return true;
-//			} else {
-//				return false;
-//			}
-//		}
-//		function onClickRow(index){
-//			if (editIndex != index){
-//				if (endEditing()){
-//					$('#dg').datagrid('selectRow', index)
-//							.datagrid('beginEdit', index);
-//					editIndex = index;
-//				} else {
-//					$('#dg').datagrid('selectRow', editIndex);
-//				}
-//			}
-//		}
-//		function append(){
-//			if (endEditing()){
-// 				editIndex = $('#dg').datagrid('getRows').length-1;
-//				$('#dg').datagrid('selectRow', editIndex)
-//						.datagrid('beginEdit', editIndex);
-//			}
-//		}
-//		function removeit(){
-//			if (editIndex == undefined){return}
-//			$('#dg').datagrid('cancelEdit', editIndex)
-//					.datagrid('deleteRow', editIndex);
-//			editIndex = undefined;
-//		}
-//		function accept(){
-//			if (endEditing()){
-//				var rows = $('#dg').datagrid('getChanges');
-//				  if (rows.length > 0) {  
-//					  alert("11221"+JSON.stringify(rows));
-//// 
-////					  $.ajax({
-////					         type: "Post",
-////					         url: "/sys/updatebatch",
-////					         dataType:"json",
-//////					         contentType:"application/json;charset=utf-8",
-//////					  		data:"articles" :"1",
-////					         data:JSON.stringify(rows),
-////					         async:true,
-////					         success: function(data){
-////					        	   	alert("修改成功!");
-////					        	 }
-////					         }); 
-//				  }
-//				$('#dg').datagrid('acceptChanges');
-//			}
-//		}
-//		function reject(){
-//			$('#dg').datagrid('rejectChanges');
-//			editIndex = undefined;
-//		}
-//		function getChanges(){
-//			var rows = $('#dg').datagrid('getChanges');
-//			alert(rows.length+' 行有改动!');
-//		}
+	
+	function addArticle(){
+		addTab("发布文章", "modules/article_add", "icon-chart-organisation", 0);
+	}

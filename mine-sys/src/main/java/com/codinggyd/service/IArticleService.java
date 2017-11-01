@@ -18,10 +18,13 @@ import com.codinggyd.bean.ArticleType;
  * Copyright @ 2017 Corpration Name
  */
 public interface IArticleService {
-	public void insertArticle(Article article);
-	public void updateArticle(Article article);
-	public void deleteArticle(Integer id);
-
+	void insertArticle(Article article);
+	//更新文章(不包含原文字段的更新)
+	void updateArticle(Article article);
+	//更新文章(包含原文字段的更新)
+	void updateArticleContent(Article article);
+	void deleteArticle(Integer id);
+	Article queryArticle(Integer id);
 	
 	//加载文章分类
 	public List<ArticleType> findArticleTypes();

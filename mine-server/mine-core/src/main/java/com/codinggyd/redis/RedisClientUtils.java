@@ -1,8 +1,10 @@
-package com.codinggyd.cache;
+package com.codinggyd.redis;
 
 import java.io.Serializable;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,8 @@ import redis.clients.jedis.Transaction;
  */
 @Service
 public class RedisClientUtils {
-	
+	static final  Logger logger = LoggerFactory.getLogger(RedisClientUtils.class);
+
 	//redis 主机IP
 	private static String HOST;
 	//redis 端口
@@ -70,13 +73,15 @@ public class RedisClientUtils {
 	
 	public static void cache(String key,Object value) {
 		Jedis jedis = null;
+		long start = System.currentTimeMillis();
 		try {
 			jedis = jedisPool.getResource();
 			Transaction transaction = jedis.multi();
 			transaction.append(key.getBytes(),SerializeUtils.serialize(value));
 			transaction.exec();
+			logger.info("缓存执行耗时[{}]ms",System.currentTimeMillis()-start);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("redis 缓存出错,{}",e);
 		} finally {
 			release(jedis);
 		}
@@ -84,6 +89,7 @@ public class RedisClientUtils {
 	
 	public static <T extends Serializable> void cache2(String tableName,ICacheKey<T> cacheKey,List<T> list) {
 		Jedis jedis = null;
+		long start = System.currentTimeMillis();
 		try {
 			jedis = getInstance().getResource();
 			Transaction transaction = jedis.multi();
@@ -91,8 +97,9 @@ public class RedisClientUtils {
 				transaction.append(SerializeUtils.serialize(tableName+":"+cacheKey.getCacheKey(t)), SerializeUtils.serialize(t));
 			}
 			transaction.exec();
+			logger.info("缓存执行耗时[{}]ms",System.currentTimeMillis()-start);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error("缓存出错,{}",e);
 		} finally {
 			release(jedis);
 		}
@@ -101,6 +108,7 @@ public class RedisClientUtils {
 	public static Object getFromCache(String key) {
 		Jedis jedis = null;
 		Object object = null;
+		long start = System.currentTimeMillis();
 		try {
 			jedis = getInstance().getResource();
 			byte[] bytes = jedis.get(key.getBytes());
@@ -108,13 +116,29 @@ public class RedisClientUtils {
 				return null;
 			}
 			object = SerializeUtils.unserialize(bytes);
+			logger.info("读取缓存耗时[{}]ms",System.currentTimeMillis()-start);
 		} catch(Exception e) {
+			logger.error("读取缓存出错,{}",e);
 		} finally {
 			release(jedis);
 		}
 		return object;
 	}
-	
+	public static Object deleteFromCache(String key) {
+		Jedis jedis = null;
+		Object object = null;
+		long start = System.currentTimeMillis();
+		try {
+			jedis = getInstance().getResource();
+			jedis.del(key.getBytes());
+			logger.info("删除缓存耗时[{}]ms",System.currentTimeMillis()-start);
+		} catch(Exception e) {
+			logger.error("删除缓存出错,{}",e);
+		} finally {
+			release(jedis);
+		}
+		return object;
+	}
 	public static void release(Jedis jedis) {
 		if (null != jedis) {
 			jedis.close();

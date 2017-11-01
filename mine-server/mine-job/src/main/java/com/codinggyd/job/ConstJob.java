@@ -10,8 +10,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.codinggyd.bean.SysConst2;
-import com.codinggyd.cache.ICacheKey;
-import com.codinggyd.cache.RedisClientUtils;
+import com.codinggyd.redis.ICacheKey;
+import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.impl.SysConstServiceImpl2;
 
 @Service

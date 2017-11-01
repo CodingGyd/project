@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.codinggyd.bean.Article;
 import com.codinggyd.bean.ArticleTable;
 import com.codinggyd.bean.ArticleType;
+import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.IArticleService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,6 +48,15 @@ public class MineController {
 
 	private static final String PATTERN = "yyyy-MM-dd HH:mm.ss.SSS";
 	private static ObjectMapper om = new ObjectMapper();
+	
+
+	@RequestMapping(value="/article_byid",method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody Article getArticleSingle(HttpServletRequest request,HttpServletResponse response) {
+		Integer id = Integer.parseInt(request.getParameter("id"));
+		Article article = service.queryArticle(id);
+		return article;
+	}
+	
 	@RequestMapping(value="/articlelist",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String getArticleList(HttpServletRequest request,HttpServletResponse response) {
 		
@@ -67,7 +77,7 @@ public class MineController {
 	}
 	
 	@RequestMapping(value="/insert",method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody String update(HttpServletRequest request,HttpServletResponse response) {
+	public @ResponseBody String insert(HttpServletRequest request,HttpServletResponse response) {
 		
 		Article article = new Article();
 		article.setTitle(request.getParameter("title"));
@@ -82,11 +92,29 @@ public class MineController {
 		return "success";
 	}
 	
-	@RequestMapping(value="/updatebatch",method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody String updatebatch(@RequestBody Article article) {
+	@RequestMapping(value="/update_notwithcontent",method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody String updateNotWithContent(@RequestBody Article article) {
 		if (null != article) article.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
 		service.updateArticle(article);
-		
+		//删除缓存
+ 		RedisClientUtils.deleteFromCache(article.getId()+"");
+		return "success";
+	}
+	
+	@RequestMapping(value="/update_withcontent",method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody String updateWithContent(HttpServletRequest request,HttpServletResponse response) {
+		Article article = new Article();
+		article.setId(Integer.parseInt(request.getParameter("id")));
+		article.setTitle(request.getParameter("title"));
+		article.setContent(request.getParameter("content"));
+		article.setHtmlContent(request.getParameter("htmlContent"));
+		article.setDescs(request.getParameter("descs"));
+		article.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
+		article.setType(request.getParameter("type"));
+		//更新文章内容
+ 		service.updateArticleContent(article);
+ 		//删除缓存
+ 		RedisClientUtils.deleteFromCache(article.getId()+"");
 		return "success";
 	}
 
@@ -94,7 +122,8 @@ public class MineController {
 	public @ResponseBody String delete(Integer id) {
 	
 		service.deleteArticle(id);
-		
+		//删除缓存
+ 		RedisClientUtils.deleteFromCache(id+"");
 		return "success";
 	}
   

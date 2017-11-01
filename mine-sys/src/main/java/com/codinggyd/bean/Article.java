@@ -126,6 +126,13 @@ public class Article implements Serializable {
 		this.editing = editing;
 	}
 
+	@Override
+	public String toString() {
+		return "Article [id=" + id + ", title=" + title + ", descs=" + descs + ", content=" + content + ", htmlContent="
+				+ htmlContent + ", updatetime=" + updatetime + ", readingcount=" + readingcount + ", type=" + type
+				+ ", editing=" + editing + "]";
+	}
+
 	 
 
 	 

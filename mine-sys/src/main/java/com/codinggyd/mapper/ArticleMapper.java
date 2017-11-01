@@ -20,9 +20,13 @@ import com.codinggyd.bean.ArticleType;
  * Copyright @ 2017 Corpration Name
  */
 public interface ArticleMapper {
+	//更新文章(包含原文字段的更新)
+ 	public void updateArticleContent(@Param("article") Article article);
+ 	//更新文章(不包含原文字段的更新)
  	public void updateArticle(@Param("article") Article article);
  	public void insertArticle(@Param("article") Article article);
  	public void deleteArticle(@Param("id") Integer id);
+ 	public Article queryArticle(@Param("id") Integer id);
 
  	
 	public List<ArticleType> listArticleType();

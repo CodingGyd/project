@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.Article;
-import com.codinggyd.cache.RedisClientUtils;
 import com.codinggyd.mapper.ArticleMapper;
+import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.IArticleSiteService;
 import com.codinggyd.util.PageBoundUtils;
 import com.codinggyd.utils.MathUtils;
