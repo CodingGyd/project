@@ -13,13 +13,15 @@
      <!--header end-->
     <!--content start-->
     <div id="content">
- 			<ul class="say_box" id="daily-list"></ul>
+ 			<div id="daily-list"></div>
 					<textarea id="templateDailys" class="template" style="display:none;">
 							{#foreach $T.data as record}  
-								 <div class="sy">
-                         			<p>{$T.record.content}</p>
-                    			 </div>
-                 				 <span class="dateview">{$T.record.updatetime}</span>
+								<ul class="say_box">
+									 <div class="sy">
+                        	 			<p>{$T.record.content}</p>
+                    				 </div>
+                 					 <span class="dateview">{$T.record.updatetime}</span>
+								</ul>
 			 				{#/for}  
 		  		 	</textarea>
          <!--  <ul class="say_box">

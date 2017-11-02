@@ -13,7 +13,7 @@ function loadArticleInfo() {
 	$("#article_id").val(id);
 	 $.ajax({
 	       type: "Post",
-	       url: "/sys/article_byid",
+	       url: "/sys/article/article_byid",
 	       data:{"id":id},
 	       async:true,
 	       success: function(data){
@@ -47,7 +47,7 @@ function initEditor(){
 	           //你的lib目录的路径
 	           path    : "/editormd/lib/",
 	           imageUpload: true,//打开图片上传功能
-	           imageUploadURL : "/sys/imgupload",
+	           imageUploadURL : "/sys/article/imgupload",
 	          /*  theme: "dark",//工具栏主题
 	           previewTheme: "dark",//预览主题
 	           editorTheme: "pastel-on-dark",//编辑主题 */
@@ -66,7 +66,7 @@ function initEditor(){
 function loadArticleType(selectedType) {
 	 $.ajax({
        type: "Post",
-       url: "/sys/article_types",
+       url: "/sys/article/article_types",
        async:false,
        success: function(data){
 	        	 //遍历生成select
@@ -99,7 +99,7 @@ function addListener(){
 		   var content=$("#editormd").val();
 			 $.ajax({
 		         type: "POST",
-		         url: "/sys/update_withcontent",
+		         url: "/sys/article/update_withcontent",
 		         data:{"id":id,"title":title,"descs" :descs,"content":content,"htmlContent":htmlContent,"type":type},
 		         async:true,
 		         success: function(data){

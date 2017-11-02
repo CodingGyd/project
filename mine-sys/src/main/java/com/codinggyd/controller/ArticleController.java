@@ -26,17 +26,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.codinggyd.bean.Article;
-import com.codinggyd.bean.ArticleTable;
 import com.codinggyd.bean.ArticleType;
+import com.codinggyd.bean.DataTable;
 import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.IArticleService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
  
  
 @Controller
 @RequestMapping("sys")
-public class MineController {
+public class ArticleController {
 	
 	@Qualifier("articleServiceImpl")
 	@Autowired
@@ -47,36 +45,29 @@ public class MineController {
 	final Logger logger = LoggerFactory.getLogger(getClass());
 
 	private static final String PATTERN = "yyyy-MM-dd HH:mm.ss.SSS";
-	private static ObjectMapper om = new ObjectMapper();
-	
 
-	@RequestMapping(value="/article_byid",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/article/article_byid",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody Article getArticleSingle(HttpServletRequest request,HttpServletResponse response) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Article article = service.queryArticle(id);
 		return article;
 	}
 	
-	@RequestMapping(value="/articlelist",method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody String getArticleList(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping(value="/article/articlelist",method = { RequestMethod.GET, RequestMethod.POST })
+	public @ResponseBody DataTable<Article> getArticleList(HttpServletRequest request,HttpServletResponse response) {
 		
-		ArticleTable articleTable = new ArticleTable();
+		DataTable<Article> articleTable = new DataTable<Article>();
 		articleTable.setTotal(0);
 		List<Article> articles = service.findArticles();
 		if (CollectionUtils.isNotEmpty(articles)) {
 			articleTable.setRows(articles);
 			articleTable.setTotal(articles.size());
 		}
-		String result = null;
-		try {
-			result = om.writeValueAsString(articleTable);
-		} catch (JsonProcessingException e) {
-			logger.error("序列化result出错,{}",e);
-		}
- 		return result;
+		 
+		return articleTable;
 	}
 	
-	@RequestMapping(value="/insert",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/article/insert",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String insert(HttpServletRequest request,HttpServletResponse response) {
 		
 		Article article = new Article();
@@ -92,7 +83,7 @@ public class MineController {
 		return "success";
 	}
 	
-	@RequestMapping(value="/update_notwithcontent",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/article/update_notwithcontent",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String updateNotWithContent(@RequestBody Article article) {
 		if (null != article) article.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
 		service.updateArticle(article);
@@ -101,7 +92,7 @@ public class MineController {
 		return "success";
 	}
 	
-	@RequestMapping(value="/update_withcontent",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/article/update_withcontent",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String updateWithContent(HttpServletRequest request,HttpServletResponse response) {
 		Article article = new Article();
 		article.setId(Integer.parseInt(request.getParameter("id")));
@@ -118,7 +109,7 @@ public class MineController {
 		return "success";
 	}
 
-	@RequestMapping(value="/delete",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/article/delete",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String delete(Integer id) {
 	
 		service.deleteArticle(id);
@@ -128,13 +119,13 @@ public class MineController {
 	}
   
 	//文章分类
-	@RequestMapping(value={"/article_types"})
+	@RequestMapping(value={"/article/article_types"})
 	public @ResponseBody List<ArticleType> listTypes(HttpServletRequest request,HttpServletResponse response) {
 		List<ArticleType> data = service.findArticleTypes();
 		return data;
 	}
 	//图片上传
-	@RequestMapping(value={"/imgupload"},method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value={"/article/imgupload"},method = { RequestMethod.GET, RequestMethod.POST })
 	public  @ResponseBody Map<String,Object> imgupload(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file,HttpServletRequest request,HttpServletResponse response) {
 		 logger.debug("图片上传========");
 		 

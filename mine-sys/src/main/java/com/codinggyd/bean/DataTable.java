@@ -6,16 +6,16 @@ import java.util.List;
 /**
  * 
  * 
- * @Title:  ArticleTable.java
+ * @Title:  DataTable.java
  * @Package: com.codinggyd.bean
- * @Description: 文章列表表格对象
+ * @Description: 列表表格对象
  *
  * @author: guoyd
  * @Date: 2017年10月29日 下午3:22:01
  *
  * Copyright @ 2017 Corpration Name
  */
-public class ArticleTable implements Serializable {
+public class DataTable<T> implements Serializable {
 	
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class ArticleTable implements Serializable {
 
 	private Integer total;
 	
-	private List<Article> rows;
+	private List<T> rows;
 
 	public Integer getTotal() {
 		return total;
@@ -34,13 +34,11 @@ public class ArticleTable implements Serializable {
 		this.total = total;
 	}
 
-	public List<Article> getRows() {
+	public List<T> getRows() {
 		return rows;
 	}
 
-	public void setRows(List<Article> rows) {
+	public void setRows(List<T> rows) {
 		this.rows = rows;
 	}
-	
-	
 }

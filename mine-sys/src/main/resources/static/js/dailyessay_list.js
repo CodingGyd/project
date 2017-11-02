@@ -1,22 +1,16 @@
 
 $(function(){
-		$('#dg').datagrid({
+		$('#dg_daily').datagrid({
 			iconCls:'icon-edit',
 			width:1200,
 			height:800,
 			singleSelect:true,
-			 onDblClickRow: function (index, row) {  
-                  addTab("编辑文章", "modules/article_update?id="+row.id, "icon-application-form-edit", "0");
-		        },  
 			idField:'id',
-			url:'sys/article/articlelist',
+			url:'sys/dailyessay/dailyessaylist',
 			columns:[[
 				{field:'id',title:'编号',width:50},
-				{field:'title',title:'标题',width:300,editor:'text'},
-				{field:'descs',title:'描述',width:300,editor:'text'},
-				{field:'type',title:'类型',width:60,editor:'numberbox'},
+				{field:'content',title:'随笔内容',width:300,editor:'text'},
 				{field:'updatetime',title:'更新时间',width:160},
-				{field:'readingcount',title:'浏览量',width:160,editor:'numberbox'},
 				{field:'action',title:'操作',width:90,align:'center',
 					formatter:function(value,row,index){
 						if (row.editing){
@@ -40,13 +34,13 @@ $(function(){
 				updateActions(index);
 				  $.ajax({
 			         type: "Post",
-			         url: "/sys/article/update_notwithcontent",
+			         url: "/sys/dailyessay/update",
 		         dataType:"text",
 		         contentType:"application/json;charset=utf-8",
   			  		data:JSON.stringify(row),
 			         async:true,
 			         success: function(data){
-			        	   	$('#dg').datagrid('reload',{});
+			        	   	$('#dg_daily').datagrid('reload',{});
 			        	 },
 			        error:function(){
 			        	alert("Error");
@@ -59,9 +53,13 @@ $(function(){
 				updateActions(index);
 			}
 		});
+		$('#btn_save_daily').click(function() {
+			// submit the form
+			$('#ff_daily').submit();
+		});
 	});
 	function updateActions(index){
-		$('#dg').datagrid('updateRow',{
+		$('#dg_daily').datagrid('updateRow',{
 			index: index,
 			row:{}
 		});
@@ -72,30 +70,30 @@ $(function(){
 		return parseInt(tr.attr('datagrid-row-index'));
 	}
 	function editrow(target){
-		$('#dg').datagrid('beginEdit', getRowIndex(target));
+		$('#dg_daily').datagrid('beginEdit', getRowIndex(target));
 	}
 	function deleterow(target){
 		$.messager.confirm('Confirm','Are you sure?',function(r){
 			if (r){
-				var row = $('#dg').datagrid('getSelected');   
+				var row = $('#dg_daily').datagrid('getSelected');   
 				  $.ajax({
 				         type: "Post",
-				         url: "/sys/article/delete",
+				         url: "/sys/dailyessay/delete",
   	  			  		data:{"id":row.id},
 				         async:true,
 				         success: function(data){
 				        	   	alert("删除成功!");
-				        	   	$('#dg').datagrid('deleteRow', getRowIndex(target));
+				        	   	$('#dg_daily').datagrid('deleteRow', getRowIndex(target));
 				        	 }
 				         }); 
 			}
 		});
 	}
 	function saverow(target){
- 		$('#dg').datagrid('endEdit', getRowIndex(target));
+ 		$('#dg_daily').datagrid('endEdit', getRowIndex(target));
 	}
 	function cancelrow(target){
-		$('#dg').datagrid('cancelEdit', getRowIndex(target));
+		$('#dg_daily').datagrid('cancelEdit', getRowIndex(target));
 	}
 	/**
 	* Name 添加菜单选项
@@ -139,6 +137,27 @@ $(function(){
 		}
 	}
 	
-	function addArticle(){
-		addTab("发布文章", "modules/article_add", "icon-chart-organisation", 0);
+	function addDailyEssay(){
+ 		$('#dd_daily').dialog({
+		    title: '填写随笔',
+		    width: 400,
+		    height: 200,
+		    closed: false,
+		    cache: false,
+		    href: '',
+		    modal: true
+		});
+		$('#dd_daily').dialog('refresh', '');
+		$('#ff_daily').form({
+		    url:'/sys/dailyessay/insert',
+		    onSubmit: function(){
+ 		    },
+		    success:function(data){
+        	   	$('#dg_daily').datagrid('reload',{});
+        		$('#dd_daily').dialog('close','');
+ 		    },
+ 		    error:function () {
+ 		    	alert("error");
+ 		    }
+		});
 	}
