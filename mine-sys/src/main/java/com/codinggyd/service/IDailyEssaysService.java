@@ -9,7 +9,7 @@ import com.codinggyd.bean.DailEssays;
  * 
  * @Title:  IDailyEssaysService.java
  * @Package: com.codinggyd.service
- * @Description: 随笔
+ * @Description: 随笔管理
  *
  * @author: guoyd
  * @Date: 2017年10月15日 下午8:10:46

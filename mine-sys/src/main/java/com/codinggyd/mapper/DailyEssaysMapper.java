@@ -11,7 +11,7 @@ import com.codinggyd.bean.DailEssays;
  * 
  * @Title:  DailyEssaysMapper.java
  * @Package: com.codinggyd.mapper
- * @Description: 随笔
+ * @Description: 随笔管理
  *
  * @author: guoyd
  * @Date: 2017年10月15日 下午8:15:53

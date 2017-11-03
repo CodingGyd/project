@@ -21,10 +21,10 @@ import com.codinggyd.bean.MineServiceBean;
 import com.codinggyd.util.MineFieldTypeUtils;
 
 /**
- * 应用程序数据初始化加载类
+ * 
  * @Title:  MineContext
  * @Package: com.codinggyd.core
- * @Description: 
+ * @Description: 应用程序数据初始化加载类
  *
  * @author: guoyd
  * @Date: 2017年2月18日下午7:14:12

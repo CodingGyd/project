@@ -12,7 +12,7 @@ import com.codinggyd.bean.ArticleType;
  * 
  * @Title:  ArticleMapper.java
  * @Package: com.codinggyd.mapper
- * @Description: 
+ * @Description: 文章管理
  *
  * @author: guoyd
  * @Date: 2017年9月17日 下午1:45:11

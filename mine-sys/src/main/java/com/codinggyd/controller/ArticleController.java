@@ -31,7 +31,17 @@ import com.codinggyd.bean.DataTable;
 import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.IArticleService;
  
- 
+/**
+ * 
+ * @Title:  ArticleController.java
+ * @Package: com.codinggyd.controller
+ * @Description: 文章管理相关接口
+ *
+ * @author: guoyd
+ * @Date: 2017年11月3日 下午9:58:18
+ *
+ * Copyright @ 2017 Corpration Name
+ */
 @Controller
 @RequestMapping("sys")
 public class ArticleController {

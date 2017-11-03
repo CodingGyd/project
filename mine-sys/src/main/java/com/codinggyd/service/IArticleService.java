@@ -10,7 +10,7 @@ import com.codinggyd.bean.ArticleType;
  * 
  * @Title:  IArticleService.java
  * @Package: com.codinggyd.service
- * @Description: 文章列表获取
+ * @Description: 文章管理
  *
  * @author: guoyd
  * @Date: 2017年9月14日 下午10:01:16

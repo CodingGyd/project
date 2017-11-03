@@ -16,7 +16,7 @@ import com.codinggyd.service.IDailyEssaysService;
  * 
  * @Title:  DailyEssaysServiceImpl.java
  * @Package: com.codinggyd.service.impl
- * @Description: 随笔
+ * @Description: 随笔管理
  *
  * @author: guoyd
  * @Date: 2017年10月15日 下午8:12:21

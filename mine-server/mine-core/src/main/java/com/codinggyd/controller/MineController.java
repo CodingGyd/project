@@ -47,8 +47,6 @@ public class MineController extends BaseController{
 		MineRequestBean mineRequestBean = objectMapper.readValue(requestJson, MineRequestBean.class);
 		logger.info("POST 参数:{}",requestJson);
  		String result = MineServiceExecuter.invoke(mineRequestBean);
-// 		return result;
- 		//这里有问题，客户端打印的数据长度不一致,有待解决@@
 		response(request, response, result,mineRequestBean);
 	}
 	 

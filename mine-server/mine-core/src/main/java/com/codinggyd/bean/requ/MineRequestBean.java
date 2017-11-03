@@ -25,7 +25,7 @@ public class MineRequestBean implements Serializable{
 
 	private String serviceId;//接口标识
 	
-	private JsonNode[] params;;//接口参数集合
+	private JsonNode[] params;//接口参数集合
 	
 
 	public String getServiceId() {

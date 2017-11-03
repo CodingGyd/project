@@ -24,7 +24,17 @@ import com.codinggyd.bean.DataTable;
 import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.IDailyEssaysService;
  
- 
+ /**
+  * 
+  * @Title:  DailyEssayController.java
+  * @Package: com.codinggyd.controller
+  * @Description:  随笔管理相关接口
+  *
+  * @author: guoyd
+  * @Date: 2017年11月3日 下午9:57:51
+  *
+  * Copyright @ 2017 Corpration Name
+  */
 @Controller
 @RequestMapping("sys")
 public class DailyEssayController {

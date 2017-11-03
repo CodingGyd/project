@@ -17,7 +17,7 @@ import com.codinggyd.service.IArticleService;
  * 
  * @Title:  UtilFunctionServiceImpl.java
  * @Package: com.codinggyd.service.impl
- * @Description: 
+ * @Description: 文章管理
  *
  * @author: guoyd
  * @Date: 2017年1月21日下午7:07:45

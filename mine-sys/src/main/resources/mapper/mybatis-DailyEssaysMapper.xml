@@ -14,11 +14,11 @@
 	</select>
 	
 	<select id="queryDailyEssays" resultType="com.codinggyd.bean.DailEssays">
-		SELECT id,content,updatetime FROM mine_dailyessays WHERE id= {id}
+		SELECT id,content,updatetime FROM mine_dailyessays WHERE id= #{id}
 	</select>
 	<update id="updateDailyEssays">
 		UPDATE mine_dailyessays SET content = #{daily.content},updatetime = #{daily.updatetime}
-		WHERE id= {daily.id} 
+		WHERE id= #{daily.id} 
 	</update>
 	 
 	 <insert id="insertDailyEssays">
