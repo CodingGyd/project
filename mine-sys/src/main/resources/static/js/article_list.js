@@ -84,8 +84,7 @@ $(function(){
   	  			  		data:{"id":row.id},
 				         async:true,
 				         success: function(data){
-				        	   	alert("删除成功!");
-				        	   	$('#dg').datagrid('deleteRow', getRowIndex(target));
+ 				        	   	$('#dg').datagrid('deleteRow', getRowIndex(target));
 				        	 }
 				         }); 
 			}

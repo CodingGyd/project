@@ -1,11 +1,8 @@
  
 package com.codinggyd.controller;
 
-import java.io.File;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,9 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.codinggyd.bean.Article;
 import com.codinggyd.bean.ArticleType;
@@ -135,33 +130,33 @@ public class ArticleController {
 		return data;
 	}
 	//图片上传
-	@RequestMapping(value={"/article/imgupload"},method = { RequestMethod.GET, RequestMethod.POST })
-	public  @ResponseBody Map<String,Object> imgupload(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file,HttpServletRequest request,HttpServletResponse response) {
-		 logger.debug("图片上传========");
+//	@RequestMapping(value={"/article/imgupload"},method = { RequestMethod.GET, RequestMethod.POST })
+//	public  @ResponseBody Map<String,Object> imgupload(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file,HttpServletRequest request,HttpServletResponse response) {
+//		 logger.debug("图片上传========");
 		 
-		 File dir = new File(imageUploadDir);
-		 if (!dir.exists()) {
-			 dir.mkdirs();
-		 }
-		   Map<String,Object> resultMap = new HashMap<String,Object>();
-	        String fileName = file.getOriginalFilename();  
-	        File targetFile = new File(imageUploadDir, fileName);  
-	        
-	        //保存  
-	        try {  
-	        	if(!targetFile.exists()){  
-	        		targetFile.createNewFile();
-	        	}  
-	            file.transferTo(targetFile);  
-	            resultMap.put("success", 1);
-	            resultMap.put("message", "上传成功！");
-	            resultMap.put("url",request.getContextPath()+"/images/upload/"+fileName);
-	        } catch (Exception e) {  
-	            resultMap.put("success", 0);
-	            resultMap.put("message", "上传失败！");
-	            e.printStackTrace();  
-	        }  
-	        return resultMap;  
-	}
+//		 File dir = new File(imageUploadDir);
+//		 if (!dir.exists()) {
+//			 dir.mkdirs();
+//		 }
+//		   Map<String,Object> resultMap = new HashMap<String,Object>();
+//	        String fileName = file.getOriginalFilename();  
+//	        File targetFile = new File(imageUploadDir, fileName);  
+//	        
+//	        //保存  
+//	        try {  
+//	        	if(!targetFile.exists()){  
+//	        		targetFile.createNewFile();
+//	        	}  
+//	            file.transferTo(targetFile);  
+//	            resultMap.put("success", 1);
+//	            resultMap.put("message", "上传成功！");
+//	            resultMap.put("url",request.getContextPath()+"/images/upload/"+fileName);
+//	        } catch (Exception e) {  
+//	            resultMap.put("success", 0);
+//	            resultMap.put("message", "上传失败！");
+//	            e.printStackTrace();  
+//	        }  
+//	        return resultMap;  
+//	}
 	
 }

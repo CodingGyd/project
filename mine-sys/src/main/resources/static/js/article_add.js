@@ -13,7 +13,7 @@ var editor;
 function initEditor(){
 	
 	editor=$(function() {
-	      editormd("test-editormd", {
+	      editormd("test-editormd-add", {
 	           width   : "90%",
 	           height  : 640,
 	           //markdown : md,
@@ -22,7 +22,7 @@ function initEditor(){
 	           //你的lib目录的路径
 	           path    : "/editormd/lib/",
 	           imageUpload: true,//打开图片上传功能
-	           imageUploadURL : "/sys/article/imgupload",
+	           imageUploadURL : "/sys/image/upload",
 	          /*  theme: "dark",//工具栏主题
 	           previewTheme: "dark",//预览主题
 	           editorTheme: "pastel-on-dark",//编辑主题 */
