@@ -7,11 +7,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codinggyd.service.impl.DataExportServiceImpl;
+import com.codinggyd.service.IDataExportService;
 
 /**
  * 
@@ -31,7 +32,8 @@ public class DataExportController {
 	final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	DataExportServiceImpl service;
+	@Qualifier("dataExportServiceImpl")
+	IDataExportService service;
      
 	@RequestMapping("data-export")  
     public String dataExport(HttpServletRequest request, HttpServletResponse response,@RequestParam("script") String script) {  
