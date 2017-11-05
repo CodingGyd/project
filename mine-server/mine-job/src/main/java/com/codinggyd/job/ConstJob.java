@@ -6,20 +6,22 @@ import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.codinggyd.bean.SysConst2;
 import com.codinggyd.redis.ICacheKey;
 import com.codinggyd.redis.RedisClientUtils;
-import com.codinggyd.service.impl.SysConstServiceImpl2;
+import com.codinggyd.service.ISysConstJobService;
 
 @Service
 public class ConstJob {
 	final Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
-	private SysConstServiceImpl2 service;
+	@Qualifier("sysConstJobServiceImpl")
+	private ISysConstJobService service;
 	
 	private static final String TABLE_CONST = "SYSCONST";
 	

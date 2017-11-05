@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.codinggyd.bean.KeyWord;
 import com.codinggyd.mapper.KeyWordMapper;
@@ -23,6 +25,7 @@ import com.codinggyd.service.IKeyWordService;
  * Copyright @ 2017 Corpration Name
  */
 @Service
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 public class KeyWordServiceImpl implements IKeyWordService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
@@ -33,14 +36,17 @@ public class KeyWordServiceImpl implements IKeyWordService{
 		return mapper.findKeywords(ids);
 	}
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void deleteKeyWords(Integer id) {
 		mapper.deleteKeyWord(id);
 	}
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void updateKeyWords(KeyWord key) {
 		mapper.updateKeyWords(key);
 	}
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void insertKeyWords(KeyWord key) {
 		mapper.insertKeyWords(key);
 	}

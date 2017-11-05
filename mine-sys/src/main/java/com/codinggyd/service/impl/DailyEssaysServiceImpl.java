@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.codinggyd.bean.DailEssays;
 import com.codinggyd.mapper.DailyEssaysMapper;
@@ -24,6 +26,7 @@ import com.codinggyd.service.IDailyEssaysService;
  * Copyright @ 2017 Corpration Name
  */
 @Service
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 public class DailyEssaysServiceImpl implements IDailyEssaysService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
@@ -36,16 +39,19 @@ public class DailyEssaysServiceImpl implements IDailyEssaysService{
 	}
 
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void deleteDailyEssays(Integer id) {
 		mapper.deleteDailyEssays(id);
 	}
 
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void updateDailyEssays(DailEssays daily) {
 		mapper.updateDailyEssays(daily);
 	}
 
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void insertDailyEssays(DailEssays daily) {
 		mapper.insertDailyEssays(daily);
 	}

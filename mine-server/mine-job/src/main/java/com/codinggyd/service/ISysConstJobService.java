@@ -16,7 +16,7 @@ import com.codinggyd.bean.SysConst2;
  *
  * Copyright @ 2017 Corpration Name
  */
-public interface ISysConstService2 {
+public interface ISysConstJobService {
 	
 	public List<SysConst2> getAllConst();
 	 

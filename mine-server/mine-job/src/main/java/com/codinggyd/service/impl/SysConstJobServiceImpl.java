@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.SysConst2;
 import com.codinggyd.mapper.SysConstMapper2;
-import com.codinggyd.service.ISysConstService2;
+import com.codinggyd.service.ISysConstJobService;
 
 /**
  * 
@@ -24,7 +26,8 @@ import com.codinggyd.service.ISysConstService2;
  */
 @Service
 @MineService
-public class SysConstServiceImpl2 implements ISysConstService2{
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
+public class SysConstJobServiceImpl implements ISysConstJobService{
 
 	@Autowired
 	private SysConstMapper2 mapper;

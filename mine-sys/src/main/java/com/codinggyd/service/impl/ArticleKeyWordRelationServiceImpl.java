@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.codinggyd.bean.ArticleKeyWordRelation;
 import com.codinggyd.bean.ArticleKeyWordRelationParent;
@@ -34,6 +36,7 @@ import com.codinggyd.service.IKeyWordService;
  * Copyright @ 2017 Corpration Name
  */
 @Service
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 public class ArticleKeyWordRelationServiceImpl implements IArticleKeyWordRelationService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
@@ -80,6 +83,7 @@ public class ArticleKeyWordRelationServiceImpl implements IArticleKeyWordRelatio
 		return datas;
 	}
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void updateRelation(ArticleKeyWordRelationParent parent) {
 		if (null != parent) {
 			deleteRelation(parent.getArticleId());
@@ -87,6 +91,7 @@ public class ArticleKeyWordRelationServiceImpl implements IArticleKeyWordRelatio
 		}
 	}
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void insertRelation(List<ArticleKeyWordRelation> keys) {
 		if (CollectionUtils.isNotEmpty(keys)) {
 			Date date = new Date();
@@ -97,6 +102,7 @@ public class ArticleKeyWordRelationServiceImpl implements IArticleKeyWordRelatio
 		}
 	}
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void deleteRelation(Integer articleId) {
 		if (null != articleId) {
 			mapper.deleteRelation(articleId);

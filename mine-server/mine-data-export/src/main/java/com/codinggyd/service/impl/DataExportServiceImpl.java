@@ -12,6 +12,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.codinggyd.annotation.MineService;
 import com.codinggyd.mapper.DataExportMapper;
@@ -33,6 +35,7 @@ import com.codinggyd.util.CustomExportUtil;
  */
 @Service
 @MineService
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 public class DataExportServiceImpl implements IDataExportService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());

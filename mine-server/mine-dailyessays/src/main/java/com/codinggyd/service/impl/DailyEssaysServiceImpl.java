@@ -7,6 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.DailEssays;
@@ -29,6 +31,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
  */
 @Service
 @MineService
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 public class DailyEssaysServiceImpl implements IDailyEssaysService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());

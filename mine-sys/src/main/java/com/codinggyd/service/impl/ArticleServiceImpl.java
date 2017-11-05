@@ -32,7 +32,7 @@ import com.codinggyd.service.IArticleService;
  * Copyright @ 2017 Corpration Name
  */
 @Service
-@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 public class ArticleServiceImpl implements IArticleService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
@@ -44,10 +44,12 @@ public class ArticleServiceImpl implements IArticleService{
 	private IArticleKeyWordRelationService service;
 	
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void updateArticle(Article article) {
 		mapper.updateArticle(article);
 	}
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void updateArticleContent(Article article) {
 		mapper.updateArticleContent(article);
 		
@@ -58,6 +60,7 @@ public class ArticleServiceImpl implements IArticleService{
 		
 	}
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void insertArticle(Article article) {
 		Integer effectRows = mapper.insertArticle(article);
 		if (effectRows == 1) {
@@ -82,6 +85,7 @@ public class ArticleServiceImpl implements IArticleService{
 		return mapper.findArticles();
 	}
 	@Override
+	@Transactional(value="mineTransactionManager",propagation=Propagation.REQUIRED,readOnly=false)
 	public void deleteArticle(Integer id) {
 		 mapper.deleteArticle(id);
  	}
