@@ -63,7 +63,9 @@
 	</update>
 	
 	
-	<insert id="insertArticle">
+	<insert id="insertArticle" useGeneratedKeys="true"  keyProperty="article.id" parameterType="com.codinggyd.bean.Article">
+	
+	    
 		  	INSERT INTO mine_articles 
        				(title, descs, content,htmlContent,updatetime,readingcount,type)
 			VALUES(
@@ -74,7 +76,7 @@
 					#{article.updatetime},				
 					#{article.readingcount},
 					#{article.type}
-			   )  
+			   ) 
 		</insert>
 		<update id="deleteArticle">
 			DELETE FROM mine_articles WHERE id = #{id}

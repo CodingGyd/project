@@ -37,6 +37,7 @@ public class MyBatisConfig implements TransactionManagementConfigurer {
   @Autowired
   private DataSource dataSource;
 
+  @Bean(name = "mineTransactionManager")
   @Override
   public PlatformTransactionManager annotationDrivenTransactionManager() {
        return new DataSourceTransactionManager(dataSource);

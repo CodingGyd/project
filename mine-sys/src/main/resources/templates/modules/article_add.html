@@ -1,9 +1,28 @@
 <div class="easyui-layout">
 	 <div style="width:100%;padding:10px">
-	<input class="easyui-textbox" style="width:200px;height:25px" name="article_title" id="article_title" placeholder="文章标题"/>
- 	<input class="easyui-textbox" style="width:200px;height:25px" name="article_descs" id="article_descs" placeholder="文章描述"/>
-	<select  id="article_type" style="width:150px"></select>	
-	<a href="#" id="btn_submit" class="easyui-linkbutton">保存文章</a>
+	<input class="easyui-textbox" style="width:300px;height:25px" name="article_title" id="article_title" placeholder="文章标题"/> 
+ 	  	&nbsp;&nbsp;文章关键字：<input class="easyui-combobox" style="width:200px" id="article_keywords" name="article_keywords"
+			data-options="url:'/sys/keyword/keywordlist2',
+					method:'get',
+					valueField:'id',
+					textField:'name',
+					multiple:true,
+					panelHeight:'auto'"
+			 /> 
+	 	&nbsp;&nbsp;文章分类：<input class="easyui-combobox" id="article_type" name="article_type"
+			data-options="url:'/sys/article/article_types',
+					method:'get',
+					valueField:'dm',
+					textField:'ms',
+					multiple:false,
+					panelHeight:'auto'"
+			 />	
+			 	<a href="#" id="btn_submit" class="easyui-linkbutton">保存文章</a>
+			 <br/>
+	<div style="margin:20px;">
+ 	<input class="easyui-textbox" data-options="multiline:true"
+ 	 style="width:100%;height:100px" name="article_descs" id="article_descs" placeholder="文章描述"/> 
+ 	 </div>
   	</div>
   
     <!-- editormd start -->

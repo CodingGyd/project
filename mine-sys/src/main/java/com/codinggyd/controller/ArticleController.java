@@ -1,6 +1,7 @@
  
 package com.codinggyd.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +23,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleKeyWordRelation;
 import com.codinggyd.bean.ArticleType;
 import com.codinggyd.bean.DataTable;
+import com.codinggyd.constant.AppConfig;
 import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.IArticleService;
+import com.codinggyd.util.CommonUtils;
+import com.fasterxml.jackson.databind.ObjectMapper;
  
 /**
  * 
@@ -38,7 +44,7 @@ import com.codinggyd.service.IArticleService;
  * Copyright @ 2017 Corpration Name
  */
 @Controller
-@RequestMapping("sys")
+@RequestMapping("sys/article")
 public class ArticleController {
 	
 	@Qualifier("articleServiceImpl")
@@ -51,14 +57,14 @@ public class ArticleController {
 
 	private static final String PATTERN = "yyyy-MM-dd HH:mm.ss.SSS";
 
-	@RequestMapping(value="/article/article_byid",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/article_byid",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody Article getArticleSingle(HttpServletRequest request,HttpServletResponse response) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		Article article = service.queryArticle(id);
 		return article;
 	}
 	
-	@RequestMapping(value="/article/articlelist",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/articlelist",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody DataTable<Article> getArticleList(HttpServletRequest request,HttpServletResponse response) {
 		
 		DataTable<Article> articleTable = new DataTable<Article>();
@@ -72,9 +78,10 @@ public class ArticleController {
 		return articleTable;
 	}
 	
-	@RequestMapping(value="/article/insert",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/insert",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String insert(HttpServletRequest request,HttpServletResponse response) {
-		
+		List<ArticleKeyWordRelation> keys = formatKeysRelation(request.getParameter("keywords"));
+		 
 		Article article = new Article();
 		article.setTitle(request.getParameter("title"));
 		article.setContent(request.getParameter("content"));
@@ -83,80 +90,83 @@ public class ArticleController {
 		article.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
 		article.setReadingcount(0);
 		article.setType(request.getParameter("type"));
-		
+		article.setKeys(keys);
 		service.insertArticle(article);
 		return "success";
 	}
 	
-	@RequestMapping(value="/article/update_notwithcontent",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/update_notwithcontent",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String updateNotWithContent(@RequestBody Article article) {
-		if (null != article) article.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
-		service.updateArticle(article);
-		//删除缓存
- 		RedisClientUtils.deleteFromCache(article.getId()+"");
+		if (null != article) {
+			article.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
+			service.updateArticle(article);
+			RedisClientUtils.deleteFromCache(article.getId()+"");
+		}
 		return "success";
 	}
 	
-	@RequestMapping(value="/article/update_withcontent",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/update_withcontent",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String updateWithContent(HttpServletRequest request,HttpServletResponse response) {
+		
+		List<ArticleKeyWordRelation> keys = formatKeysRelation(request.getParameter("keywords"));
+		
+		Integer articleId = Integer.parseInt(request.getParameter("id"));
+		if(CollectionUtils.isNotEmpty(keys)) {
+			for (ArticleKeyWordRelation key : keys ) {
+				key.setArticleId(articleId);
+			}
+		}
+		
 		Article article = new Article();
-		article.setId(Integer.parseInt(request.getParameter("id")));
+		article.setId(articleId);
 		article.setTitle(request.getParameter("title"));
 		article.setContent(request.getParameter("content"));
 		article.setHtmlContent(request.getParameter("htmlContent"));
 		article.setDescs(request.getParameter("descs"));
 		article.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
 		article.setType(request.getParameter("type"));
-		//更新文章内容
+		article.setKeys(keys);
  		service.updateArticleContent(article);
- 		//删除缓存
- 		RedisClientUtils.deleteFromCache(article.getId()+"");
+ 		RedisClientUtils.deleteFromCache(AppConfig.getRedis_key_article()+article.getId());
 		return "success";
 	}
 
-	@RequestMapping(value="/article/delete",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/delete",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String delete(Integer id) {
 	
 		service.deleteArticle(id);
-		//删除缓存
- 		RedisClientUtils.deleteFromCache(id+"");
+ 		RedisClientUtils.deleteFromCache(AppConfig.getRedis_key_article()+id);
 		return "success";
 	}
   
-	//文章分类
-	@RequestMapping(value={"/article/article_types"})
+	@RequestMapping(value={"/article_types"})
 	public @ResponseBody List<ArticleType> listTypes(HttpServletRequest request,HttpServletResponse response) {
 		List<ArticleType> data = service.findArticleTypes();
 		return data;
 	}
-	//图片上传
-//	@RequestMapping(value={"/article/imgupload"},method = { RequestMethod.GET, RequestMethod.POST })
-//	public  @ResponseBody Map<String,Object> imgupload(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file,HttpServletRequest request,HttpServletResponse response) {
-//		 logger.debug("图片上传========");
-		 
-//		 File dir = new File(imageUploadDir);
-//		 if (!dir.exists()) {
-//			 dir.mkdirs();
-//		 }
-//		   Map<String,Object> resultMap = new HashMap<String,Object>();
-//	        String fileName = file.getOriginalFilename();  
-//	        File targetFile = new File(imageUploadDir, fileName);  
-//	        
-//	        //保存  
-//	        try {  
-//	        	if(!targetFile.exists()){  
-//	        		targetFile.createNewFile();
-//	        	}  
-//	            file.transferTo(targetFile);  
-//	            resultMap.put("success", 1);
-//	            resultMap.put("message", "上传成功！");
-//	            resultMap.put("url",request.getContextPath()+"/images/upload/"+fileName);
-//	        } catch (Exception e) {  
-//	            resultMap.put("success", 0);
-//	            resultMap.put("message", "上传失败！");
-//	            e.printStackTrace();  
-//	        }  
-//	        return resultMap;  
-//	}
 	
+	
+	private List<ArticleKeyWordRelation> formatKeysRelation(String keywordsJson) {
+		List<ArticleKeyWordRelation> result = new ArrayList<>();
+		String[] keywords = null;
+		if (StringUtils.isNotEmpty(keywordsJson)) {
+			try {
+				ObjectMapper om = CommonUtils.getMappingInstance();
+				keywords = om.readValue(keywordsJson, String[].class);
+			} catch (Exception e) {
+				logger.error("文章关键词数据有误,{}",e);
+			}
+			if (null != keywords && keywords.length > 0) {
+				Date date = new Date();
+				
+				for (String keyid : keywords) {
+					ArticleKeyWordRelation k = new ArticleKeyWordRelation();
+					k.setKeyWordId(Integer.parseInt(keyid));
+					k.setUpdatetime(DateFormatUtils.format(date, PATTERN));
+					result.add(k);
+				}
+ 			}
+		}
+		return result;
+	}
 }

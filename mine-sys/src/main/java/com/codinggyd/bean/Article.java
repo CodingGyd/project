@@ -1,6 +1,7 @@
 package com.codinggyd.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -52,6 +53,11 @@ public class Article implements Serializable {
 	 */
 	private String type;
 	
+	/**
+	 * 文章关键词
+	 */
+	private List<ArticleKeyWordRelation> keys;
+	private Integer userId;
 	private boolean editing;//easyui 表格对象属性
 	public String getTitle() {
 		return title;
@@ -126,14 +132,20 @@ public class Article implements Serializable {
 		this.editing = editing;
 	}
 
-	@Override
-	public String toString() {
-		return "Article [id=" + id + ", title=" + title + ", descs=" + descs + ", content=" + content + ", htmlContent="
-				+ htmlContent + ", updatetime=" + updatetime + ", readingcount=" + readingcount + ", type=" + type
-				+ ", editing=" + editing + "]";
+	public List<ArticleKeyWordRelation> getKeys() {
+		return keys;
 	}
 
-	 
+	public void setKeys(List<ArticleKeyWordRelation> keys) {
+		this.keys = keys;
+	}
 
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 	 
 }

@@ -32,15 +32,14 @@ import com.codinggyd.fastdfs.FastDFSClientWrapper;
  * Copyright @ 2017 Corpration Name
  */
 @Controller
-@RequestMapping("sys")
+@RequestMapping("sys/image")
 public class ImageController {
 	
  	@Autowired
 	private FastDFSClientWrapper dfsClient;
 	
 	final Logger logger = LoggerFactory.getLogger(getClass());
-	//图片上传
-	@RequestMapping(value={"/image/upload"},method = { RequestMethod.GET, RequestMethod.POST })
+ 	@RequestMapping(value={"/upload"},method = { RequestMethod.GET, RequestMethod.POST })
 	public  @ResponseBody Map<String,Object> imgupload(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file,HttpServletRequest request,HttpServletResponse response) {
 		logger.debug("图片上传========");
 		long start = System.currentTimeMillis();

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.mapper.KeyWordMapper">
+  <resultMap id="keywords" type="com.codinggyd.bean.KeyWord">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+          <result column="updatetime" property="updatetime" />
+    </resultMap>
+
+	<select id="findKeywords" resultMap="keywords">
+		SELECT id,name,updatetime FROM mine_keywords
+		<if test="ids != null and ids.size() > 0">
+			WHERE id IN (
+				<foreach collection="ids" item="item" separator=",">
+					#{item}
+				</foreach>
+			)
+			
+		</if>
+	</select>
+	
+	<select id="queryKeyWords" resultType="com.codinggyd.bean.KeyWord">
+		SELECT id,name,updatetime FROM mine_keywords WHERE id= #{id}
+	</select>
+	<update id="updateKeyWords">
+		UPDATE mine_keywords SET name = #{key.name},updatetime = #{key.updatetime}
+		WHERE id= #{key.id} 
+	</update>
+	 
+	 <insert id="insertKeyWords">
+		INSERT INTO mine_keywords(name,updatetime) VALUES(#{key.name},#{key.updatetime})
+	</insert>
+</mapper>

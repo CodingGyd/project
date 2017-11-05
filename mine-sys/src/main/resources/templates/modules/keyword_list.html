@@ -1,0 +1,18 @@
+<div class="easyui-layout">
+	<div id="tb" style="height:auto">
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="addKeyWord()">新增关键字</a>
+	</div>
+	<table id="dg_keyword" class="easyui-datagrid" title="" style="width:1200px;height:auto">
+	</table>
+	<div id="dd_keyword">
+		<form id="ff_keyword" method="post">
+		    <div>
+ 				<input class="easyui-validatebox" type="text" name="name" data-options="required:true" />
+		    </div>
+		</form>
+	<a id="btn_save_keyword" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">保存</a>
+	</div>
+</div>
+<script th:src="@{js/keyword_list.js}"></script>
+	 
+ 

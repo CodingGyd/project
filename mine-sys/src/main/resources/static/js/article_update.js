@@ -21,9 +21,9 @@ function loadArticleInfo() {
 		        	$("#article_title").val(data.title);
 		        	$("#article_descs").val(data.descs);
 		        	
-		        	var selectedType = data.type;
-		        	//加载文章分类
-		        	loadArticleType(selectedType);
+//		        	var selectedType = data.type;
+//		        	//加载文章分类
+//		        	loadArticleType(selectedType);
 		        	//初始化文章编辑器
 		        	initEditor();
 		        	
@@ -85,14 +85,18 @@ function loadArticleType(selectedType) {
 //控件添加今监听器
 function addListener(){
 	$('#btn_submit').click(function() {
+		 //获取文章关键词
+		  var keywords = $("#article_keywords").combobox('getValues'); 
+		  alert(keywords);
+		  //获取文章分类
+		  var type = $("#article_type").combobox('getValue');
+		  
 		 //获取文章ID
 		  var id=$("#article_id").val();
 		  //获取文章标题
 		  var title=$("#article_title").val();
 		  //获取文章概述
 		  var descs=$("#article_descs").val();
-		  //获取文章分类$
-		  var type =$('#article_type option:selected').val();
 		  //获取第二个textarea的值，即生成的HTML代码
 		  var htmlContent=$("#editorhtml").val();
 		  //获取第一个textarea的值，即md值
@@ -100,7 +104,7 @@ function addListener(){
 			 $.ajax({
 		         type: "POST",
 		         url: "/sys/article/update_withcontent",
-		         data:{"id":id,"title":title,"descs" :descs,"content":content,"htmlContent":htmlContent,"type":type},
+		         data:{"id":id,"title":title,"descs" :descs,"content":content,"htmlContent":htmlContent,"type":type,"keywords":JSON.stringify(keywords)},
 		         async:true,
 		         success: function(data){
 		        	   	alert("更新成功");

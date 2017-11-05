@@ -1,15 +1,15 @@
 
 $(function(){
-		$('#dg_daily').datagrid({
+		$('#dg_keyword').datagrid({
 			iconCls:'icon-edit',
 			width:1200,
 			height:800,
 			singleSelect:true,
 			idField:'id',
-			url:'sys/dailyessay/dailyessaylist',
+			url:'sys/keyword/keywordlist',
 			columns:[[
 				{field:'id',title:'编号',width:50},
-				{field:'content',title:'随笔内容',width:300,editor:'text'},
+				{field:'name',title:'关键字',width:300,editor:'text'},
 				{field:'updatetime',title:'更新时间',width:160},
 				{field:'action',title:'操作',width:90,align:'center',
 					formatter:function(value,row,index){
@@ -34,13 +34,13 @@ $(function(){
 				updateActions(index);
 				  $.ajax({
 			         type: "Post",
-			         url: "/sys/dailyessay/update",
+			         url: "/sys/keyword/update",
 		         dataType:"text",
 		         contentType:"application/json;charset=utf-8",
   			  		data:JSON.stringify(row),
 			         async:true,
 			         success: function(data){
-			        	   	$('#dg_daily').datagrid('reload',{});
+			        	   	$('#dg_keyword').datagrid('reload',{});
 			        	 },
 			        error:function(){
 			        	alert("Error");
@@ -53,13 +53,13 @@ $(function(){
 				updateActions(index);
 			}
 		});
-		$('#btn_save_daily').click(function() {
+		$('#btn_save_keyword').click(function() {
 			// submit the form
-			$('#ff_daily').submit();
+			$('#ff_keyword').submit();
 		});
 	});
 	function updateActions(index){
-		$('#dg_daily').datagrid('updateRow',{
+		$('#dg_keyword').datagrid('updateRow',{
 			index: index,
 			row:{}
 		});
@@ -70,34 +70,34 @@ $(function(){
 		return parseInt(tr.attr('datagrid-row-index'));
 	}
 	function editrow(target){
-		$('#dg_daily').datagrid('beginEdit', getRowIndex(target));
+		$('#dg_keyword').datagrid('beginEdit', getRowIndex(target));
 	}
 	function deleterow(target){
 		$.messager.confirm('Confirm','Are you sure?',function(r){
 			if (r){
-				var row = $('#dg_daily').datagrid('getSelected');   
+				var row = $('#dg_keyword').datagrid('getSelected');   
 				  $.ajax({
 				         type: "Post",
-				         url: "/sys/dailyessay/delete",
+				         url: "/sys/keyword/delete",
   	  			  		data:{"id":row.id},
 				         async:true,
 				         success: function(data){
-				        	   	alert("删除成功!");
-				        	   	$('#dg_daily').datagrid('deleteRow', getRowIndex(target));
+ 				        	   	$('#dg_keyword').datagrid('deleteRow', getRowIndex(target));
 				        	 }
 				         }); 
 			}
 		});
 	}
 	function saverow(target){
- 		$('#dg_daily').datagrid('endEdit', getRowIndex(target));
+ 		$('#dg_keyword').datagrid('endEdit', getRowIndex(target));
 	}
 	function cancelrow(target){
-		$('#dg_daily').datagrid('cancelEdit', getRowIndex(target));
+		$('#dg_keyword').datagrid('cancelEdit', getRowIndex(target));
 	}
-	function addDailyEssay(){
- 		$('#dd_daily').dialog({
-		    title: '填写随笔',
+	
+	function addKeyWord(){
+ 		$('#dd_keyword').dialog({
+		    title: '填写关键字',
 		    width: 400,
 		    height: 200,
 		    closed: false,
@@ -105,14 +105,14 @@ $(function(){
 		    href: '',
 		    modal: true
 		});
-		$('#dd_daily').dialog('refresh', '');
-		$('#ff_daily').form({
-		    url:'/sys/dailyessay/insert',
+		$('#dd_keyword').dialog('refresh', '');
+		$('#ff_keyword').form({
+		    url:'/sys/keyword/insert',
 		    onSubmit: function(){
  		    },
 		    success:function(data){
-        	   	$('#dg_daily').datagrid('reload',{});
-        		$('#dd_daily').dialog('close','');
+        	   	$('#dg_keyword').datagrid('reload',{});
+        		$('#dd_keyword').dialog('close','');
  		    },
  		    error:function () {
  		    	alert("error");

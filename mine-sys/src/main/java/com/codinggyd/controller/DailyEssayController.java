@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codinggyd.bean.DailEssays;
 import com.codinggyd.bean.DataTable;
+import com.codinggyd.constant.AppConfig;
 import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.IDailyEssaysService;
  
@@ -36,7 +37,7 @@ import com.codinggyd.service.IDailyEssaysService;
   * Copyright @ 2017 Corpration Name
   */
 @Controller
-@RequestMapping("sys")
+@RequestMapping("sys/dailyessay")
 public class DailyEssayController {
 	
 	@Qualifier("dailyEssaysServiceImpl")
@@ -46,14 +47,14 @@ public class DailyEssayController {
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	private static final String PATTERN = "yyyy-MM-dd HH:mm.ss.SSS";
 
-	@RequestMapping(value="/dailyessay/daily_byid",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/daily_byid",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody DailEssays getDailySingle(HttpServletRequest request,HttpServletResponse response) {
 		Integer id = Integer.parseInt(request.getParameter("id"));
 		DailEssays daily = service.queryDailyEssays(id);
 		return daily;
 	}
 	
-	@RequestMapping(value="/dailyessay/dailyessaylist",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/dailyessaylist",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody DataTable<DailEssays> getDailysList(HttpServletRequest request,HttpServletResponse response) {
 		
 		DataTable<DailEssays> dailyTable = new DataTable<DailEssays>();
@@ -67,7 +68,7 @@ public class DailyEssayController {
  		return dailyTable;
 	}
 	
-	@RequestMapping(value="/dailyessay/insert",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/insert",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String insert(HttpServletRequest request,HttpServletResponse response) {
 		
 		DailEssays daily = new DailEssays();
@@ -77,23 +78,19 @@ public class DailyEssayController {
 		return "success";
 	}
  
-	@RequestMapping(value="/dailyessay/update",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/update",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String update(@RequestBody DailEssays daily) {
 		 
-		//更新随笔内容
-		daily.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
+ 		daily.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
 		service.updateDailyEssays(daily);
- 		//删除缓存
- 		RedisClientUtils.deleteFromCache(daily.getId()+"");
+  		RedisClientUtils.deleteFromCache(daily.getId()+"");
 		return "success";
 	}
 
-	@RequestMapping(value="/dailyessay/delete",method = { RequestMethod.GET, RequestMethod.POST })
+	@RequestMapping(value="/delete",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String delete(Integer id) {
-	
 		service.deleteDailyEssays(id);
-		//删除缓存
- 		RedisClientUtils.deleteFromCache(id+"");
+  		RedisClientUtils.deleteFromCache(AppConfig.getRedis_key_dailyessay()+id);
 		return "success";
 	}
 }

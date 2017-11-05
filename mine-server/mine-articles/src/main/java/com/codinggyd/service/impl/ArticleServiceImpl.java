@@ -38,7 +38,7 @@ public class ArticleServiceImpl implements IArticleSiteService{
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private ArticleMapper mapper;
-	
+	private static final String REDIS_KEY_ARTICLE = "mine_articles_";
 	@Override
 	public List<Article> listArticle(String type,String[] pageInfo) {
 		List<Article> articleList = null;
@@ -72,7 +72,7 @@ public class ArticleServiceImpl implements IArticleSiteService{
 	public Article listDetail(String id) {
 		Article article = null;
 		try {
-			article = (Article) RedisClientUtils.getFromCache(id);
+			article = (Article) RedisClientUtils.getFromCache(REDIS_KEY_ARTICLE+id);
 		} catch (Exception e) {
 			logger.error("缓存 读取出错,{}",e);
 		}
@@ -87,7 +87,7 @@ public class ArticleServiceImpl implements IArticleSiteService{
 			return null;
 		}
 		try {
-			RedisClientUtils.cache(id, article);//缓存
+			RedisClientUtils.cache(REDIS_KEY_ARTICLE+id, article);//缓存
 		} catch (Exception e) {
 			logger.error("缓存写入出错,{}",e);
 		}
