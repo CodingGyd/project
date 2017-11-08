@@ -5,8 +5,16 @@
 	margin: 0;
 	padding: 0px;
 }
-
-html,body {
+body{
+	padding-top: 70px;
+	height:100%;
+	font-size: 14px;
+	font-family: "微软雅黑";
+	background: #E3E3E5 url(../images/bg.jpg) 50% top scroll no-repeat;
+	color: #5d5d5d;
+	margin:0;
+ }
+html {
 	height:100%;
 	font-size: 14px;
 	font-family: "微软雅黑";
@@ -72,8 +80,9 @@ img {
 }
 
 #nav {
-	width: 1200px;
-	margin: 20px auto;
+	width: 1500px;
+	padding:10px 0px 0px 75px;
+	background: #F0F0F0;
 }
 
 #nav ul li {

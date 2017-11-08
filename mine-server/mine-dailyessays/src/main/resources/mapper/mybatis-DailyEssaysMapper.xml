@@ -10,7 +10,7 @@
     </resultMap>
 
 	<select id="findDailyEssays" resultMap="dailyEssays">
-		SELECT id,content,updatetime FROM mine_dailyessays
+		SELECT id,content,updatetime FROM mine_dailyessays ORDER BY updatetime desc
 	</select>
 	 
 </mapper>
