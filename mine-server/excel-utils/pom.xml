@@ -18,28 +18,27 @@
 	</parent>  
 	 	<properties>
 		<encoding>UTF-8</encoding>
-		<jdk-version>1.6</jdk-version>
-		<poi-version>3.8</poi-version>
+		<jdk-version>1.8</jdk-version>
+   		<poi-ooxml-version>3.15</poi-ooxml-version>
+		<poi-ooxml-schemas-version>3.10.1</poi-ooxml-schemas-version>
  		<dom4j-version>1.6.1</dom4j-version>
  		<xerces-version>2.11.0</xerces-version>
+ 		<commons-collections4-version>4.1</commons-collections4-version>
+ 		<commons-lang3-version>3.4</commons-lang3-version>
+ 		<xml-apis-version>1.4.01</xml-apis-version>
  	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>${poi-version}</version>
-		</dependency>
-		 
+ 
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml-schemas</artifactId>
-			<version>3.10.1</version>
+			<version>${poi-ooxml-schemas-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
-			<version>3.15</version>
+			<version>${poi-ooxml-version}</version>
 		</dependency>
 		<dependency>
 			<groupId>dom4j</groupId>
@@ -55,19 +54,19 @@
 		<dependency>
 			<groupId>xml-apis</groupId>
 			<artifactId>xml-apis</artifactId>
-			<version>1.4.01</version>
+			<version>${xml-apis-version}</version>
 		</dependency>
 		 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-collections4</artifactId>
-			<version>4.1</version>
+			<version>${commons-collections4-version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
+			<version>${commons-lang3-version}</version>
 		</dependency>
 	</dependencies>
 	 
