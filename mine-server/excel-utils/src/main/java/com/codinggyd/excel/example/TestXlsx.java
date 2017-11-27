@@ -14,7 +14,7 @@
 //import com.codinggyd.excel.core.inter.IExcelRowHandler;
 //import com.codinggyd.excel.core.service.XLSReader;
 //import com.codinggyd.excel.core.service.XLSXReader;
- //
+// 
 //public class TestXlsx {
 ////	//测试XLSXReader#process(InputStream is, Integer minColumns, Integer sheetNums)
 ////	public static void main(String[] args) {
@@ -58,29 +58,28 @@
 //	
 //	//测试XLSXReader#parse(InputStream is,  Class<?> clazz)
 //	public static void main(String[] args) {
-//		String file = "D:/开发文档/FAIS手机移动端开发文档/文件数据解析导入/数据导入模板100万条111.xlsx";
-//		String msg = "D:/开发文档/FAIS手机移动端开发文档/文件数据解析导入/数据导入模板100万条111.txt";
-//		for (int i = 1;i<=20;i++) {
-//
+//		String file = "G:/test.xlsx";
+//		String msg = "G:/test.txt";
+// 
 // 		try {
 //			long start = System.currentTimeMillis();
 //			FileInputStream fis = new FileInputStream(new File(file));
 //			IExcelReader excelReader = new XLSXReader();
-//			ResultList<TestPosition> result = excelReader.parse(fis, TestPosition.class);
+//			ResultList<TestUser> result = excelReader.parse(fis, TestUser.class);
 //			System.out.println("校验报告:"+result.getMsg());
-////			for (TestUser t : result) {
-////				System.out.println(t.toString());
-////			}
-////			FileOutputStream fos = new FileOutputStream(new File(msg));
-////			OutputStreamWriter os = new OutputStreamWriter(fos);
-////			os.write(result.getMsg());
-////			os.flush();
-////			os.close();
+//			for (TestUser t : result) {
+//				System.out.println(t.toString());
+//			}
+//			FileOutputStream fos = new FileOutputStream(new File(msg));
+//			OutputStreamWriter os = new OutputStreamWriter(fos);
+//			os.write(result.getMsg());
+//			os.flush();
+//			os.close();
 ////			 
 //			System.out.println("解析数据量"+result.size()+"条,耗时"+(System.currentTimeMillis()-start)+"ms");
 //		} catch (Exception e) {
 //			System.out.println("解析异常,"+e.getMessage());
 //		}
-//		}
+// 
 //	}
 //}

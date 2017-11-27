@@ -58,7 +58,7 @@ import com.codinggyd.excel.exception.ExcelException;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public class XLSReader implements IExcelReader, HSSFListener {
+public class XLSReader extends CommonReader implements IExcelReader, HSSFListener {
 	private int minColumns = 0;
 
 	private int lastRowNumber;
@@ -177,16 +177,22 @@ public class XLSReader implements IExcelReader, HSSFListener {
 						if (row.size() >= fieldIndex + 1) {
 							originFieldContent = row.get(fieldIndex);
 						}
-						// 判断主键是否为空
+						// 6.判断主键是否为空
 						if (StringUtils.isEmpty(originFieldContent) && isPrimaryKey) {
 							msgBuilder.append("sheet[" + sheetIndex + "],行[" + rowIndex + "],列[" + (fieldIndex + 1)
 									+ "],错误信息[主键不允许为空值]\r\n");
 							errors[0]++;
 							return;
 						}
-						// 6.进行java数据类型匹配转换
+						
+						//7.解析内容匹配替换规则
+						originFieldContent = checkRepaceRules(fieldConfig, originFieldContent);
+						
+						// 8.进行java数据类型匹配转换
 						if (StringUtils.isNotEmpty(originFieldContent)) {
-							originFieldContent = originFieldContent.trim();
+							
+							originFieldContent = originFieldContent.trim();//去除内容两边可能存在的空格
+							
 							switch (javaType) {
 
 							case JavaFieldType.TYPE_STRING:

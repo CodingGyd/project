@@ -48,4 +48,9 @@ public @interface ExcelFieldConfig {
 	 * @return 当字段类型为日期类型时,指定日期格式
  	 */
 	String dateFormat() default "yyyy/MM/dd";
+	
+	/**
+	 * @return 内容匹配替换规则,即匹配到某种字符串时替换为指定值,支持配置N条匹配规则.
+	 */
+	ExcelFieldRule[] replaces() default { @ExcelFieldRule(content = "", replace = "") };
 }

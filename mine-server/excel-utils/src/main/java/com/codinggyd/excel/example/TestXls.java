@@ -58,17 +58,17 @@
 //	
 //	//测试XLSReader#parse(InputStream is,  Class<?> clazz)
 //	public static void main(String[] args) {
-//		String file = "D:/开发文档/FAIS手机移动端开发文档/文件数据解析导入/资产配置维护模板.xls";
-//		String msg = "D:/开发文档/FAIS手机移动端开发文档/文件数据解析导入/资产配置维护模板.txt";
+//		String file = "G:/test.xls";
+//		String msg = "G:/test.txt";
 // 		try {
 //			long start = System.currentTimeMillis();
 //			FileInputStream fis = new FileInputStream(new File(file));
 //			IExcelReader excelReader = new XLSReader();
-//			ResultList<TestAssetAllocation> result = excelReader.parse(fis, TestAssetAllocation.class);
-////			System.out.println("校验报告:"+result.getMsg());
-////			for (TestUser t : result) {
-////				System.out.println(t.toString());
-////			}
+//			ResultList<TestUser> result = excelReader.parse(fis, TestUser.class);
+//			System.out.println("校验报告:"+result.getMsg());
+//			for (TestUser t : result) {
+//				System.out.println(t.toString());
+//			}
 //			FileOutputStream fos = new FileOutputStream(new File(msg));
 //			OutputStreamWriter os = new OutputStreamWriter(fos);
 //			os.write(result.getMsg());

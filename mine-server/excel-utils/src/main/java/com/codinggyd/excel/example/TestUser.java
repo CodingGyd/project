@@ -5,10 +5,11 @@ import java.util.Date;
  
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
 import com.codinggyd.excel.annotation.ExcelSheetConfig;
+import com.codinggyd.excel.annotation.ExcelFieldRule;
 import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 
-@ExcelSheetConfig(titleRowStartIndex=1,contentRowStartIndex=2,sheetTotalCount=1,excelSuffix=ExcelConst.EXCEL_FORMAT_XLS)
+@ExcelSheetConfig(titleRowStartIndex=1,contentRowStartIndex=2,sheetTotalCount=1,excelSuffix=ExcelConst.EXCEL_FORMAT_XLSX)
 public class TestUser implements Serializable{
 
 	/**
@@ -16,7 +17,7 @@ public class TestUser implements Serializable{
 	 */
 	private static final long serialVersionUID = -6106965608103174812L;
 
-	@ExcelFieldConfig(isPrimaryKey=true,name="name",index=0,javaType=JavaFieldType.TYPE_STRING)
+	@ExcelFieldConfig(isPrimaryKey=true,name="name",index=0,javaType=JavaFieldType.TYPE_STRING, replaces = { @ExcelFieldRule(content = "上证", replace = "83"),@ExcelFieldRule(content = "深圳", replace = "90") })
 	private String name;
 	
 	@ExcelFieldConfig(name="age",index=1,javaType=JavaFieldType.TYPE_INTEGER)

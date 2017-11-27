@@ -53,7 +53,7 @@ import com.codinggyd.excel.exception.ExcelException;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public class XLSXReader implements IExcelReader {
+public class XLSXReader extends CommonReader implements IExcelReader {
 
 	private Map<Integer, List<String>> dataMap = new LinkedHashMap<Integer, List<String>>();// excel多行数据<行号,数据集>
 	private List<String> rowdataList;
@@ -70,7 +70,7 @@ public class XLSXReader implements IExcelReader {
 		}
 
 		if (!ExcelConst.EXCEL_FORMAT_XLSX.equals(sheetConfig.excelSuffix())) {
-			throw new ExcelException("excel格式非xls,无法继续解析");
+			throw new ExcelException("excel格式非xlsx,无法继续解析");
 		}
 
 		// 2.excel导入字段解析规则配置描述
@@ -148,16 +148,22 @@ public class XLSXReader implements IExcelReader {
 							originFieldContent = row.get(fieldIndex);
 						}
 
-						// 判断主键是否为空
+						// 6.判断主键是否为空
 						if (StringUtils.isEmpty(originFieldContent) && isPrimaryKey) {
 							msgBuilder.append("sheet[" + sheetIndex + "],行[" + rowIndex + "],列[" + (fieldIndex + 1)
 									+ "],错误信息[主键不允许为空值]\r\n");
 							errors[0]++;
 							return;
 						}
-						// 6.进行java数据类型匹配转换
+						
+						//7.解析内容匹配替换规则
+						originFieldContent = checkRepaceRules(fieldConfig, originFieldContent);
+						
+						// 8.进行java数据类型匹配转换
 						if (StringUtils.isNotEmpty(originFieldContent)) {
+							
 							originFieldContent = originFieldContent.trim();
+							
 							switch (javaType) {
 
 							case JavaFieldType.TYPE_STRING:
