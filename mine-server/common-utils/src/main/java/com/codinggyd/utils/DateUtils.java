@@ -2,9 +2,13 @@ package com.codinggyd.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class DateUtils {
@@ -56,4 +60,42 @@ public class DateUtils {
   
         return map;  
     }  
+
+
+    /**
+	 * 
+	 * @param dates 日期序列
+	 * @param flag 1-获取序列中最大日期，2-获取序列中最小日期
+	 * @return
+	 */
+	public static Date getMinOrMaxDate(List<Date> dates,Integer flag) {
+		if (null == dates || dates.size() == 0 || null == flag) {
+ 			return null;
+		}
+		
+		List<Date> dateNew = new ArrayList<>();
+		for (Date date : dates) {
+			if (null != date) {
+				dateNew.add(date);
+			}
+		}
+		
+		//升序排序
+		Collections.sort(dateNew, new Comparator<Date>() { 
+			  
+			   @Override
+			   public int compare(Date o1, Date o2) { 
+			    return o1.compareTo(o2); 
+			   } 
+		 }); 
+		
+		if (1 == flag) {
+			return dateNew.get(dateNew.size()-1);
+		} else if (2 == flag) {
+			return dateNew.get(0);
+		} else {
+ 			return null;
+		}
+	}
+	 
 }
