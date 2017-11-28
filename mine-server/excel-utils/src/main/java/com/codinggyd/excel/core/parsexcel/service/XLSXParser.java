@@ -65,7 +65,7 @@ public class XLSXParser extends CommonParser implements IExcelParser {
 		//1.获取解析规则
 		super.parseConfig(clazz);
 
-		if (!ExcelConst.EXCEL_FORMAT_XLS.equals(sheetConfig.excelSuffix())) {
+		if (!ExcelConst.EXCEL_FORMAT_XLSX.equals(sheetConfig.excelSuffix())) {
 			throw new ExcelException("excel格式非xls,无法继续解析");
 		}
 		
