@@ -44,9 +44,6 @@ public abstract class Common {
 			throw new ExcelException("未配置sheet解析规则,无法继续解析");
 		}
 
-		if (!ExcelConst.EXCEL_FORMAT_XLS.equals(sheetConfig.excelSuffix())) {
-			throw new ExcelException("excel格式非xls,无法继续解析");
-		}
 
 		// 2.excel导入字段解析规则配置描述
 		Field[] fields = clazz.getDeclaredFields();

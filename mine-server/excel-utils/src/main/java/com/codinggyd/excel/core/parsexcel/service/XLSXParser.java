@@ -31,6 +31,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
+import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 import com.codinggyd.excel.core.parsexcel.CustomXSSFSheetXMLHandler;
 import com.codinggyd.excel.core.parsexcel.CustomXSSFSheetXMLHandler.SheetContentsHandler;
@@ -63,6 +64,10 @@ public class XLSXParser extends CommonParser implements IExcelParser {
 	public <T> ResultList<T> parse(InputStream is, final Class<T> clazz) throws ExcelException {
 		//1.获取解析规则
 		super.parseConfig(clazz);
+
+		if (!ExcelConst.EXCEL_FORMAT_XLS.equals(sheetConfig.excelSuffix())) {
+			throw new ExcelException("excel格式非xls,无法继续解析");
+		}
 		
 		final int contentStartIndex = sheetConfig.contentRowStartIndex();
 		final ResultList<T> result = new ResultList<T>();

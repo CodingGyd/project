@@ -37,6 +37,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
+import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 import com.codinggyd.excel.core.parsexcel.CustomFormatTrackingHSSFListener;
 import com.codinggyd.excel.core.parsexcel.bean.ResultList;
@@ -92,6 +93,11 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 		
 		//1.获取解析规则
 		super.parseConfig(clazz);
+
+		if (!ExcelConst.EXCEL_FORMAT_XLS.equals(sheetConfig.excelSuffix())) {
+			throw new ExcelException("excel格式非xls,无法继续解析");
+		}
+		
 		final int contentStartIndex = sheetConfig.contentRowStartIndex();
 		final ResultList<T> result = new ResultList<T>();
 		final StringBuilder msgBuilder = new StringBuilder();
