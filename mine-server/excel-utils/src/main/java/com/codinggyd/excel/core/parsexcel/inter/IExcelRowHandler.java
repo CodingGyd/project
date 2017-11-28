@@ -7,7 +7,7 @@ import com.codinggyd.excel.exception.ExcelException;
 /**
  * <pre>
  * 类名:  IExcelRowHandler.java
- * 包名:  com.codinggyd.excel.core.inter
+ * 包名:  com.codinggyd.excel.core.parsexcel.inter
  * 描述:  Excel 行级别解析处理回调接口
  * 
  * 作者:  guoyd

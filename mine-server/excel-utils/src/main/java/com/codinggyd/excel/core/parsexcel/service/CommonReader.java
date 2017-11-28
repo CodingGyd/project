@@ -12,7 +12,7 @@ import com.codinggyd.excel.exception.ExcelException;
 /**
  * <pre>
  * 类名:  CommonReader.java
- * 包名:  com.codinggyd.excel.core.service
+ * 包名:  com.codinggyd.excel.core.parsexcel.service
  * 描述:  XLSReader类和XLSXReader类中公用的方法抽取
  * 
  * 作者:  guoyd

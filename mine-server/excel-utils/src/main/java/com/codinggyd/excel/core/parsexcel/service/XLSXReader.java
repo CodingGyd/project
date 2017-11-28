@@ -37,14 +37,14 @@ import com.codinggyd.excel.constant.JavaFieldType;
 import com.codinggyd.excel.core.parsexcel.CustomXSSFSheetXMLHandler;
 import com.codinggyd.excel.core.parsexcel.CustomXSSFSheetXMLHandler.SheetContentsHandler;
 import com.codinggyd.excel.core.parsexcel.bean.ResultList;
-import com.codinggyd.excel.core.parsexcel.inter.IExcelReader;
+import com.codinggyd.excel.core.parsexcel.inter.IExcelParser;
 import com.codinggyd.excel.core.parsexcel.inter.IExcelRowHandler;
 import com.codinggyd.excel.exception.ExcelException;
  
 /**
  * <pre>
  * 类名:  XLSXReader.java
- * 包名:  com.codinggyd.excel.core.service
+ * 包名:  com.codinggyd.excel.core.parsexcel.service
  * 描述:  xlsx格式的excel解析类
  * 
  * 作者:  guoyd
@@ -53,7 +53,7 @@ import com.codinggyd.excel.exception.ExcelException;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public class XLSXReader extends CommonReader implements IExcelReader {
+public class XLSXReader extends CommonReader implements IExcelParser {
 
 	private Map<Integer, List<String>> dataMap = new LinkedHashMap<Integer, List<String>>();// excel多行数据<行号,数据集>
 	private List<String> rowdataList;

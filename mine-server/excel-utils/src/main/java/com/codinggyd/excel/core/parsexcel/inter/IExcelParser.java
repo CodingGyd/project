@@ -9,8 +9,8 @@ import com.codinggyd.excel.exception.ExcelException;
 
 /**
  * <pre>
- * 类名:  IExcelReader.java
- * 包名:  com.codinggyd.excel.core.inter
+ * 类名:  IExcelParser.java
+ * 包名:  com.codinggyd.excel.core.parsexcel.inter
  * 描述:  excel解析接口
  * 
  * 作者:  guoyd
@@ -19,7 +19,7 @@ import com.codinggyd.excel.exception.ExcelException;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public interface IExcelReader {
+public interface IExcelParser {
 	
 	/**
 	 * @param is Excel文件流对象

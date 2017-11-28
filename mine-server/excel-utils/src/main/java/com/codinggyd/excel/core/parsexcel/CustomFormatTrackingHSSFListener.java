@@ -22,7 +22,7 @@ import org.apache.poi.util.POILogger;
 /**
  * <pre>
  * 类名:  CustomFormatTrackingHSSFListener.java
- * 包名:  com.codinggyd.excel.core
+ * 包名:  com.codinggyd.excel.core.parsexcel
  * 描述:  修改POI解析时,其中的日期格式指定为yyyy/mm/dd， 覆盖默认的m/d/y格式
  * 		 参考POI官网<a href="https://poi.apache.org/">https://poi.apache.org/</a>
  * 

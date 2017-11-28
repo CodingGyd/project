@@ -42,14 +42,14 @@ import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 import com.codinggyd.excel.core.parsexcel.CustomFormatTrackingHSSFListener;
 import com.codinggyd.excel.core.parsexcel.bean.ResultList;
-import com.codinggyd.excel.core.parsexcel.inter.IExcelReader;
+import com.codinggyd.excel.core.parsexcel.inter.IExcelParser;
 import com.codinggyd.excel.core.parsexcel.inter.IExcelRowHandler;
 import com.codinggyd.excel.exception.ExcelException;
 
 /**
  * <pre>
  * 类名:  XLSReader.java
- * 包名:  com.codinggyd.excel.core.service
+ * 包名:  com.codinggyd.excel.core.parsexcel.service
  * 描述:  xls格式的excel解析类
  * 
  * 作者:  guoyd
@@ -58,7 +58,7 @@ import com.codinggyd.excel.exception.ExcelException;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public class XLSReader extends CommonReader implements IExcelReader, HSSFListener {
+public class XLSReader extends CommonReader implements IExcelParser, HSSFListener {
 	private int minColumns = 0;
 
 	private int lastRowNumber;

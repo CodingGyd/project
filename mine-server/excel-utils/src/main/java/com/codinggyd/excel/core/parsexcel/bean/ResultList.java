@@ -6,7 +6,7 @@ import java.util.Collection;
 /**
  * <pre>
  * 类名:  ResultList.java
- * 包名:  com.codinggyd.excel.core.bean
+ * 包名:  com.codinggyd.excel.core.parsexcel.bean
  * 描述:  Excel解析结果集对象
  * 
  * 作者:  guoyd
