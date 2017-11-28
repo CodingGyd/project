@@ -31,8 +31,6 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
-import com.codinggyd.excel.annotation.ExcelSheetConfig;
-import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 import com.codinggyd.excel.core.parsexcel.CustomXSSFSheetXMLHandler;
 import com.codinggyd.excel.core.parsexcel.CustomXSSFSheetXMLHandler.SheetContentsHandler;
@@ -43,9 +41,9 @@ import com.codinggyd.excel.exception.ExcelException;
  
 /**
  * <pre>
- * 类名:  XLSXReader.java
+ * 类名:  XLSXParser.java
  * 包名:  com.codinggyd.excel.core.parsexcel.service
- * 描述:  xlsx格式的excel解析类
+ * 描述:  xlsx格式的excel通用解析类
  * 
  * 作者:  guoyd
  * 日期:  2017年11月25日
@@ -53,7 +51,7 @@ import com.codinggyd.excel.exception.ExcelException;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public class XLSXReader extends CommonReader implements IExcelParser {
+public class XLSXParser extends CommonParser implements IExcelParser {
 
 	private Map<Integer, List<String>> dataMap = new LinkedHashMap<Integer, List<String>>();// excel多行数据<行号,数据集>
 	private List<String> rowdataList;
@@ -63,43 +61,16 @@ public class XLSXReader extends CommonReader implements IExcelParser {
 
 	@Override
 	public <T> ResultList<T> parse(InputStream is, final Class<T> clazz) throws ExcelException {
-		// 1.excel导入Sheet解析规则配置描述
-		ExcelSheetConfig sheetConfig = clazz.getAnnotation(ExcelSheetConfig.class);
-		if (null == sheetConfig) {
-			throw new ExcelException("未配置sheet解析规则,无法继续解析");
-		}
-
-		if (!ExcelConst.EXCEL_FORMAT_XLSX.equals(sheetConfig.excelSuffix())) {
-			throw new ExcelException("excel格式非xlsx,无法继续解析");
-		}
-
-		// 2.excel导入字段解析规则配置描述
-
-		Field[] fields = clazz.getDeclaredFields();
-		if (null == fields || fields.length == 0) {
-			throw new ExcelException("未配置字段列映射规则,无法继续解析");
-		}
-
-		final Map<String, Field> fieldsMapByName = new LinkedHashMap<String, Field>();
-		final List<ExcelFieldConfig> fieldConfigs = new ArrayList<ExcelFieldConfig>();
-		for (Field field : fields) {
-
-			ExcelFieldConfig config = field.getAnnotation(ExcelFieldConfig.class);
-
-			if (null == config) {
-				// throw new
-				// ExcelException("字段["+field.getName()+"]未配置字段列映射规则,无法继续解析");
-				continue;
-			}
-			fieldsMapByName.put(config.name(), field);
-			fieldConfigs.add(config);
-		}
-
+		//1.获取解析规则
+		parseConfig(clazz);
+		
 		final int contentStartIndex = sheetConfig.contentRowStartIndex();
 		final ResultList<T> result = new ResultList<T>();
 		final StringBuilder msgBuilder = new StringBuilder();
 		final Integer[] errors = new Integer[1];
 		errors[0] = 0;
+		
+		//2.开始解析
 		this.parse(is, new IExcelRowHandler() {
 
 			@Override
@@ -285,12 +256,12 @@ public class XLSXReader extends CommonReader implements IExcelParser {
 	@Override
 	public void parse(InputStream is, IExcelRowHandler rowHandler) throws ExcelException {
 		this.rowHandler = rowHandler;
-		process(is, -1, 1);
+		parse(is, -1, 1);
 
 	}
 
 	@Override
-	public Map<Integer, List<String>> process(InputStream is, Integer minColumns, Integer sheetNums)
+	public Map<Integer, List<String>> parse(InputStream is, Integer minColumns, Integer sheetNums)
 			throws ExcelException {
 
 		try {

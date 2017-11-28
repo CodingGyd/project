@@ -43,7 +43,7 @@ public interface IExcelParser {
 	 * @throws ExcelException  抛出自定义异常
 	 * </pre>
 	 */
-    Map<Integer,List<String>> process(InputStream is, Integer minColumns, Integer sheetNums) throws ExcelException;
+    Map<Integer,List<String>> parse(InputStream is, Integer minColumns, Integer sheetNums) throws ExcelException;
 	
     /**
      * 默认传入的excel流中只有一个sheet

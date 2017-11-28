@@ -23,7 +23,7 @@
 ////			long start = System.currentTimeMillis();
 ////			FileInputStream fis = new FileInputStream(new File("D:/开发文档/FAIS手机移动端开发文档/文件数据解析导入/数据导入模板100万条111.xlsx"));
 ////			IExcelReader excelReader = new XLSXReader();
-////			Map<Integer,List<String>> result = excelReader.process(fis, 11, 1);
+////			Map<Integer,List<String>> result = excelReader.parse(fis, 11, 1);
 //////			for (Entry<Integer, List<String>> entry : result.entrySet()) {
 //////				System.out.println(entry.getValue().toString());
 //////			}
