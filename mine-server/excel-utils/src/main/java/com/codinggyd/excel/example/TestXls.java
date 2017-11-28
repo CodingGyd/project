@@ -1,13 +1,8 @@
 package com.codinggyd.excel.example;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-
-import com.codinggyd.excel.core.parsexcel.bean.ResultList;
-import com.codinggyd.excel.core.parsexcel.inter.IExcelParser;
-import com.codinggyd.excel.core.parsexcel.service.XLSParser;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class TestXls {
 	
@@ -50,26 +45,27 @@ public class TestXls {
 	
 	
 	//测试XLSParser#parse(InputStream is,  Class<?> clazz)
-	public static void main(String[] args) {
-		String file = "G:/test.xls";
-		String msg = "G:/test.txt";
- 		try {
-			long start = System.currentTimeMillis();
-			FileInputStream fis = new FileInputStream(new File(file));
-			IExcelParser excelReader = new XLSParser();
-			ResultList<TestUser> result = excelReader.parse(fis, TestUser.class);
-			System.out.println("校验报告:"+result.getMsg());
-			for (TestUser t : result) {
-				System.out.println(t.toString());
-			}
-			FileOutputStream fos = new FileOutputStream(new File(msg));
-			OutputStreamWriter os = new OutputStreamWriter(fos);
-			os.write(result.getMsg());
-			os.flush();
-			os.close();
-			System.out.println("解析数据量"+result.size()+"条,耗时"+(System.currentTimeMillis()-start)+"ms");
-		} catch (Exception e) {
-			System.out.println("解析异常,"+e.getMessage());
-		}
-	}
+//	public static void main(String[] args) {
+//		String file = "G:/test.xls";
+//		String msg = "G:/test.txt";
+// 		try {
+//			long start = System.currentTimeMillis();
+//			FileInputStream fis = new FileInputStream(new File(file));
+//			IExcelParser excelReader = new XLSParser();
+//			ResultList<TestUser> result = excelReader.parse(fis, TestUser.class);
+//			System.out.println("校验报告:"+result.getMsg());
+//			for (TestUser t : result) {
+//				System.out.println(t.toString());
+//			}
+//			FileOutputStream fos = new FileOutputStream(new File(msg));
+//			OutputStreamWriter os = new OutputStreamWriter(fos);
+//			os.write(result.getMsg());
+//			os.flush();
+//			os.close();
+//			System.out.println("解析数据量"+result.size()+"条,耗时"+(System.currentTimeMillis()-start)+"ms");
+//		} catch (Exception e) {
+//			System.out.println("解析异常,"+e.getMessage());
+//		}
+//	}
+	 
 }

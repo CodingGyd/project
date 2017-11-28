@@ -62,7 +62,7 @@ public class XLSXParser extends CommonParser implements IExcelParser {
 	@Override
 	public <T> ResultList<T> parse(InputStream is, final Class<T> clazz) throws ExcelException {
 		//1.获取解析规则
-		parseConfig(clazz);
+		super.parseConfig(clazz);
 		
 		final int contentStartIndex = sheetConfig.contentRowStartIndex();
 		final ResultList<T> result = new ResultList<T>();

@@ -26,7 +26,18 @@ public interface ExcelConst {
 	 */
 	String EXCEL_FORMAT_XLSX = ".xlsx";
 	
+	/**
+	 * xls格式的单个sheet最多可以有65535行记录
+	 */
+	int EXCEL_XLS_MAX_ROW_NUM = 65535;
+	
 	/////////////////////////////////////////Excel-SHEET属性默认配置/////////////////////////////////////////////////////
+	
+	/**
+	 * SHEET默认名称
+	 */
+	String EXCEL_DEFAULT_SHEET_NAME = "";
+	
 	/**
 	 * Excel的sheet默认个数
 	 */

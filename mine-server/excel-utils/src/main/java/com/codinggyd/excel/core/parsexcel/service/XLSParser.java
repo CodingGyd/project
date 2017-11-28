@@ -91,7 +91,7 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 	public <T> ResultList<T> parse(InputStream is, final Class<T> clazz) throws ExcelException {
 		
 		//1.获取解析规则
-		parseConfig(clazz);
+		super.parseConfig(clazz);
 		final int contentStartIndex = sheetConfig.contentRowStartIndex();
 		final ResultList<T> result = new ResultList<T>();
 		final StringBuilder msgBuilder = new StringBuilder();

@@ -43,4 +43,9 @@ public @interface ExcelSheetConfig {
 	 * @return excel文件格式
  	 */
 	String excelSuffix() default ExcelConst.EXCEL_FORMAT_XLSX;
+	
+	/**
+	 * @return sheet名称(只在生成excel时生效)
+	 */
+	String sheetName() default ExcelConst.EXCEL_DEFAULT_SHEET_NAME;
 }
