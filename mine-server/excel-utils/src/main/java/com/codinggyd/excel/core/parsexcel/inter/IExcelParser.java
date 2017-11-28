@@ -11,7 +11,7 @@ import com.codinggyd.excel.exception.ExcelException;
  * <pre>
  * 类名:  IExcelParser.java
  * 包名:  com.codinggyd.excel.core.parsexcel.inter
- * 描述:  excel解析接口
+ * 描述:  excel通用解析接口
  * 
  * 作者:  guoyd
  * 日期:  2017年11月22日
