@@ -11,7 +11,7 @@ import com.codinggyd.excel.constant.ExcelConst;
  * <pre>
  * 类名:  ExcelSheetConfig.java
  * 包名:  com.codinggyd.excel.annotation
- * 描述:  excel导入Sheet解析规则性配置
+ * 描述:  excel的Sheet规则配置
  * 
  * 作者:  guoyd
  * 日期:  2017年11月26日

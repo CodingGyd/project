@@ -12,7 +12,7 @@ import com.codinggyd.excel.constant.JavaFieldType;
  * <pre>
  * 类名:  ExcelFieldConfig.java
  * 包名:  com.codinggyd.excel.annotation
- * 描述:  excel导入字段解析规则配置
+ * 描述:  excel字段解析规则配置
  * 
  * 作者:  guoyd
  * 日期:  2017年11月22日
@@ -40,7 +40,7 @@ public @interface ExcelFieldConfig {
 	int index() default ExcelConst.EXCEL_FIELD_DEFAULT_INDEX;
 	
 	/**
-	 * @return 字段转换的JAVA数据类型
+	 * @return 字段对应JAVA数据类型
  	 */
 	int javaType() default JavaFieldType.TYPE_STRING;
 	

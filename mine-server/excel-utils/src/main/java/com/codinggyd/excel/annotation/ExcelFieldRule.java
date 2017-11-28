@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
  * <pre>
  * 类名:  ExcelFieldRule.java
  * 包名:  com.codinggyd.excel.annotation
- * 描述:  excel导入字段解析内容替换规则配置
+ * 描述:  excel字段解析内容替换规则配置
  * 
  * 作者:  guoyd
  * 日期:  2017年11月26日
