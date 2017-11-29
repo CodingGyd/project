@@ -26,12 +26,20 @@ import com.codinggyd.excel.exception.ExcelException;
  */
 public abstract class Common {
 	
-	// excel导入导出Sheet规则配置描述
+	/**
+	 * excel导入导出Sheet规则配置描述
+	 */
 	protected ExcelSheetConfig sheetConfig;
 	
-	// excel导入导出字段规则配置
+	/**
+	 * excel导入导出字段规则配置
+	 */
  	protected Map<ExcelFieldConfig,Field> fieldConfigAndFieldMap;
  
+ 	/**
+ 	 * @param <T> 泛型
+ 	 * @param clazz excel行记录抽象对象
+ 	 */
 	public <T> void parseConfig(Class<T> clazz) {
 
 		// 1.excel导入Sheet解析规则配置描述
@@ -62,6 +70,13 @@ public abstract class Common {
 		}
 	}
 
+	/**
+	 * 根据替换规则替换原始内容
+	 * @param fieldConfig 字段配置描述
+	 * @param originFieldContent 原始内容
+	 * @return 替换后的内容
+	 * @throws ExcelException 异常
+	 */
 	public String checkRepaceRules(ExcelFieldConfig fieldConfig, String originFieldContent) throws ExcelException {
 
 		if (StringUtils.isEmpty(originFieldContent)) {
