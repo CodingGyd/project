@@ -23,6 +23,7 @@ public interface IExcelExport {
 	
 	/**
 	 * excel通用生成接口
+	 * @param <T> 泛型参数, 运行时指定
 	 * @param clazz excel行记录结构对象
 	 * @param data 待写入excel的数据集
 	 * @return 生成的excel对象
@@ -31,6 +32,7 @@ public interface IExcelExport {
 	
 	/**
 	 * excel通用生成接口
+	 * @param <T> 泛型参数, 运行时指定
 	 * @param clazz excel行记录结构对象
 	 * @param data 待写入excel的数据集
 	 * @param outputStream excel写入流

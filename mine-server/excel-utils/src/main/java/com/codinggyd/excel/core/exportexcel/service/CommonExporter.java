@@ -42,7 +42,8 @@ public abstract class CommonExporter extends Common{
 	 * @param workbook excel对象
 	 * @param sheetName 工作簿名称
 	 * @return 工作簿对象
-	 * @throws ExcelException
+	 * @param <T> 泛型参数, 运行时指定
+	 * @throws ExcelException 异常
 	 */
 	public <T> Sheet createSheet(Workbook workbook,String sheetName) throws ExcelException{
 		 
@@ -59,7 +60,8 @@ public abstract class CommonExporter extends Common{
 	 * 创建工作簿
 	 * @param workbook excel对象
  	 * @return 工作簿对象
-	 * @throws ExcelException
+ 	 * @param <T> 泛型参数, 运行时指定
+	 * @throws ExcelException 异常
 	 */
 	
 	public <T> Sheet createSheet(Workbook workbook) throws ExcelException{
@@ -83,9 +85,10 @@ public abstract class CommonExporter extends Common{
 	
 	/**
 	 * 创建内容行区域
+	 * @param <T> 泛型参数, 运行时指定
 	 * @param sheet 工作簿对象
  	 * @param data 数据
-	 * @throws ExcelException
+	 * @throws ExcelException 异常
 	 */
 	public <T> void createContentRow(Sheet sheet,List<T> data) throws ExcelException{
 
@@ -175,7 +178,7 @@ public abstract class CommonExporter extends Common{
 	/**
 	 * 创建标题行
 	 * @param sheet 工作簿对象
-	 * @throws ExcelException
+	 * @throws ExcelException 异常
 	 */
 	public void createTitleRow(Sheet sheet) throws ExcelException{
 		createTitleRow(sheet,null);
@@ -185,7 +188,7 @@ public abstract class CommonExporter extends Common{
 	 * 创建标题行
 	 * @param sheet 工作簿对象
   	 * @param style 单元格样式
-	 * @throws ExcelException
+	 * @throws ExcelException 异常
 	 */
 	public void createTitleRow(Sheet sheet,CellStyle style) throws ExcelException{
 		
@@ -217,7 +220,7 @@ public abstract class CommonExporter extends Common{
 	 * @param sheet 工作簿对象
 	 * @param index 行索引
 	 * @return row 行对象
-	 * @throws ExcelException
+	 * @throws ExcelException 异常
 	 */
 	public Row createRow(Sheet sheet,int index) throws ExcelException{
 		return createRow(sheet,index,null);
@@ -228,7 +231,7 @@ public abstract class CommonExporter extends Common{
 	 * @param index  所在行索引
 	 * @param style  行样式
 	 * @return row 行对象
-	 * @throws ExcelException
+	 * @throws ExcelException 异常
 	 */
 	public Row createRow(Sheet sheet,int index,CellStyle style) throws ExcelException{
 		

@@ -17,16 +17,16 @@ public class TestUser implements Serializable{
 	 */
 	private static final long serialVersionUID = -6106965608103174812L;
 
-	@ExcelFieldConfig(isPrimaryKey=true,name="name",index=0,javaType=JavaFieldType.TYPE_STRING, replaces = { @ExcelFieldRule(content = "上证", replace = "83"),@ExcelFieldRule(content = "深圳", replace = "90") })
+	@ExcelFieldConfig(isPrimaryKey=true,name="姓名",index=0,javaType=JavaFieldType.TYPE_STRING, replaces = { @ExcelFieldRule(content = "上证", replace = "83"),@ExcelFieldRule(content = "深圳", replace = "90") })
 	private String name;
 	
-	@ExcelFieldConfig(name="age",index=1,javaType=JavaFieldType.TYPE_INTEGER)
+	@ExcelFieldConfig(name="年龄",index=1,javaType=JavaFieldType.TYPE_INTEGER)
 	private Integer age;
 	
-	@ExcelFieldConfig(name="money",index=2,javaType=JavaFieldType.TYPE_DOUBLE)
+	@ExcelFieldConfig(name="工资",index=2,javaType=JavaFieldType.TYPE_DOUBLE)
 	private Double money;
 	
-	@ExcelFieldConfig(name="createTime",index=3,javaType=JavaFieldType.TYPE_DATE)
+	@ExcelFieldConfig(name="创建时间",index=3,javaType=JavaFieldType.TYPE_DATE)
 	private Date createTime;
 
 	public String getName() {
