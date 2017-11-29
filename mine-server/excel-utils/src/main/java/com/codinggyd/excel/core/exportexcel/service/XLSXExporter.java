@@ -45,7 +45,7 @@ public class XLSXExporter extends CommonExporter implements IExcelExport{
 			createTitleRow(sheet);
 			//2.2 创建内容行
 			createContentRow(sheet, data);
-			System.out.println("导出数据量"+data.size()+",xls耗时:"+(System.currentTimeMillis()-start)+"ms");
+			System.out.println("导出数据量"+data.size()+",xlsx耗时:"+(System.currentTimeMillis()-start)+"ms");
  		} catch (Exception e) {
 			throw new ExcelException(e.getMessage());
  		}
