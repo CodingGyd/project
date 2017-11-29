@@ -28,25 +28,61 @@ public class XLSXExporter extends CommonExporter implements IExcelExport{
 
 	@Override
 	public <T> Workbook export(Class<?> clazz, List<T> data) throws ExcelException{
-
-		//1.初始化解析规则变量
-		super.parseConfig(clazz);
-
-		//2.开始写入excel
-		Workbook workbook = new SXSSFWorkbook();
-		Sheet sheet = createSheet(workbook);
-		//2.1 创建标题行
-		createTitleRow(sheet);
-		//2.2 创建内容行
 		
+		if (null == data || null == clazz) {
+			return null;
+		}
+		
+		Workbook workbook = null;
+		try {
+			long start = System.currentTimeMillis();
+			//1.初始化解析规则变量
+			super.parseConfig(clazz);
+			//2.开始写入excel
+			workbook = new SXSSFWorkbook();
+			Sheet sheet = createSheet(workbook);
+			//2.1 创建标题行
+			createTitleRow(sheet);
+			//2.2 创建内容行
+			createContentRow(sheet, data);
+			System.out.println("导出数据量"+data.size()+",xls耗时:"+(System.currentTimeMillis()-start)+"ms");
+ 		} catch (Exception e) {
+			throw new ExcelException(e.getMessage());
+ 		}
  		return workbook;
 	}
 
 	@Override
 	public <T> void export(Class<?> clazz, List<T> data, OutputStream outputStream) throws ExcelException{
-		
-		//1.获取解析规则
-		super.parseConfig(clazz);
+		Workbook workbook = null;
+		try {
+			workbook = export(clazz, data);
+			
+			if (null != workbook) {
+				workbook.write(outputStream);
+			}
+			
+		} catch (Exception e) {
+			throw new ExcelException(e.getMessage());
+		} finally {
+			try {
+				
+				if (null != outputStream) {
+					outputStream.close();
+				}
+				
+				if (null != workbook) {
+					if (workbook instanceof SXSSFWorkbook) {
+						SXSSFWorkbook wb = (SXSSFWorkbook) workbook;
+						wb.dispose();
+					}
+					workbook.close();
+				}
+				
+			} catch (Exception e){
+				throw new ExcelException(e.getMessage());
+			}
+		}
 		
 	}
 }

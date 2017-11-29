@@ -1,10 +1,6 @@
 package com.codinggyd.excel.example;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-public class TestXls {
+public class TestXlsReader {
 	
 //	//测试XLSParser#process(InputStream is, Integer minColumns, Integer sheetNums)
 //	public static void main(String[] args) {

@@ -1,9 +1,7 @@
 package com.codinggyd.excel.core;
 
 import java.lang.reflect.Field;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -11,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
 import com.codinggyd.excel.annotation.ExcelFieldRule;
 import com.codinggyd.excel.annotation.ExcelSheetConfig;
-import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.exception.ExcelException;
 
 /**
@@ -33,17 +30,19 @@ public abstract class Common {
 	protected ExcelSheetConfig sheetConfig;
 	
 	// excel导入导出字段规则配置
-	protected Map<String, Field> fieldsMapByName;// key：字段名称，value：字段对象
-	protected List<ExcelFieldConfig> fieldConfigs;// 字段规则集合
+//	protected Map<String, Field> fieldsMapByName;// key：字段名称，value：字段对象
+//	protected Field[] fields ;//泛型字段属性对象集合
+	protected Map<ExcelFieldConfig,Field> fieldConfigAndFieldMap;
+//	protected List<ExcelFieldConfig> fieldConfigs;// 字段规则集合
 
 	public <T> void parseConfig(Class<T> clazz) {
 
 		// 1.excel导入Sheet解析规则配置描述
+		fieldConfigAndFieldMap = new LinkedHashMap<>();
 		sheetConfig = clazz.getAnnotation(ExcelSheetConfig.class);
 		if (null == sheetConfig) {
 			throw new ExcelException("未配置sheet解析规则,无法继续解析");
 		}
-
 
 		// 2.excel导入字段解析规则配置描述
 		Field[] fields = clazz.getDeclaredFields();
@@ -51,10 +50,10 @@ public abstract class Common {
 			throw new ExcelException("未配置字段列映射规则,无法继续解析");
 		}
 
-		fieldsMapByName = new LinkedHashMap<String, Field>();
-		fieldConfigs = new ArrayList<ExcelFieldConfig>();
-		for (Field field : fields) {
+ 		for (Field field : fields) {
 
+			field.setAccessible(true);
+			
 			ExcelFieldConfig config = field.getAnnotation(ExcelFieldConfig.class);
 
 			if (null == config) {
@@ -62,8 +61,7 @@ public abstract class Common {
 				// ExcelException("字段["+field.getName()+"]未配置字段列映射规则,无法继续解析");
 				continue;
 			}
-			fieldsMapByName.put(config.name(), field);
-			fieldConfigs.add(config);
+ 			fieldConfigAndFieldMap.put(config, field);
 		}
 	}
 

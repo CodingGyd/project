@@ -29,14 +29,14 @@ public interface ExcelConst {
 	/**
 	 * xls格式的单个sheet最多可以有65535行记录
 	 */
-	int EXCEL_XLS_MAX_ROW_NUM = 65535;
+	int EXCEL_XLS_MAX_ROW_NUM = 65500;
 	
 	/////////////////////////////////////////Excel-SHEET属性默认配置/////////////////////////////////////////////////////
 	
 	/**
 	 * SHEET默认名称
 	 */
-	String EXCEL_DEFAULT_SHEET_NAME = "";
+	String EXCEL_DEFAULT_SHEET_NAME = "缺省名称";
 	
 	/**
 	 * Excel的sheet默认个数

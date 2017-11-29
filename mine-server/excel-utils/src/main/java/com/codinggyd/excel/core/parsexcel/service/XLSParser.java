@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -93,17 +94,16 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 		
 		//1.获取解析规则
 		super.parseConfig(clazz);
-
-		if (!ExcelConst.EXCEL_FORMAT_XLS.equals(sheetConfig.excelSuffix())) {
-			throw new ExcelException("excel格式非xls,无法继续解析");
-		}
-		
 		final int contentStartIndex = sheetConfig.contentRowStartIndex();
 		final ResultList<T> result = new ResultList<T>();
 		final StringBuilder msgBuilder = new StringBuilder();
 		final Integer[] errors = new Integer[1];
 		errors[0] = 0;
-		
+
+		if (!ExcelConst.EXCEL_FORMAT_XLS.equals(sheetConfig.excelSuffix())) {
+			throw new ExcelException("excel格式非xls,无法继续解析");
+		}
+
 		//2.开始解析
 		this.parse(is, new IExcelRowHandler() {
 
@@ -129,6 +129,7 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 					throw new ExcelException(e.getMessage());
 				}
 				try {
+					Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
 					for (ExcelFieldConfig fieldConfig : fieldConfigs) {
 
 						// 1.该字段是否是主键
@@ -136,7 +137,7 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 
 						// 2.字段映射名称
 						String fieldName = fieldConfig.name();
-						curField = fieldsMapByName.get(fieldName);
+						curField = fieldConfigAndFieldMap.get(fieldConfig);
 						if (null == curField) {
 							throw new ExcelException("未找到字段[" + fieldName + "]的描述信息");
 						}

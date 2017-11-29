@@ -1,10 +1,14 @@
 package com.codinggyd.excel.core.exportexcel.service;
 
+import java.lang.reflect.Field;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -15,6 +19,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
+import com.codinggyd.excel.constant.JavaFieldType;
 import com.codinggyd.excel.core.Common;
 import com.codinggyd.excel.exception.ExcelException;
 
@@ -38,9 +43,34 @@ public abstract class CommonExporter extends Common{
 	 * @param clazz 类描述对象
 	 * @return 工作簿对象
 	 */
+	public <T> Sheet createSheet(Workbook workbook,String sheetName) throws ExcelException{
+		 
+		if (null == workbook) {
+			throw new ExcelException("workbook未初始化!");
+		}
+		Sheet sheet = workbook.createSheet(sheetName);
+		sheet.setDefaultColumnWidth(20);
+
+		return sheet;
+	}
+	
+	/**
+	 * 创建工作簿
+	 * @param workbook excel对象
+	 * @param clazz 类描述对象
+	 * @return 工作簿对象
+	 */
 	public <T> Sheet createSheet(Workbook workbook) throws ExcelException{
 		if (null == sheetConfig) {
 			throw new ExcelException("解析规则变量未初始化!");
+		}
+		
+		if (StringUtils.isEmpty(sheetConfig.sheetName())) {
+			throw new ExcelException("sheet名称不能为空!");
+		}
+		
+		if (null == workbook) {
+			throw new ExcelException("workbook未初始化!");
 		}
 		return workbook.createSheet(sheetConfig.sheetName());
 	}
@@ -57,16 +87,80 @@ public abstract class CommonExporter extends Common{
 			throw new ExcelException("工作簿变量未初始化!");
 		}
 		
-		if (null == sheetConfig || null == fieldConfigs) {
-			throw new ExcelException("解析规则变量未初始化!");
-		}
-		
 		if (CollectionUtils.isEmpty(data) ) {
 			throw new ExcelException("待导出数据为空!");
 		}
 		
-		for (T t : data) {
-			
+		if (null == sheetConfig || null == fieldConfigAndFieldMap) {
+			throw new ExcelException("解析规则变量未初始化!");
+		}
+
+		
+		int contentStartRowIndex = sheetConfig.contentRowStartIndex();
+		Row row = null;
+ 		T t = null;
+ 		Field field = null;
+ 		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
+ 		try {
+			for (int i=0;i<data.size();i++) {
+				row = createRow(sheet,contentStartRowIndex+i);
+				t = data.get(i);
+				for (ExcelFieldConfig config : fieldConfigs){
+					field = fieldConfigAndFieldMap.get(config);
+  					//字段写入列
+  					int index = config.index();
+  					//字段java类型
+  					int javaType = config.javaType();
+					//字段写入原始值值
+  					Object originValue = field.get(t);
+  					//字段转换值
+  					String value = null;
+					if (null != originValue) {
+						switch (javaType) {
+
+							case JavaFieldType.TYPE_STRING:
+								value = originValue.toString();
+	 							break;
+							case JavaFieldType.TYPE_DOUBLE:
+								value = originValue.toString();
+								break;
+							case JavaFieldType.TYPE_FLOAT:
+								value = originValue.toString();
+								break;
+							case JavaFieldType.TYPE_BIGDECIMAL:
+								value = originValue.toString();
+							case JavaFieldType.TYPE_DATE:
+								try {
+									SimpleDateFormat simpleDateFormat = new SimpleDateFormat(config.dateFormat());
+									value = simpleDateFormat.format((Date)originValue);
+								} catch (Exception e) {
+									throw new ExcelException(e.getMessage());
+								}
+								break;
+							case JavaFieldType.TYPE_TIME:
+								try {
+									SimpleDateFormat simpleDateFormat = new SimpleDateFormat(config.dateFormat());
+									value = simpleDateFormat.format((Date)originValue);
+								} catch (Exception e) {
+									throw new ExcelException(e.getMessage());
+								}
+								break;
+							case JavaFieldType.TYPE_INT:
+								value = originValue.toString();
+								break;
+							case JavaFieldType.TYPE_LONG:
+								value = originValue.toString();
+								break;
+							default:
+								value = originValue.toString();
+	 							break;
+						}
+					}
+					createCell(row, index,value);
+				}
+			}
+		} catch (Exception e){
+			throw new ExcelException(e.getMessage());
 		}
  
 		
@@ -85,13 +179,14 @@ public abstract class CommonExporter extends Common{
 	 */
 	public void createTitleRow(Sheet sheet,CellStyle style) throws ExcelException{
 		
-		if (null == fieldConfigs || fieldConfigs.size() == 0 || null == sheetConfig) {
+		if (null == fieldConfigAndFieldMap || null == sheetConfig) {
 			throw new ExcelException("解析规则变量未初始化!");
  		}
 	 
 		//1.解析字段的索引和名称信息
 		List<Integer> indexs = new ArrayList<>();
 		Map<Integer,String> indexNames = new LinkedHashMap<>();
+		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
 		for (ExcelFieldConfig field : fieldConfigs) {
 			indexNames.put(field.index(), field.name());
 			indexs.add(field.index());
