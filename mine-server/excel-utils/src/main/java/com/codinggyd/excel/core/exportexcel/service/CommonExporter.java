@@ -40,8 +40,9 @@ public abstract class CommonExporter extends Common{
 	/**
 	 * 创建工作簿
 	 * @param workbook excel对象
-	 * @param clazz 类描述对象
+	 * @param sheetName 工作簿名称
 	 * @return 工作簿对象
+	 * @throws ExcelException
 	 */
 	public <T> Sheet createSheet(Workbook workbook,String sheetName) throws ExcelException{
 		 
@@ -57,9 +58,10 @@ public abstract class CommonExporter extends Common{
 	/**
 	 * 创建工作簿
 	 * @param workbook excel对象
-	 * @param clazz 类描述对象
-	 * @return 工作簿对象
+ 	 * @return 工作簿对象
+	 * @throws ExcelException
 	 */
+	
 	public <T> Sheet createSheet(Workbook workbook) throws ExcelException{
 		if (null == sheetConfig) {
 			throw new ExcelException("解析规则变量未初始化!");
@@ -72,14 +74,18 @@ public abstract class CommonExporter extends Common{
 		if (null == workbook) {
 			throw new ExcelException("workbook未初始化!");
 		}
-		return workbook.createSheet(sheetConfig.sheetName());
+		
+		Sheet sheet = workbook.createSheet(sheetConfig.sheetName());
+		sheet.setDefaultColumnWidth(20);
+
+		return sheet;
 	}
 	
 	/**
-	 * 
+	 * 创建内容行区域
 	 * @param sheet 工作簿对象
-	 * @param sheetConfig 工作簿配置
-	 * @param fields 内容字段配置
+ 	 * @param data 数据
+	 * @throws ExcelException
 	 */
 	public <T> void createContentRow(Sheet sheet,List<T> data) throws ExcelException{
 
@@ -166,6 +172,11 @@ public abstract class CommonExporter extends Common{
 		
 	}
 	
+	/**
+	 * 创建标题行
+	 * @param sheet 工作簿对象
+	 * @throws ExcelException
+	 */
 	public void createTitleRow(Sheet sheet) throws ExcelException{
 		createTitleRow(sheet,null);
 	}
@@ -173,9 +184,8 @@ public abstract class CommonExporter extends Common{
 	/**
 	 * 创建标题行
 	 * @param sheet 工作簿对象
-	 * @param sheetConfig 工作簿配置
-	 * @param fields 标题字段配置
-	 * @param style 单元格样式
+  	 * @param style 单元格样式
+	 * @throws ExcelException
 	 */
 	public void createTitleRow(Sheet sheet,CellStyle style) throws ExcelException{
 		
@@ -198,8 +208,17 @@ public abstract class CommonExporter extends Common{
 		for (Integer index : indexs) {
 			createCell(row,index,indexNames.get(index));
 		}
+		sheet.createFreezePane( 0, 1, 0, 1 );   //冻结第一行		
+
 	}
 	
+	/**
+	 * 创建行
+	 * @param sheet 工作簿对象
+	 * @param index 行索引
+	 * @return row 行对象
+	 * @throws ExcelException
+	 */
 	public Row createRow(Sheet sheet,int index) throws ExcelException{
 		return createRow(sheet,index,null);
 	}
@@ -209,6 +228,7 @@ public abstract class CommonExporter extends Common{
 	 * @param index  所在行索引
 	 * @param style  行样式
 	 * @return row 行对象
+	 * @throws ExcelException
 	 */
 	public Row createRow(Sheet sheet,int index,CellStyle style) throws ExcelException{
 		
@@ -221,7 +241,13 @@ public abstract class CommonExporter extends Common{
 		return row;
 	}
 	
-	
+	/**
+	 * 创建单元格对象
+	 * @param row 行对象
+	 * @param index 单元格索引
+	 * @param value 单元格值
+	 * @return cell 单元格对象
+	 */
 	public Cell createCell(Row row, int index, String value){
 		return createCell(row,index,null,value);
 	}

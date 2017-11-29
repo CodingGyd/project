@@ -30,11 +30,8 @@ public abstract class Common {
 	protected ExcelSheetConfig sheetConfig;
 	
 	// excel导入导出字段规则配置
-//	protected Map<String, Field> fieldsMapByName;// key：字段名称，value：字段对象
-//	protected Field[] fields ;//泛型字段属性对象集合
-	protected Map<ExcelFieldConfig,Field> fieldConfigAndFieldMap;
-//	protected List<ExcelFieldConfig> fieldConfigs;// 字段规则集合
-
+ 	protected Map<ExcelFieldConfig,Field> fieldConfigAndFieldMap;
+ 
 	public <T> void parseConfig(Class<T> clazz) {
 
 		// 1.excel导入Sheet解析规则配置描述
