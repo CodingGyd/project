@@ -29,9 +29,9 @@ public class XLSExporter extends CommonExporter implements IExcelExport{
 	
 	@Override
 	public <T> Workbook export(Class<?> clazz, List<T> data) throws ExcelException{
-		
+		 
 		if (null == data || null == clazz) {
-			return null;
+			throw new ExcelException("数据或配置类对象不能为空");
 		}
 		
 		Workbook workbook = null;
@@ -42,11 +42,11 @@ public class XLSExporter extends CommonExporter implements IExcelExport{
 			//2.开始写入excel
 			workbook = new HSSFWorkbook();
 			if (data.size() < ExcelConst.EXCEL_XLS_MAX_ROW_NUM) {
-				Sheet sheet = createSheet(workbook);
+				Sheet sheet = super.createSheet(workbook);
 				//2.1 创建标题行
-				createTitleRow(sheet);
+				super.createTitleRow(sheet);
 				//2.2 创建内容行
-				createContentRow(sheet, data);
+				super.createContentRow(sheet, data);
 			} else {
  				int size = data.size();
 				int sta = 0;
@@ -57,11 +57,11 @@ public class XLSExporter extends CommonExporter implements IExcelExport{
 					if(end>size){
 						end=size;
 					}
-					Sheet sheet = createSheet(workbook,sheetConfig.sheetName()+i);
+					Sheet sheet = super.createSheet(workbook,sheetConfig.sheetName()+i);
 					//2.1 创建标题行
-					createTitleRow(sheet);
+					super.createTitleRow(sheet);
 					//2.2 创建内容行
-					createContentRow(sheet, data.subList(sta, end));
+					super.createContentRow(sheet, data.subList(sta, end));
 					
 					i++;//用来生成sheet名称,sheet名称不允许重复
 				}
@@ -78,7 +78,7 @@ public class XLSExporter extends CommonExporter implements IExcelExport{
 	public <T> void export(Class<?> clazz, List<T> data, OutputStream outputStream) throws ExcelException{
 		Workbook workbook = null;
 		try {
-			workbook = export(clazz, data);
+			workbook = this.export(clazz, data);
 			workbook.write(outputStream);
 			
 		} catch (Exception e) {

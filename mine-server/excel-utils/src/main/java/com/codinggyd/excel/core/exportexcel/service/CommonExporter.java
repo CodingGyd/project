@@ -112,7 +112,7 @@ public abstract class CommonExporter extends Common{
  		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
  		try {
 			for (int i=0;i<data.size();i++) {
-				row = createRow(sheet,contentStartRowIndex+i);
+				row = this.createRow(sheet,contentStartRowIndex+i);
 				t = data.get(i);
 				for (ExcelFieldConfig config : fieldConfigs){
 					field = fieldConfigAndFieldMap.get(config);
@@ -181,7 +181,7 @@ public abstract class CommonExporter extends Common{
 	 * @throws ExcelException 异常
 	 */
 	public void createTitleRow(Sheet sheet) throws ExcelException{
-		createTitleRow(sheet,null);
+		this.createTitleRow(sheet,null);
 	}
 	 
 	/**
@@ -207,7 +207,7 @@ public abstract class CommonExporter extends Common{
 		
 		//2.索引升序排序,遍历生成单元格
 		Collections.sort(indexs);
-		Row row = createRow(sheet,sheetConfig.titleRowStartIndex());
+		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex());
 		for (Integer index : indexs) {
 			createCell(row,index,indexNames.get(index));
 		}
@@ -223,7 +223,7 @@ public abstract class CommonExporter extends Common{
 	 * @throws ExcelException 异常
 	 */
 	public Row createRow(Sheet sheet,int index) throws ExcelException{
-		return createRow(sheet,index,null);
+		return this.createRow(sheet,index,null);
 	}
 	/**
 	 * 创建行
@@ -252,7 +252,7 @@ public abstract class CommonExporter extends Common{
 	 * @return cell 单元格对象
 	 */
 	public Cell createCell(Row row, int index, String value){
-		return createCell(row,index,null,value);
+		return this.createCell(row,index,null,value);
 	}
 	/**
 	 * 创建单元格

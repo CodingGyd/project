@@ -30,7 +30,7 @@ public class XLSXExporter extends CommonExporter implements IExcelExport{
 	public <T> Workbook export(Class<?> clazz, List<T> data) throws ExcelException{
 		
 		if (null == data || null == clazz) {
-			return null;
+			throw new ExcelException("数据或配置类对象不能为空");
 		}
 		
 		Workbook workbook = null;
@@ -40,11 +40,11 @@ public class XLSXExporter extends CommonExporter implements IExcelExport{
 			super.parseConfig(clazz);
 			//2.开始写入excel
 			workbook = new SXSSFWorkbook();
-			Sheet sheet = createSheet(workbook);
+			Sheet sheet = super.createSheet(workbook);
 			//2.1 创建标题行
-			createTitleRow(sheet);
+			super.createTitleRow(sheet);
 			//2.2 创建内容行
-			createContentRow(sheet, data);
+			super.createContentRow(sheet, data);
 			System.out.println("导出数据量"+data.size()+",xlsx耗时:"+(System.currentTimeMillis()-start)+"ms");
  		} catch (Exception e) {
 			throw new ExcelException(e.getMessage());
@@ -56,12 +56,8 @@ public class XLSXExporter extends CommonExporter implements IExcelExport{
 	public <T> void export(Class<?> clazz, List<T> data, OutputStream outputStream) throws ExcelException{
 		Workbook workbook = null;
 		try {
-			workbook = export(clazz, data);
-			
-			if (null != workbook) {
-				workbook.write(outputStream);
-			}
-			
+			workbook = this.export(clazz, data);
+			workbook.write(outputStream);
 		} catch (Exception e) {
 			throw new ExcelException(e.getMessage());
 		} finally {

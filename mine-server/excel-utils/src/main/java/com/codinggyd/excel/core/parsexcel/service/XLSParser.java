@@ -94,17 +94,17 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 		
 		//1.获取解析规则
 		super.parseConfig(clazz);
-		final int contentStartIndex = sheetConfig.contentRowStartIndex();
-		final ResultList<T> result = new ResultList<T>();
-		final StringBuilder msgBuilder = new StringBuilder();
-		final Integer[] errors = new Integer[1];
-		errors[0] = 0;
 
 		if (!ExcelConst.EXCEL_FORMAT_XLS.equals(sheetConfig.excelSuffix())) {
 			throw new ExcelException("excel格式非xls,无法继续解析");
 		}
 
 		//2.开始解析
+		final int contentStartIndex = sheetConfig.contentRowStartIndex();
+		final ResultList<T> result = new ResultList<T>();
+		final StringBuilder msgBuilder = new StringBuilder();
+		final Integer[] errors = new Integer[1];
+		errors[0] = 0;
 		this.parse(is, new IExcelRowHandler() {
 
 			@Override
@@ -291,7 +291,7 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 	@Override
 	public void parse(InputStream is, IExcelRowHandler rowHandler) throws ExcelException {
 		this.customRowHandler = rowHandler;
-		parse(is, -1, 1);
+		this.parse(is, -1, 1);
 	}
 
 	@Override
