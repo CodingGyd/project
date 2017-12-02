@@ -1,10 +1,10 @@
-svn库工程
+仓库工程清单
 菜鸟空间app工程RookiePalmSpaceApp
 菜鸟空间app服务端工程appserver/RookiePalmSpaceServer
-日常开销登记平台工程money-record
 个人博客网站前端工程mine-client
 个人博客网站后端工程mine-server
 个人博客网站后台管理工程mine-sys
+数据文件通用解析导入导出工具(excel-utils)
 
 
 日期 				变更情况
