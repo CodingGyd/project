@@ -16,7 +16,7 @@ public class TestXlsWriter {
 	public static void main(String[] args) throws FileNotFoundException {
 		String file = "D:/test.xls";
 		
-		List<TestUser> data = new ArrayList<>();
+		List<TestUser> data = new ArrayList<TestUser>();
 		for (int i=0;i<100000;i++) {
 			TestUser user = new TestUser();
 			user.setAge(i);

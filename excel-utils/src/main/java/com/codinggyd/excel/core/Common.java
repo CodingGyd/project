@@ -43,7 +43,7 @@ public abstract class Common {
 	public <T> void parseConfig(Class<T> clazz) {
 
 		// 1.excel导入Sheet解析规则配置描述
-		fieldConfigAndFieldMap = new LinkedHashMap<>();
+		fieldConfigAndFieldMap = new LinkedHashMap<ExcelFieldConfig,Field>();
 		sheetConfig = clazz.getAnnotation(ExcelSheetConfig.class);
 		if (null == sheetConfig) {
 			throw new ExcelException("未配置sheet解析规则,无法继续解析");
@@ -92,7 +92,7 @@ public abstract class Common {
 		// 1.获取配置的匹配替换规则
 		String newContent = null;
 		if (null != fieldConfig) {
-			Map<String, String> map = new LinkedHashMap<>();
+			Map<String, String> map = new LinkedHashMap<String, String>();
 			ExcelFieldRule[] replaceRules = fieldConfig.replaces();
 			if (null != replaceRules && replaceRules.length > 0) {
 

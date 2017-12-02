@@ -197,8 +197,8 @@ public abstract class CommonExporter extends Common{
  		}
 	 
 		//1.解析字段的索引和名称信息
-		List<Integer> indexs = new ArrayList<>();
-		Map<Integer,String> indexNames = new LinkedHashMap<>();
+		List<Integer> indexs = new ArrayList<Integer>();
+		Map<Integer,String> indexNames = new LinkedHashMap<Integer,String>();
 		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
 		for (ExcelFieldConfig field : fieldConfigs) {
 			indexNames.put(field.index(), field.name());
