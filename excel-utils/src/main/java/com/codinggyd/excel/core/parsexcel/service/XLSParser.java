@@ -519,7 +519,11 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 
 			// 自定义行级别解析回调接口
 			if (null != customRowHandler) {
-				customRowHandler.handler(sheetIndex + 1, lastRowNumber + 1, rowdataList);
+				try {
+					customRowHandler.handler(sheetIndex + 1, lastRowNumber + 1, rowdataList);
+				} catch (ExcelException e) {
+					e.printStackTrace();
+ 				}
 			}
 
 			rowdataList = new ArrayList<String>();

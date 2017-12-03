@@ -7,7 +7,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
-import com.codinggyd.excel.core.exportexcel.inter.IExcelExport;
+import com.codinggyd.excel.core.exportexcel.inter.IExcelExporter;
 import com.codinggyd.excel.exception.ExcelException;
 
 /**
@@ -23,7 +23,7 @@ import com.codinggyd.excel.exception.ExcelException;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public class XLSXExporter extends CommonExporter implements IExcelExport{
+public class XLSXExporter extends CommonExporter implements IExcelExporter{
 
 
 	@Override

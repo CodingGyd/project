@@ -39,8 +39,9 @@ public abstract class Common {
  	/**
  	 * @param <T> 泛型
  	 * @param clazz excel行记录抽象对象
+ 	 * @throws ExcelException 
  	 */
-	public <T> void parseConfig(Class<T> clazz) {
+	public <T> void parseConfig(Class<T> clazz) throws ExcelException {
 
 		// 1.excel导入Sheet解析规则配置描述
 		fieldConfigAndFieldMap = new LinkedHashMap<ExcelFieldConfig,Field>();

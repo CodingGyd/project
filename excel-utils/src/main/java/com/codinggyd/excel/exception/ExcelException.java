@@ -12,7 +12,7 @@ package com.codinggyd.excel.exception;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public class ExcelException extends RuntimeException{
+public class ExcelException extends Exception{
 
 	/**
 	 * 

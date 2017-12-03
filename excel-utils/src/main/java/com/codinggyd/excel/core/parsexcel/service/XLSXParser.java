@@ -350,7 +350,11 @@ public class XLSXParser extends CommonParser implements IExcelParser {
 			}
 			dataMap.put(rowNum + 1, rowdataList);// 存放一行数据，key是在excel中的实际行号，值范围1到n
 			if (null != rowHandler) {
-				rowHandler.handler(sheetIndex, rowNum + 1, rowdataList);
+				try {
+					rowHandler.handler(sheetIndex, rowNum + 1, rowdataList);
+				} catch (ExcelException e) {
+ 					e.printStackTrace();
+				}
 			}
 		}
 

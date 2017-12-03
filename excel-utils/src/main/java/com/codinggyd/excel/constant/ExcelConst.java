@@ -4,7 +4,7 @@ package com.codinggyd.excel.constant;
  * <pre>
  * 类名:  ExcelConst.java
  * 包名:  com.codinggyd.excel.constant
- * 描述:  Excel相关常量集合
+ * 描述:  Excel相关常量集合,响应代码
  * 
  * 作者:  guoyd
  * 日期:  2017年11月22日
