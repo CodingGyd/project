@@ -36,8 +36,7 @@ public class XLSExporter extends CommonExporter implements IExcelExporter{
 		
 		Workbook workbook = null;
 		try {
-			long start = System.currentTimeMillis();
-			//1.初始化解析规则变量
+ 			//1.初始化解析规则变量
 			super.parseConfig(clazz);
 			//2.开始写入excel
 			workbook = new HSSFWorkbook();
@@ -67,8 +66,7 @@ public class XLSExporter extends CommonExporter implements IExcelExporter{
 				}
 				
 			}
-			System.out.println("导出数据量"+data.size()+",xls耗时:"+(System.currentTimeMillis()-start)+"ms");
- 		} catch (Exception e) {
+  		} catch (Exception e) {
 			throw new ExcelException(e.getMessage());
  		}
  		return workbook;
