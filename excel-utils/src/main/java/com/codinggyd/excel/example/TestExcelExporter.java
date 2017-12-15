@@ -43,7 +43,7 @@ public class TestExcelExporter extends TestCase  {
 			data.add(t);
 		}
 		//一行代码调用生成
-		Workbook wb = ExcelExporterUtils.export(format, User.class, data); 
+ 		Workbook wb = ExcelExporterUtils.export(User.class, data, format); 
 		
 		FileOutputStream fos = new FileOutputStream(new File(file));
 		wb.write(fos);
@@ -71,7 +71,7 @@ public class TestExcelExporter extends TestCase  {
 			data.add(t);
 		}
 		//一行代码调用生成
-		ExcelExporterUtils.export(format, User.class, data,fos); 
+ 		ExcelExporterUtils.export(User.class, data, format,fos); 
 		 
 		System.out.println("导出数据量"+data.size()/10000+"万条,耗时"+(System.currentTimeMillis()-start)+"ms");
 

@@ -1,12 +1,11 @@
 package com.codinggyd.excel.core.exportexcel.service;
 
 import java.io.OutputStream;
-import java.util.List;
 
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 
+import com.codinggyd.excel.core.exportexcel.bean.SheetData;
 import com.codinggyd.excel.core.exportexcel.inter.IExcelExporter;
 import com.codinggyd.excel.exception.ExcelException;
 
@@ -27,23 +26,17 @@ public class XLSXExporter extends CommonExporter implements IExcelExporter{
 
 
 	@Override
-	public <T> Workbook export(Class<?> clazz, List<T> data) throws ExcelException{
+	public <T> Workbook export(SheetData<T> sheetData) throws ExcelException{
 		
-		if ( null == clazz) {
-			throw new ExcelException("配置规则对象不能为空");
+		if ( null == sheetData) {
+			throw new ExcelException("配置对象不能为空");
 		}
 		
 		Workbook workbook = null;
 		try {
- 			//1.初始化解析规则变量
-			super.parseConfig(clazz);
-			//2.开始写入excel
+			//1.创建excel对象
 			workbook = new SXSSFWorkbook();
-			Sheet sheet = super.createSheet(workbook);
-			//2.1 创建标题行
-			super.createTitleRow(sheet);
-			//2.2 创建内容行
-			super.createContentRow(sheet, data);
+			super.initSheet(workbook, sheetData, null);
   		} catch (Exception e) {
 			throw new ExcelException(e.getMessage());
  		}
@@ -51,10 +44,10 @@ public class XLSXExporter extends CommonExporter implements IExcelExporter{
 	}
 
 	@Override
-	public <T> void export(Class<?> clazz, List<T> data, OutputStream outputStream) throws ExcelException{
+	public <T> void export(SheetData<T> sheetData, OutputStream outputStream) throws ExcelException{
 		Workbook workbook = null;
 		try {
-			workbook = this.export(clazz, data);
+			workbook = this.export(sheetData);
 			workbook.write(outputStream);
 		} catch (Exception e) {
 			throw new ExcelException(e.getMessage());
@@ -63,6 +56,7 @@ public class XLSXExporter extends CommonExporter implements IExcelExporter{
 				
 				if (null != outputStream) {
 					outputStream.close();
+					outputStream = null;
 				}
 				
 				if (null != workbook) {
@@ -71,6 +65,7 @@ public class XLSXExporter extends CommonExporter implements IExcelExporter{
 						wb.dispose();
 					}
 					workbook.close();
+					workbook = null;
 				}
 				
 			} catch (Exception e){

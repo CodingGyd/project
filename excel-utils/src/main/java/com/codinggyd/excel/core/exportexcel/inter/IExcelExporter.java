@@ -1,10 +1,10 @@
 package com.codinggyd.excel.core.exportexcel.inter;
 
 import java.io.OutputStream;
-import java.util.List;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
+import com.codinggyd.excel.core.exportexcel.bean.SheetData;
 import com.codinggyd.excel.exception.ExcelException;
 
 /**
@@ -24,19 +24,17 @@ public interface IExcelExporter {
 	/**
 	 * excel通用生成接口
 	 * @param <T> 泛型参数, 运行时指定
-	 * @param clazz excel行记录结构对象
-	 * @param data 待写入excel的数据集
+	 * @param sheetData excel的工作簿生成信息
 	 * @return 生成的excel对象
 	 */
-	public <T> Workbook export(Class<?> clazz,List<T> data) throws ExcelException;
+	<T> Workbook export(SheetData<T> sheetData) throws ExcelException;
 	
 	/**
 	 * excel通用生成接口
 	 * @param <T> 泛型参数, 运行时指定
-	 * @param clazz excel行记录结构对象
-	 * @param data 待写入excel的数据集
+ 	 * @param sheetData excel的工作簿生成信息
 	 * @param outputStream excel写入流
 	 */
-	public <T> void export(Class<?> clazz,List<T> data,OutputStream outputStream) throws ExcelException;
+	<T> void export(SheetData<T> sheetData,OutputStream outputStream) throws ExcelException;
 	
 }

@@ -21,6 +21,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
 import com.codinggyd.excel.constant.JavaFieldType;
 import com.codinggyd.excel.core.Common;
+import com.codinggyd.excel.core.exportexcel.bean.SheetData;
 import com.codinggyd.excel.exception.ExcelException;
 
 /**
@@ -36,49 +37,32 @@ import com.codinggyd.excel.exception.ExcelException;
  * </pre>
  */
 public abstract class CommonExporter extends Common{
-
+ 
 	/**
-	 * 创建工作簿
+	 * 生成工作簿并初始化数据
 	 * @param workbook excel对象
-	 * @param sheetName 工作簿名称
+	 * @param sheetData 工作簿数据
+	 * @param sheetName 工作簿名称,若不为空,优先使用该参数作为工作簿名称
 	 * @return 工作簿对象
 	 * @param <T> 泛型参数, 运行时指定
 	 * @throws ExcelException 异常
 	 */
-	public <T> Sheet createSheet(Workbook workbook,String sheetName) throws ExcelException{
+	public <T> Sheet initSheet(Workbook workbook,SheetData<T> sheetData,String sheetName) throws ExcelException{
 		 
 		if (null == workbook) {
 			throw new ExcelException("workbook未初始化!");
 		}
-		Sheet sheet = workbook.createSheet(sheetName);
+		
+		//1.初始化解析规则变量
+		super.parseConfig(sheetData.getClazz());
+		//2.创建工作簿对象
+		Sheet sheet = StringUtils.isNotEmpty(sheetName) ? workbook.createSheet(sheetName):
+			workbook.createSheet(sheetConfig.sheetName());
 		sheet.setDefaultColumnWidth(20);
-
-		return sheet;
-	}
-	
-	/**
-	 * 创建工作簿
-	 * @param workbook excel对象
- 	 * @return 工作簿对象
- 	 * @param <T> 泛型参数, 运行时指定
-	 * @throws ExcelException 异常
-	 */
-	
-	public <T> Sheet createSheet(Workbook workbook) throws ExcelException{
-		if (null == sheetConfig) {
-			throw new ExcelException("解析规则变量未初始化!");
-		}
-		
-		if (StringUtils.isEmpty(sheetConfig.sheetName())) {
-			throw new ExcelException("sheet名称不能为空!");
-		}
-		
-		if (null == workbook) {
-			throw new ExcelException("workbook未初始化!");
-		}
-		
-		Sheet sheet = workbook.createSheet(sheetConfig.sheetName());
-		sheet.setDefaultColumnWidth(20);
+		//3.创建标题行
+		this.createTitleRow(sheet,null);
+		//4.创建内容行
+		this.createContentRow(sheet, sheetData.getData(),null);
 
 		return sheet;
 	}
@@ -90,7 +74,7 @@ public abstract class CommonExporter extends Common{
  	 * @param data 数据
 	 * @throws ExcelException 异常
 	 */
-	public <T> void createContentRow(Sheet sheet,List<T> data) throws ExcelException{
+	public <T> void createContentRow(Sheet sheet,List<T> data,CellStyle style) throws ExcelException{
 
 		if (null == sheet) {
 			throw new ExcelException("工作簿变量未初始化!");
@@ -98,22 +82,21 @@ public abstract class CommonExporter extends Common{
 		
 		if (CollectionUtils.isEmpty(data) ) {
 			data = new ArrayList<T>();
-//			throw new ExcelException("待导出数据为空!");
-		}
+ 		}
 		
 		if (null == sheetConfig || null == fieldConfigAndFieldMap) {
 			throw new ExcelException("解析规则变量未初始化!");
 		}
 
-		
 		int contentStartRowIndex = sheetConfig.contentRowStartIndex();
 		Row row = null;
  		T t = null;
  		Field field = null;
+ 		SimpleDateFormat simpleDateFormat = null;
  		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
  		try {
 			for (int i=0;i<data.size();i++) {
-				row = this.createRow(sheet,contentStartRowIndex+i);
+				row = this.createRow(sheet,contentStartRowIndex+i,style);
 				t = data.get(i);
 				for (ExcelFieldConfig config : fieldConfigs){
 					field = fieldConfigAndFieldMap.get(config);
@@ -141,7 +124,7 @@ public abstract class CommonExporter extends Common{
 								value = originValue.toString();
 							case JavaFieldType.TYPE_DATE:
 								try {
-									SimpleDateFormat simpleDateFormat = new SimpleDateFormat(config.dateFormat());
+									simpleDateFormat = new SimpleDateFormat(config.dateFormat());
 									value = simpleDateFormat.format((Date)originValue);
 								} catch (Exception e) {
 									throw new ExcelException(e.getMessage());
@@ -149,7 +132,7 @@ public abstract class CommonExporter extends Common{
 								break;
 							case JavaFieldType.TYPE_TIME:
 								try {
-									SimpleDateFormat simpleDateFormat = new SimpleDateFormat(config.dateFormat());
+									simpleDateFormat = new SimpleDateFormat(config.dateFormat());
 									value = simpleDateFormat.format((Date)originValue);
 								} catch (Exception e) {
 									throw new ExcelException(e.getMessage());
@@ -166,7 +149,7 @@ public abstract class CommonExporter extends Common{
 	 							break;
 						}
 					}
-					createCell(row, index,value);
+					this.createCell(row, index,style,value);
 				}
 			}
 		} catch (Exception e){
@@ -174,15 +157,6 @@ public abstract class CommonExporter extends Common{
 		}
  
 		
-	}
-	
-	/**
-	 * 创建标题行
-	 * @param sheet 工作簿对象
-	 * @throws ExcelException 异常
-	 */
-	public void createTitleRow(Sheet sheet) throws ExcelException{
-		this.createTitleRow(sheet,null);
 	}
 	 
 	/**
@@ -208,24 +182,14 @@ public abstract class CommonExporter extends Common{
 		
 		//2.索引升序排序,遍历生成单元格
 		Collections.sort(indexs);
-		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex());
+		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex(),style);
 		for (Integer index : indexs) {
-			createCell(row,index,indexNames.get(index));
+			this.createCell(row,index,null,indexNames.get(index));
 		}
 		sheet.createFreezePane( 0, 1, 0, 1 );   //冻结第一行		
 
 	}
-	
-	/**
-	 * 创建行
-	 * @param sheet 工作簿对象
-	 * @param index 行索引
-	 * @return row 行对象
-	 * @throws ExcelException 异常
-	 */
-	public Row createRow(Sheet sheet,int index) throws ExcelException{
-		return this.createRow(sheet,index,null);
-	}
+	 
 	/**
 	 * 创建行
 	 * @param sheet 所在工作簿对象
@@ -244,17 +208,7 @@ public abstract class CommonExporter extends Common{
 		
 		return row;
 	}
-	
-	/**
-	 * 创建单元格对象
-	 * @param row 行对象
-	 * @param index 单元格索引
-	 * @param value 单元格值
-	 * @return cell 单元格对象
-	 */
-	public Cell createCell(Row row, int index, String value){
-		return this.createCell(row,index,null,value);
-	}
+ 
 	/**
 	 * 创建单元格
 	 * @param row 所在行对象

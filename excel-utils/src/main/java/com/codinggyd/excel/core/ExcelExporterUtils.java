@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import com.codinggyd.excel.constant.ExcelConst;
+import com.codinggyd.excel.core.exportexcel.bean.SheetData;
 import com.codinggyd.excel.core.exportexcel.inter.IExcelExporter;
 import com.codinggyd.excel.core.exportexcel.service.XLSExporter;
 import com.codinggyd.excel.core.exportexcel.service.XLSXExporter;
@@ -31,10 +32,12 @@ public class ExcelExporterUtils {
 	 * @param <T> 泛型参数, 运行时指定
 	 * @param clazz excel行记录结构对象
 	 * @param data 待写入excel的数据集
+	 * @param format excel格式
 	 * @return 生成的excel对象
 	 */
-	public static <T> Workbook export(String format,Class<?> clazz,List<T> data) throws ExcelException{
-		return getExcelExporter(format).export(clazz, data);
+	public static <T> Workbook export(Class<T> clazz,List<T> data,String format) throws ExcelException{
+		SheetData<T> sheetData = new SheetData<T>(clazz, data, format);
+		return getExcelExporter(sheetData).export(sheetData);
 		
 	}
 	
@@ -43,10 +46,12 @@ public class ExcelExporterUtils {
 	 * @param <T> 泛型参数, 运行时指定
 	 * @param clazz excel行记录结构对象
 	 * @param data 待写入excel的数据集
+	 * @param format excel格式
 	 * @param outputStream excel写入流
 	 */
-	public static <T> void export(String format,Class<?> clazz,List<T> data,OutputStream outputStream) throws ExcelException {
-		getExcelExporter(format).export(clazz, data, outputStream);
+	public static <T> void export(Class<T> clazz,List<T> data,String format,OutputStream outputStream) throws ExcelException {
+		SheetData<T> sheetData = new SheetData<T>(clazz, data, format);
+		getExcelExporter(sheetData).export(sheetData, outputStream);
 	}
 	
 	
@@ -56,12 +61,16 @@ public class ExcelExporterUtils {
 	 * @return Excel生成实例
 	 * @throws ExcelException
 	 */
-	private static IExcelExporter getExcelExporter(String format) throws ExcelException {
+	private static <T> IExcelExporter getExcelExporter(SheetData<T> sheetData) throws ExcelException {
+		
+		if (null == sheetData ) {
+			throw new ExcelException("配置有误!");
+		}
 		
 		IExcelExporter excelExporter = null;
-		if (ExcelConst.EXCEL_FORMAT_XLS.equals(format)) {
+		if (ExcelConst.EXCEL_FORMAT_XLS.equals(sheetData.getFormat())) {
 			excelExporter = new XLSExporter();
-		} else if (ExcelConst.EXCEL_FORMAT_XLSX.equals(format)) {
+		} else if (ExcelConst.EXCEL_FORMAT_XLSX.equals(sheetData.getFormat())) {
 			excelExporter = new XLSXExporter();
 		} else {
 			throw new ExcelException("格式错误,非xls或xlsx格式");
