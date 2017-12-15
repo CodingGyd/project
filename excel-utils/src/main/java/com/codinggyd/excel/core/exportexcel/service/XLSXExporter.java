@@ -29,8 +29,8 @@ public class XLSXExporter extends CommonExporter implements IExcelExporter{
 	@Override
 	public <T> Workbook export(Class<?> clazz, List<T> data) throws ExcelException{
 		
-		if (null == data || null == clazz) {
-			throw new ExcelException("数据或配置类对象不能为空");
+		if ( null == clazz) {
+			throw new ExcelException("配置规则对象不能为空");
 		}
 		
 		Workbook workbook = null;

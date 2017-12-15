@@ -97,7 +97,8 @@ public abstract class CommonExporter extends Common{
 		}
 		
 		if (CollectionUtils.isEmpty(data) ) {
-			throw new ExcelException("待导出数据为空!");
+			data = new ArrayList<T>();
+//			throw new ExcelException("待导出数据为空!");
 		}
 		
 		if (null == sheetConfig || null == fieldConfigAndFieldMap) {
