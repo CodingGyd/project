@@ -10,6 +10,7 @@ import org.apache.poi.ss.usermodel.Workbook;
 
 import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.core.ExcelExporterUtils;
+import com.codinggyd.excel.core.exportexcel.bean.SheetData;
 
 import junit.framework.TestCase;
 /**
@@ -74,6 +75,52 @@ public class TestExcelExporter extends TestCase  {
  		ExcelExporterUtils.export(User.class, data, format,fos); 
 		 
 		System.out.println("导出数据量"+data.size()/10000+"万条,耗时"+(System.currentTimeMillis()-start)+"ms");
+
+	}
+	
+	
+//	测试ExcelExporterUtils#exportBatch(List<SheetData<T>> sheetDatas)
+	@SuppressWarnings("rawtypes")
+	public void testExporter3() throws Exception {
+		long start = System.currentTimeMillis();
+
+
+		String format = ExcelConst.EXCEL_FORMAT_XLSX;
+		
+		List<User> userData = new ArrayList<User>();
+		for (int i=0;i<100000;i++) {
+			User t = new User();
+			t.setAge(i);
+			t.setName("测试"+i);
+			t.setMoney(1d*i);
+			t.setCreateTime(new Date());
+			userData.add(t);
+		}
+		
+		List<Man> manData = new ArrayList<Man>();
+		for (int i=0;i<100000;i++) {
+			Man t = new Man();
+			t.setName("测试"+i);
+			manData.add(t);
+		}
+		
+		SheetData<User> userSheet = new SheetData<User>(User.class, userData, format);
+		SheetData<Man> manSheet = new SheetData<Man>(Man.class, manData, format);
+		List<SheetData> multiSheets = new ArrayList<>(); 
+		multiSheets.add(userSheet);
+		multiSheets.add(manSheet);
+
+		//一行代码调用生成
+		for (int i=0;i<5;i++) {
+			String file = "G:/newbatch"+i+".xlsx";
+			Workbook wb = ExcelExporterUtils.exportBatch(multiSheets,format); 
+			FileOutputStream fos = new FileOutputStream(new File(file));
+			wb.write(fos);
+			fos.close();
+			wb.close();
+		}
+		
+		System.out.println("导出耗时"+(System.currentTimeMillis()-start)+"ms");
 
 	}
 	 

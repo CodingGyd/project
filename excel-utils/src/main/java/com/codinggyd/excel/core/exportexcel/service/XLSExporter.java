@@ -27,7 +27,28 @@ import com.codinggyd.excel.exception.ExcelException;
  */
 public class XLSExporter extends CommonExporter implements IExcelExporter{
 
-	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
+	public Workbook exportBatch(List<SheetData> sheetDatas) throws ExcelException {
+		
+		if ( CollectionUtils.isEmpty(sheetDatas)) {
+			throw new ExcelException("配置信息不能为空");
+		}
+		
+		Workbook workbook = null;
+		try {
+			
+			for (SheetData sheetData : sheetDatas) {
+				workbook = this.export(sheetData);
+			}
+			
+  		} catch (Exception e) {
+			throw new ExcelException(e.getMessage());
+ 		}
+		
+		return workbook;
+	}
+
 	@Override
 	public <T> Workbook export(SheetData<T> sheetData) throws ExcelException{
 		 
@@ -96,4 +117,33 @@ public class XLSExporter extends CommonExporter implements IExcelExporter{
 		
 	}
 
+	@SuppressWarnings("rawtypes")
+	@Override
+	public void exportBatch(List<SheetData> sheetDatas, OutputStream outputStream) throws ExcelException {
+		Workbook workbook = null;
+		try {
+			workbook = this.exportBatch(sheetDatas);
+			workbook.write(outputStream);
+			
+		} catch (Exception e) {
+			throw new ExcelException(e.getMessage());
+		} finally {
+			try {
+				
+				if (null != outputStream) {
+					outputStream.close();
+					outputStream = null;
+				}
+				
+				if (null != workbook) {
+ 					workbook.close();
+ 					workbook = null;
+				}
+			} catch (Exception e){
+				throw new ExcelException(e.getMessage());
+			}
+		}
+	}
+
+	
 }
