@@ -4,13 +4,17 @@ import java.lang.reflect.Field;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -55,12 +59,14 @@ public abstract class CommonExporter extends Common{
 		//2.创建工作簿对象
 		Sheet sheet = StringUtils.isNotEmpty(sheetName) ? workbook.createSheet(sheetName):
 			workbook.createSheet(sheetConfig.sheetName());
-		sheet.setDefaultColumnWidth(20);
-		//3.创建标题行
-		this.createTitleRow(sheet,null);
-		//4.创建内容行
-		this.createContentRow(sheet, sheetData.getData(),null);
-
+		//3.设置每列的列宽
+ 		for (ExcelFieldConfig field : fieldConfigAndFieldMap.keySet()) {
+ 			sheet.setColumnWidth(field.index(), field.width());
+ 		}
+		//4.创建标题行
+		this.createTitleRow(workbook,sheet,null);
+		//5.创建内容行
+		this.createContentRow(workbook,sheet, sheetData.getData(),null);
 		return sheet;
 	}
 	
@@ -69,9 +75,10 @@ public abstract class CommonExporter extends Common{
 	 * @param <T> 泛型参数, 运行时指定
 	 * @param sheet 工作簿对象
  	 * @param data 数据
+ 	 * @param rowStyle 行的样式
 	 * @throws ExcelException 异常
 	 */
-	public <T> void createContentRow(Sheet sheet,List<T> data,CellStyle style) throws ExcelException{
+	public <T> void createContentRow(Workbook workbook,Sheet sheet,List<T> data,CellStyle rowStyle) throws ExcelException{
 
 		if (null == sheet) {
 			throw new ExcelException("工作簿变量未初始化!");
@@ -87,16 +94,20 @@ public abstract class CommonExporter extends Common{
 
 		int contentStartRowIndex = sheetConfig.contentRowStartIndex();
 		Row row = null;
+	 
  		T t = null;
  		Field field = null;
  		SimpleDateFormat simpleDateFormat = null;
+ 		//根据配置生成每列的样式
+ 	    Map<Integer,CellStyle> cellStylesMap = getContentFieldStyle(workbook);
  		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
  		try {
 			for (int i=0;i<data.size();i++) {
-				row = this.createRow(sheet,contentStartRowIndex+i,style);
+				row = this.createRow(sheet,contentStartRowIndex+i,rowStyle);
 				t = data.get(i);
 				for (ExcelFieldConfig config : fieldConfigs){
 					field = fieldConfigAndFieldMap.get(config);
+					
   					//字段写入列
   					int index = config.index();
   					//字段java类型
@@ -146,7 +157,11 @@ public abstract class CommonExporter extends Common{
 	 							break;
 						}
 					}
-					this.createCell(row, index,style,value);
+					if (!config.isStyleEffectOnlyTitle()) {
+						this.createCell(row, index,cellStylesMap.get(index),value);
+					} else {
+						this.createCell(row, index,null,value);
+					}
 				}
 			}
 		} catch (Exception e){
@@ -155,6 +170,26 @@ public abstract class CommonExporter extends Common{
  
 		
 	}
+	
+	/**
+	 * 创建每一列单元格的样式，key-是列索引；value-是对应列的样式
+	 * @return key-是列索引；value-是对应列的样式
+	 */
+	private Map<Integer,CellStyle> getContentFieldStyle(Workbook workbook) {
+		Map<Integer,CellStyle> result = new HashMap<>();
+		
+		CellStyle cellStyle = null;
+		//解析析字段的索引和名称信息,动态生成列
+		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
+ 		for (ExcelFieldConfig field : fieldConfigs) {
+			cellStyle = workbook.createCellStyle();
+ 			cellStyle.setFillForegroundColor(IndexedColors.fromInt(field.fillPatternColor()).getIndex());
+			cellStyle.setFillPattern(FillPatternType.forInt(field.fillPatternTypeCode()));
+			result.put(field.index(), cellStyle);
+ 		}
+ 		
+ 		return result;
+	}
 	 
 	/**
 	 * 创建标题行
@@ -162,17 +197,28 @@ public abstract class CommonExporter extends Common{
   	 * @param style 单元格样式
 	 * @throws ExcelException 异常
 	 */
-	public void createTitleRow(Sheet sheet,CellStyle style) throws ExcelException{
+	public void createTitleRow(Workbook workbook,Sheet sheet,CellStyle style) throws ExcelException{
+		
+		if (null == workbook) {
+			throw new ExcelException("workbook对象不能为空!");
+		}
+		
+		if (null == sheet) {
+			throw new ExcelException("sheet对象不能为空!");
+		}
 		
 		if (null == fieldConfigAndFieldMap || null == sheetConfig) {
 			throw new ExcelException("解析规则变量未初始化!");
  		}
 		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex(),style);
 		CellStyle cellStyle = null;
+		//根据配置生成每列的样式
+		Map<Integer,CellStyle> cellStylesMap = getContentFieldStyle(workbook);
 		//解析析字段的索引和名称信息,动态生成列
 		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
-		for (ExcelFieldConfig field : fieldConfigs) {
-			sheet.setColumnWidth(field.index(), field.width());
+ 		for (ExcelFieldConfig field : fieldConfigs) {
+ 			cellStyle = cellStylesMap.get(field.index());
+			sheet.setColumnWidth(field.index(), field.width());//设置整列的宽度
 			createCell(row,field.index(),cellStyle,field.name());
 		}
 		sheet.createFreezePane( 0, 1, 0, 1 );   //冻结第一行	

@@ -88,7 +88,7 @@ public class TestExcelExporter extends TestCase  {
 		String format = ExcelConst.EXCEL_FORMAT_XLSX;
 		
 		List<User> userData = new ArrayList<User>();
-		for (int i=0;i<100;i++) {
+		for (int i=0;i<10000;i++) {
 			User t = new User();
 			t.setAge(i);
 			t.setName("测试"+i);
@@ -98,21 +98,33 @@ public class TestExcelExporter extends TestCase  {
 		}
 		
 		List<Man> manData = new ArrayList<Man>();
-		for (int i=0;i<100;i++) {
+		for (int i=0;i<100000;i++) {
 			Man t = new Man();
 			t.setName("测试"+i);
 			t.setValue(i+"");
 			manData.add(t);
 		}
 		
+		List<Position> posData = new ArrayList<Position>();
+		for (int i=0;i<10000;i++) {
+			Position t = new Position();
+			t.setName("1000"+i);
+			t.setValue(i+"");
+			posData.add(t);
+		}
+		
+		
 		SheetData<User> userSheet = new SheetData<User>(User.class, userData, format);
 		SheetData<Man> manSheet = new SheetData<Man>(Man.class, manData, format);
+		SheetData<Position> posSheet = new SheetData<Position>(Position.class, posData, format);
+
 		List<SheetData> multiSheets = new ArrayList<>(); 
 		multiSheets.add(userSheet);
 		multiSheets.add(manSheet);
+		multiSheets.add(posSheet);
 
 		//一行代码调用生成
-		for (int i=0;i<5;i++) {
+		for (int i=0;i<1;i++) {
 			String file = "D:/newbatch"+i+".xlsx";
 			Workbook wb = ExcelExporterUtils.exportBatch(multiSheets,format); 
 			FileOutputStream fos = new FileOutputStream(new File(file));

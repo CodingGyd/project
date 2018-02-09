@@ -35,7 +35,7 @@ public abstract class Common {
 	 * excel导入导出字段规则配置
 	 */
  	protected Map<ExcelFieldConfig,Field> fieldConfigAndFieldMap;
- 
+ 	
  	/**
  	 * @param <T> 泛型
  	 * @param clazz excel行记录抽象对象

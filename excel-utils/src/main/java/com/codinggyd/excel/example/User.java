@@ -20,13 +20,13 @@ public class User implements Serializable{
 	@ExcelFieldConfig(isPrimaryKey=true,name="姓名",index=0,javaType=JavaFieldType.TYPE_STRING, replaces = { @ExcelFieldRule(content = "上证", replace = "83"),@ExcelFieldRule(content = "深圳", replace = "90") })
 	private String name;
 	
-	@ExcelFieldConfig(name="年龄",index=1,javaType=JavaFieldType.TYPE_INTEGER)
+	@ExcelFieldConfig(name="年龄",index=1,javaType=JavaFieldType.TYPE_INTEGER,fillPatternColor=13,fillPatternTypeCode=1,isStyleEffectOnlyTitle=false)
 	private Integer age;
 	
-	@ExcelFieldConfig(name="工资",index=2,javaType=JavaFieldType.TYPE_DOUBLE)
+	@ExcelFieldConfig(name="工资",index=2,javaType=JavaFieldType.TYPE_DOUBLE,fillPatternColor=22,fillPatternTypeCode=4,isStyleEffectOnlyTitle=true)
 	private Double money;
 	
-	@ExcelFieldConfig(name="创建时间",index=3,javaType=JavaFieldType.TYPE_DATE)
+	@ExcelFieldConfig(name="创建时间",index=3,javaType=JavaFieldType.TYPE_DATE,fillPatternColor=31,fillPatternTypeCode=1,isStyleEffectOnlyTitle=false)
 	private Date createTime;
 
 	public String getName() {

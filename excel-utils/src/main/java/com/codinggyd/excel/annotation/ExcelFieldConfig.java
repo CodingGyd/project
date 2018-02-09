@@ -55,7 +55,24 @@ public @interface ExcelFieldConfig {
 	ExcelFieldRule[] replaces() default { @ExcelFieldRule(content = "", replace = "") };
 	
 	/**
-	 * @return excel中生成列的宽度
+	 * @return excel中生成单元格的宽度
 	 */
 	int width() default 20*256;
+	
+	/**
+	 * @return excel中单元格的填充方式,默认不填充
+	 * @see org.apache.poi.ss.usermodel.FillPatternType
+	 */
+	int fillPatternTypeCode() default 0;
+	
+	/**
+	 * @return excel中单元格的填充颜色 ,仅当fillPatternTypeCode参数设置允许填充后才有效
+	 * @see org.apache.poi.ss.usermodel.IndexedColors
+	 */
+	int fillPatternColor() default 22;
+	
+	/**
+	 * @return 设置fillPatternTypeCode、fillPatternColor参数是否仅仅针对标题行生效,默认为true；
+	 */
+	boolean isStyleEffectOnlyTitle() default true;
 }
