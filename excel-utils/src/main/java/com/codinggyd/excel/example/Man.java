@@ -18,13 +18,22 @@ public class Man implements Serializable{
 
 	@ExcelFieldConfig(isPrimaryKey=true,name="姓名x",index=0,javaType=JavaFieldType.TYPE_STRING, replaces = { @ExcelFieldRule(content = "上证", replace = "83"),@ExcelFieldRule(content = "深圳", replace = "90") })
 	private String name;
-
+	@ExcelFieldConfig(name="valuex",index=1,javaType=JavaFieldType.TYPE_STRING)
+	private String value;
 	public String getName() {
 		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
 	}
  
 }

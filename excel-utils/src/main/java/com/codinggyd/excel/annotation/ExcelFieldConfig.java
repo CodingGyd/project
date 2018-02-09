@@ -53,4 +53,9 @@ public @interface ExcelFieldConfig {
 	 * @return 内容匹配替换规则,即匹配到某种字符串时替换为指定值,支持配置N条匹配规则.
 	 */
 	ExcelFieldRule[] replaces() default { @ExcelFieldRule(content = "", replace = "") };
+	
+	/**
+	 * @return excel中生成列的宽度
+	 */
+	int width() default 20*256;
 }

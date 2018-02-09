@@ -37,9 +37,9 @@ public class XLSExporter extends CommonExporter implements IExcelExporter{
 		
 		Workbook workbook = null;
 		try {
-			
+			workbook = new HSSFWorkbook();
 			for (SheetData sheetData : sheetDatas) {
-				workbook = this.export(sheetData);
+				super.initSheet(workbook, sheetData, null);
 			}
 			
   		} catch (Exception e) {
@@ -60,14 +60,14 @@ public class XLSExporter extends CommonExporter implements IExcelExporter{
 		try {
 			//1.创建excel对象
 			workbook = new HSSFWorkbook();
- 			//2.初始化解析规则变量
-			super.parseConfig(sheetData.getClazz());
-			if (CollectionUtils.isNotEmpty(sheetData.getData())) {
-				List<T> data = sheetData.getData();
+// 			//2.初始化解析规则变量
+//			super.parseConfig(sheetData.getClazz());
+			List<T> data = sheetData.getData();
+			if (CollectionUtils.isNotEmpty(data)) {
 				if (data.size() < ExcelConst.EXCEL_XLS_MAX_ROW_NUM) {
 					super.initSheet(workbook, sheetData,null);
 				} else {
-					int size = sheetData.getData().size();
+					int size = data.size();
 					int sta = 0;
 					int end = 0;
 					int i = 0;

@@ -40,7 +40,7 @@ public interface IExcelExporter {
 	
 	/**
 	 * excel通用生成接口,支持生成不同数据集类型的多个sheet工作簿
-  	 * @param sheetDatas excel的工作簿生成信息
+  	 * @param sheetDatas excel的每个不同数据集类型工作簿的生成信息
 	 * @param outputStream excel写入流
 	 */
 	@SuppressWarnings("rawtypes")
@@ -49,7 +49,7 @@ public interface IExcelExporter {
 	/**
 	 * excel通用生成接口,支持生成单种数据集类型的多个sheet工作簿
 	 * @param <T> 泛型参数, 运行时指定
- 	 * @param sheetData excel的每个不同数据集类型工作簿生成信息
+ 	 * @param sheetData excel的数据集类型工作簿生成信息
 	 * @param outputStream excel写入流
 	 */
 	<T> void export(SheetData<T> sheetData,OutputStream outputStream) throws ExcelException;

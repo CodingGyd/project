@@ -32,10 +32,10 @@ public class TestExcelExporter extends TestCase  {
 	public void testExporter1() throws Exception {
 		long start = System.currentTimeMillis();
 
-		String file = "G:/new.xlsx";
+		String file = "D:/new.xlsx";
 		String format = ExcelConst.EXCEL_FORMAT_XLSX;
 		List<User> data = new ArrayList<User>();
-		for (int i=0;i<100000;i++) {
+		for (int i=0;i<1000;i++) {
 			User t = new User();
 			t.setAge(i);
 			t.setName("测试"+i);
@@ -59,11 +59,11 @@ public class TestExcelExporter extends TestCase  {
 	public void testExporter2() throws Exception {
 		long start = System.currentTimeMillis();
 
-		String file = "G:/newdata.xlsx";
+		String file = "D:/new.xlsx";
 		FileOutputStream fos = new FileOutputStream(new File(file));
 		String format = ExcelConst.EXCEL_FORMAT_XLSX;
 		List<User> data = new ArrayList<User>();
-		for (int i=0;i<1000000;i++) {
+		for (int i=0;i<100;i++) {
 			User t = new User();
 			t.setAge(i);
 			t.setName("测试"+i);
@@ -88,7 +88,7 @@ public class TestExcelExporter extends TestCase  {
 		String format = ExcelConst.EXCEL_FORMAT_XLSX;
 		
 		List<User> userData = new ArrayList<User>();
-		for (int i=0;i<100000;i++) {
+		for (int i=0;i<100;i++) {
 			User t = new User();
 			t.setAge(i);
 			t.setName("测试"+i);
@@ -98,9 +98,10 @@ public class TestExcelExporter extends TestCase  {
 		}
 		
 		List<Man> manData = new ArrayList<Man>();
-		for (int i=0;i<100000;i++) {
+		for (int i=0;i<100;i++) {
 			Man t = new Man();
 			t.setName("测试"+i);
+			t.setValue(i+"");
 			manData.add(t);
 		}
 		
@@ -112,7 +113,7 @@ public class TestExcelExporter extends TestCase  {
 
 		//一行代码调用生成
 		for (int i=0;i<5;i++) {
-			String file = "G:/newbatch"+i+".xlsx";
+			String file = "D:/newbatch"+i+".xlsx";
 			Workbook wb = ExcelExporterUtils.exportBatch(multiSheets,format); 
 			FileOutputStream fos = new FileOutputStream(new File(file));
 			wb.write(fos);
