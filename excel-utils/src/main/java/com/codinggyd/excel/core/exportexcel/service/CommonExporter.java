@@ -170,23 +170,31 @@ public abstract class CommonExporter extends Common{
 		if (null == fieldConfigAndFieldMap || null == sheetConfig) {
 			throw new ExcelException("解析规则变量未初始化!");
  		}
-	 
-		//1.解析字段的索引和名称信息
-		List<Integer> indexs = new ArrayList<Integer>();
-		Map<Integer,String> indexNames = new LinkedHashMap<Integer,String>();
+		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex(),style);
+		CellStyle cellStyle = null;
+		//解析析字段的索引和名称信息,动态生成列
 		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
 		for (ExcelFieldConfig field : fieldConfigs) {
-			indexNames.put(field.index(), field.name());
-			indexs.add(field.index());
+			createCell(row,field.index(),cellStyle,field.name());
 		}
+		sheet.createFreezePane( 0, 1, 0, 1 );   //冻结第一行	
 		
-		//2.索引升序排序,遍历生成单元格
-		Collections.sort(indexs);
-		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex(),style);
-		for (Integer index : indexs) {
-			this.createCell(row,index,null,indexNames.get(index));
-		}
-		sheet.createFreezePane( 0, 1, 0, 1 );   //冻结第一行		
+//		//1.解析字段的索引和名称信息
+//		List<Integer> indexs = new ArrayList<Integer>();
+//		Map<Integer,String> indexNames = new LinkedHashMap<Integer,String>();
+//		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
+//		for (ExcelFieldConfig field : fieldConfigs) {
+//			indexNames.put(field.index(), field.name());
+//			indexs.add(field.index());
+//		}
+//		
+//		//2.索引升序排序,遍历生成单元格
+//		Collections.sort(indexs);
+//		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex(),style);
+//		for (Integer index : indexs) {
+//			this.createCell(row,index,null,indexNames.get(index));
+//		}
+//		sheet.createFreezePane( 0, 1, 0, 1 );   //冻结第一行		
 
 	}
 	 
