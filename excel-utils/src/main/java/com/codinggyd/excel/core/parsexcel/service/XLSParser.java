@@ -136,7 +136,7 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 						boolean isPrimaryKey = fieldConfig.isPrimaryKey();
 
 						// 2.字段映射名称
-						String fieldName = fieldConfig.name();
+						String fieldName = fieldConfig.titleConfig().name();
 						curField = fieldConfigAndFieldMap.get(fieldConfig);
 						if (null == curField) {
 							throw new ExcelException("未找到字段[" + fieldName + "]的描述信息");

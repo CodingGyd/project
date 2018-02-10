@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
 import com.codinggyd.excel.annotation.ExcelFieldRule;
+import com.codinggyd.excel.annotation.ExcelFieldTitleConfig;
 import com.codinggyd.excel.annotation.ExcelSheetConfig;
 import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
@@ -16,9 +17,13 @@ public class Man implements Serializable{
 	 */
 	private static final long serialVersionUID = -6106965608103174812L;
 
-	@ExcelFieldConfig(isPrimaryKey=true,name="姓名x",index=0,javaType=JavaFieldType.TYPE_STRING, replaces = { @ExcelFieldRule(content = "上证", replace = "83"),@ExcelFieldRule(content = "深圳", replace = "90") })
+	@ExcelFieldConfig(isPrimaryKey=true,index=0,javaType=JavaFieldType.TYPE_STRING, useTitleStyle=true,
+			titleConfig=@ExcelFieldTitleConfig(name="姓名x",fillPatternColor=54,fillPatternTypeCode=1),
+			replaces = { @ExcelFieldRule(content = "上证", replace = "83"),
+					@ExcelFieldRule(content = "深圳", replace = "90") })
 	private String name;
-	@ExcelFieldConfig(name="valuex",index=1,javaType=JavaFieldType.TYPE_STRING,fillPatternColor=54,fillPatternTypeCode=1,isStyleEffectOnlyTitle=false)
+	@ExcelFieldConfig(titleConfig=@ExcelFieldTitleConfig(name="valuex"),
+			index=1,javaType=JavaFieldType.TYPE_STRING,fillPatternColor=33,fillPatternTypeCode=1)
 	private String value;
 	public String getName() {
 		return name;

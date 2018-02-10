@@ -101,7 +101,7 @@ public abstract class Common {
 					if (StringUtils.isNotEmpty(rule.content())) {
 
 						if (map.containsKey(rule.content())) {
-							throw new ExcelException("字段[" + fieldConfig.name() + "]的替换规则配置有重复,请检查配置后重新解析!");
+							throw new ExcelException("字段[" + fieldConfig.titleConfig().name() + "]的替换规则配置有重复,请检查配置后重新解析!");
 						}
 
 						map.put(rule.content(), rule.replace());

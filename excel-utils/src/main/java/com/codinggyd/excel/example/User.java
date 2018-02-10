@@ -6,6 +6,7 @@ import java.util.Date;
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
 import com.codinggyd.excel.annotation.ExcelSheetConfig;
 import com.codinggyd.excel.annotation.ExcelFieldRule;
+import com.codinggyd.excel.annotation.ExcelFieldTitleConfig;
 import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 
@@ -17,16 +18,16 @@ public class User implements Serializable{
 	 */
 	private static final long serialVersionUID = -6106965608103174812L;
 
-	@ExcelFieldConfig(isPrimaryKey=true,name="姓名",index=0,javaType=JavaFieldType.TYPE_STRING, replaces = { @ExcelFieldRule(content = "上证", replace = "83"),@ExcelFieldRule(content = "深圳", replace = "90") })
+	@ExcelFieldConfig(isPrimaryKey=true,titleConfig=@ExcelFieldTitleConfig(name="姓名"),index=0,javaType=JavaFieldType.TYPE_STRING, replaces = { @ExcelFieldRule(content = "上证", replace = "83"),@ExcelFieldRule(content = "深圳", replace = "90") })
 	private String name;
 	
-	@ExcelFieldConfig(name="年龄",index=1,javaType=JavaFieldType.TYPE_INTEGER,fillPatternColor=13,fillPatternTypeCode=1,isStyleEffectOnlyTitle=false)
+	@ExcelFieldConfig(titleConfig=@ExcelFieldTitleConfig(name="年龄",fillPatternColor=31,fillPatternTypeCode=1),index=1,javaType=JavaFieldType.TYPE_INTEGER,fillPatternColor=13,fillPatternTypeCode=1)
 	private Integer age;
 	
-	@ExcelFieldConfig(name="工资",index=2,javaType=JavaFieldType.TYPE_DOUBLE,fillPatternColor=22,fillPatternTypeCode=4,isStyleEffectOnlyTitle=true)
+	@ExcelFieldConfig(titleConfig=@ExcelFieldTitleConfig(name="工资"),index=2,javaType=JavaFieldType.TYPE_DOUBLE,fillPatternColor=22,fillPatternTypeCode=4)
 	private Double money;
 	
-	@ExcelFieldConfig(name="创建时间",index=3,javaType=JavaFieldType.TYPE_DATE,fillPatternColor=31,fillPatternTypeCode=1,isStyleEffectOnlyTitle=false)
+	@ExcelFieldConfig(titleConfig=@ExcelFieldTitleConfig(name="创建时间"),index=3,javaType=JavaFieldType.TYPE_DATE,fillPatternColor=31,fillPatternTypeCode=1)
 	private Date createTime;
 
 	public String getName() {

@@ -30,11 +30,6 @@ public @interface ExcelFieldConfig {
 	boolean isPrimaryKey() default false;
 	
 	/**
-	 * @return 字段名称
- 	 */
-	String name() default ExcelConst.EXCEL_FIELD_DEFAULT_NAME;
-	
-	/**
 	 * @return 字段所在列,从0开始
  	 */
 	int index() default ExcelConst.EXCEL_FIELD_DEFAULT_INDEX;
@@ -72,7 +67,12 @@ public @interface ExcelFieldConfig {
 	int fillPatternColor() default 22;
 	
 	/**
-	 * @return 设置fillPatternTypeCode、fillPatternColor参数是否仅仅针对标题行生效,默认为true；
+	 * @return 内容单元格是否重用当前列标题单元格的样式
 	 */
-	boolean isStyleEffectOnlyTitle() default true;
+	boolean useTitleStyle() default false;
+	
+	/**
+	 * @return 设置字段的标题
+	 */
+	ExcelFieldTitleConfig titleConfig() ;
 }

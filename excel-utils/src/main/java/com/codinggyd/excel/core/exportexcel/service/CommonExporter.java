@@ -99,7 +99,9 @@ public abstract class CommonExporter extends Common{
  		Field field = null;
  		SimpleDateFormat simpleDateFormat = null;
  		//根据配置生成每列的样式
- 	    Map<Integer,CellStyle> cellStylesMap = getContentFieldStyle(workbook);
+ 	    Map<Integer,CellStyle> cellContentStylesMap = getFieldContentStyle(workbook);//内容单元格样式
+ 	    Map<Integer,CellStyle> cellTitleStylesMap = getFieldTitleStyle(workbook);//标题单元格样式
+
  		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
  		try {
 			for (int i=0;i<data.size();i++) {
@@ -157,10 +159,10 @@ public abstract class CommonExporter extends Common{
 	 							break;
 						}
 					}
-					if (!config.isStyleEffectOnlyTitle()) {
-						this.createCell(row, index,cellStylesMap.get(index),value);
+					if (config.useTitleStyle()) {
+						this.createCell(row, index,cellTitleStylesMap.get(index),value);
 					} else {
-						this.createCell(row, index,null,value);
+						this.createCell(row, index,cellContentStylesMap.get(index),value);
 					}
 				}
 			}
@@ -172,10 +174,10 @@ public abstract class CommonExporter extends Common{
 	}
 	
 	/**
-	 * 创建每一列单元格的样式，key-是列索引；value-是对应列的样式
-	 * @return key-是列索引；value-是对应列的样式
+	 * 创建每一列单元格的内容样式，key-是列索引；value-是对应列的内容样式(非标题样式)
+	 * @return key-是列索引；value-是对应列的内容样式
 	 */
-	private Map<Integer,CellStyle> getContentFieldStyle(Workbook workbook) {
+	private Map<Integer,CellStyle> getFieldContentStyle(Workbook workbook) {
 		Map<Integer,CellStyle> result = new HashMap<>();
 		
 		CellStyle cellStyle = null;
@@ -185,6 +187,26 @@ public abstract class CommonExporter extends Common{
 			cellStyle = workbook.createCellStyle();
  			cellStyle.setFillForegroundColor(IndexedColors.fromInt(field.fillPatternColor()).getIndex());
 			cellStyle.setFillPattern(FillPatternType.forInt(field.fillPatternTypeCode()));
+			result.put(field.index(), cellStyle);
+ 		}
+ 		
+ 		return result;
+	}
+	
+	/**
+	 * 创建每一列单元格的内容样式，key-是列索引；value-是对应列的样式
+	 * @return key-是列索引；value-是对应列的样式
+	 */
+	private Map<Integer,CellStyle> getFieldTitleStyle(Workbook workbook) {
+		Map<Integer,CellStyle> result = new HashMap<>();
+		
+		CellStyle cellStyle = null;
+		//解析析字段的索引和名称信息,动态生成列
+		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
+ 		for (ExcelFieldConfig field : fieldConfigs) {
+			cellStyle = workbook.createCellStyle();
+ 			cellStyle.setFillForegroundColor(IndexedColors.fromInt(field.titleConfig().fillPatternColor()).getIndex());
+			cellStyle.setFillPattern(FillPatternType.forInt(field.titleConfig().fillPatternTypeCode()));
 			result.put(field.index(), cellStyle);
  		}
  		
@@ -213,13 +235,13 @@ public abstract class CommonExporter extends Common{
 		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex(),style);
 		CellStyle cellStyle = null;
 		//根据配置生成每列的样式
-		Map<Integer,CellStyle> cellStylesMap = getContentFieldStyle(workbook);
+		Map<Integer,CellStyle> cellStylesMap = getFieldTitleStyle(workbook);
 		//解析析字段的索引和名称信息,动态生成列
 		Set<ExcelFieldConfig> fieldConfigs = fieldConfigAndFieldMap.keySet();
  		for (ExcelFieldConfig field : fieldConfigs) {
  			cellStyle = cellStylesMap.get(field.index());
 			sheet.setColumnWidth(field.index(), field.width());//设置整列的宽度
-			createCell(row,field.index(),cellStyle,field.name());
+			createCell(row,field.index(),cellStyle,field.titleConfig().name());
 		}
 		sheet.createFreezePane( 0, 1, 0, 1 );   //冻结第一行	
 
