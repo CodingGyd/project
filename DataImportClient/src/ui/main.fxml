@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane pickOnBounds="true" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EventController">
+   <children>
+      <SplitPane dividerPositions="0.5" layoutY="26.0" orientation="VERTICAL" prefHeight="603.0" prefWidth="1100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="244.0" prefWidth="1100.0">
+               <children>
+                  <TabPane layoutX="-2.0" layoutY="22.0" prefHeight="281.0" prefWidth="1213.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                      <Tab text="单个文件导入">
+                           <content>
+                              <Pane>
+                                 <children>
+                                    <Label layoutX="107.0" layoutY="52.0" text="选择导入模板" />
+                                    <TextField fx:id="tfdSingleTmp" layoutX="196.0" layoutY="48.0" prefHeight="23.0" prefWidth="204.0" />
+                                    <Button fx:id="btnSingleChooseTmp" layoutX="408.0" layoutY="48.0" mnemonicParsing="false" onMouseClicked="#showSingleTemplateChooseDialog" text="浏览" />
+                                    <Button layoutX="408.0" layoutY="95.0" mnemonicParsing="false" text="浏览" />
+                                    <TextField layoutX="196.0" layoutY="95.0" prefHeight="23.0" prefWidth="204.0" />
+                                    <Label layoutX="107.0" layoutY="99.0" text="选择单个文件" />
+                                    <Button layoutX="196.0" layoutY="155.0" mnemonicParsing="false" text="开始预览" />
+                                    <Button layoutX="309.0" layoutY="155.0" mnemonicParsing="false" text="开始导入" />
+                                 </children>
+                              </Pane>
+                           </content></Tab>
+                      <Tab text="文件目录导入">
+                           <content>
+                              <Pane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Pane prefHeight="259.0" prefWidth="1013.0">
+                                       <children>
+                                          <Label layoutX="107.0" layoutY="52.0" text="选择导入模板" />
+                                          <TextField fx:id="tfdMultiTmp" layoutX="196.0" layoutY="48.0" prefHeight="23.0" prefWidth="204.0" />
+                                          <Button fx:id="btnMultiChooseTmp" layoutX="408.0" layoutY="48.0" mnemonicParsing="false" onMouseClicked="#showMultiTemplateChooseDialog" text="浏览" />
+                                          <Button layoutX="408.0" layoutY="95.0" mnemonicParsing="false" text="浏览" />
+                                          <TextField layoutX="196.0" layoutY="95.0" prefHeight="23.0" prefWidth="204.0" />
+                                          <Label layoutX="107.0" layoutY="99.0" text="选择文件目录" />
+                                          <Button layoutX="196.0" layoutY="155.0" mnemonicParsing="false" text="开始预览" />
+                                          <Button layoutX="309.0" layoutY="155.0" mnemonicParsing="false" text="开始导入" />
+                                       </children>
+                                    </Pane>
+                                 </children></Pane>
+                           </content></Tab>
+                    </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="242.0" prefWidth="1100.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <TabPane prefHeight="281.0" prefWidth="1213.0" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="导入详细日志">
+                           <content>
+                              <Pane prefHeight="244.0" prefWidth="998.0">
+                                 <children>
+                                    <TextArea layoutX="-5.0" prefHeight="253.0" prefWidth="1206.0" text="&#10; " />
+                                 </children></Pane>
+                           </content>
+                        </Tab>
+                        <Tab text="导入记录">
+                           <content>
+                              <Pane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView prefHeight="400.0" prefWidth="1213.0">
+                                       <columns>
+                                          <TableColumn prefWidth="44.0" text="序号" />
+                                          <TableColumn prefWidth="231.0" text="文件名" />
+                                          <TableColumn prefWidth="460.0" text="文件路径" />
+                                          <TableColumn minWidth="0.0" prefWidth="128.0" text="导入时间" />
+                                          <TableColumn prefWidth="337.0" text="导入结果描述" />
+                                       </columns>
+                                    </TableView>
+                                 </children>
+                              </Pane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="1100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-30.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="菜单">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#toBuildTmp" text="构建导入模板" />
+                  <MenuItem mnemonicParsing="false" onAction="#toAbout" text="关于" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
