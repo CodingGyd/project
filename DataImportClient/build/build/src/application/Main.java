@@ -13,7 +13,7 @@ public class Main extends Application {
 	        try {
 	            // Read file fxml and draw interface.
 	            AnchorPane root = FXMLLoader.load(getClass()
-	                    .getResource("/application/MyScene.fxml"));
+	                    .getResource("/ui/main.fxml"));
 	            
 //	            Button buttonLoad = new Button("Load");
 //	            buttonLoad.setOnAction(new EventHandler<ActionEvent>(){

@@ -89,15 +89,6 @@
             </AnchorPane>
         </items>
       </SplitPane>
-      <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="1100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-30.0">
-        <menus>
-            <Menu mnemonicParsing="false" text="菜单">
-              <items>
-                <MenuItem mnemonicParsing="false" onAction="#toBuildTmp" text="构建导入模板" />
-                  <MenuItem mnemonicParsing="false" onAction="#toAbout" text="关于" />
-              </items>
-            </Menu>
-        </menus>
-      </MenuBar>
+      <MenuBar fx:id="menuBar" layoutX="2.0" layoutY="1.0" prefHeight="18.0" prefWidth="1108.0" />
    </children>
 </AnchorPane>

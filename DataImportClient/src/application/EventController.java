@@ -9,18 +9,26 @@ import org.apache.commons.io.FileUtils;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBoxBuilder;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class EventController implements Initializable {
@@ -44,6 +52,29 @@ public class EventController implements Initializable {
     
    @Override
    public void initialize(URL location, ResourceBundle resources) {
+	   Label menuLabel = new Label("构建导入模板");
+	   menuLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	       @Override
+	       public void handle(MouseEvent event) {
+	    	   toBuildTmp();
+	       }
+	   });
+	   Menu btnBuildTmp = new Menu();
+	   btnBuildTmp.setGraphic(menuLabel);
+	   menuBar.getMenus().add(btnBuildTmp);
+
+	   //关于
+	   Label menuLabel2 = new Label("关于");
+	   menuLabel2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	       @Override
+	       public void handle(MouseEvent event) {
+	    	   toAbout();
+	       }
+	   });
+	   Menu btnAboutTmp = new Menu();
+	   btnAboutTmp.setGraphic(menuLabel2);
+	   //
+	   menuBar.getMenus().add(btnAboutTmp);
     }
  
    /**
@@ -131,6 +162,9 @@ public class EventController implements Initializable {
    
    public void toAbout(){
 	   System.out.println("关于页面");
+   }
+   public void ttt(){
+	   System.out.println("关于页qweqwe面");
    }
    
    public Stage showDialog(String title,String message) throws IOException{
