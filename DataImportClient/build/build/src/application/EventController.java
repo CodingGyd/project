@@ -9,12 +9,11 @@ import org.apache.commons.io.FileUtils;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,36 +22,33 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBoxBuilder;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class EventController implements Initializable {
 
    @FXML
-   private Button btnSingleChooseTmp;//µ¥¸öÎÄ¼şµ¼ÈëÄ£°åÑ¡Ôñ°´Å¥
+   private Button btnSingleChooseTmp;//å•ä¸ªæ–‡ä»¶å¯¼å…¥æ¨¡æ¿é€‰æ‹©æŒ‰é’®
 
    @FXML
-   private TextField tfdSingleTmp;//µ¥¸öÎÄ¼şµ¼ÈëÄ£°åÂ·¾¶¿ò
+   private TextField tfdSingleTmp;//å•ä¸ªæ–‡ä»¶å¯¼å…¥æ¨¡æ¿è·¯å¾„æ¡†
    
    @FXML
-   private Button btnMultiChooseTmp;//ÎÄ¼şÄ¿Â¼µ¼ÈëÄ£°åÑ¡Ôñ°´Å¥
+   private Button btnMultiChooseTmp;//æ–‡ä»¶ç›®å½•å¯¼å…¥æ¨¡æ¿é€‰æ‹©æŒ‰é’®
 
    @FXML
-   private TextField tfdMultiTmp;//ÎÄ¼şÄ¿Â¼µ¼ÈëÄ£°åÂ·¾¶¿ò
+   private TextField tfdMultiTmp;//æ–‡ä»¶ç›®å½•å¯¼å…¥æ¨¡æ¿è·¯å¾„æ¡†
    
    @FXML
-   private MenuBar menuBar;//²Ëµ¥À¸
+   private MenuBar menuBar;//èœå•æ 
    
    String[] downloadableExtensions = {".doc", ".xls", ".zip", ".exe", ".rar", ".pdf", ".jar", ".png", ".jpg", ".gif"};
     
    @Override
    public void initialize(URL location, ResourceBundle resources) {
-	   Label menuLabel = new Label("¹¹½¨µ¼ÈëÄ£°å");
+	   Label menuLabel = new Label("æ„å»ºå¯¼å…¥æ¨¡æ¿");
 	   menuLabel.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	       @Override
 	       public void handle(MouseEvent event) {
@@ -63,22 +59,33 @@ public class EventController implements Initializable {
 	   btnBuildTmp.setGraphic(menuLabel);
 	   menuBar.getMenus().add(btnBuildTmp);
 
-	   //¹ØÓÚ
-	   Label menuLabel2 = new Label("¹ØÓÚ");
+	   //æ–‡ä»¶åç§°æ‰¹é‡ä¿®æ”¹
+	   Label menuLabel2 = new Label("æ‰¹é‡æ”¹æ–‡ä»¶åç§°");
 	   menuLabel2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	       @Override
+	       public void handle(MouseEvent event) {
+	    	   toChgFileName();
+	       }
+	   });
+	   Menu btnChgFileNameTmp = new Menu();
+	   btnChgFileNameTmp.setGraphic(menuLabel2);
+	   menuBar.getMenus().add(btnChgFileNameTmp);
+	   
+	   //å…³äº
+	   Label menuLabel3 = new Label("å…³äº");
+	   menuLabel3.setOnMouseClicked(new EventHandler<MouseEvent>() {
 	       @Override
 	       public void handle(MouseEvent event) {
 	    	   toAbout();
 	       }
 	   });
 	   Menu btnAboutTmp = new Menu();
-	   btnAboutTmp.setGraphic(menuLabel2);
-	   //
+	   btnAboutTmp.setGraphic(menuLabel3);
 	   menuBar.getMenus().add(btnAboutTmp);
     }
  
    /**
-    * µ¯³öµ¥¸öÎÄ¼şµ¼ÈëÄ£°åÑ¡Ôñ¿ò
+    * å¼¹å‡ºå•ä¸ªæ–‡ä»¶å¯¼å…¥æ¨¡æ¿é€‰æ‹©æ¡†
     */
    public void showSingleTemplateChooseDialog(){
        FileChooser fileChooser = new FileChooser();
@@ -89,9 +96,10 @@ public class EventController implements Initializable {
     	   tfdSingleTmp.setText(file.getAbsolutePath());
        }
    }
+
    
    /**
-    * µ¯³ö¶à¸öÎÄ¼şµ¼ÈëÄ£°åÑ¡Ôñ¿ò
+    * å¼¹å‡ºå¤šä¸ªæ–‡ä»¶å¯¼å…¥æ¨¡æ¿é€‰æ‹©æ¡†
     */
    public void showMultiTemplateChooseDialog(){
        FileChooser fileChooser = new FileChooser();
@@ -104,12 +112,12 @@ public class EventController implements Initializable {
    }
    
    /**
-    * µ¯³ö¹¹½¨µ¼ÈëÄ£°åÒ³Ãæ
+    * å¼¹å‡ºæ„å»ºå¯¼å…¥æ¨¡æ¿é¡µé¢
     */
-   public void toBuildTmp(){
+   private void toBuildTmp(){
 		try {
  			Stage window = new Stage();
-			window.setTitle("¹¹½¨µ¼ÈëÄ£°å");
+			window.setTitle("æ„å»ºå¯¼å…¥æ¨¡æ¿");
 			AnchorPane root = FXMLLoader.load(getClass()
 			        .getResource("/ui/buildTmp.fxml"));
 			Scene scene = new Scene(root);
@@ -137,11 +145,11 @@ public class EventController implements Initializable {
 	                            	 break;
 	                             }
 	                             if(download.exists()) {
- 	                                 showDialog("ÌáÊ¾","ÏÂÔØµÄÎÄ¼şÒÑ´æÔÚ");
+ 	                                 showDialog("æç¤º","ä¸‹è½½çš„æ–‡ä»¶å·²å­˜åœ¨");
 	                                 break;
 	                             }
   	                             FileUtils.copyURLToFile(new URL(webEngine.getLocation()), download);
-  	                             showDialog("ÌáÊ¾","ÏÂÔØÍê³É,±£´æÂ·¾¶: " + download.getAbsolutePath());
+  	                             showDialog("æç¤º","ä¸‹è½½å®Œæˆ,ä¿å­˜è·¯å¾„: " + download.getAbsolutePath());
    	                             break;
 	                    	 } catch(Exception e) {
 	                             e.printStackTrace();
@@ -152,7 +160,7 @@ public class EventController implements Initializable {
 	        });
 			
 			window.setScene(scene);
-			//Ê¹ÓÃshowAndWait()ÏÈ´¦ÀíÕâ¸ö´°¿Ú£¬¶øÈç¹û²»´¦Àí£¬mainÖĞµÄÄÇ¸ö´°¿Ú²»ÄÜÏìÓ¦
+			//ä½¿ç”¨showAndWait()å…ˆå¤„ç†è¿™ä¸ªçª—å£ï¼Œè€Œå¦‚æœä¸å¤„ç†ï¼Œmainä¸­çš„é‚£ä¸ªçª—å£ä¸èƒ½å“åº”
 			window.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -160,12 +168,69 @@ public class EventController implements Initializable {
  
 	}
    
+   /**
+    * å¼¹å‡ºä¿®æ”¹æ–‡ä»¶åç§°é¡µé¢
+    */
+   private void toChgFileName(){
+		try {
+			Stage window = new Stage();
+			window.setTitle("æ‰¹é‡ä¿®æ”¹æ–‡ä»¶åç§°");
+			URL url = getClass()
+	        .getResource("/ui/chgFileName.fxml");
+			AnchorPane root = FXMLLoader.load(getClass()
+			        .getResource("/ui/chgFileName.fxml"));
+			Scene scene = new Scene(root);
+			
+			TextField txtResourceDir = (TextField)scene.lookup("#txtResourceDir");//èµ„æºæ–‡ä»¶å¤¹
+			TextField txtTargetDir = (TextField)scene.lookup("#txtTargetDir");//ç›®æ ‡æ–‡ä»¶å¤¹
+			
+			TextField txtOriginContent = (TextField)scene.lookup("#txtOriginContent");//æ–‡ä»¶åç§°ä¸­å¾…æ›¿æ¢çš„å†…å®¹
+			TextField txtTargetContent = (TextField)scene.lookup("#txtTargetContent");//æ›¿æ¢çš„ç›®æ ‡å†…å®¹
+			Button btnResourceDir = (Button)scene.lookup("#btnResourceDir");//èµ„æºæ–‡ä»¶å¤¹é€‰æ‹©æŒ‰é’®
+			Button btnTargetDir = (Button)scene.lookup("#btnTargetDir");//ç›®æ ‡æ–‡ä»¶å¤¹é€‰æ‹©æŒ‰é’®
+			btnResourceDir.setOnMouseClicked(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event event) {
+					
+					    // æ‰¹é‡ä¿®æ”¹æ–‡ä»¶åç§°-å¼¹å‡ºèµ„æºæ–‡ä»¶å¤¹é€‰æ‹©æ¡†
+					       FileChooser fileChooser = new FileChooser();
+//					       FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+//					       fileChooser.getExtensionFilters().add(extFilter);
+					       File file = fileChooser.showOpenDialog(btnResourceDir.getContextMenu());
+					       if (null != file) {
+					    	   txtResourceDir.setText(file.getAbsolutePath());
+					       }
+				}
+			});
+
+			btnTargetDir.setOnMouseClicked(new EventHandler<Event>() {
+
+				@Override
+				public void handle(Event event) {
+					
+					    // æ‰¹é‡ä¿®æ”¹æ–‡ä»¶åç§°-å¼¹å‡ºç›®æ ‡æ–‡ä»¶å¤¹é€‰æ‹©æ¡†
+					       FileChooser fileChooser = new FileChooser();
+//					       FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
+//					       fileChooser.getExtensionFilters().add(extFilter);
+					       File file = fileChooser.showOpenDialog(btnTargetDir.getContextMenu());
+					       if (null != file) {
+					    	   txtTargetDir.setText(file.getAbsolutePath());
+					       }
+				}
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+   }
+   
+   /**
+    * å…³äºé¡µé¢
+    */
    public void toAbout(){
-	   System.out.println("¹ØÓÚÒ³Ãæ");
+	   System.out.println("å…³äºé¡µé¢");
    }
-   public void ttt(){
-	   System.out.println("¹ØÓÚÒ³qweqweÃæ");
-   }
+    
    
    public Stage showDialog(String title,String message) throws IOException{
 	   Stage window = new Stage();
@@ -176,7 +241,7 @@ public class EventController implements Initializable {
 		root.getChildren().add(label);
 		Scene scene = new Scene(root);
 		window.setScene(scene);
-		//Ê¹ÓÃshowAndWait()ÏÈ´¦ÀíÕâ¸ö´°¿Ú£¬¶øÈç¹û²»´¦Àí£¬mainÖĞµÄÄÇ¸ö´°¿Ú²»ÄÜÏìÓ¦
+		//ä½¿ç”¨showAndWait()å…ˆå¤„ç†è¿™ä¸ªçª—å£ï¼Œè€Œå¦‚æœä¸å¤„ç†ï¼Œmainä¸­çš„é‚£ä¸ªçª—å£ä¸èƒ½å“åº”
 		window.showAndWait();
 		return window;
    }

@@ -15,22 +15,9 @@ public class Main extends Application {
 	            AnchorPane root = FXMLLoader.load(getClass()
 	                    .getResource("/ui/main.fxml"));
 	            
-//	            Button buttonLoad = new Button("Load");
-//	            buttonLoad.setOnAction(new EventHandler<ActionEvent>(){
-//	                 @Override
-//	                public void handle(ActionEvent arg0) {
-//	                    FileChooser fileChooser = new FileChooser();
-//	                    FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TXT files (*.txt)", "*.txt");
-//	                    fileChooser.getExtensionFilters().add(extFilter);
-//	                    File file = fileChooser.showOpenDialog(primaryStage);
-//	                    System.out.println(file);
-//	                }
-//	            });
-//	            root.getChildren().add(buttonLoad);
-	          
 	            Scene scene = new Scene(root);
 	          
-	            primaryStage.setTitle("À≥À≥π˘ ˝æ›µº»Îπ§æﬂ");
+	            primaryStage.setTitle("È°∫È°∫ÈÉ≠Êï∞ÊçÆÂØºÂÖ•Â∑•ÂÖ∑");
 	            primaryStage.setScene(scene);
 	            primaryStage.setResizable(false);
 	            primaryStage.show();

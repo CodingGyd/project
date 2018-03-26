@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.web.*?>
+<?import javafx.scene.media.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane pickOnBounds="true" prefHeight="603.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerChgFileName">
+   <children>
+      <Pane layoutX="10.0" layoutY="10.0" prefHeight="372.0" prefWidth="611.0">
+         <children>
+            <Label layoutX="107.0" layoutY="52.0" text="选择资源文件夹" />
+            <TextField id="txtResourceDir" fx:id="txtResourceDir" layoutX="196.0" layoutY="48.0" prefHeight="23.0" prefWidth="204.0" />
+            <Button id="btnResourceDir" fx:id="btnResourceDir" layoutX="408.0" layoutY="48.0" mnemonicParsing="false" text="浏览" />
+            <Button id="btnTargetDir" fx:id="btnTargetDir" layoutX="408.0" layoutY="95.0" mnemonicParsing="false" text="浏览" />
+            <TextField id="txtTargetDir"  fx:id="txtTargetDir" layoutX="196.0" layoutY="95.0" prefHeight="23.0" prefWidth="204.0" />
+            <Label layoutX="107.0" layoutY="99.0" text="选择目标文件夹" />
+            <Button id="btnChgFileName"  fx:id="btnChgFileName" layoutX="316.0" layoutY="249.0" mnemonicParsing="false" text="一键批量修改名称" />
+            <TextField id="txtOriginContent" fx:id="txtOriginContent" layoutX="196.0" layoutY="150.0" prefHeight="23.0" prefWidth="204.0" />
+            <TextField id="txtTargetContent" fx:id="txtTargetContent" layoutX="196.0" layoutY="192.0" prefHeight="23.0" prefWidth="204.0" />
+            <Label layoutX="107.0" layoutY="154.0" text="待替换文本" />
+            <Label layoutX="113.0" layoutY="196.0" text="目标文本" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

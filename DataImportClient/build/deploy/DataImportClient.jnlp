@@ -8,7 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="DataImportClient.jar" size="4081" download="eager" />
+    <jar href="DataImportClient.jar" size="13085" download="eager" />
+    <jar href="libs\commons-io-2.6.jar" size="214788" download="eager" />
   </resources>
   <jfx:javafx-desc  width="0" height="0" main-class="application.Main"  name="DataImportClient" />
   <update check="background"/>

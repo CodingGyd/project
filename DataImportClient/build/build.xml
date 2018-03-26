@@ -19,6 +19,11 @@
 	
 		<mkdir dir="externalLibs" />
 	
+		<copy todir="externalLibs">
+			<fileset dir="D:\developer\git\project\DataImportClient\lib">
+				<filename name="commons-io-2.6.jar"/>
+			</fileset>
+		</copy>
 	
 		<mkdir dir="project" />
 		<copy todir="project">
@@ -38,6 +43,7 @@
 		<!-- Copy project-libs references -->
 		<copy todir="build/libs">
 			<fileset dir="externalLibs">
+				<include name="commons-io-2.6.jar"/>
 			</fileset>
 		</copy>
 	
@@ -50,7 +56,7 @@
 			</fileset>
 		</copy>
 	
-		<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="GBK">
+		<javac includeantruntime="false" source="1.8" target="1.8" srcdir="build/src" destdir="build/classes" encoding="UTF-8">
 			<classpath>
 				<fileset dir="build/libs">
 					<include name="*"/>
