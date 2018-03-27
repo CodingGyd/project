@@ -54,15 +54,5 @@ public class BatchChgFNameTool {
 		       e.printStackTrace();
 		   }
 	}
-	
-	public static void main(String[] args) {
-		long start = System.currentTimeMillis();
-		try {
-			chgFileName("千象磐石26号私募证券投资基金委托资产", "FOF子基金7号", "C:\\Users\\guoyd\\Desktop\\估值表\\6-千象磐石26号", "E:\\6-千象磐石26号");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		System.out.println((System.currentTimeMillis()-start )+"ms");
-	}
-	
+ 
 }

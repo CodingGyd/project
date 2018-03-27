@@ -19,6 +19,17 @@ import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * 类名:  ControllerBuildTmp.java
+ * 包名:  application
+ * 描述:  导入模板构建下载
+ * 
+ * 作者:  guoyd
+ * 日期:  2018年3月27日
+ *
+ * Copyright @ 2017 Corpration Name
+ */
 public class ControllerBuildTmp implements Initializable{
 
 	   String[] downloadableExtensions = {".doc", ".xls", ".zip", ".exe", ".rar", ".pdf", ".jar", ".png", ".jpg", ".gif"};

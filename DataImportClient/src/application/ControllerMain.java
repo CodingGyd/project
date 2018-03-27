@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -48,19 +50,22 @@ public class ControllerMain implements Initializable {
 	   });
 	   Menu btnBuildTmp = new Menu();
 	   btnBuildTmp.setGraphic(menuLabel);
-	   menuBar.getMenus().add(btnBuildTmp);
-
+	   menuBar.getMenus().add(0,btnBuildTmp);
+	 
 	   //文件名称批量修改
-	   Label menuLabel2 = new Label("批量改文件名称");
-	   menuLabel2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+	   Menu toolsMenu = new Menu();
+	   Label toolsLabel = new Label("小工具");
+	   toolsMenu.setGraphic(toolsLabel);
+	   
+	   MenuItem chgFileNameMenu = new MenuItem("批量改文件名称");
+ 	   chgFileNameMenu.setOnAction(new EventHandler<ActionEvent>() {
 	       @Override
-	       public void handle(MouseEvent event) {
+	       public void handle(ActionEvent event) {
 	    	   toChgFileName();
 	       }
 	   });
-	   Menu btnChgFileNameTmp = new Menu();
-	   btnChgFileNameTmp.setGraphic(menuLabel2);
-	   menuBar.getMenus().add(btnChgFileNameTmp);
+ 	   toolsMenu.getItems().add(chgFileNameMenu);
+ 	   menuBar.getMenus().add(toolsMenu);
 	   
 	   //关于
 	   Label menuLabel3 = new Label("关于");

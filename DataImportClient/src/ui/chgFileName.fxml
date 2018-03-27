@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane pickOnBounds="true" prefHeight="603.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerChgFileName">
+<AnchorPane pickOnBounds="true" prefHeight="403.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerChgFileName">
    <children>
       <Pane layoutX="10.0" layoutY="10.0" prefHeight="372.0" prefWidth="611.0">
          <children>

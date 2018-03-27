@@ -14,6 +14,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * 类名:  ControllerChgFileName.java
+ * 包名:  application
+ * 描述:  批量修改文件名称
+ * 
+ * 作者:  guoyd
+ * 日期:  2018年3月27日
+ *
+ * Copyright @ 2017 Corpration Name
+ */
 public class ControllerChgFileName implements Initializable{
 
 	@FXML

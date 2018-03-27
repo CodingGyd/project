@@ -29,7 +29,7 @@ public class BatchChgFNameTool {
 	 * @param newFileDir 目标文件夹
 	 * @throws Exception
 	 */
-	public static void chgFileName(String replaceContent,String newReplaceName,String oldFileDir,String newFileDir) throws Exception{
+	public static void chgFileName(String replaceContent,String targetContent,String oldFileDir,String newFileDir) throws Exception{
 		File curFile = new File(oldFileDir);
 		if (!curFile.exists()){
 			throw new FileNotFoundException("找不到资源文件"+oldFileDir);
@@ -45,7 +45,7 @@ public class BatchChgFNameTool {
 		       directoryStream = Files.newDirectoryStream(curFile.toPath()); //returning a DirectoryStream to iterate over* all entries in the directory.
 		       directoryStream.forEach(path -> {
  		               try {
-		                   Files.copy(path, targetFile.toPath().resolve(path.getFileName().toString().replace(replaceContent, newReplaceName)), StandardCopyOption.REPLACE_EXISTING); // 重命名并复制到目标文件夹
+		                   Files.copy(path, targetFile.toPath().resolve(path.getFileName().toString().replace(replaceContent, targetContent)), StandardCopyOption.REPLACE_EXISTING); // 重命名并复制到目标文件夹
 		               } catch (IOException e) { // 因为在lambda表达式内，所以要包裹try catch
 		                   e.printStackTrace();
 		               }
