@@ -32,10 +32,10 @@ public class TestExcelExporter extends TestCase  {
 	public void testExporter1() throws Exception {
 		long start = System.currentTimeMillis();
 
-		String file = "D:/new.xlsx";
+		String file = "D:/test.xlsx";
 		String format = ExcelConst.EXCEL_FORMAT_XLSX;
 		List<User> data = new ArrayList<User>();
-		for (int i=0;i<1000;i++) {
+		for (int i=0;i<1000000;i++) {
 			User t = new User();
 			t.setAge(i);
 			t.setName("测试"+i);

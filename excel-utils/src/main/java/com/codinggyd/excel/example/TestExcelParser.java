@@ -34,14 +34,14 @@ public class TestExcelParser extends TestCase  {
 	public void testParse1() throws Exception {
 		long start = System.currentTimeMillis();
 
-		String file = "G:/test.xlsx";
+		String file = "D:/test.xlsx";
 		String format = ExcelConst.EXCEL_FORMAT_XLSX;
 		FileInputStream fis = new FileInputStream(new File(file));
 		ResultList<User> result = ExcelParserUtils.parse(fis, User.class, format);
 		System.out.println("错误报告:"+result.getMsg());
-		for (User user:result) {
-			System.out.println(user.toString());
-		}
+//		for (User user:result) {
+//			System.out.println(user.toString());
+//		}
 		System.out.println("解析数据量"+result.size()+"条,耗时"+(System.currentTimeMillis()-start)+"ms");
 
 	}
@@ -50,7 +50,7 @@ public class TestExcelParser extends TestCase  {
 	public void testParse2() throws Exception {
 		long start = System.currentTimeMillis();
 
-		String file = "G:/test.xlsx";
+		String file = "D:/test.xlsx";
 		String format = ExcelConst.EXCEL_FORMAT_XLSX;
 		FileInputStream fis = new FileInputStream(new File(file));
 		Map<Integer,List<String>> result = ExcelParserUtils.parse(fis, format, 5, 1);
@@ -64,7 +64,7 @@ public class TestExcelParser extends TestCase  {
 	public void testParse3() throws Exception {
 		long start = System.currentTimeMillis();
 
-		String file = "G:/test.xlsx";
+		String file = "D:/test.xlsx";
 		String format = ExcelConst.EXCEL_FORMAT_XLSX;
 		FileInputStream fis = new FileInputStream(new File(file));
 		final Map<Integer,List<String>> result = new HashMap<Integer,List<String>>();

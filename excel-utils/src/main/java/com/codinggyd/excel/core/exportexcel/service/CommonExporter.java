@@ -92,7 +92,7 @@ public abstract class CommonExporter extends Common{
 			throw new ExcelException("解析规则变量未初始化!");
 		}
 
-		int contentStartRowIndex = sheetConfig.contentRowStartIndex();
+		int contentStartRowIndex = sheetConfig.contentRowStartIndex()-1;
 		Row row = null;
 	 
  		T t = null;
@@ -232,7 +232,7 @@ public abstract class CommonExporter extends Common{
 		if (null == fieldConfigAndFieldMap || null == sheetConfig) {
 			throw new ExcelException("解析规则变量未初始化!");
  		}
-		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex(),style);
+		Row row = this.createRow(sheet,sheetConfig.titleRowStartIndex()-1,style);
 		CellStyle cellStyle = null;
 		//根据配置生成每列的样式
 		Map<Integer,CellStyle> cellStylesMap = getFieldTitleStyle(workbook);
