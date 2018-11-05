@@ -33,6 +33,7 @@
 		<module>mine-data-export</module>
 		<module>mine-sysconst</module>
 		<module>mine-job</module>
+		<module>common-utils</module>
  	</modules>
 	<dependencyManagement>
 		<dependencies>
@@ -75,6 +76,12 @@
 			<dependency>
 				<groupId>com.codinggyd</groupId>
 				<artifactId>mine-job</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.codinggyd</groupId>
+				<artifactId>common-utils</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>

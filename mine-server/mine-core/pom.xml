@@ -102,7 +102,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.codinggyd</groupId>
-			<artifactId>common-api</artifactId>
+			<artifactId>common-utils</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
