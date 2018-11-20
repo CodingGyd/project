@@ -22,4 +22,5 @@ public interface JavaFieldType {
   	int TYPE_STRING = 6;
    	int TYPE_TIME = 7;
    	int TYPE_DATE = 8;
+   	int TYPE_ARRAY_STRING = 9;
  }

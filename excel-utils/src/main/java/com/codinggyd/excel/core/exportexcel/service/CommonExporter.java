@@ -13,11 +13,16 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.DataValidation;
+import org.apache.poi.ss.usermodel.DataValidationConstraint;
+import org.apache.poi.ss.usermodel.DataValidationHelper;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddressList;
+import org.apache.poi.xssf.usermodel.XSSFDataValidation;
 
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
 import com.codinggyd.excel.constant.JavaFieldType;
@@ -118,6 +123,7 @@ public abstract class CommonExporter extends Common{
   					Object originValue = field.get(t);
   					//字段转换值
   					String value = null;
+  					List<String> valueArray = null;
 					if (null != originValue) {
 						switch (javaType) {
 
@@ -154,10 +160,42 @@ public abstract class CommonExporter extends Common{
 							case JavaFieldType.TYPE_LONG:
 								value = originValue.toString();
 								break;
+							case JavaFieldType.TYPE_ARRAY_STRING:
+								//单元格支持数组
+								valueArray = (List<String>)originValue;
+								break;
 							default:
 								value = originValue.toString();
 	 							break;
 						}
+					}
+					if (null != valueArray) {
+						//生成下拉列表
+						// 加载下拉列表内容
+						String[] array = new String[valueArray.size()];
+						for (int j=0;j<valueArray.size();j++) { 
+							array[j] = valueArray.get(j);
+						}
+				         
+				        // 设置数据有效性加载在哪个单元格上,四个参数分别是：起始行、终止行、起始列、终止列
+				        CellRangeAddressList regions = new CellRangeAddressList(contentStartRowIndex+i,
+				        		contentStartRowIndex+i, index, index);
+				        
+				        DataValidationHelper helper = sheet.getDataValidationHelper();  
+				        DataValidationConstraint constraint = helper.createExplicitListConstraint(array);   
+				        DataValidation dataValidation = helper.createValidation(constraint, regions);  
+				          
+				        //处理Excel兼容性问题  
+				        if(dataValidation instanceof XSSFDataValidation) {  
+				            dataValidation.setSuppressDropDownArrow(true);  
+				            dataValidation.setShowErrorBox(true);  
+				        }else {  
+				            dataValidation.setSuppressDropDownArrow(false);  
+				        }  
+				          
+				        sheet.addValidationData(dataValidation);  
+ 
+				        continue;
 					}
 					if (config.useTitleStyle()) {
 						this.createCell(row, index,cellTitleStylesMap.get(index),value);
