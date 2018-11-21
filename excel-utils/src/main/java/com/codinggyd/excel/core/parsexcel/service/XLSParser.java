@@ -269,6 +269,9 @@ public class XLSParser extends CommonParser implements IExcelParser, HSSFListene
 									errors[0]++;
 								}
 								break;
+							case JavaFieldType.TYPE_ARRAY_STRING:
+								//数组是用来生成可选范围的，不解析
+								break;
 							default:
 								curField.set(obj, originFieldContent);
 								break;
