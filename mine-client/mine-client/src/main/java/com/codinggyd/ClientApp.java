@@ -14,10 +14,10 @@ public class ClientApp extends WebMvcConfigurerAdapter{
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addViewController("/").setViewName("index");//首页
- 		registry.addViewController("/daily").setViewName("daily");//随笔
-		registry.addViewController("/about").setViewName("about");//关于我
-		registry.addViewController("/guestbook").setViewName("guestbook");//留言
+		registry.addViewController("/").setViewName("v2/index");//首页
+// 		registry.addViewController("/daily").setViewName("daily");//随笔
+//		registry.addViewController("/about").setViewName("about");//关于我
+//		registry.addViewController("/guestbook").setViewName("guestbook");//留言
 
 	}
 } 
