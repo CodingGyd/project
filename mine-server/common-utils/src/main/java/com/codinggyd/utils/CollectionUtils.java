@@ -33,4 +33,26 @@ public class CollectionUtils {
 		}
 		return intersection;
 	}
+	
+	
+	/**
+	 * 
+	 * @Title: checkExistEmpty 
+	 * @Description: 检查输入参数是否存在为null  
+	 * @param args
+	 * @return boolean  输入参数存在为null则输出true，否则false
+	 * @throws 
+	 * @Author guoyd
+	 * @Date 2019年1月24日 上午10:52:08
+	 */
+	public static boolean checkExistEmpty(Object...args) {
+		if (null != args && args.length != 0) {
+			for (Object obj : args) {
+				if (null == obj ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }
