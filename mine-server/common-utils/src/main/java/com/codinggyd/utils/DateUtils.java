@@ -98,4 +98,40 @@ public class DateUtils {
 		}
 	}
 	 
+	
+	//获取当年的每个季度月的最后日期
+		public static List<Date> getSeasonsEndDateOfYear(Integer startYear){
+			Calendar calendar = Calendar.getInstance();
+			calendar.clear();
+			
+			List<Date> result = new ArrayList<>();
+			//第一季度 3月
+			calendar.set(Calendar.YEAR, startYear);
+			calendar.set(Calendar.MONTH, Calendar.MARCH);
+			calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+			result.add(calendar.getTime());
+			calendar.clear();
+			//第二季度 6月
+			calendar.set(Calendar.YEAR, startYear);
+			calendar.set(Calendar.MONTH, Calendar.JUNE);
+			calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+			result.add(calendar.getTime());
+			calendar.clear();
+
+			//第三季度 9月
+			calendar.set(Calendar.YEAR, startYear);
+			calendar.set(Calendar.MONTH, Calendar.SEPTEMBER);
+			calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+			result.add(calendar.getTime());
+			calendar.clear();
+
+			//第四季度12月
+			calendar.set(Calendar.YEAR, startYear);
+			calendar.set(Calendar.MONTH, Calendar.DECEMBER);
+			calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+			result.add(calendar.getTime());
+			calendar.clear();
+
+			return result;
+		}
 }
