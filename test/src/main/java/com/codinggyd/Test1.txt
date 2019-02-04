@@ -1,0 +1,72 @@
+Classfile /E:/personal_workspace/git_code/project/test/src/main/java/com/codinggyd/Test1.class
+  Last modified 2019-1-20; size 419 bytes
+  MD5 checksum 2926d3735c9adb0cf61d4880e1895964
+  Compiled from "Test1.java"
+public class com.codinggyd.test.Test1
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #5.#14         // java/lang/Object."<init>":()V
+   #2 = Fieldref           #15.#16        // java/lang/System.out:Ljava/io/PrintStream;
+   #3 = Methodref          #17.#18        // java/io/PrintStream.println:(I)V
+   #4 = Class              #19            // com/codinggyd/test/Test1
+   #5 = Class              #20            // java/lang/Object
+   #6 = Utf8               <init>
+   #7 = Utf8               ()V
+   #8 = Utf8               Code
+   #9 = Utf8               LineNumberTable
+  #10 = Utf8               main
+  #11 = Utf8               ([Ljava/lang/String;)V
+  #12 = Utf8               SourceFile
+  #13 = Utf8               Test1.java
+  #14 = NameAndType        #6:#7          // "<init>":()V
+  #15 = Class              #21            // java/lang/System
+  #16 = NameAndType        #22:#23        // out:Ljava/io/PrintStream;
+  #17 = Class              #24            // java/io/PrintStream
+  #18 = NameAndType        #25:#26        // println:(I)V
+  #19 = Utf8               com/codinggyd/test/Test1
+  #20 = Utf8               java/lang/Object
+  #21 = Utf8               java/lang/System
+  #22 = Utf8               out
+  #23 = Utf8               Ljava/io/PrintStream;
+  #24 = Utf8               java/io/PrintStream
+  #25 = Utf8               println
+  #26 = Utf8               (I)V
+{
+  public com.codinggyd.test.Test1();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 4: 0
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=4, args_size=1
+         0: iconst_2
+         1: istore_1
+         2: iconst_5
+         3: istore_2
+         4: iload_2
+         5: iload_1
+         6: isub
+         7: istore_3
+         8: getstatic     #2                  // Field java/lang/System.out:Ljava/io/PrintStream;
+        11: iload_3
+        12: invokevirtual #3                  // Method java/io/PrintStream.println:(I)V
+        15: return
+      LineNumberTable:
+        line 6: 0
+        line 7: 2
+        line 8: 4
+        line 9: 8
+        line 10: 15
+}
+SourceFile: "Test1.java"

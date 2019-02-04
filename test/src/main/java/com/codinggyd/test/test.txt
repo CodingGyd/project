@@ -1,0 +1,114 @@
+Classfile /E:/personal_workspace/git_code/project/test/src/main/java/com/codinggyd/test/Test1.class
+  Last modified 2019-1-20; size 591 bytes
+  MD5 checksum 6ee21734f9e56bd3ab8ef7da3ec94852
+  Compiled from "Test1.java"
+public class com.codinggyd.test.Test1
+  minor version: 0
+  major version: 52
+  flags: ACC_PUBLIC, ACC_SUPER
+Constant pool:
+   #1 = Methodref          #8.#19         // java/lang/Object."<init>":()V
+   #2 = Class              #20            // com/codinggyd/test/Test1
+   #3 = Methodref          #2.#19         // com/codinggyd/test/Test1."<init>":()V
+   #4 = Methodref          #2.#21         // com/codinggyd/test/Test1.method1:()V
+   #5 = Methodref          #2.#22         // com/codinggyd/test/Test1.method2:()V
+   #6 = Fieldref           #23.#24        // java/lang/System.out:Ljava/io/PrintStream;
+   #7 = Methodref          #25.#26        // java/io/PrintStream.println:(I)V
+   #8 = Class              #27            // java/lang/Object
+   #9 = Utf8               <init>
+  #10 = Utf8               ()V
+  #11 = Utf8               Code
+  #12 = Utf8               LineNumberTable
+  #13 = Utf8               main
+  #14 = Utf8               ([Ljava/lang/String;)V
+  #15 = Utf8               method1
+  #16 = Utf8               method2
+  #17 = Utf8               SourceFile
+  #18 = Utf8               Test1.java
+  #19 = NameAndType        #9:#10         // "<init>":()V
+  #20 = Utf8               com/codinggyd/test/Test1
+  #21 = NameAndType        #15:#10        // method1:()V
+  #22 = NameAndType        #16:#10        // method2:()V
+  #23 = Class              #28            // java/lang/System
+  #24 = NameAndType        #29:#30        // out:Ljava/io/PrintStream;
+  #25 = Class              #31            // java/io/PrintStream
+  #26 = NameAndType        #32:#33        // println:(I)V
+  #27 = Utf8               java/lang/Object
+  #28 = Utf8               java/lang/System
+  #29 = Utf8               out
+  #30 = Utf8               Ljava/io/PrintStream;
+  #31 = Utf8               java/io/PrintStream
+  #32 = Utf8               println
+  #33 = Utf8               (I)V
+{
+  public com.codinggyd.test.Test1();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 4: 0
+
+  public static void main(java.lang.String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=1, args_size=1
+         0: new           #2                  // class com/codinggyd/test/Test1
+         3: dup
+         4: invokespecial #3                  // Method "<init>":()V
+         7: invokevirtual #4                  // Method method1:()V
+        10: new           #2                  // class com/codinggyd/test/Test1
+        13: dup
+        14: invokespecial #3                  // Method "<init>":()V
+        17: invokevirtual #5                  // Method method2:()V
+        20: return
+      LineNumberTable:
+        line 6: 0
+        line 7: 10
+        line 8: 20
+
+  public void method1();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: iconst_1
+         1: istore_1
+         2: iload_1
+         3: iinc          1, 1
+         6: istore_2
+         7: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
+        10: iload_2
+        11: invokevirtual #7                  // Method java/io/PrintStream.println:(I)V
+        14: return
+      LineNumberTable:
+        line 11: 0
+        line 12: 2
+        line 13: 7
+        line 14: 14
+
+  public void method2();
+    descriptor: ()V
+    flags: ACC_PUBLIC
+    Code:
+      stack=2, locals=3, args_size=1
+         0: iconst_1
+         1: istore_1
+         2: iinc          1, 1
+         5: iload_1
+         6: istore_2
+         7: getstatic     #6                  // Field java/lang/System.out:Ljava/io/PrintStream;
+        10: iload_2
+        11: invokevirtual #7                  // Method java/io/PrintStream.println:(I)V
+        14: return
+      LineNumberTable:
+        line 17: 0
+        line 18: 2
+        line 19: 7
+        line 20: 14
+}
+SourceFile: "Test1.java"
