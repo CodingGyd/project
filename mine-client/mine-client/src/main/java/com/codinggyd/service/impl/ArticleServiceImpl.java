@@ -150,8 +150,8 @@ public class ArticleServiceImpl implements IArticleService{
 	 */
 	private List<Article> getServerLatestArticleList() {
 		List<Article> result = new ArrayList<>();
-
-		String responseData = HttpClientUtil.requestServer(SERVER_LATEST_ARTICLE_LIST, 10);
+		
+		String responseData = HttpClientUtil.requestServer(SERVER_LATEST_ARTICLE_LIST, 3);
  	 
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_LATEST_ARTICLE_LIST);
