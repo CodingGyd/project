@@ -21,6 +21,8 @@ import org.springframework.stereotype.Component;
 
 	public static final String RESPONSE_CODE_SUCCESS = "0000";
 	
+	public static final String ARTICLE_CONST_LB = "100";//文章分类类别代码
+	
  	public static String SERVER_URL;
 	
 	@Value("${sys.server.url}")  

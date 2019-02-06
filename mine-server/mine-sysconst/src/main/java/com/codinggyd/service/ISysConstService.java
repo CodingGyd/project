@@ -20,6 +20,6 @@ import com.codinggyd.bean.SysConst;
 public interface ISysConstService {
 	
 	@MineMethod(value="MINE_CONST")
-	public List<SysConst> listConst(List<String> lb);
+	public List<SysConst> listConst(List<String> lb,String dm);
 	 
 }

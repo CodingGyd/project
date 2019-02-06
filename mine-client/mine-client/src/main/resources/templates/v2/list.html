@@ -11,6 +11,8 @@
 <link href="v2/css/m.css" rel="stylesheet"/>
 <script src="v2/js/jquery-1.8.3.min.js" ></script>
 <script src="v2/js/comm.js"></script>
+<script src="v2/js/list.js"></script>
+
 <!--[if lt IE 9]>
 <script src="v2/js/modernizr.js"></script>
 <![endif]-->
@@ -26,7 +28,7 @@
         <li><a href="/">首页</a></li>
         <li class="menu"><a href="/list">技术随笔</a>
           <ul class="sub">
-            <li><a href="/6">后端技术</a></li>
+            <li><a href="/6" >后端技术</a></li>
             <li><a href="/7">网站前端</a></li>
             <li><a href="/8">移动开发</a></li>
             <li><a href="/7">数据库</a></li>
@@ -57,50 +59,22 @@
 <article> 
   <!--lbox begin-->
   <div class="lbox">
-    <div class="whitebg lanmu"> <img src="v2/images/lm01.jpg"/>
-      <h1>个人博客日记</h1>
-      <p>个人博客日记，记录一些优秀个人站长是如何制作个人博客，建个人博客、以及经营个人网站的，本站还会推荐一些优秀的个人博客站长网站。</p>
+    <div id="dv_articleType" class="whitebg lanmu"> <img src="v2/images/lm01.jpg"/>
     </div>
     <div class="whitebg bloglist">
       <h2 class="htitle">文章列表</h2>
-      <ul>
-        <!--多图模式 置顶设计-->
-        <li>
-          <h3 class="blogtitle"><a href="/" target="_blank"><b>【顶】</b>别让这些闹心的套路，毁了你的网页设计!</a></h3>
-          <span class="bplist"><a href="/"> <img src="v2/images/b02.jpg" alt=""/></a> <a href="/"><img src="v2/images/b03.jpg" alt=""/></a> <a href="/"><img src="v2/images/b04.jpg" alt=""/> </a><a href="/"><img src="v2/images/b05.jpg" alt=""/> </a></span>
-          <p class="blogtext">如图，要实现上图效果，我采用如下方法：1、首先在数据库模型，增加字段，分别是图片2，图片3。2、增加标签模板，用if，else if 来判断，输出。思路已打开，样式调用就可以多样化啦！... </p>
-          <p class="bloginfo"><i class="avatar"><img src="v2/images/avatar.png"/></i><span>杨青青</span><span>2018-10-28</span><span>【<a href="/">原创模板</a>】</span></p>
-        </li>
-        <li>
+      <ul id="ul_list_article">
+<!--       <li>
           <h3 class="blogtitle"><a href="/" target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
           <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/" title=""><img src="v2/images/3.jpg" alt=""/></a></span>
           <p class="blogtext">这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
           <p class="bloginfo"><i class="avatar"><img src="v2/images/avatar.png"/></i><span>杨青青</span><span>2018-10-28</span><span>【<a href="/">原创模板</a>】</span></p>
-          <a href="/info" target="_blank" class="viewmore">阅读更多</a> </li>
-          
-                  <li>
-          <h3 class="blogtitle"><a href="/" target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
-          <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/" title=""><img src="v2/images/3.jpg" alt=""/></a></span>
-          <p class="blogtext">这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
-          <p class="bloginfo"><i class="avatar"><img src="v2/images/avatar.png"/></i><span>杨青青</span><span>2018-10-28</span><span>【<a href="/">原创模板</a>】</span></p>
-          <a href="/info" target="_blank" class="viewmore">阅读更多</a> </li>
-          
-                  <li>
-          <h3 class="blogtitle"><a href="/" target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
-          <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/" title=""><img src="v2/images/3.jpg" alt=""/></a></span>
-          <p class="blogtext">这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
-          <p class="bloginfo"><i class="avatar"><img src="v2/images/avatar.png"/></i><span>杨青青</span><span>2018-10-28</span><span>【<a href="/">原创模板</a>】</span></p>
-          <a href="/info" target="_blank" class="viewmore">阅读更多</a> </li>
-          
-                            <li>
-          <h3 class="blogtitle"><a href="/" target="_blank">【个人博客网站制作】自己不会个人博客网站制作，你会选择用什么博客程序源码？</a></h3>
-          <span class="blogpic imgscale"><i><a href="/">原创模板</a></i><a href="/" title=""><img src="v2/images/3.jpg" alt=""/></a></span>
-          <p class="blogtext">这些开源的博客程序源码，都是经过很多次版本测试的，都有固定的使用人群。我所知道的主流的博客程序有，Z-blog，Emlog，WordPress，Typecho等，免费的cms系统有，织梦cms（dedecms），phpcms，帝国cms（EmpireCMS）！... </p>
-          <p class="bloginfo"><i class="avatar"><img src="v2/images/avatar.png"/></i><span>杨青青</span><span>2018-10-28</span><span>【<a href="/">原创模板</a>】</span></p>
-          <a href="/info" target="_blank" class="viewmore">阅读更多</a> </li>
+          <a href="/info" target="_blank" class="viewmore">阅读更多</a> </li> -->
       </ul>
       <!--pagelist-->
-      <div class="pagelist"><a title="Total record">&nbsp;<b>67</b> </a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a href="/download/index_2.html">2</a>&nbsp;<a href="/download/index_3.html">3</a>&nbsp;<a href="/download/index_2.html">下一页</a>&nbsp;<a href="/download/index_3.html">尾页</a></div>
+      <div class="pagelist" id="dv_pagelist">
+<!--       	<a title="Total record">&nbsp;<b>67</b> </a>&nbsp;&nbsp;&nbsp;<b>1</b>&nbsp;<a href="/download/index_2.html">2</a>&nbsp;<a href="/download/index_3.html">3</a>&nbsp;<a href="/download/index_2.html">下一页</a>&nbsp;<a href="/download/index_3.html">尾页</a>
+ -->      </div>
       <!--pagelist end--> 
     </div>
     

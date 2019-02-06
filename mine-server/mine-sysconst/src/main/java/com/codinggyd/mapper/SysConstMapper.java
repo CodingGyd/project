@@ -20,6 +20,6 @@ import com.codinggyd.bean.SysConst;
  */
 public interface SysConstMapper {
 	
-	public List<SysConst> listConst(@Param("lbs") List<String> lbs);
+	public List<SysConst> listConst(@Param("lbs") List<String> lbs,@Param("dm") String dm);
 
 }

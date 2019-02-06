@@ -1,6 +1,7 @@
 package com.codinggyd.service.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,8 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticlePageBean;
 import com.codinggyd.bean.ArticleType;
-import com.codinggyd.bean.MinePageBean;
 import com.codinggyd.bean.PageList;
 import com.codinggyd.bean.Paginator;
 import com.codinggyd.service.IArticleService;
@@ -53,8 +54,27 @@ public class ArticleServiceImpl implements IArticleService{
 		return getServerArticleDetail(id);
 	}
 	@Override
-	public MinePageBean<Article> getArticleList(Paginator paginator,String type_dm) {
+	public ArticlePageBean<Article> getArticleList(Paginator paginator,String type_dm) {
   	
+		//加载文章分类信息
+		List<ArticleType> articleTypes = findArticleTypes(Arrays.asList(SysConstant.ARTICLE_CONST_LB), type_dm);
+		ArticleType articleType = null;
+		if (!CollectionUtils.isEmpty(articleTypes)) {
+			if (StringUtils.isEmpty(type_dm)) {
+				for (ArticleType type : articleTypes ) {
+					if (StringUtils.isEmpty(type.getDm())) {
+						articleType = type;
+						break;
+					}
+				}
+			} else {
+				articleType = articleTypes.get(0);
+			}
+		}
+		if (null == articleType) {
+			return null;
+		}
+		
 		//加载博文列表
 		List<Article> articles = new ArrayList<>();
 		articles.addAll(getServerArticleList(type_dm,null));
@@ -69,15 +89,15 @@ public class ArticleServiceImpl implements IArticleService{
 		Paginator paginatorReturn = new Paginator(paginator.getPage(),paginator.getLimit(),total);
 		if (CollectionUtils.isEmpty(pageArticles)) {
 			logger.error("分页获取文章数据为空!");
-			return new MinePageBean<Article>(paginatorReturn,new PageList<>());
+			return new ArticlePageBean<Article>(articleType,paginatorReturn,new PageList<>());
 		} else {
-			return new MinePageBean<Article>(paginatorReturn,pageArticles);
+			return new ArticlePageBean<Article>(articleType,paginatorReturn,pageArticles);
 		}
 		 
 	}
 	
 	@Override
-	public MinePageBean<Article> getLatestArticleList() {
+	public ArticlePageBean<Article> getLatestArticleList() {
  		//加载最新文章
 		List<Article> articles = new ArrayList<>();
 		articles.addAll(getServerLatestArticleList());
@@ -86,11 +106,11 @@ public class ArticleServiceImpl implements IArticleService{
 			logger.error("获取最新文章数据为空!");
 			return null;
 		}
-		return new MinePageBean<Article>(null,articles);
+		return new ArticlePageBean<Article>(null,null,articles);
 	}
 	
 	@Override
-	public MinePageBean<Article> getRandomArticleList() {
+	public ArticlePageBean<Article> getRandomArticleList() {
  		//加载随机文章
 		List<Article> articles = new ArrayList<>();
 		articles.addAll(getServerRandomArticleList());
@@ -99,7 +119,7 @@ public class ArticleServiceImpl implements IArticleService{
 			logger.error("获取随机文章数据为空!");
 			return null;
 		}
-		return new MinePageBean<Article>(null,articles);
+		return new ArticlePageBean<Article>(null,null,articles);
 	}
 	
 	/**
@@ -274,15 +294,13 @@ public class ArticleServiceImpl implements IArticleService{
 	 * @return
 	 */
 	@Override
-	public List<ArticleType> findArticleTypes() {
+	public List<ArticleType> findArticleTypes(List<String> lbs,String dm) {
 		List<ArticleType> result = new ArrayList<>();
 
 		List<Object> params = new ArrayList<>();
 		
-		List<String> lbs = new ArrayList<>();
-		lbs.add("100");
 		params.add(lbs);
-		
+		params.add(dm);
 		Map<String,Object> dataMap = new HashMap<>();
 		dataMap.put("serviceId", SERVER_ARTICLE_TYPE);
 		dataMap.put("params", params);
@@ -318,14 +336,17 @@ public class ArticleServiceImpl implements IArticleService{
 							Integer id = temp.get("id").asInt(0);
 							String lb = temp.get("lb").asText("");
 							String lbmc = temp.get("lbmc").asText("");
-							String dm = temp.get("dm").asText("");
+							dm = temp.get("dm").asText("");
 							String ms = temp.get("ms").asText("");
+							String remarks = temp.get("remarks").asText("");
+
 							ArticleType types = new ArticleType();
 							types.setId(id);
 							types.setLb(lb);
 							types.setLbmc(lbmc);
 							types.setDm(dm);
 							types.setMs(ms);
+							types.setRemarks(remarks);
 							result.add(types);
 						}
 					}

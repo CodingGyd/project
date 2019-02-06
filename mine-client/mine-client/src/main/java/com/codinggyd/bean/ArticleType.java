@@ -44,6 +44,11 @@ public class ArticleType implements Serializable {
 	 * 更新时间
 	 */
 	private Date updatetime;
+	
+	/**
+	 * 备注
+	 */
+	private String remarks;
 
 	public Integer getId() {
 		return id;
@@ -91,6 +96,14 @@ public class ArticleType implements Serializable {
 
 	public void setUpdatetime(Date updatetime) {
 		this.updatetime = updatetime;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
   
 

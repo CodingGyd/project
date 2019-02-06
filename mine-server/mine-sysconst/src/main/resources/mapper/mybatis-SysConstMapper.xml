@@ -9,11 +9,12 @@
 		<result column="lbmc" property="lbmc" />
 		<result column="dm" property="dm" />
 		<result column="ms" property="ms" />
+		<result column="remarks" property="remarks" />
 		<result column="updatetime" property="updatetime" />
 	</resultMap>
 
 	<select id="listConst" resultMap="consts">
- 		SELECT 	id,lb,lbmc,dm,ms,updatetime 
+ 		SELECT 	id,lb,lbmc,dm,ms,updatetime,remarks
  				FROM mine_sysconst  
  				WHERE 1=1
  				<if test="lbs != null and lbs.size() > 0">
@@ -22,6 +23,9 @@
  							#{item}
  						</foreach>
  					)
+ 				</if>
+ 				<if test="dm != null">
+ 					AND dm = #{dm}
  				</if>
 	</select>
 

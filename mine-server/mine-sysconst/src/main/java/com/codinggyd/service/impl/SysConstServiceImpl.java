@@ -35,8 +35,8 @@ public class SysConstServiceImpl implements ISysConstService{
 	@Autowired
 	private SysConstMapper mapper;
 	@Override
-	public List<SysConst> listConst(List<String> lbs) {
-		return mapper.listConst(lbs);
+	public List<SysConst> listConst(List<String> lbs,String dm) {
+		return mapper.listConst(lbs,dm);
 	}
 	 
 }

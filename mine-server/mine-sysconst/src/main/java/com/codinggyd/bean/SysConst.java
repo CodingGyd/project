@@ -19,7 +19,7 @@ import com.codinggyd.annotation.MineFuncData;
  *
  * Copyright @ 2017 Corpration Name
  */
-@MineFuncData(name="MINE_CONST",fieldNames={"id","lb","lbmc","dm","ms","updatetime"})
+@MineFuncData(name="MINE_CONST",fieldNames={"id","lb","lbmc","dm","ms","updatetime","remarks"})
 @Component
 public class SysConst implements Serializable {
 
@@ -51,6 +51,10 @@ public class SysConst implements Serializable {
 	 */
 	private Date updatetime;
 
+	/**
+	 * 备注
+	 */
+	private String remarks;
 	public Integer getId() {
 		return id;
 	}
@@ -97,6 +101,14 @@ public class SysConst implements Serializable {
 
 	public void setUpdatetime(Date updatetime) {
 		this.updatetime = updatetime;
+	}
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
 	}
   
 
