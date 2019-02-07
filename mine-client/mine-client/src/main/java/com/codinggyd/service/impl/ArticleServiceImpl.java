@@ -81,7 +81,7 @@ public class ArticleServiceImpl implements IArticleService{
 		
 		if (CollectionUtils.isEmpty(articles)) {
 			logger.error("获取文章数据为空!");
-			return null;
+			return new ArticlePageBean<Article>(articleType,null,new PageList<>());
 		}
 		int total = articles.size();
 

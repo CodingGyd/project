@@ -1,68 +1,21 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="utf-8"/>
-<title>关于我单页-杨青青个人博客模板主题《今夕何夕》</title>
-<meta name="keywords" content="blog" />
-<meta name="description" content="blog" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link href="v2/css/base.css" rel="stylesheet"/>
-<link href="v2/css/m.css" rel="stylesheet"/>
-<script src="v2/js/jquery-1.8.3.min.js" ></script>
-<script src="v2/js/comm.js"></script>
-<!--[if lt IE 9]>
-<script src="v2/js/modernizr.js"></script>
-<![endif]-->
-</head>
+ <head th:include="v2/base/head ::common_header"></head>
+
 <body>
 <!--top begin-->
-<header id="header">
-  <div class="navbox">
-    <h2 id="mnavh"><span class="navicon"></span></h2>
-    <div class="logo"><a href="/">顺顺郭的个人博客</a></div>
-    <nav>
-      <ul id="starlist">
-        <li><a href="/">首页</a></li>
-        <li class="menu"><a href="/list">技术随笔</a>
-          <ul class="sub">
-            <li><a href="/6">后端技术</a></li>
-            <li><a href="/7">网站前端</a></li>
-            <li><a href="/8">移动开发</a></li>
-            <li><a href="/7">数据库</a></li>
-            <li><a href="/7">算法</a></li>
-          </ul>
-          <span></span></li>
-        <li><a href="list.html">心路历程</a></li>
-        <li><a href="list3.html">我的生活</a></li>
-        <li><a href="/about">关于我</a></li>
-      </ul>
-    </nav>
-    <div class="searchico"></div>
-  </div>
-</header>
-<div class="searchbox">
-  <div class="search">
-    <form action="/e/search/index.php" method="post" name="searchform" id="searchform">
-      <input name="keyboard" id="keyboard" class="input_text" value="请输入关键字词" style="color: rgb(153, 153, 153);" onfocus="if(value=='请输入关键字词'){this.style.color='#000';value=''}" onblur="if(value==''){this.style.color='#999';value='请输入关键字词'}" type="text"/>
-      <input name="show" value="title" type="hidden"/>
-      <input name="tempid" value="1" type="hidden"/>
-      <input name="tbname" value="news" type="hidden"/>
-      <input name="Submit" class="input_submit" value="搜索" type="submit"/>
-    </form>
-  </div>
-  <div class="searchclose"></div>
-</div>
+		<div th:include="v2/base/top :: top"></div>
 <!--top end-->
 <article>
   <div class="whitebg about">
     <div class="ab_box"> <i class="avatar_pic"><img src="v2/images/avatar.png"/></i>
-      <h3>杨青青</h3>
-      <p>一个80后草根女站长！Web前端设计师、网页设计师。</p>
-      <p>天津智尚互联科技有限公司设计总监，青于蓝网络工作室创始人。</p>
+      <h3>顺顺郭</h3>
+      <p>一个95后男程序员!主业java后台开发</p>
+      <p>一只无名小卒。</p>
     </div>
     <h2 class="gd_title">内心独白</h2>
-    <p class="ab_dubai">我叫杨青青，我是一个80后草根女站长！09年入行。我一直潜心研究网页前端技术，一边工作一边积累经验，分享一些个人博客模板，以及网站优化等心得。我入行早，大家也亲切的叫我“青姐”。我的个人博客搜索“个人博客”、“博客”，一直都靠前。最有意思的是，我有三年的时间没有去更新它，依然排在前面。虽然期间有很多的不容易，但是我都没有放弃过。选了这一行 ，就深深的喜欢上它。我喜欢一句话“冥冥中该来则来，无处可逃”。我喜欢上了前端设计，喜欢坐在电脑前敲代码，喜欢跟一堆程序员聊天。这辈子，我也逃不出去了，深深的陷了进来。 </p>
+    <p class="ab_dubai">我叫顺顺郭,从2016年大学毕业开始从事程序开发工作!我热爱编程,很享受安安静静坐着写代码的过程。我建立博客的目的是将自己所见所学所想集中起来，给自己一个交代，也分享给网友们!</p>
     <span class="ly_button"><a href="//e/tool/gbook/?bid=1" target="_blank">留言</a></span>
     <h2 class="gd_title">心路历程</h2>
     <ul class="xinlu">
@@ -130,22 +83,8 @@
     </ul>
   </div>
 </article>
-<footer>
-  <div class="box">
-    <div class="wxbox">
-      <ul>
-         <li><img src="v2/images/wx.png"/><span>我的微信</span></li>
-      </ul>
-    </div>
-    <div class="endnav">
-      <p><b>站点声明：</b></p>
-      <p>1、xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx。</p>
-      <p>2、所有文章未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。举报邮箱：<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&amp;email=H11Hh9cn95b3F1cHVye1xtbTJ-c3E" target="_blank">964781872@qq.com</a></p>
-      <p>Copyright © <a href="/" target="_blank">www.guoyd.com</a> All Rights Reserved. 备案号：<a href="http://www.miitbeian.gov.cn/" target="_blank">备案号: 湘ICP备17020097号-1</a></p>
-    </div>
-  </div>
-  <a href="#">
-  <div class="top"></div>
-  </a> </footer>
+	<!--footer start-->
+	<div th:replace="v2/base/bottom :: bottom"></div>
+	<!--footer end-->
 </body>
 </html>

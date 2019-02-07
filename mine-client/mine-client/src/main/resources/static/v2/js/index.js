@@ -39,13 +39,12 @@ function loadArticleTypes(){
 	    
  	        		for(var i=0;i<result.length;i++){
  	        			if (i == 0) {
- 	        				alert("-");
  	        				$('#ul_article_types').append(
- 	        						'<li class="newscurrent" value='+result[0].dm+'>'+result[0].ms+'</li>'
+ 	        						'<li class="newscurrent">'+result[i].ms+'</li>'
  	        				);
  	        			} else {
  	        				$('#ul_article_types').append(
- 	        						'<li value='+result[i].dm+'>'+result[i].ms+'</li>'
+ 	        						'<li id='+result[i].dm+'>'+result[i].ms+'</li>'
  	        				);
  	        			}
  	           		
@@ -62,6 +61,11 @@ function loadArticleTypes(){
 	  	        	        '</div>' 	
 	        			);
 	        		}
+ 	        		
+ 	        		//初始化第一个div
+ 	        		loadFirst(1,5,null);
+ 	               $("#article_more").attr("href","/list?page=1&limit=5");
+
 	        	} 
 	       	}
 	     });
@@ -73,8 +77,9 @@ function addListener(){
         $(this).addClass('newscurrent').siblings().removeClass('newscurrent');
         $('.newstab>div:eq(' + $(this).index() + ')').show().siblings().hide();
         $('.newstab div[style="display: block;"]').children(".newslist").empty();
-        loadList(1,5,$(this).val());
-        $("#article_more").attr("href","/list?page=1&limit=5&type_dm="+$(this).val());
+        var type_dm = this.id;
+        loadList(1,5,type_dm);
+        $("#article_more").attr("href","/list?page=1&limit=5&type_dm="+type_dm);
     });
 }
 
@@ -89,6 +94,27 @@ function loadList(page,limit,type_dm){
 	        		var data = result.data;
 	        		for(var i=0;i<data.length;i++){
 	        			$('.newstab div[style="display: block;"]').children(".newslist").append(
+	        				'<li><i></i><a href="/article_dt/'+data[i].id+'" target="_blank">'+data[i].title+'</a>'+
+	  	        	        '<p>'+data[i].descs+'</p>'+
+	  	        	        '</li>'  
+	        			 );
+	        		}
+	        	} 
+	       	}
+	     });
+}
+
+function loadFirst(page,limit,type_dm){
+	 $.ajax({
+	        type: "Post",
+	        url: "/article_page?page="+page+"&limit="+limit+"&type_dm="+type_dm,
+	        async:false,
+	        success: function(result){
+	        
+	        	if (null != result && null != result.data) {
+	        		var data = result.data;
+	        		for(var i=0;i<data.length;i++){
+	        			$(".newsitem:nth-child(1)").children(".newslist").append(
 	        				'<li><i></i><a href="/article_dt/'+data[i].id+'" target="_blank">'+data[i].title+'</a>'+
 	  	        	        '<p>'+data[i].descs+'</p>'+
 	  	        	        '</li>'  
