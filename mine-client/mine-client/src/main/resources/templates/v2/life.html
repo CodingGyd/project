@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+ <head th:include="v2/base/head ::common_header"></head>
+ 
+<body>
+<!--top begin-->
+		<div th:include="v2/base/top :: top"></div>
+<!--top end-->
+<article> 
+  <!--lbox begin-->
+  <div class="lbox">
+    <div class="whitebg lanmu"> <img src="v2/images/lm04.jpg"/>
+      <h1>我的生活</h1>
+      <p>记录我生活中的一些值得纪念的照片</p>
+    </div>
+    <div class="zhuanti whitebg">
+      <h2 class="htitle"><span class="hnav"><a href="/" target="_blank">更多</a></span>青青日记</h2>
+      <ul>
+        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">文章阅读</a> </li>
+    	
+      </ul>
+    </div>
+    
+    <!--bloglist end--> 
+  </div>
+  <div class="rbox">
+     <div  th:include="v2/base/click_rank :: click_rank" >
+    </div>
+    
+    <div class="ad whitebg imgscale">
+      <ul>
+        <a href="/"><img src="v2/images/ad.jpg"/></a>
+      </ul>
+    </div>
+    <div  th:include="v2/base/site_information :: site_information" >
+
+    <div class="ad whitebg imgscale">
+      <ul>
+        <a href="/"><img src="v2/images/ad02.jpg"/></a>
+      </ul>
+    </div>
+  </div>
+  </div>
+</article>
+	<!--footer start-->
+	<div th:replace="v2/base/bottom :: bottom"></div>
+	<!--footer end-->
+</body>
+</html>
