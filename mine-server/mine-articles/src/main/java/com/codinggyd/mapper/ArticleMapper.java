@@ -26,7 +26,13 @@ public interface ArticleMapper {
 	//文章列表
 	public PageList<Article> findArticle(@Param("type") String type, PageBounds pageBounds);
 	public List<Article> findArticle(@Param("type") String type);
-	
+	@Select("SELECT A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName"+
+			"	FROM mine_articles A "+
+			"	INNER JOIN mine_sysconst B "+
+			"	ON A.type = B.dm AND B.lb = '100' "+
+			" ORDER BY A.readingcount DESC LIMIT 5 " )
+	public List<Article> findArticleOrderByClickCount(@Param("rankTop") Integer rankTop);
+
 	//文章详情
 	public Article findDetailById(@Param("id") String id);
 

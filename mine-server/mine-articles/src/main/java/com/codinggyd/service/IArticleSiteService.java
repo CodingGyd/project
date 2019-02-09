@@ -29,6 +29,16 @@ public interface IArticleSiteService {
 	public List<Article> listArticle(String type,String[] pageInfo);
 	
 	/**
+	 * 点击排行前n的文章
+	 * @param type 文章分类
+	 * @param pageInfo 分页参数
+	 * @return
+	 */
+	@MineMethod(value="MINE_ARTICLE_LIST_RANK_TOP")
+	public List<Article> rankTopArticle(Integer rankTop);
+	
+	
+	/**
 	 * 文章详情
 	 * @param id 文章id
 	 * @return

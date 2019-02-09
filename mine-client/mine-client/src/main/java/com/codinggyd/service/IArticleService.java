@@ -33,5 +33,7 @@ public interface IArticleService {
 	public List<ArticleType> findArticleTypes(List<String> lbs,String dm);
 	//更新文章阅读数量
 	public void updateReadCount(Integer id);
+	//加载点击排行前rankTop的文章
+	public List<Article> getRankArticleList(Integer rankTop);
 	
 }

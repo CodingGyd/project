@@ -74,26 +74,26 @@ public class ArticleServiceImpl implements IArticleSiteService{
 	@Override
 	public Article listDetail(String id) {
 		Article article = null;
-		try {
-			article = (Article) RedisClientUtils.getFromCache(REDIS_KEY_ARTICLE+id);
-		} catch (Exception e) {
-			logger.error("缓存 读取出错,{}",e);
-		}
-		if (null != article) {
-			logger.debug("id[{}],查的是缓存",id);
-			return article;
-		}
+//		try {
+//			article = (Article) RedisClientUtils.getFromCache(REDIS_KEY_ARTICLE+id);
+//		} catch (Exception e) {
+//			logger.error("缓存 读取出错,{}",e);
+//		}
+//		if (null != article) {
+//			logger.debug("id[{}],查的是缓存",id);
+//			return article;
+//		}
 		try {
 			article = mapper.findDetailById(id);
 		} catch (Exception e) {
 			logger.error("数据库 读取出错,{}",e);
 			return null;
 		}
-		try {
-			RedisClientUtils.cache(REDIS_KEY_ARTICLE+id, article);//缓存
-		} catch (Exception e) {
-			logger.error("缓存写入出错,{}",e);
-		}
+//		try {
+//			RedisClientUtils.cache(REDIS_KEY_ARTICLE+id, article);//缓存
+//		} catch (Exception e) {
+//			logger.error("缓存写入出错,{}",e);
+//		}
 		return article;
 	}
 
@@ -163,5 +163,10 @@ public class ArticleServiceImpl implements IArticleSiteService{
 			return "error";
 		}
 		return "success";
+	}
+
+	@Override
+	public List<Article> rankTopArticle(Integer rankTop) {
+		return  mapper.findArticleOrderByClickCount(rankTop);
 	}
 }

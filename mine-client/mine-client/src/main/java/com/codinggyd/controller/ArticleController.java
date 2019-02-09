@@ -63,7 +63,11 @@ public class ArticleController {
 		MinePageBean<Article> data = articleService.getLatestArticleList();
 		return data;
 	}
-	
+	//点击排行前10的文章
+	@RequestMapping(value={"/rank_article"})
+	public @ResponseBody List<Article> rankArticle(HttpServletRequest request,HttpServletResponse response) {
+		return articleService.getRankArticleList(10);
+	}
 	//文章详情
 	@RequestMapping("/article_dt/{id}")
 	public String article_dt(@PathVariable String id,Map<String,Object> model) {

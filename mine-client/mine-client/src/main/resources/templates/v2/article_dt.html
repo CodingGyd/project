@@ -41,21 +41,10 @@
   </div>
   <!--lbox end-->
   <div class="rbox">
-          <div class="whitebg cloud">
-      <h2 class="htitle">文章分类</h2>
-      <ul>
-        <a href="" target="_blank">后端技术</a> <a href="" target="_blank">网站前端</a> <a href="" target="_blank">移动开发</a> <a href="" target="_blank">数据库</a> <a href="" target="_blank">心路历程</a><a href="" target="_blank">我的生活</a>
-      </ul>
-    </div>
-      <div class="whitebg cloud">
-      <h2 class="htitle">标签云</h2>
-      <ul>
-        <a href="" target="_blank">javaee</a> <a href="" target="_blank">linux</a> <a href="" target="_blank">redis</a> <a href="" target="_blank">jvm</a> <a href="" target="_blank">生活</a> <a href="" target="_blank">日记</a> <a href="" target="_blank">小世界</a> <a href="" target="_blank">个人博客</a> <a href="" target="_blank">网页设计</a>
-      </ul>
-    </div>
-    
-    <div  th:include="v2/base/click_rank :: click_rank" >
-    </div>
+    <div th:include="v2/base/article_type :: article_type"></div>
+    <div th:include="v2/base/article_label :: article_label"></div>
+    <div th:include="v2/base/click_rank :: click_rank" >
+  </div>
    
     <div class="ad whitebg imgscale">
       <ul>

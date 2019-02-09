@@ -44,6 +44,8 @@ public class ArticleServiceImpl implements IArticleService{
 	private static final String SERVER_RANDOM_ARTICLE_LIST="MINE_RANDOM_ARTICLE";//数据接口地址-随机文章
 	private static final String SERVER_LATEST_ARTICLE_LIST="MINE_LATEST_ARTICLE";//数据接口地址-最新文章
 	private static final String SERVER_ARTICLE_LIST="MINE_ARTICLE_LIST";//数据接口地址-文章列表
+	private static final String SERVER_ARTICLE_LIST_RANK_TOP="MINE_ARTICLE_LIST_RANK_TOP";//数据接口地址-查询点击排行的文章列表
+
 	private static final String SERVER_ARTICLE_DETAIL="MINE_ARTICLE_DETAIL";//数据接口地址-文章详情
 	private static final String SERVER_ARTICLE_TYPE="MINE_CONST";//数据接口地址-文章分类
 	private static final String SERVER_ARTICLE_UPDATE_READ_COUNT="MINE_ARTICLE_UPDATE_READ_COUNT";//数据接口地址-更新文章阅读数
@@ -401,6 +403,45 @@ public class ArticleServiceImpl implements IArticleService{
  			logger.debug("调用文章阅读数量更新接口,返回接口{}",responseData);
  		}
 	}
+	@Override
+	public List<Article> getRankArticleList(Integer rankTop) {
+		return getServerArticleListOrderByClickCount(rankTop);
+	}
 
-	 
+	private List<Article> getServerArticleListOrderByClickCount(Integer rankTop) {
+		List<Article> result = new ArrayList<>();
+		
+		String responseData = HttpClientUtil.requestServer(SERVER_ARTICLE_LIST_RANK_TOP, rankTop);
+ 	 
+		if (StringUtils.isEmpty(responseData)) {
+			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_LIST_RANK_TOP);
+ 		} else {
+ 		
+ 			try {
+ 				
+				JsonNode node = mapper.readTree(responseData);
+				String code = node.get("code").asText();
+				if (SysConstant.RESPONSE_CODE_SUCCESS.equals(code)) {
+					JsonNode resultJson = node.get("data").get(0);
+					
+					if (null == resultJson) {
+						logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_LIST_RANK_TOP);
+					} else {
+						//解析json格式数据
+						int size = resultJson.size();
+						for (int i=0;i<size;i++) {
+							JsonNode temp = resultJson.get(i);
+							result.add(formatArticleBean(temp));
+						}
+					}
+					
+				} else {
+					logger.error("接口[{}]错误,响应码{}",SERVER_ARTICLE_LIST_RANK_TOP,code);
+				}
+			} catch (Exception e) {
+				logger.error("接口[{}]返回数据有误,{},{}",SERVER_ARTICLE_LIST_RANK_TOP,responseData,e);
+			}
+ 		}
+		return result;
+	}
 }
