@@ -13,7 +13,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
 /**
  * 
  * 
- * @Title:  LearnSiteMapper.java
+ * @Title:  ArticleMapper.java
  * @Package: com.codinggyd.mapper
  * @Description: 
  *
