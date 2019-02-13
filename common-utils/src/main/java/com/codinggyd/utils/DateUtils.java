@@ -134,4 +134,22 @@ public class DateUtils {
 
 			return result;
 		}
+		
+		//获取一年的第一天的日期
+		public static Date getStartDateOfYear(Integer startYear) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.clear();
+			calendar.set(Calendar.YEAR, startYear);
+			calendar.roll(Calendar.DAY_OF_YEAR, 0);
+			return calendar.getTime();
+		}
+		
+		//获取一年的最后一天的日期
+		public static Date getEndDateOfYear(Integer startYear) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.clear();
+			calendar.set(Calendar.YEAR, startYear);
+			calendar.roll(Calendar.DAY_OF_YEAR, -1);
+			return calendar.getTime();
+		}
 }
