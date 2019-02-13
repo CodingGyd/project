@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.Article;
 import com.codinggyd.mapper.ArticleMapper;
-import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.IArticleSiteService;
 import com.codinggyd.util.PageBoundUtils;
 import com.codinggyd.utils.MathUtils;
