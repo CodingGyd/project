@@ -11,8 +11,7 @@
   <!--lbox begin-->
   <div class="lbox">
     <div class="content_box whitebg">
-      <h2 class="htitle"><span class="con_nav">您现在的位置是：<a href="/">网站首页</a>><a href="/">xxxxx</a></span>xxxxx</h2>
-      <h1 class="con_tilte" th:utext="${article.title}"></h1>
+       <h1 class="con_tilte" th:utext="${article.title}"></h1>
       <p class="bloginfo"><i class="avatar"><img src="/v2/images/avatar.png"/></i><span>顺顺郭</span><span  th:utext="${article.updatetime}"></span><span>【<a href="/" th:utext="${article.typeName}"></a>】</span><span  th:utext="${article.readingcount}"></span>人围观</p>
       <p class="con_info" th:utext="${article.descs}"></p>
       <div class="con_text" th:utext="${article.htmlContent}">
