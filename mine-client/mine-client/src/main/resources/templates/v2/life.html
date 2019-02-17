@@ -4,45 +4,64 @@
  <head th:include="v2/base/head ::common_header"></head>
  
 <body>
+	<link href="v2/css/life.css" rel="stylesheet"/>
+		<script src="v2/js/life.js" ></script>
 <!--top begin-->
 		<div th:include="v2/base/top :: top"></div>
 <!--top end-->
 <article> 
   <!--lbox begin-->
-  <div class="lbox">
+  <div >
     <div class="whitebg lanmu"> <img src="v2/images/lm04.jpg"/>
       <h1>我的生活</h1>
       <p>记录我生活中的一些值得纪念的照片</p>
     </div>
-    <div class="zhuanti whitebg">
-      <h2 class="htitle"><span class="hnav"><a href="/" target="_blank">更多</a></span>照片墙</h2>
-      <ul>
-        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	        <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/2.jpg"/></a></i> <b>xxxxxxxxxxx</b><span>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	                 <li> <i class="ztpic"><a href="/" target="_blank"><img src="v2/images/1.jpg"/></a></i> <b>XXXXXX</b><span>xxxxxxxxxxxxxxxxxxx</span><a href="" target="_blank" class="readmore">背景</a> </li>
-    	
-      </ul>
+    <div class="zhuanti  whitebg">
+      <h2 class="htitle"><span class="hnav"></span>照片墙</h2>
+       <section id="knowledge" class="viewBlock">
+  <div class="bookBox"> <a class="lastBtn">上一张</a> <a class="nextBtn">下一张</a>
+    <div class="bookPage frist"> <img src="v2/images/3.jpg" /> </div>
+    <div class="bookPage runPage">
+      <div class="bookWord"> <span>毕业</span> 那年. <span class="pageNumber">1</span> </div>
+      <img src="v2/images/album_1.jpg" /> </div>
+    <div class="bookPage runPage">
+      <div class="bookWord"> <span>毕业</span> 那年. <span class="pageNumber">2</span> </div>
+      <img src="v2/images/album_2.jpg" /> </div>
+    <div class="bookPage runPage">
+      <div class="bookWord"> <span>毕业</span> 那年. <span class="pageNumber">3</span> </div>
+      <img src="v2/images/album_3.jpg" /> </div>
+      
+           <div class="bookPage runPage">
+      <div class="bookWord"> <span>旅游</span>青海湖环湖360公里骑行 . <span class="pageNumber">4</span> </div>
+      <img src="v2/images/album_4.jpg" /> </div>
+      
+               <div class="bookPage runPage">
+      <div class="bookWord"> <span>旅游</span>青海湖环湖360公里骑行 . <span class="pageNumber">5</span> </div>
+      <img src="v2/images/album_5.jpg" /> </div>
+      
+                 <div class="bookPage runPage">
+      <div class="bookWord"> <span>旅游</span>青海湖环湖360公里骑行 . <span class="pageNumber">6</span> </div>
+      <img src="v2/images/album_6.jpg" /> </div>
+      
+      
+                   <div class="bookPage runPage">
+      <div class="bookWord"> <span></span>没有啦 . <span class="pageNumber">7</span> </div>
+      <img src="v2/images/avatar.jpg" /> </div>
+      
+      
+      
+    <div class="bookPage last">
+      <div class="bookWord"> <span>没有啦</span>.  <span class="pageNumber"></span> </div>
+    </div>
+    
+  </div>
+</section>
+<!--效果html结束-->
     </div>
     
     <!--bloglist end--> 
   </div>
-  <div class="rbox">
-     <div  th:include="v2/base/click_rank :: click_rank" >
-    </div>
-   
-    <div  th:include="v2/base/site_information :: site_information" >
-  </div>
-  </div>
+ 
 </article>
 	<!--footer start-->
 	<div th:replace="v2/base/bottom :: bottom"></div>
