@@ -3,6 +3,7 @@ package com.codinggyd.utils;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -11,7 +12,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.poi.ss.usermodel.DateUtil;
+
 public class DateUtils {
+	private static List<String> seasonsDate = Arrays.asList("0331","0630","0930","1231");
+
 	 /**
      * 格式化日期，时分秒重置为0
      * @param pattern
@@ -151,5 +156,37 @@ public class DateUtils {
 			calendar.set(Calendar.YEAR, startYear);
 			calendar.roll(Calendar.DAY_OF_YEAR, -1);
 			return calendar.getTime();
+		}
+		
+		/**
+		 * 
+		 * @Title: getSeasonDateBeforeEndDate 
+		 * @Description: 获取指定日期(含)前的一个季度月底
+		 * @param endDate
+		 * @return Date
+		 * @throws 
+		 * @Author guoyd
+		 * @Date 2019年2月18日 上午11:27:47
+		 */
+		public static Date getSeasonDateBeforeEndDate(Date endDate) {
+			String key =   new SimpleDateFormat("MMdd").format(endDate);//DateUtil.dateToString(endDate, "MMdd");
+			if (seasonsDate.contains(key)) {
+				return endDate;
+			}
+			
+			Calendar endCalendar = Calendar.getInstance();
+			endCalendar.setTime(endDate);
+			endCalendar.set(Calendar.MONTH, ((int) endCalendar.get(Calendar.MONTH) / 3 - 1) * 3 + 2);
+			endCalendar.set(Calendar.DAY_OF_MONTH, endCalendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+			setMaxTime(endCalendar);
+			
+			return endCalendar.getTime();
+		}
+		
+		private static void setMaxTime(Calendar calendar){
+			calendar.set(Calendar.HOUR_OF_DAY, calendar.getActualMaximum(Calendar.HOUR_OF_DAY));
+			calendar.set(Calendar.MINUTE, calendar.getActualMaximum(Calendar.MINUTE));
+			calendar.set(Calendar.SECOND, calendar.getActualMaximum(Calendar.SECOND));
+			calendar.set(Calendar.MILLISECOND, calendar.getActualMaximum(Calendar.MILLISECOND));
 		}
 }
