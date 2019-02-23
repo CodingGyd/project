@@ -10,8 +10,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codinggyd.bean.SiteInformation;
 import com.codinggyd.service.ISiteInformationService;
- 
- 
+
+/**
+ * 
+ * 
+ * @Title: SiteController.java
+ * @Package: com.codinggyd.controller
+ * @Description: 网站站点信息操作相关接口
+ * 
+ * @Author: guoyd
+ * @Date: 2019年2月21日 下午5:44:22
+ *
+ * Copyright @ 2019 Corpration Name
+ */
 @Controller
 public class SiteController {
 	@Autowired
@@ -19,7 +30,7 @@ public class SiteController {
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
  
-	 	//文章详情
+	//查询站点信息
 	@RequestMapping("/siteinfo")
 	public @ResponseBody SiteInformation getsiteinfo() {
 		return siteInformationService.getSiteInformation();

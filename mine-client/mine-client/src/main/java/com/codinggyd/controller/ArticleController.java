@@ -27,9 +27,21 @@ import com.codinggyd.bean.Paginator;
 import com.codinggyd.service.IArticleService;
 import com.codinggyd.util.SysConstant;
  
- 
+/**
+ * 
+ * 
+ * @Title: ArticleController.java
+ * @Package: com.codinggyd.controller
+ * @Description: 文章信息操作相关接口
+ * 
+ * @Author: guoyd
+ * @Date: 2019年2月21日 下午5:43:27
+ *
+ * Copyright @ 2019 Corpration Name
+ */
 @Controller
 public class ArticleController {
+	
 	@Autowired
 	private IArticleService articleService;
 

@@ -109,6 +109,12 @@
 		    <artifactId>fastdfs-client</artifactId>
 		    <version>1.25.2-RELEASE</version>
 		</dependency>
+				<dependency>
+			<groupId>com.codinggyd</groupId>
+			<artifactId>common-utils</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

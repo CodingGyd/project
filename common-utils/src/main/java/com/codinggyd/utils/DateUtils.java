@@ -35,6 +35,21 @@ public class DateUtils {
     }
     
     /**
+     * 格式化日期
+     * @param date
+     * @param pattern
+     * @return
+     */
+    public static String dateToString(Date date,String pattern) {
+     	try{
+    		SimpleDateFormat dateFormat = new SimpleDateFormat(pattern);
+    		return dateFormat.format(date);
+    	} catch(Exception e){
+    		throw new RuntimeException("格式化日期出错");
+    	}
+    }
+    
+    /**
      * 返回输入日期所在周的周一和周日的日期
      * @param time  输入日期
      * @return map集合, map.get("first")为所在周周一的日期,yyyy-MM-dd格式 ；map.get("last")为所在周周日的日期,yyyy-MM-dd格式

@@ -4,14 +4,15 @@ import java.io.Serializable;
 
 /**
  * 
+ * 
  * @Title: Article.java
  * @Package: com.codinggyd.bean
  * @Description: 文章信息实体类
  * 
  * @Author: guoyd
- * @Date: 2017年9月11日
+ * @Date: 2019年2月21日 下午5:41:37
  *
- * Copyright @ 2017 Corpration Name
+ * Copyright @ 2019 Corpration Name
  */
 public class Article implements Serializable {
 	/**

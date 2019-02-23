@@ -16,7 +16,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.codinggyd.bean.Keywords;
 import com.codinggyd.service.IKeywordsService;
  
- 
+ /**
+  * 
+  * 
+  * @Title: KeywordController.java
+  * @Package: com.codinggyd.controller
+  * @Description: 文章关键字操作相关接口
+  * 
+  * @Author: guoyd
+  * @Date: 2019年2月21日 下午5:44:07
+  *
+  * Copyright @ 2019 Corpration Name
+  */
 @Controller
 public class KeywordController {
 	@Autowired

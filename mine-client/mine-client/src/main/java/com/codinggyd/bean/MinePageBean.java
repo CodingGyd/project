@@ -2,6 +2,18 @@ package com.codinggyd.bean;
 
 import java.util.List;
 
+/**
+ * 
+ * 
+ * @Title: MinePageBean.java
+ * @Package: com.codinggyd.bean
+ * @Description: 列表分页对象
+ * 
+ * @Author: guoyd
+ * @Date: 2019年2月21日 下午5:42:48
+ *
+ * Copyright @ 2019 Corpration Name
+ */
 public class MinePageBean<E> {
    
     
