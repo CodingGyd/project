@@ -22,6 +22,7 @@ public class ClientApp extends WebMvcConfigurerAdapter{
 		registry.addViewController("/life").setViewName("v2/life");//我的生活
 		registry.addViewController("/labelcloud").setViewName("v2/labelcloud");//标签云
 		registry.addViewController("/label_dt").setViewName("v2/label_dt");//标签下的文章列表
+		registry.addViewController("/videoshare").setViewName("v2/videoshare");//视频分享
 
 // 		registry.addViewController("/daily").setViewName("daily");//随笔
 //		registry.addViewController("/about").setViewName("about");//关于我

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+ <head th:include="v2/base/head ::common_header"></head>
+ 
+<body>
+		 <script src="v2/js/canvas-nest.js"></script>
+		
+<!--top begin-->
+		<div th:include="v2/base/top :: top"></div>
+<!--top end-->
+<article> 
+  <!--lbox begin-->
+  <div >
+    		<script src="v2/js/videoshare.js" ></script>
+    
+    <div class="zhuanti  whitebg">
+      <h2 class="htitle"><span class="hnav"></span>视频墙</h2>
+       <section id="knowledge" class="viewBlock">
+       	<ul>
+       		<li><video src="http://47.111.1.180/images/video/20190224/2019022402.mp4"  poster="/v2/images/album_3.jpg" width="320" height="240" controls="controls" autoplay="autoplay"> 您的浏览器不支持 video 标签。</video></li>
+       		       		<li><video src="http://47.111.1.180/images/video/20190224/2019022401.mp4"  poster="/v2/images/album_3.jpg" width="320" height="240" controls="controls"> 您的浏览器不支持 video 标签。</video></li>
+       		       		<li><video src="http://47.111.1.180/images/video/20190224/2019022402.mp4"  poster="/v2/images/album_3.jpg" width="320" height="240" controls="controls"> 您的浏览器不支持 video 标签。</video></li>
+       		
+       	</ul>
+		</section>
+<!--效果html结束-->
+    </div>
+    
+    <!--bloglist end--> 
+  </div>
+ 
+</article>
+	<!--footer start-->
+	<div th:replace="v2/base/bottom :: bottom"></div>
+	<!--footer end-->
+</body>
+</html>

@@ -11,6 +11,7 @@ $(document).ready(function() {
 */		html += '<li><a href="/life" target="_blank">我的生活</a></li>';
 		html += '<li><a href="/about" target="_blank">关于我</a></li>';
 		html += '<li><a href="/labelcloud" target="_blank">标签云</a></li>';
+		html += '<li><a href="/videoshare" target="_blank">视频分享</a></li>';
 
 		 $.ajax({
 		        type: "Post",

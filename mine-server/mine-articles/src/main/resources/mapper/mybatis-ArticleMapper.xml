@@ -15,7 +15,7 @@
 
 	<select id="findArticle" resultMap="articles">
 	<if test="label != null">
-		with temp as  (
+		with TEMP as  (
 			SELECT DISTINCT articleId FROM mine_article_keyword_relation
 			WHERE keyId=#{label}
 		)
