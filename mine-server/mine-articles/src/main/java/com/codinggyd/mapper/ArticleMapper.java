@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleKeyWordRelation;
 import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
 import com.github.miemiedev.mybatis.paginator.domain.PageList;
 
@@ -24,8 +25,8 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
  */
 public interface ArticleMapper {
 	//文章列表
-	public PageList<Article> findArticle(@Param("type") String type, PageBounds pageBounds);
-	public List<Article> findArticle(@Param("type") String type);
+	public PageList<Article> findArticle(@Param("type") String type,@Param("label") String label, PageBounds pageBounds);
+	public List<Article> findArticle(@Param("type") String type,@Param("label") String label);
 	@Select("SELECT A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName"+
 			"	FROM mine_articles A "+
 			"	INNER JOIN mine_sysconst B "+
@@ -49,5 +50,10 @@ public interface ArticleMapper {
 	//文章阅读数量加1
 	@Update("UPDATE mine_articles SET readingcount = readingcount+1 WHERE id=#{id}")
 	public void updateArticleReadCount(@Param("id") Integer id);
+
+	//文章关键字列表
+	@Select("SELECT A.id,A.articleId,B.id keyWordId,B.name keyName,A.updatetime FROM mine_article_keyword_relation A INNER JOIN mine_keywords B " + 
+			"	ON A.keyId = B.id WHERE A.articleId=#{articleId}")
+ 	public List<ArticleKeyWordRelation> queryRelation(@Param("articleId") Integer articleId);
 
 }

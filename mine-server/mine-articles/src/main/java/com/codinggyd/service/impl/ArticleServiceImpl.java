@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codinggyd.annotation.MineService;
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleKeyWordRelation;
 import com.codinggyd.mapper.ArticleMapper;
 import com.codinggyd.service.IArticleSiteService;
 import com.codinggyd.util.PageBoundUtils;
@@ -42,7 +43,7 @@ public class ArticleServiceImpl implements IArticleSiteService{
 	private ArticleMapper mapper;
 	private static final String REDIS_KEY_ARTICLE = "mine_articles_";
 	@Override
-	public List<Article> listArticle(String type,String[] pageInfo) {
+	public List<Article> listArticle(String type,String label,String[] pageInfo) {
 		List<Article> articleList = null;
 		try {
 			PageBounds pageBounds = null;
@@ -56,9 +57,9 @@ public class ArticleServiceImpl implements IArticleSiteService{
 			}
 			
 			if (null != pageBounds) {
-				articleList = mapper.findArticle(type,pageBounds);
+				articleList = mapper.findArticle(type,label,pageBounds);
 			} else {
-				articleList = mapper.findArticle(type);
+				articleList = mapper.findArticle(type,label);
 			}
 			
 			if(CollectionUtils.isEmpty(articleList)){
@@ -87,6 +88,16 @@ public class ArticleServiceImpl implements IArticleSiteService{
 		} catch (Exception e) {
 			logger.error("数据库 读取出错,{}",e);
 			return null;
+		}
+		if (null != article) {
+			try {
+				List<ArticleKeyWordRelation> relations = mapper.queryRelation(article.getId());
+				if (CollectionUtils.isNotEmpty(relations)) {
+					article.setLabels(relations);
+				}
+			} catch (Exception e) {
+				logger.error("数据库读取出错,{}",e);
+			}
 		}
 //		try {
 //			RedisClientUtils.cache(REDIS_KEY_ARTICLE+id, article);//缓存

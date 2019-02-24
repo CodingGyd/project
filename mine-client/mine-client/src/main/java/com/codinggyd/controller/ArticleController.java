@@ -1,6 +1,8 @@
  
 package com.codinggyd.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codinggyd.bean.Article;
+import com.codinggyd.bean.ArticleKeyWordRelation;
 import com.codinggyd.bean.ArticlePageBean;
 import com.codinggyd.bean.ArticleType;
 import com.codinggyd.bean.MinePageBean;
@@ -62,10 +65,26 @@ public class ArticleController {
 		String type_dm = request.getParameter("type_dm");
 		if (StringUtils.isEmpty(type_dm) || type_dm.equals("undefined") ||type_dm.equals("null")) type_dm = null;
 
+		String label_dm = request.getParameter("label_dm");
+		if (StringUtils.isEmpty(label_dm) || label_dm.equals("undefined") ||label_dm.equals("null")) label_dm = null;
+
 		Paginator paginator = new Paginator(Integer.parseInt(page),Integer.parseInt(limit),Integer.MAX_VALUE);
 		
-		ArticlePageBean<Article> data = articleService.getArticleList(paginator,type_dm);
-	 
+		ArticlePageBean<Article> data = articleService.getArticleList(paginator,type_dm,label_dm);
+		
+
+		String label_ms = request.getParameter("label_ms");
+		if (null != data && StringUtils.isNotEmpty(label_ms)) {
+			
+			ArticleKeyWordRelation keyword = new ArticleKeyWordRelation();
+			try {
+
+				keyword.setKeyName(new String(label_ms.getBytes("ISO-8859-1"),"UTF-8"));
+			} catch (UnsupportedEncodingException e) {
+				logger.error("解码出错,{}",e);
+			}
+			data.setKeyWordRelation(keyword);
+		}
 		return data;
 	}
 	

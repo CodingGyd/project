@@ -2,6 +2,7 @@ package com.codinggyd.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -19,7 +20,7 @@ import com.codinggyd.annotation.MineFuncData;
  * 
  *        Copyright @ 2017 Corpration Name
  */
-@MineFuncData(name="MINE_ARTICLE_LIST",fieldNames={"id","title","descs","updatetime","readingcount","url","type","typeName","htmlContent","content"})
+@MineFuncData(name="MINE_ARTICLE_LIST",fieldNames={"id","title","descs","updatetime","readingcount","url","type","typeName","htmlContent","content","labels"})
 @Component
 public class Article implements Serializable {
 
@@ -69,6 +70,10 @@ public class Article implements Serializable {
 	 */
 	private String typeName;
 	
+	/**
+	 * 文章标签
+	 */
+	private List<ArticleKeyWordRelation> labels;
 	public String getTitle() {
 		return title;
 	}
@@ -151,6 +156,12 @@ public class Article implements Serializable {
 		this.typeName = typeName;
 	}
 
-	 
+	public List<ArticleKeyWordRelation> getLabels() {
+		return labels;
+	}
+
+	public void setLabels(List<ArticleKeyWordRelation> labels) {
+		this.labels = labels;
+	}
 
 }

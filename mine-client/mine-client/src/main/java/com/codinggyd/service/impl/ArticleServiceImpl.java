@@ -21,6 +21,7 @@ import com.codinggyd.service.IArticleService;
 import com.codinggyd.util.HttpClientUtil;
 import com.codinggyd.util.PageUtils;
 import com.codinggyd.util.SysConstant;
+import com.codinggyd.utils.CommonUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -56,12 +57,13 @@ public class ArticleServiceImpl implements IArticleService{
 		return getServerArticleDetail(id);
 	}
 	@Override
-	public ArticlePageBean<Article> getArticleList(Paginator paginator,String type_dm) {
+	public ArticlePageBean<Article> getArticleList(Paginator paginator,String type_dm,String label_dm) {
   	
 		//加载文章分类信息
 		List<ArticleType> articleTypes = findArticleTypes(Arrays.asList(SysConstant.ARTICLE_CONST_LB), type_dm);
 		ArticleType articleType = null;
 		if (!CollectionUtils.isEmpty(articleTypes)) {
+			//当分类为文章汇总时，约定type_dm为空
 			if (StringUtils.isEmpty(type_dm)) {
 				for (ArticleType type : articleTypes ) {
 					if (StringUtils.isEmpty(type.getDm())) {
@@ -79,7 +81,7 @@ public class ArticleServiceImpl implements IArticleService{
 		
 		//加载博文列表
 		List<Article> articles = new ArrayList<>();
-		articles.addAll(getServerArticleList(type_dm,null));
+		articles.addAll(getServerArticleList(type_dm,label_dm,null));
 		
 		if (CollectionUtils.isEmpty(articles)) {
 			logger.error("获取文章数据为空!");
@@ -214,10 +216,10 @@ public class ArticleServiceImpl implements IArticleService{
 	 * @param pageInfo 分页信息
 	 * @return
 	 */
-	private List<Article> getServerArticleList(String type_dm,String[] pageInfo) {
+	private List<Article> getServerArticleList(String type_dm,String label_dm,String[] pageInfo) {
 		List<Article> result = new ArrayList<>();
 		
-		String responseData = HttpClientUtil.requestServer(SERVER_ARTICLE_LIST, type_dm,pageInfo);
+		String responseData = HttpClientUtil.requestServer(SERVER_ARTICLE_LIST, type_dm,label_dm,pageInfo);
  	 
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_LIST);
@@ -320,7 +322,6 @@ public class ArticleServiceImpl implements IArticleService{
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_TYPE);
  		} else {
- 			
  		
  			try {
 				JsonNode node = mapper.readTree(responseData);
@@ -365,28 +366,9 @@ public class ArticleServiceImpl implements IArticleService{
 		return result;
 	}
 	
-	private Article formatArticleBean(JsonNode jsonNode) {
-		Integer id = jsonNode.get("id").asInt(0);
-		String title = jsonNode.get("title").asText("");
-		Integer readingcount = jsonNode.get("readingcount").asInt(0);
-		String updatetime = jsonNode.get("updatetime").asText("");
-		String descs = jsonNode.get("descs").asText("");
-		String type = jsonNode.get("type").asText("");
-		String typeName = jsonNode.get("typeName").asText("");
-		String htmlContent = jsonNode.get("htmlContent").asText("");
-		String content = jsonNode.get("content").asText("");
- 		Article article = new Article();
-		article.setId(id);
-		article.setTitle(title);
-		article.setReadingcount(readingcount);
-		article.setUpdatetime(formatDateStr(updatetime));
-		article.setDescs(descs);
-		article.setType(type);
-		article.setTypeName(typeName);
-		article.setHtmlContent(htmlContent);
-		article.setContent(content);
-		return article;
-		
+	private Article formatArticleBean(JsonNode jsonNode) throws Exception {
+		ObjectMapper om = CommonUtils.getMappingInstance();
+		return om.readValue(jsonNode.toString(), Article.class);
 	}
 	 
 	private String formatDateStr(String time) {

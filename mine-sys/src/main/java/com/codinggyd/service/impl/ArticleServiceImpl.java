@@ -91,6 +91,10 @@ public class ArticleServiceImpl implements IArticleService{
  	}
 	@Override
 	public Article queryArticle(Integer id) {
-		return mapper.queryArticle(id);
+		Article article = mapper.queryArticle(id);
+		if (null != article) {
+			article.setKeys(service.getKeyWords(article.getId()));
+		}
+		return article;
 	}
 }

@@ -14,8 +14,10 @@
 		SELECT id,articleId,keyWordId,updatetime FROM mine_article_keyword_relation
 	</select> -->
 	
-	<select id="queryKeyWords" resultType="com.codinggyd.bean.ArticleKeyWordRelation">
-		SELECT id,articleId,keyId,updatetime FROM mine_article_keyword_relation WHERE articleId= #{articleId}
+	<select id="queryRelation" resultType="com.codinggyd.bean.ArticleKeyWordRelation">
+	
+		SELECT A.id,A.articleId,B.id keyWordId,B.name keyName,A.updatetime FROM mine_article_keyword_relation A INNER JOIN mine_keywords B 
+		ON A.keyId = B.id WHERE A.articleId=#{articleId}
 	</select>
 	 
 	 <insert id="insertRelation">

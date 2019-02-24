@@ -1,6 +1,7 @@
 package com.codinggyd.bean;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 
@@ -55,6 +56,12 @@ public class Article implements Serializable {
 	 * 类型名称
 	 */
 	private String typeName;
+	
+	/**
+	 * 文章标签
+	 */
+	private List<ArticleKeyWordRelation> labels;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -121,12 +128,21 @@ public class Article implements Serializable {
 	}
 
 	public String getTypeName() {
-		return typeName;
+		return typeName;	
 	}
 
 	public void setTypeName(String typeName) {
 		this.typeName = typeName;
 	}
 
+	public List<ArticleKeyWordRelation> getLabels() {
+		return labels;
+	}
+
+	public void setLabels(List<ArticleKeyWordRelation> labels) {
+		this.labels = labels;
+	}
+
 	 
+
 }

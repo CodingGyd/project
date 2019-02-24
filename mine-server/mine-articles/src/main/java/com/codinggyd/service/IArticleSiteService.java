@@ -26,7 +26,7 @@ public interface IArticleSiteService {
 	 * @return
 	 */
 	@MineMethod(value="MINE_ARTICLE_LIST")
-	public List<Article> listArticle(String type,String[] pageInfo);
+	public List<Article> listArticle(String type,String label,String[] pageInfo);
 	
 	/**
 	 * 点击排行前n的文章

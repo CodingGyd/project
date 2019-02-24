@@ -22,7 +22,7 @@ import com.codinggyd.bean.Paginator;
 public interface IArticleService {
 	
 	//加载文章列表
-	public ArticlePageBean<Article> getArticleList(Paginator paginator,String type_dm);
+	public ArticlePageBean<Article> getArticleList(Paginator paginator,String type_dm,String label_dm);
 	//加载最新文章
 	public ArticlePageBean<Article> getLatestArticleList();
 	//加载随机文章

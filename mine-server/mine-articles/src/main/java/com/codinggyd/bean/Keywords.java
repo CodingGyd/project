@@ -39,6 +39,19 @@ public class Keywords implements Serializable {
 	 * 更新时间
 	 */
 	private Date updatetime;
+	
+	/**
+	 * 描述
+	 */
+	private String descs;
+	
+	public void setDescs(String descs) {
+		this.descs = descs;
+	}
+	public String getDescs() {
+		return descs;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

@@ -1,13 +1,9 @@
 package com.codinggyd.service.impl;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.codinggyd.bean.ArticleKeyWordRelation;
 import com.codinggyd.bean.ArticleKeyWordRelationParent;
-import com.codinggyd.bean.KeyWord;
 import com.codinggyd.mapper.ArticleKeyWordRelationMapper;
 import com.codinggyd.service.IArticleKeyWordRelationService;
 import com.codinggyd.service.IKeyWordService;
@@ -51,34 +46,34 @@ public class ArticleKeyWordRelationServiceImpl implements IArticleKeyWordRelatio
 	public List<ArticleKeyWordRelation> getKeyWords(Integer articleId) {
 		
 		List<ArticleKeyWordRelation> datas = mapper.queryRelation(articleId);
-		if (CollectionUtils.isNotEmpty(datas)) {
-			List<Integer> keyIds = new ArrayList<>();
-			for (ArticleKeyWordRelation relation : datas) {
-				if (!keyIds.contains(relation.getKeyWordId())) {
-					keyIds.add(relation.getKeyWordId());
-				}
-			}
-			
-			List<KeyWord> keyInfos = keyWordService.getKeyWords(keyIds);
-			if (CollectionUtils.isEmpty(keyInfos)) {
-				logger.error("文章编号[{}]绑定的关键词在源表都已不存在!",articleId,keyIds.toString());
-				return null;
-			}
- 
-			Map<Integer,String> keyIdAndNameMap = new HashMap<>();
-			for (KeyWord keyInfo : keyInfos) {
-				keyIdAndNameMap.put(keyInfo.getId(), keyInfo.getName());
-			}
-			
-			for (ArticleKeyWordRelation relation : datas) {
-				String keyName = keyIdAndNameMap.get(relation.getKeyWordId());
-				if (StringUtils.isEmpty(keyName)) {
-					logger.error("文章编号[{}]绑定的关键词[{}]在源表已经被删除,无法关联出其基本信息!",relation.getArticleId(),relation.getKeyWordId());
-					continue;
-				}
-				relation.setKeyName(keyName);
-			}
-		}
+//		if (CollectionUtils.isNotEmpty(datas)) {
+//			List<Integer> keyIds = new ArrayList<>();
+//			for (ArticleKeyWordRelation relation : datas) {
+//				if (!keyIds.contains(relation.getKeyWordId())) {
+//					keyIds.add(relation.getKeyWordId());
+//				}
+//			}
+//			
+//			List<KeyWord> keyInfos = keyWordService.getKeyWords(keyIds);
+//			if (CollectionUtils.isEmpty(keyInfos)) {
+//				logger.error("文章编号[{}]绑定的关键词在源表都已不存在!",articleId,keyIds.toString());
+//				return null;
+//			}
+// 
+//			Map<Integer,String> keyIdAndNameMap = new HashMap<>();
+//			for (KeyWord keyInfo : keyInfos) {
+//				keyIdAndNameMap.put(keyInfo.getId(), keyInfo.getName());
+//			}
+//			
+//			for (ArticleKeyWordRelation relation : datas) {
+//				String keyName = keyIdAndNameMap.get(relation.getKeyWordId());
+//				if (StringUtils.isEmpty(keyName)) {
+//					logger.error("文章编号[{}]绑定的关键词[{}]在源表已经被删除,无法关联出其基本信息!",relation.getArticleId(),relation.getKeyWordId());
+//					continue;
+//				}
+//				relation.setKeyName(keyName);
+//			}
+//		}
 		
 		return datas;
 	}

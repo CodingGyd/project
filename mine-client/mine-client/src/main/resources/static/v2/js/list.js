@@ -58,14 +58,14 @@ function loadList(page,limit,type_dm){
 	        		}
  	        		var content = '<a title="总页数">&nbsp;<b>总'+result.paginator.totalPages+'页</b> </a>';
 	        		if (null != pre) {
-	        			content += '<a href="/list?page=1&limit=5&type_dm='+type_dm+'">首页</a>&nbsp;';
-	        			content += '<a href="/list?page='+pre+'&limit=5&type_dm='+type_dm+'">'+pre+'</a>&nbsp;';
+	        			content += '<a href="/list?page=1&limit=10&type_dm='+type_dm+'">首页</a>&nbsp;';
+	        			content += '<a href="/list?page='+pre+'&limit=10&type_dm='+type_dm+'">'+pre+'</a>&nbsp;';
 	        		}
 	        		content += '&nbsp;&nbsp;&nbsp;<b>'+cur+'</b>&nbsp;';
 	          		if (null != next) {
-	        			content += '<a href="/list?page='+next+'&limit=5&type_dm='+type_dm+'">'+next+'</a>&nbsp;';
-	        			content += '<a href="/list?page='+next+'&limit=5&type_dm='+type_dm+'">下一页</a>&nbsp;';
-	        			content += '<a href="/list?page='+end+'&limit=5&type_dm='+type_dm+'">尾页</a>&nbsp;';
+	        			content += '<a href="/list?page='+next+'&limit=10&type_dm='+type_dm+'">'+next+'</a>&nbsp;';
+	        			content += '<a href="/list?page='+next+'&limit=10&type_dm='+type_dm+'">下一页</a>&nbsp;';
+	        			content += '<a href="/list?page='+end+'&limit=10&type_dm='+type_dm+'">尾页</a>&nbsp;';
 	        		}
 	          		
 	        		$('#dv_pagelist').append(content);

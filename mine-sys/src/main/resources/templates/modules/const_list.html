@@ -1,0 +1,22 @@
+<div class="easyui-layout">
+	<div id="tb" style="height:auto">
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true" onclick="addSysConst()">新增常量</a>
+	</div>
+	<table id="dg_const" class="easyui-datagrid" title="" style="width:1200px;height:auto">
+	</table>
+	<div id="dd_const">
+		<form id="ff_const" method="post">
+		    <div>
+ 				分类代码 <input class="easyui-validatebox" type="text" name="lb" data-options="required:true" /><br/>
+		   	 	分类名称 <input class="easyui-validatebox" type="text" name="lbmc" data-options="required:true" /><br/>
+		   	 	常量代码 <input class="easyui-validatebox" type="text" name="dm" data-options="required:true" /><br/>
+		   	 	常量名称 <input class="easyui-validatebox" type="text" name="ms" data-options="required:true" /><br/>
+		   		备注 <input class="easyui-validatebox" type="text" name="remarks" data-options="required:true" /><br/>
+		    </div>
+		</form>
+	<a id="btn_save_const" href="#" class="easyui-linkbutton" data-options="iconCls:'icon-submit'">保存</a>
+	</div>
+</div>
+<script th:src="@{js/const_list.js}"></script>
+	 
+ 

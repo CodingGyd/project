@@ -135,7 +135,7 @@ public class ArticleController {
 	public @ResponseBody String delete(Integer id) {
 	
 		service.deleteArticle(id);
- 		RedisClientUtils.deleteFromCache(AppConfig.getRedis_key_article()+id);
+// 		RedisClientUtils.deleteFromCache(AppConfig.getRedis_key_article()+id);
 		return "success";
 	}
   

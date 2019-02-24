@@ -14,12 +14,21 @@
 	</resultMap>
 
 	<select id="findArticle" resultMap="articles">
+	<if test="label != null">
+		with temp as  (
+			SELECT DISTINCT articleId FROM mine_article_keyword_relation
+			WHERE keyId=#{label}
+		)
+	</if>
  		SELECT 	A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName
  				FROM mine_articles A 
  				INNER JOIN mine_sysconst B 
  				ON A.type = B.dm AND B.lb = '100' 
  				<if test="type != null and type != ''">
  					AND B.dm = #{type}
+ 				</if>
+ 				<if test="label != null">
+ 					 INNER JOIN TEMP   ON A.id = TEMP.articleId
  				</if>
 				ORDER BY A.updatetime DESC
 	</select>

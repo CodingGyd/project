@@ -21,8 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codinggyd.bean.DataTable;
 import com.codinggyd.bean.KeyWord;
-import com.codinggyd.constant.AppConfig;
-import com.codinggyd.redis.RedisClientUtils;
 import com.codinggyd.service.IKeyWordService;
  
 /**
@@ -88,14 +86,14 @@ public class KeyWordController {
 		 
 		key.setUpdatetime(DateFormatUtils.format(new Date(), PATTERN));
 		service.updateKeyWords(key);
- 		RedisClientUtils.deleteFromCache(AppConfig.getRedis_key_keyword()+key.getId());
+// 		RedisClientUtils.deleteFromCache(AppConfig.getRedis_key_keyword()+key.getId());
 		return "success";
 	}
 
 	@RequestMapping(value="/delete",method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody String delete(Integer id) {
 		service.deleteKeyWords(id);
- 		RedisClientUtils.deleteFromCache(AppConfig.getRedis_key_keyword()+id);
+// 		RedisClientUtils.deleteFromCache(AppConfig.getRedis_key_keyword()+id);
 		return "success";
 	}
 }

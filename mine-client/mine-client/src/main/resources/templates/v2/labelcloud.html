@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+ 
+ <head th:include="v2/base/head ::common_header"></head>
+ 
+ <body>
+ 			<link href="v2/css/labelcloud.css" rel="stylesheet"/>
+ 
+<!--top begin-->
+		<div th:include="v2/base/top :: top"></div>
+<!--top end-->
+  <script src="v2/js/canvas-nest.js"></script>
+
+<article >
+    <div class="whitebg cloud mylabelcloud">
+      <h2 class="htitle">标签云</h2>
+      <ul id="ul_article_label">
+       </ul>
+    </div>
+</article>
+	<!--footer start-->
+	<div th:replace="v2/base/bottom :: bottom"></div>
+	<!--footer end-->
+</body>
+</html>

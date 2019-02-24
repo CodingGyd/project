@@ -9,7 +9,7 @@ $(function(){
 			url:'sys/keyword/keywordlist',
 			columns:[[
 				{field:'id',title:'编号',width:50},
-				{field:'name',title:'关键字',width:300,editor:'text'},
+				{field:'name',title:'标签名',width:300,editor:'text'},
 				{field:'updatetime',title:'更新时间',width:160},
 				{field:'action',title:'操作',width:90,align:'center',
 					formatter:function(value,row,index){
@@ -97,7 +97,7 @@ $(function(){
 	
 	function addKeyWord(){
  		$('#dd_keyword').dialog({
-		    title: '填写关键字',
+		    title: '填写标签名',
 		    width: 400,
 		    height: 200,
 		    closed: false,

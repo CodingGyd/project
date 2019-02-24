@@ -11,6 +11,7 @@ $(document).ready(function(e) {
 function loadArticleInfo() {
 	var id = getUrlVars()["id"];  
 	$("#article_id").val(id);
+	
 	 $.ajax({
 	       type: "Post",
 	       url: "/sys/article/article_byid",
@@ -20,10 +21,12 @@ function loadArticleInfo() {
 		        	$("#editormd").val(data.content);
 		        	$("#article_title").val(data.title);
 		        	$("#article_descs").val(data.descs);
-		        	
-//		        	var selectedType = data.type;
-//		        	//加载文章分类
-//		        	loadArticleType(selectedType);
+		        	$('#article_type').combobox('select', data.type);
+		        	var array = new Array();
+		       		$(data.keys).each(function (index, r) {
+		       			array.push(r.keyWordId);
+		       		});
+		        	$('#article_keywords').combobox('setValues', array);
 		        	//初始化文章编辑器
 		        	initEditor();
 		        	
@@ -87,7 +90,6 @@ function addListener(){
 	$('#btn_submit').click(function() {
 		 //获取文章关键词
 		  var keywords = $("#article_keywords").combobox('getValues'); 
-		  alert(keywords);
 		  //获取文章分类
 		  var type = $("#article_type").combobox('getValue');
 		  
