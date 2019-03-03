@@ -53,11 +53,14 @@ public class ArticleServiceImpl implements IArticleService{
 	private static final String SERVER_ARTICLE_UPDATE_READ_COUNT="MINE_ARTICLE_UPDATE_READ_COUNT";//数据接口地址-更新文章阅读数
 	
 	private static final String SERVER_ARTICLE_PRAISE="MINE_ARTICLE_PRAISE";//数据接口地址-更新文章点赞数
+	private static final String SERVER_ARTICLE_SEARCH="MINE_ARTICLE_SEARCH";//数据接口地址-搜索文章
 
 	private static ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public Article findArticleDetail(String id) {
-		return getServerArticleDetail(id);
+		Article article = getServerArticleDetail(id);
+		updateReadCount(Integer.parseInt(id));
+		return article;
 	}
 	@Override
 	public ArticlePageBean<Article> getArticleList(Paginator paginator,String type_dm,String label_dm) {
@@ -444,4 +447,45 @@ public class ArticleServiceImpl implements IArticleService{
 		return "";
 		
  	}
+	@Override
+	public List<Article> getSearchArticleList(String searchcontent) {
+		return getServerSearchArticleList(searchcontent);
+	}
+	
+	private List<Article> getServerSearchArticleList(String searchcontent) {
+		List<Article> result = new ArrayList<>();
+		
+		String responseData = HttpClientUtil.requestServer(SERVER_ARTICLE_SEARCH, searchcontent);
+ 	 
+		if (StringUtils.isEmpty(responseData)) {
+			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_SEARCH);
+ 		} else {
+ 		
+ 			try {
+ 				
+				JsonNode node = mapper.readTree(responseData);
+				String code = node.get("code").asText();
+				if (SysConstant.RESPONSE_CODE_SUCCESS.equals(code)) {
+					JsonNode resultJson = node.get("data").get(0);
+					
+					if (null == resultJson) {
+						logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_SEARCH);
+					} else {
+						//解析json格式数据
+						int size = resultJson.size();
+						for (int i=0;i<size;i++) {
+							JsonNode temp = resultJson.get(i);
+							result.add(formatArticleBean(temp));
+						}
+					}
+					
+				} else {
+					logger.error("接口[{}]错误,响应码{}",SERVER_ARTICLE_SEARCH,code);
+				}
+			} catch (Exception e) {
+				logger.error("接口[{}]返回数据有误,{},{}",SERVER_ARTICLE_SEARCH,responseData,e);
+			}
+ 		}
+		return result;
+	}
 }

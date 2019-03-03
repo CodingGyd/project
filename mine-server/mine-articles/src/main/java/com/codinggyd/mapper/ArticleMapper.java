@@ -43,6 +43,9 @@ public interface ArticleMapper {
 	//随机文章
 	public List<Article> findRandomArticle(@Param("ids") List<Integer> ids);
 	
+	//搜索文章
+	public List<Article> findArticlelByTitle(@Param("condition") String condition);
+
 	//文章主键集合
 	@Select("SELECT ID FROM mine_articles")
 	public List<Integer> findArticleIds();

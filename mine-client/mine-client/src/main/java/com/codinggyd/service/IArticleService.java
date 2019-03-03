@@ -40,4 +40,7 @@ public interface IArticleService {
 	//文章点赞
 	public String doPraise(Integer articleId,UserInfo userInfo); 
 	
+	//搜索文章
+	public List<Article> getSearchArticleList(String searchcontent);
+	
 }

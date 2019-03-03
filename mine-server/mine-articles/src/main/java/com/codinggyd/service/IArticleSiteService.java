@@ -77,4 +77,13 @@ public interface IArticleSiteService {
 	@MineMethod(value="MINE_ARTICLE_PRAISE")
 	public String doPraise(Integer articleId);
 	
+	/**
+	 * 文章搜索
+	 * @param searchcontent
+	 * @return
+	 */
+	@MineMethod(value="MINE_ARTICLE_SEARCH")
+	public List<Article> searchArticle(String searchcontent);
+	
+	
 }

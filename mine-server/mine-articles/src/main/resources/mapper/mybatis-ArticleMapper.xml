@@ -50,6 +50,15 @@
  				LIMIT #{top}
 	</select>
 	
+	<select id="findArticlelByTitle" resultMap="articles">
+ 		SELECT 	A.id,title,descs,A.updatetime,A.readingcount,A.url,A.praisecount,type,B.ms typeName
+ 				FROM mine_articles A 
+ 				INNER JOIN mine_sysconst B 
+ 				ON A.type = B.dm AND B.lb = '100' 
+ 				WHERE 1=1 AND title LIKE #{condition}
+ 				ORDER BY A.updatetime DESC
+	</select>
+	
 	<select id="findRandomArticle" resultMap="articles">
  		SELECT 	A.id,title,descs,A.updatetime,A.readingcount,A.praisecount,url,type,B.ms typeName
  				FROM mine_articles A 

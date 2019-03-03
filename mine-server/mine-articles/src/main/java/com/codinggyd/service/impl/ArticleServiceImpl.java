@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -189,5 +190,14 @@ public class ArticleServiceImpl implements IArticleSiteService{
 			return "error";
 		}
 		return "success";
+	}
+
+	@Override
+	public List<Article> searchArticle(String searchcontent) {
+		if (StringUtils.isEmpty(searchcontent)) {
+			return null;
+		}
+		searchcontent = "%"+searchcontent+"%";
+		return mapper.findArticlelByTitle(searchcontent);
 	}
 }

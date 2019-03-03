@@ -3,3 +3,5 @@
 2019-03-03 16:54:22.484 [http-nio-8181-exec-5] ERROR c.c.c.MineServiceExecuter 48 -不存在的接口地址MINE_ARTICLE_PRAISE
 2019-03-03 16:54:41.218 [main] ERROR c.a.d.p.DruidAbstractDataSource 970 -maxIdle is deprecated
 2019-03-03 17:16:17.410 [main] ERROR c.a.d.p.DruidAbstractDataSource 970 -maxIdle is deprecated
+2019-03-03 22:46:07.785 [main] ERROR c.a.d.p.DruidAbstractDataSource 970 -maxIdle is deprecated
+2019-03-03 22:52:34.396 [main] ERROR c.a.d.p.DruidAbstractDataSource 970 -maxIdle is deprecated

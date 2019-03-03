@@ -141,4 +141,16 @@ public class ArticleController {
 		return result;
 	}
   
+	//点击排行前10的文章
+	@RequestMapping(value={"/article_search"})
+	public @ResponseBody List<Article> searcharticle(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
+		String condition = request.getParameter("searchcontent");
+		if (null != condition) {
+			condition = new String(condition.getBytes("iso-8859-1"),"UTF-8");
+			return articleService.getSearchArticleList(condition);
+		} else {
+			return null;
+		}
+	}
+	
 }
