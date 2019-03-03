@@ -2,3 +2,6 @@
 /* 	margin-bottom: 0px; 
  */    overflow: visible; 
 }
+.diggit a:hover {
+    text-decoration: underline;
+}

@@ -2,7 +2,6 @@
 package com.codinggyd.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
@@ -19,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.codinggyd.bean.Article;
@@ -27,6 +27,7 @@ import com.codinggyd.bean.ArticlePageBean;
 import com.codinggyd.bean.ArticleType;
 import com.codinggyd.bean.MinePageBean;
 import com.codinggyd.bean.Paginator;
+import com.codinggyd.bean.ResponseBean;
 import com.codinggyd.service.IArticleService;
 import com.codinggyd.util.SysConstant;
  
@@ -129,6 +130,15 @@ public class ArticleController {
 			}
 		});
 		return articleTypes;
+	}
+	
+	@RequestMapping(value={"/dopraise"})
+	public @ResponseBody ResponseBean dopraise(@RequestParam("id") Integer id) {
+		String msg = articleService.doPraise(id, null);
+		ResponseBean result = new ResponseBean();
+		result.setCode(100);
+		result.setMsg("谢谢支持~");
+		return result;
 	}
   
 }

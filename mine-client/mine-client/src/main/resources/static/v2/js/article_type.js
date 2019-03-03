@@ -12,7 +12,7 @@ function loadArticleTypeList(){
 	        	if (null != result) {
 
  	        		for(var i=0;i<result.length;i++){
-        				$("#ul_article_type").append('<a href="/list?page=1&amp;limit=5&amp;type_dm='+result[i].dm+'">'+result[i].ms+'</a>');
+        				$("#ul_article_type").append('<a href="/list?page=1&amp;limit=10&amp;type_dm='+result[i].dm+'">'+result[i].ms+'</a>');
 	        		}
 	        	} 
 	       	}

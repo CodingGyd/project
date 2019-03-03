@@ -6,6 +6,7 @@ import com.codinggyd.bean.Article;
 import com.codinggyd.bean.ArticlePageBean;
 import com.codinggyd.bean.ArticleType;
 import com.codinggyd.bean.Paginator;
+import com.codinggyd.bean.UserInfo;
 
 /**
  * 
@@ -35,5 +36,8 @@ public interface IArticleService {
 	public void updateReadCount(Integer id);
 	//加载点击排行前rankTop的文章
 	public List<Article> getRankArticleList(Integer rankTop);
+	
+	//文章点赞
+	public String doPraise(Integer articleId,UserInfo userInfo); 
 	
 }

@@ -61,7 +61,7 @@ function loadList(page,limit,label_dm){
  	        		var content = '<a title="总页数">&nbsp;<b>总'+result.paginator.totalPages+'页</b> </a>';
 	        		if (null != pre) {
 	        			content += '<a href="/label_dt?page=1&limit=10&label_dm='+label_dm+'"&label_ms="'+label_ms+'">首页</a>&nbsp;';
-	        			content += '<a href="/label_dt?page='+pre+'&limit=5&label_dm='+label_dm+'"&label_ms="'+label_ms+'">'+pre+'</a>&nbsp;';
+	        			content += '<a href="/label_dt?page='+pre+'&limit=10&label_dm='+label_dm+'"&label_ms="'+label_ms+'">'+pre+'</a>&nbsp;';
 	        		}
 	        		content += '&nbsp;&nbsp;&nbsp;<b>'+cur+'</b>&nbsp;';
 	          		if (null != next) {

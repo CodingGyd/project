@@ -3,6 +3,9 @@ package com.codinggyd.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
+
+import com.codinggyd.bean.PageList;
 import com.codinggyd.bean.Paginator;
 
 public class PageUtils {
@@ -34,5 +37,32 @@ public class PageUtils {
 			m++;
 		}
 		return pageinglist;
+	}
+	
+	public static <T> PageList<T> pageList2(List<T> list, Paginator pageBounds) {
+		if (CollectionUtils.isEmpty(list) || pageBounds == null) {
+			return new PageList<>();
+		}
+		Integer pagenum = pageBounds.getPage();
+		Integer pagesize = pageBounds.getLimit();
+		if (pagenum == null || pagesize == null || pagesize < 1 || pagenum < 1) {
+			throw new RuntimeException( "分页参数不正确,页码:"+pagenum+",条数:"+pagesize);
+ 		}
+		int totalCount = list.size();
+		Paginator paginator = new Paginator(pagenum, pagesize, totalCount);
+		if (totalCount <= pagesize && pagenum == 1) {
+			return new PageList<>(list, paginator);
+		}
+		if (totalCount <= pagesize * (pagenum - 1)) {
+			throw new RuntimeException("页码越界,总条数:"+list.size()+",页码:"+pagenum+",条数:"+pagesize);
+		}
+		List<T> data = new ArrayList<>();
+		for (int i = pagesize * (pagenum - 1); i < pagesize * pagenum; i++) {
+			if (i >= totalCount) {
+				break;
+			}
+			data.add(list.get(i));
+		}
+		return new PageList<>(data,paginator);
 	}
 }

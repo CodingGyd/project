@@ -17,6 +17,7 @@ import com.codinggyd.bean.ArticlePageBean;
 import com.codinggyd.bean.ArticleType;
 import com.codinggyd.bean.PageList;
 import com.codinggyd.bean.Paginator;
+import com.codinggyd.bean.UserInfo;
 import com.codinggyd.service.IArticleService;
 import com.codinggyd.util.HttpClientUtil;
 import com.codinggyd.util.PageUtils;
@@ -50,6 +51,8 @@ public class ArticleServiceImpl implements IArticleService{
 	private static final String SERVER_ARTICLE_DETAIL="MINE_ARTICLE_DETAIL";//数据接口地址-文章详情
 	private static final String SERVER_ARTICLE_TYPE="MINE_CONST";//数据接口地址-文章分类
 	private static final String SERVER_ARTICLE_UPDATE_READ_COUNT="MINE_ARTICLE_UPDATE_READ_COUNT";//数据接口地址-更新文章阅读数
+	
+	private static final String SERVER_ARTICLE_PRAISE="MINE_ARTICLE_PRAISE";//数据接口地址-更新文章点赞数
 
 	private static ObjectMapper mapper = new ObjectMapper();
 	@Override
@@ -89,13 +92,15 @@ public class ArticleServiceImpl implements IArticleService{
 		}
 		int total = articles.size();
 
-		List<Article> pageArticles = PageUtils.paging(articles, paginator);
+//		List<Article> pageArticles = PageUtils.paging(articles, paginator);
+		PageList<Article> pageArticles = PageUtils.pageList2(articles, paginator);
+
 		Paginator paginatorReturn = new Paginator(paginator.getPage(),paginator.getLimit(),total);
 		if (CollectionUtils.isEmpty(pageArticles)) {
 			logger.error("分页获取文章数据为空!");
 			return new ArticlePageBean<Article>(articleType,paginatorReturn,new PageList<>());
 		} else {
-			return new ArticlePageBean<Article>(articleType,paginatorReturn,pageArticles);
+			return new ArticlePageBean<Article>(articleType,pageArticles.getPaginator(),pageArticles);
 		}
 		 
 	}
@@ -175,7 +180,7 @@ public class ArticleServiceImpl implements IArticleService{
 	private List<Article> getServerLatestArticleList() {
 		List<Article> result = new ArrayList<>();
 		
-		String responseData = HttpClientUtil.requestServer(SERVER_LATEST_ARTICLE_LIST, 3);
+		String responseData = HttpClientUtil.requestServer(SERVER_LATEST_ARTICLE_LIST, 10);
  	 
 		if (StringUtils.isEmpty(responseData)) {
 			logger.error("接口[{}]返回数据为空",SERVER_LATEST_ARTICLE_LIST);
@@ -426,4 +431,17 @@ public class ArticleServiceImpl implements IArticleService{
  		}
 		return result;
 	}
+	@Override
+	public String doPraise(Integer articleId, UserInfo userInfo) {
+		
+		String responseData = HttpClientUtil.requestServer(SERVER_ARTICLE_PRAISE, articleId);
+		 
+		if (StringUtils.isEmpty(responseData)) {
+			logger.error("接口[{}]返回数据为空",SERVER_ARTICLE_PRAISE);
+ 		}  else {
+ 			logger.debug("调用文章点赞更新接口,返回数据{}",responseData);
+ 		}
+		return "";
+		
+ 	}
 }

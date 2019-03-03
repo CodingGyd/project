@@ -20,7 +20,7 @@ import com.codinggyd.annotation.MineFuncData;
  * 
  *        Copyright @ 2017 Corpration Name
  */
-@MineFuncData(name="MINE_ARTICLE_LIST",fieldNames={"id","title","descs","updatetime","readingcount","url","type","typeName","htmlContent","content","labels"})
+@MineFuncData(name="MINE_ARTICLE_LIST",fieldNames={"id","title","descs","updatetime","readingcount","url","type","typeName","htmlContent","content","labels","praisecount"})
 @Component
 public class Article implements Serializable {
 
@@ -74,6 +74,12 @@ public class Article implements Serializable {
 	 * 文章标签
 	 */
 	private List<ArticleKeyWordRelation> labels;
+	
+	/**
+	 * 被点赞次数
+	 */
+	private Integer praisecount;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -162,6 +168,14 @@ public class Article implements Serializable {
 
 	public void setLabels(List<ArticleKeyWordRelation> labels) {
 		this.labels = labels;
+	}
+
+	public Integer getPraisecount() {
+		return praisecount;
+	}
+
+	public void setPraisecount(Integer praisecount) {
+		this.praisecount = praisecount;
 	}
 
 }

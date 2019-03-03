@@ -64,7 +64,7 @@ function loadArticleTypes(){
  	        		
  	        		//初始化第一个div
  	        		loadFirst(1,5,null);
- 	               $("#article_more").attr("href","/list?page=1&limit=5");
+ 	               $("#article_more").attr("href","/list?page=1&limit=10");
 
 	        	} 
 	       	}
@@ -79,7 +79,7 @@ function addListener(){
         $('.newstab div[style="display: block;"]').children(".newslist").empty();
         var type_dm = this.id;
         loadList(1,5,type_dm);
-        $("#article_more").attr("href","/list?page=1&limit=5&type_dm="+type_dm);
+        $("#article_more").attr("href","/list?page=1&limit=10&type_dm="+type_dm);
     });
 }
 

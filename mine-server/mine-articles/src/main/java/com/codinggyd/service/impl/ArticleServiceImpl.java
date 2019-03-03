@@ -179,4 +179,15 @@ public class ArticleServiceImpl implements IArticleSiteService{
 	public List<Article> rankTopArticle(Integer rankTop) {
 		return  mapper.findArticleOrderByClickCount(rankTop);
 	}
+
+	@Override
+	public synchronized String doPraise(Integer articleId) {
+		try {
+			mapper.updateArticlePraiseCount(articleId);
+		} catch (Exception e) {
+			logger.error("更新出错,{}",e);
+			return "error";
+		}
+		return "success";
+	}
 }

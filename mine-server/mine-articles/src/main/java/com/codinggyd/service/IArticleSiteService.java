@@ -69,4 +69,12 @@ public interface IArticleSiteService {
 	@MineMethod(value="MINE_ARTICLE_UPDATE_READ_COUNT")
 	public String updateReadCount(Integer articleId);
 	
+	/**
+	 * 文章点赞加1
+	 * @param id
+	 * @return
+	 */
+	@MineMethod(value="MINE_ARTICLE_PRAISE")
+	public String doPraise(Integer articleId);
+	
 }

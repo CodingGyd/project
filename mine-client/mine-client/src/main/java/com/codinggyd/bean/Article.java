@@ -62,6 +62,11 @@ public class Article implements Serializable {
 	 */
 	private List<ArticleKeyWordRelation> labels;
 	
+	/**
+	 * 被点赞次数
+	 */
+	private Integer praisecount;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -141,6 +146,14 @@ public class Article implements Serializable {
 
 	public void setLabels(List<ArticleKeyWordRelation> labels) {
 		this.labels = labels;
+	}
+
+	public Integer getPraisecount() {
+		return praisecount;
+	}
+
+	public void setPraisecount(Integer praisecount) {
+		this.praisecount = praisecount;
 	}
 
 	 

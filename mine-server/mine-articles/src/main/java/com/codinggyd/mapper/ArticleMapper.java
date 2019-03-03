@@ -27,7 +27,7 @@ public interface ArticleMapper {
 	//文章列表
 	public PageList<Article> findArticle(@Param("type") String type,@Param("label") String label, PageBounds pageBounds);
 	public List<Article> findArticle(@Param("type") String type,@Param("label") String label);
-	@Select("SELECT A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName"+
+	@Select("SELECT A.id,title,descs,A.updatetime,A.readingcount,A.url,A.praisecount,type,B.ms typeName"+
 			"	FROM mine_articles A "+
 			"	INNER JOIN mine_sysconst B "+
 			"	ON A.type = B.dm AND B.lb = '100' "+
@@ -51,6 +51,11 @@ public interface ArticleMapper {
 	@Update("UPDATE mine_articles SET readingcount = readingcount+1 WHERE id=#{id}")
 	public void updateArticleReadCount(@Param("id") Integer id);
 
+	//文章点赞数量加1
+	@Update("UPDATE mine_articles SET praisecount = praisecount+1 WHERE id=#{id}")
+	public void updateArticlePraiseCount(@Param("id") Integer id);
+
+		
 	//文章关键字列表
 	@Select("SELECT A.id,A.articleId,B.id keyWordId,B.name keyName,A.updatetime FROM mine_article_keyword_relation A INNER JOIN mine_keywords B " + 
 			"	ON A.keyId = B.id WHERE A.articleId=#{articleId}")

@@ -11,6 +11,7 @@
 		<result column="readingcount" property="readingcount" />
 		<result column="url" property="url" />
 		<result column="type" property="type" />
+		<result column="praisecount" property="praisecount"/>
 	</resultMap>
 
 	<select id="findArticle" resultMap="articles">
@@ -20,7 +21,7 @@
 			WHERE keyId=#{label}
 		)
 	</if>
- 		SELECT 	A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName
+ 		SELECT 	A.id,title,descs,A.updatetime,A.readingcount,A.url,A.praisecount,type,B.ms typeName
  				FROM mine_articles A 
  				INNER JOIN mine_sysconst B 
  				ON A.type = B.dm AND B.lb = '100' 
@@ -34,14 +35,14 @@
 	</select>
 
 	<select id="findDetailById" resultType="com.codinggyd.bean.Article">
-		SELECT A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName,htmlContent,content FROM mine_articles A
+		SELECT A.id,title,descs,A.updatetime,A.readingcount,A.url,A.praisecount,type,B.ms typeName,htmlContent,content FROM mine_articles A
 		INNER JOIN mine_sysconst B 
  				ON A.type = B.dm AND B.lb = '100' 
 		WHERE A.id = #{id}
 	</select>
 	
 		<select id="findLatestArticle" resultMap="articles">
- 		SELECT 	A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName
+ 		SELECT 	A.id,title,descs,A.updatetime,A.readingcount,A.url,A.praisecount,type,B.ms typeName
  				FROM mine_articles A 
  				INNER JOIN mine_sysconst B 
  				ON A.type = B.dm AND B.lb = '100' 
@@ -50,7 +51,7 @@
 	</select>
 	
 	<select id="findRandomArticle" resultMap="articles">
- 		SELECT 	A.id,title,descs,A.updatetime,readingcount,url,type,B.ms typeName
+ 		SELECT 	A.id,title,descs,A.updatetime,A.readingcount,A.praisecount,url,type,B.ms typeName
  				FROM mine_articles A 
  				INNER JOIN mine_sysconst B 
  				ON A.type = B.dm AND B.lb = '100' 
