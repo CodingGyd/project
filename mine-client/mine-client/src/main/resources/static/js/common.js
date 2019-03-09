@@ -776,7 +776,7 @@ function shareour() {
 
     $("#share").append("<div class=\"share_msg\">");
 
-    $("#share .share_msg").html("Hi，感谢您浏览七丽女性网，如果您觉得我们网站不错的话，可以点击下方按钮直接分享给您的好友。");
+    $("#share .share_msg").html("");
 
     var obj = $("#jiathis_style_32x32");
 

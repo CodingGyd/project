@@ -6,12 +6,9 @@ $(document).ready(function() {
 	var limit = Request['limit'];
 	var html = '';
 	if ((null != type_dm && '' != type_dm) || (null != limit && '' != limit )) {
-		html += '<li><a href="/">首页</a></li>';
-/*		html += '<li><a href="list.html">心路历程</a></li>';
-*/		html += '<li><a href="/life" target="_blank">我的生活</a></li>';
-		html += '<li><a href="/about" target="_blank">关于我</a></li>';
-		html += '<li><a href="/labelcloud" target="_blank">标签云</a></li>';
-		html += '<li><a href="/videoshare" target="_blank">视频分享</a></li>';
+		$("#starlist li a").each(function () {  
+		    $(this).removeAttr("id");
+		});
 
 		 $.ajax({
 		        type: "Post",
@@ -45,12 +42,11 @@ $(document).ready(function() {
 		        				}
 		        			}
 		        		}
+		        		
 		        		html +=	'</ul>';
 		        		html += '<span></span></li>';
-		        		$('#starlist').empty();
-		        		$('#starlist').append(html);
-    
-		        	} 
+ 		        		$("a[href='/about']").parent().before(html);
+ 		        	} 
 		       	}
 		     });
 	} else {
@@ -80,7 +76,7 @@ $(document).ready(function() {
 		        		
 		        		html +=	'</ul>';
 		        		html += '<span></span></li>';
-		        		$('#starlist').append(html);
+		        		$("a[href='/about']").parent().before(html);
 		        	} 
 		       	}
 		     });
