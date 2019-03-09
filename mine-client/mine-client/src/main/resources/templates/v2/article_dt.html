@@ -9,7 +9,9 @@
 <!--top end-->
  <script src="v2/js/canvas-nest.js"></script>
   <script src="v2/js/article_dt.js"></script>
- 
+ <script th:inline="javascript">
+ document.title =[[${article.title}]];
+ </script>
  			<link href="v2/css/article_dt.css" rel="stylesheet"/>
 
 <article> 

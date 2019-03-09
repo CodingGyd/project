@@ -18,6 +18,7 @@
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<mybatis.version>1.0.0</mybatis.version>
+		<mysql.version>8.0.15</mysql.version>
 	</properties>
 
 	<dependencies>
@@ -95,10 +96,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-<!-- 		本机开发用这个版本	<version>8.0.11</version>
- -->			
- 			<version>5.1.38</version>
-			
+			<version>${mysql.version}</version>  			
 		</dependency>
 		<!-- redis -->
 		<dependency>

@@ -24,9 +24,10 @@ $(document).ready(function() {
 		        		for(var i=0;i<result.length;i++){
 		        			if(result[i].dm == null || result[i].dm == '') {
 		        				if ((null == type_dm || '' == type_dm) && (null != limit && '' != limit )) {
-			        				html +=  '<li class="menu"><a  id="selected" href="/list?page=1&amp;limit=5"  target="_blank" >'+result[i].ms+'</a><ul class="sub">';
+			        				html +=  '<li class="menu"><a  id="selected" href="/list?page=1&amp;limit=10"  target="_blank" >'+result[i].ms+'</a><ul class="sub">';
+			        				$(document).attr("title",result[i].ms);
 		        				} else {
-		        					html +=  '<li class="menu"><a href="/list?page=1&amp;limit=5"  target="_blank" >'+result[i].ms+'</a><ul class="sub">';
+		        					html +=  '<li class="menu"><a href="/list?page=1&amp;limit=10"  target="_blank" >'+result[i].ms+'</a><ul class="sub">';
 		        				}
 		        				rootIndex = i;
 		        				break;
@@ -37,9 +38,10 @@ $(document).ready(function() {
 		        			if (i == rootIndex) continue;
 		        			else {
 		        				if (type_dm == result[i].dm) {
-			        				html += '<li><a  id="selected"  href="/list?page=1&amp;limit=5&amp;type_dm='+result[i].dm+'"  target="_blank" >'+result[i].ms+'</a></li>';
+			        				html += '<li><a  id="selected"  href="/list?page=1&amp;limit=10&amp;type_dm='+result[i].dm+'"  target="_blank" >'+result[i].ms+'</a></li>';
+			        				$(document).attr("title",result[i].ms);
 		        				} else {
-			        				html += '<li><a   href="/list?page=1&amp;limit=5&amp;type_dm='+result[i].dm+'"  target="_blank" >'+result[i].ms+'</a></li>';
+			        				html += '<li><a   href="/list?page=1&amp;limit=10&amp;type_dm='+result[i].dm+'"  target="_blank" >'+result[i].ms+'</a></li>';
 		        				}
 		        			}
 		        		}

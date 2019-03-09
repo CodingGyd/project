@@ -1,0 +1,157 @@
+2019-03-09 11:24:53.953 INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 5.2.4.Final
+2019-03-09 11:24:54.145 INFO  c.c.ServerApp - Starting ServerApp on WINDOWS-GUOYD with PID 11588 (E:\personal_workspace\git_code\project\mine-server\mine-starter\target\classes started by guoyd in E:\personal_workspace\git_code\project\mine-server\mine-starter)
+2019-03-09 11:24:54.146 DEBUG c.c.ServerApp - Running with Spring Boot v1.3.3.RELEASE, Spring v4.2.3.RELEASE
+2019-03-09 11:24:54.147 INFO  c.c.ServerApp - No active profile set, falling back to default profiles: default
+2019-03-09 11:24:56.564 ERROR c.a.d.p.DruidAbstractDataSource - maxIdle is deprecated
+2019-03-09 11:24:59.980 INFO  c.a.d.p.DruidDataSource - {dataSource-1} inited
+2019-03-09 11:25:00.085 DEBUG o.a.i.l.LogFactory - Logging initialized using 'org.apache.ibatis.logging.slf4j.Slf4jImpl' adapter.
+2019-03-09 11:25:00.464 DEBUG c.g.m.m.p.OffsetLimitInterceptor - dialectClass: com.github.miemiedev.mybatis.paginator.dialect.MySQLDialect 
+2019-03-09 11:25:00.465 DEBUG c.g.m.m.p.OffsetLimitInterceptor - asyncTotalCount: false 
+2019-03-09 11:25:01.835 INFO  o.a.c.c.StandardService - Starting service Tomcat
+2019-03-09 11:25:01.838 INFO  o.a.c.c.StandardEngine - Starting Servlet Engine: Apache Tomcat/8.0.28
+2019-03-09 11:25:02.094 INFO  o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+2019-03-09 11:25:02.890 DEBUG c.c.c.MineServiceHandler - 测试接口初始化
+2019-03-09 11:25:02.982 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_USER_LOGIN
+2019-03-09 11:25:02.982 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_RANDOM_ARTICLE
+2019-03-09 11:25:02.983 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_LATEST_ARTICLE
+2019-03-09 11:25:02.983 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_ARTICLE_SEARCH
+2019-03-09 11:25:02.983 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_ARTICLE_PRAISE
+2019-03-09 11:25:02.983 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_ARTICLE_LIST_RANK_TOP
+2019-03-09 11:25:02.984 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_ARTICLE_UPDATE_READ_COUNT
+2019-03-09 11:25:02.984 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_ARTICLE_LIST
+2019-03-09 11:25:02.984 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_ARTICLE_DETAIL
+2019-03-09 11:25:02.984 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_KEYWORDS
+2019-03-09 11:25:02.984 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_DAILY_ESSAYS
+2019-03-09 11:25:02.984 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_DATA_EXPORT
+2019-03-09 11:25:02.985 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_CONST
+2019-03-09 11:25:02.985 DEBUG c.c.c.MineServiceHandler - 初始化接口地址=MINE_SITE_INFORMATION
+2019-03-09 11:25:02.985 DEBUG c.c.c.MineServiceHandler - 测试接口初始化完毕
+2019-03-09 11:25:04.128 INFO  o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8181"]
+2019-03-09 11:25:04.146 INFO  o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8181"]
+2019-03-09 11:25:04.169 INFO  o.a.t.u.n.NioSelectorPool - Using a shared selector for servlet write/read
+2019-03-09 11:25:04.252 INFO  c.c.ServerApp - Started ServerApp in 11.258 seconds (JVM running for 12.394)
+2019-03-09 11:27:07.165 INFO  o.a.c.c.C.[.[.[/] - Initializing Spring FrameworkServlet 'dispatcherServlet'
+2019-03-09 11:27:07.335 INFO  c.c.c.MineController - POST 参数:{"serviceId":"MINE_CONST","params":[["100"],null]}
+2019-03-09 11:27:07.533 DEBUG c.c.m.S.listConst - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@6ff9326e]
+2019-03-09 11:27:07.535 DEBUG c.c.m.S.listConst - ==>  Preparing: SELECT id,lb,lbmc,dm,ms,updatetime,remarks FROM mine_sysconst WHERE 1=1 AND lb IN ( ? ) 
+2019-03-09 11:27:07.559 DEBUG c.c.m.S.listConst - ==> Parameters: 100(String)
+2019-03-09 11:27:07.613 DEBUG c.c.m.S.listConst - <==    Columns: id, lb, lbmc, dm, ms, updatetime, remarks
+2019-03-09 11:27:07.615 DEBUG c.c.m.S.listConst - <==        Row: 1, 100, 文章分类, 1, 后端技术, 2019-03-04 20:13:48, 记录笔者在后端开发编程时接触的各种技术和问题解决方案
+2019-03-09 11:27:07.619 DEBUG c.c.m.S.listConst - <==        Row: 2, 100, 文章分类, 2, 网站前端, 2019-03-04 20:13:43, 记录笔者在网站页面开发时接触的各种技术和问题解决方案
+2019-03-09 11:27:07.620 DEBUG c.c.m.S.listConst - <==        Row: 3, 100, 文章分类, 3, 移动开发, 2019-03-04 20:14:08, 记录笔者在学习Android开发时接触的技术和问题解决方案
+2019-03-09 11:27:07.624 DEBUG c.c.m.S.listConst - <==        Row: 4, 100, 文章分类, , 文章汇总, 2019-03-04 20:14:28, 文章汇总
+2019-03-09 11:27:07.627 DEBUG c.c.m.S.listConst - <==        Row: 5, 100, 文章分类, 4, 数据库, 2019-03-04 20:14:42, 记录笔者在数据库开发时接触的各种技术和问题解决方案
+2019-03-09 11:27:07.628 DEBUG c.c.m.S.listConst - <==        Row: 6, 100, 文章分类, 5, 算法, 2019-03-04 20:15:16, 记录笔者接触的各种编程算法
+2019-03-09 11:27:07.630 DEBUG c.c.m.S.listConst - <==        Row: 7, 100, 文章分类, 6, 数据结构, 2019-03-04 20:57:00, 记录笔者接触的各种数据结构知识
+2019-03-09 11:27:07.631 DEBUG c.c.m.S.listConst - <==        Row: 8, 100, 文章分类, 7, 杂七杂八, 2019-03-04 20:57:30, 
+2019-03-09 11:27:07.889 INFO  c.c.c.MineController - POST 参数:{"serviceId":"MINE_ARTICLE_LIST_RANK_TOP","params":[10]}
+2019-03-09 11:27:07.912 DEBUG c.c.m.A.findArticleOrderByClickCount - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@6ff9326e]
+2019-03-09 11:27:07.912 DEBUG c.c.m.A.findArticleOrderByClickCount - ==>  Preparing: SELECT A.id,title,descs,A.updatetime,A.readingcount,A.url,A.praisecount,type,B.ms typeName FROM mine_articles A INNER JOIN mine_sysconst B ON A.type = B.dm AND B.lb = '100' ORDER BY A.readingcount DESC LIMIT 5 
+2019-03-09 11:27:07.913 DEBUG c.c.m.A.findArticleOrderByClickCount - ==> Parameters: 
+2019-03-09 11:27:07.935 DEBUG c.c.m.A.findArticleOrderByClickCount - <==    Columns: id, title, descs, updatetime, readingcount, url, praisecount, type, ms
+2019-03-09 11:27:07.935 DEBUG c.c.m.A.findArticleOrderByClickCount - <==        Row: 36, 个人博客网站开发-域名备案流程, 简单记录一下本网站从域名申请到可以直接通过域名访问所需要完成的一些操作, 2019-03-04 21:01:04, 25, null, 4, 7, 杂七杂八
+2019-03-09 11:27:07.935 DEBUG c.c.m.A.findArticleOrderByClickCount - <==        Row: 99, android模拟器Genymotion的使用, 在开发android项目时，我们经常需要使用到仿真模拟器。, 2019-03-04 21:37:30, 13, null, 1, 3, 移动开发
+2019-03-09 11:27:07.936 DEBUG c.c.m.A.findArticleOrderByClickCount - <==        Row: 78, 分布式文件系统FastDFS《一》, 博客文章需要用到图片文件，图片资源是保存在单独的文件服务器上。本博客的文件服务器是由FastDFS搭建的。FastDFS是一个开源的轻量级分布式文件系统，它对文件进行管理，功能包括：文件存储、文件同步、文件访问（文件上传、文件下载）等，解决了大容量存储和负载均衡的问题。特别适合以文件为载体的在线服务，如相册网站、视频网站等等。, 2019-03-04 21:05:51, 7, null, 0, 1, 后端技术
+2019-03-09 11:27:07.937 DEBUG c.c.m.A.findArticleOrderByClickCount - <==        Row: 98, Android中使用ContentProvider对外共享数据 , ContentProvider，也叫内容提供者, 是Android的四大组件之一，本文记录下如何使用ContentProvider对外共享数据 , 2019-03-04 21:28:47, 5, null, 0, 3, 移动开发
+2019-03-09 11:27:07.938 DEBUG c.c.m.A.findArticleOrderByClickCount - <==        Row: 33, 资料网站合集(持续更新中...), 这里记录博主平常学习时会逛的IT资讯、工具网站地址, 2019-03-04 21:05:34, 4, null, 1, 7, 杂七杂八
+2019-03-09 11:27:08.051 INFO  c.c.c.MineController - POST 参数:{"serviceId":"MINE_CONST","params":[["100"],null]}
+2019-03-09 11:27:08.061 INFO  c.c.c.MineController - POST 参数:{"serviceId":"MINE_SITE_INFORMATION","params":[]}
+2019-03-09 11:27:08.063 INFO  c.c.c.MineController - POST 参数:{"serviceId":"MINE_KEYWORDS","params":[]}
+2019-03-09 11:27:08.076 INFO  c.c.c.MineController - POST 参数:{"serviceId":"MINE_CONST","params":[["100"],null]}
+2019-03-09 11:27:08.077 INFO  c.c.c.MineController - POST 参数:{"serviceId":"MINE_LATEST_ARTICLE","params":[10]}
+2019-03-09 11:27:08.087 DEBUG c.c.m.S.getSiteInformation - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@6ff9326e]
+2019-03-09 11:27:08.087 DEBUG c.c.m.S.getSiteInformation - ==>  Preparing: SELECT site_create_time timeOfSiteCreate,remarks FROM mine_siteinformation 
+2019-03-09 11:27:08.088 DEBUG c.c.m.S.getSiteInformation - ==> Parameters: 
+2019-03-09 11:27:08.090 DEBUG c.c.m.K.findAllKeywords - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@14c87241]
+2019-03-09 11:27:08.091 DEBUG c.c.m.K.findAllKeywords - ==>  Preparing: SELECT id,name,updatetime FROM mine_keywords 
+2019-03-09 11:27:08.091 DEBUG c.c.m.A.findLatestArticle - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@77b915c9]
+2019-03-09 11:27:08.093 DEBUG c.c.m.S.listConst - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@3142361f]
+2019-03-09 11:27:08.093 DEBUG c.c.m.K.findAllKeywords - ==> Parameters: 
+2019-03-09 11:27:08.093 DEBUG c.c.m.S.listConst - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@471e7613]
+2019-03-09 11:27:08.094 DEBUG c.c.m.A.findLatestArticle - ==>  Preparing: SELECT A.id,title,descs,A.updatetime,A.readingcount,A.url,A.praisecount,type,B.ms typeName FROM mine_articles A INNER JOIN mine_sysconst B ON A.type = B.dm AND B.lb = '100' ORDER BY A.updatetime DESC LIMIT ? 
+2019-03-09 11:27:08.095 DEBUG c.c.m.S.listConst - ==>  Preparing: SELECT id,lb,lbmc,dm,ms,updatetime,remarks FROM mine_sysconst WHERE 1=1 AND lb IN ( ? ) 
+2019-03-09 11:27:08.096 DEBUG c.c.m.S.listConst - ==>  Preparing: SELECT id,lb,lbmc,dm,ms,updatetime,remarks FROM mine_sysconst WHERE 1=1 AND lb IN ( ? ) 
+2019-03-09 11:27:08.097 DEBUG c.c.m.A.findLatestArticle - ==> Parameters: 10(Integer)
+2019-03-09 11:27:08.097 DEBUG c.c.m.S.listConst - ==> Parameters: 100(String)
+2019-03-09 11:27:08.098 DEBUG c.c.m.S.listConst - ==> Parameters: 100(String)
+2019-03-09 11:27:08.100 DEBUG c.c.m.S.getSiteInformation - <==    Columns: site_create_time, remarks
+2019-03-09 11:27:08.102 DEBUG c.c.m.S.getSiteInformation - <==        Row: 2018-02-12 20:50:22, 网站介绍
+2019-03-09 11:27:08.105 DEBUG c.c.m.S.getNumsOfArticles - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@6ff9326e]
+2019-03-09 11:27:08.106 DEBUG c.c.m.S.getNumsOfArticles - ==>  Preparing: SELECT COUNT(1) FROM mine_articles 
+2019-03-09 11:27:08.107 DEBUG c.c.m.S.getNumsOfArticles - ==> Parameters: 
+2019-03-09 11:27:08.122 DEBUG c.c.m.A.findLatestArticle - <==    Columns: id, title, descs, updatetime, readingcount, url, praisecount, type, ms
+2019-03-09 11:27:08.123 DEBUG c.c.m.A.findLatestArticle - <==        Row: 99, android模拟器Genymotion的使用, 在开发android项目时，我们经常需要使用到仿真模拟器。, 2019-03-04 21:37:30, 13, null, 1, 3, 移动开发
+2019-03-09 11:27:08.125 DEBUG c.c.m.K.findAllKeywords - <==    Columns: id, name, updatetime
+2019-03-09 11:27:08.126 DEBUG c.c.m.A.findLatestArticle - <==        Row: 98, Android中使用ContentProvider对外共享数据 , ContentProvider，也叫内容提供者, 是Android的四大组件之一，本文记录下如何使用ContentProvider对外共享数据 , 2019-03-04 21:28:47, 5, null, 0, 3, 移动开发
+2019-03-09 11:27:08.126 DEBUG c.c.m.K.findAllKeywords - <==        Row: 1, fastdfs, 2017-11-05 12:26:41
+2019-03-09 11:27:08.128 DEBUG c.c.m.A.findLatestArticle - <==        Row: 97, 在SQLite中如何使用事务, 记录在SQLite中如何使用事务, 2019-03-04 21:23:11, 3, null, 0, 3, 移动开发
+2019-03-09 11:27:08.128 DEBUG c.c.m.K.findAllKeywords - <==        Row: 3, redis, 2017-11-05 13:56:12
+2019-03-09 11:27:08.129 DEBUG c.c.m.A.findLatestArticle - <==        Row: 96, Android中用pull解析器解析xml文件, Android中用pull解析器解析xml文件示例, 2019-03-04 21:20:44, 4, null, 0, 3, 移动开发
+2019-03-09 11:27:08.130 DEBUG c.c.m.S.listConst - <==    Columns: id, lb, lbmc, dm, ms, updatetime, remarks
+2019-03-09 11:27:08.130 DEBUG c.c.m.K.findAllKeywords - <==        Row: 4, springboot, 2017-11-05 13:56:25
+2019-03-09 11:27:08.130 DEBUG c.c.m.A.findLatestArticle - <==        Row: 95, Android设置背景颜色的方法 , 记录下在android开发中如何修改背景颜色, 2019-03-04 21:16:11, 3, null, 0, 3, 移动开发
+2019-03-09 11:27:08.130 DEBUG c.c.m.S.listConst - <==        Row: 1, 100, 文章分类, 1, 后端技术, 2019-03-04 20:13:48, 记录笔者在后端开发编程时接触的各种技术和问题解决方案
+2019-03-09 11:27:08.131 DEBUG c.c.m.K.findAllKeywords - <==        Row: 5, java, 2017-11-05 14:32:06
+2019-03-09 11:27:08.132 DEBUG c.c.m.A.findLatestArticle - <==        Row: 94, SqlServer数据库中的分页语句, SqlServer分页SQL语句特点: 一次查询，数据库只返回一页的数据，而不是取出所有的数据, 2019-03-04 21:10:25, 4, null, 1, 4, 数据库
+2019-03-09 11:27:08.132 DEBUG c.c.m.S.listConst - <==        Row: 2, 100, 文章分类, 2, 网站前端, 2019-03-04 20:13:43, 记录笔者在网站页面开发时接触的各种技术和问题解决方案
+2019-03-09 11:27:08.133 DEBUG c.c.m.K.findAllKeywords - <==        Row: 7, android, 2017-11-05 14:32:20
+2019-03-09 11:27:08.133 DEBUG c.c.m.A.findLatestArticle - <==        Row: 79, JAVA服务端通用数据导入导出组件V1.0, 工作中经常会遇到excel文件导入导出这类业务需求, 这些需求其实从根本上看都是对excel的解析处理,因此本人特地花了两天时间用JAVA写了一套通用的导入导出工具组件，为以后实现这类需求提高效率。组件源码地址：https://github.com/CodingGyd/project/tree/master/excel-utils, 2019-03-04 21:07:04, 3, null, 0, 1, 后端技术
+2019-03-09 11:27:08.133 DEBUG c.c.m.S.listConst - <==        Row: 3, 100, 文章分类, 3, 移动开发, 2019-03-04 20:14:08, 记录笔者在学习Android开发时接触的技术和问题解决方案
+2019-03-09 11:27:08.134 DEBUG c.c.m.K.findAllKeywords - <==        Row: 8, 分布式文件系统, 2017-11-06 20:40:23
+2019-03-09 11:27:08.134 DEBUG c.c.m.A.findLatestArticle - <==        Row: 27, sqlserver数据库数据类型与java数据类型对应表, sqlserver数据库数据类型与java数据类型对应表, 2019-03-04 21:06:42, 3, null, 0, 4, 数据库
+2019-03-09 11:27:08.135 DEBUG c.c.m.S.listConst - <==        Row: 4, 100, 文章分类, , 文章汇总, 2019-03-04 20:14:28, 文章汇总
+2019-03-09 11:27:08.136 DEBUG c.c.m.K.findAllKeywords - <==        Row: 10, excel, 2017-12-02 16:48:44
+2019-03-09 11:27:08.136 DEBUG c.c.m.A.findLatestArticle - <==        Row: 78, 分布式文件系统FastDFS《一》, 博客文章需要用到图片文件，图片资源是保存在单独的文件服务器上。本博客的文件服务器是由FastDFS搭建的。FastDFS是一个开源的轻量级分布式文件系统，它对文件进行管理，功能包括：文件存储、文件同步、文件访问（文件上传、文件下载）等，解决了大容量存储和负载均衡的问题。特别适合以文件为载体的在线服务，如相册网站、视频网站等等。, 2019-03-04 21:05:51, 7, null, 0, 1, 后端技术
+2019-03-09 11:27:08.137 DEBUG c.c.m.S.listConst - <==        Row: 5, 100, 文章分类, 4, 数据库, 2019-03-04 20:14:42, 记录笔者在数据库开发时接触的各种技术和问题解决方案
+2019-03-09 11:27:08.138 DEBUG c.c.m.K.findAllKeywords - <==        Row: 11, poi, 2019-02-23 16:11:56
+2019-03-09 11:27:08.138 DEBUG c.c.m.A.findLatestArticle - <==        Row: 33, 资料网站合集(持续更新中...), 这里记录博主平常学习时会逛的IT资讯、工具网站地址, 2019-03-04 21:05:34, 4, null, 1, 7, 杂七杂八
+2019-03-09 11:27:08.138 DEBUG c.c.m.S.listConst - <==    Columns: id, lb, lbmc, dm, ms, updatetime, remarks
+2019-03-09 11:27:08.139 DEBUG c.c.m.S.listConst - <==        Row: 6, 100, 文章分类, 5, 算法, 2019-03-04 20:15:16, 记录笔者接触的各种编程算法
+2019-03-09 11:27:08.139 DEBUG c.c.m.S.getNumsOfArticles - <==    Columns: COUNT(1)
+2019-03-09 11:27:08.140 DEBUG c.c.m.K.findAllKeywords - <==        Row: 14, 网站备案, 2019-03-04 20:56:27
+2019-03-09 11:27:08.141 DEBUG c.c.m.S.listConst - <==        Row: 1, 100, 文章分类, 1, 后端技术, 2019-03-04 20:13:48, 记录笔者在后端开发编程时接触的各种技术和问题解决方案
+2019-03-09 11:27:08.142 DEBUG c.c.m.S.listConst - <==        Row: 7, 100, 文章分类, 6, 数据结构, 2019-03-04 20:57:00, 记录笔者接触的各种数据结构知识
+2019-03-09 11:27:08.142 DEBUG c.c.m.S.getNumsOfArticles - <==        Row: 13
+2019-03-09 11:27:08.144 DEBUG c.c.m.K.findAllKeywords - <==        Row: 18, 文摘, 2019-03-04 21:03:22
+2019-03-09 11:27:08.146 DEBUG c.c.m.S.listConst - <==        Row: 2, 100, 文章分类, 2, 网站前端, 2019-03-04 20:13:43, 记录笔者在网站页面开发时接触的各种技术和问题解决方案
+2019-03-09 11:27:08.148 DEBUG c.c.m.K.findAllKeywords - <==        Row: 23, 网站迭代, 2019-03-04 21:04:49
+2019-03-09 11:27:08.148 DEBUG c.c.m.S.listConst - <==        Row: 8, 100, 文章分类, 7, 杂七杂八, 2019-03-04 20:57:30, 
+2019-03-09 11:27:08.148 DEBUG c.c.m.S.listConst - <==        Row: 3, 100, 文章分类, 3, 移动开发, 2019-03-04 20:14:08, 记录笔者在学习Android开发时接触的技术和问题解决方案
+2019-03-09 11:27:08.149 DEBUG c.c.m.K.findAllKeywords - <==        Row: 24, 学习资料, 2019-03-04 21:05:23
+2019-03-09 11:27:08.150 DEBUG c.c.m.S.listConst - <==        Row: 4, 100, 文章分类, , 文章汇总, 2019-03-04 20:14:28, 文章汇总
+2019-03-09 11:27:08.151 DEBUG c.c.m.K.findAllKeywords - <==        Row: 25, sqlserver, 2019-03-04 21:06:24
+2019-03-09 11:27:08.152 DEBUG c.c.m.S.listConst - <==        Row: 5, 100, 文章分类, 4, 数据库, 2019-03-04 20:14:42, 记录笔者在数据库开发时接触的各种技术和问题解决方案
+2019-03-09 11:27:08.153 DEBUG c.c.m.S.listConst - <==        Row: 6, 100, 文章分类, 5, 算法, 2019-03-04 20:15:16, 记录笔者接触的各种编程算法
+2019-03-09 11:27:08.154 DEBUG c.c.m.S.listConst - <==        Row: 7, 100, 文章分类, 6, 数据结构, 2019-03-04 20:57:00, 记录笔者接触的各种数据结构知识
+2019-03-09 11:27:08.156 DEBUG c.c.m.S.listConst - <==        Row: 8, 100, 文章分类, 7, 杂七杂八, 2019-03-04 20:57:30, 
+2019-03-09 11:27:08.216 INFO  c.c.c.MineController - POST 参数:{"serviceId":"MINE_CONST","params":[["100"],null]}
+2019-03-09 11:27:08.238 DEBUG c.c.m.S.listConst - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@471e7613]
+2019-03-09 11:27:08.239 DEBUG c.c.m.S.listConst - ==>  Preparing: SELECT id,lb,lbmc,dm,ms,updatetime,remarks FROM mine_sysconst WHERE 1=1 AND lb IN ( ? ) 
+2019-03-09 11:27:08.239 DEBUG c.c.m.S.listConst - ==> Parameters: 100(String)
+2019-03-09 11:27:08.261 DEBUG c.c.m.S.listConst - <==    Columns: id, lb, lbmc, dm, ms, updatetime, remarks
+2019-03-09 11:27:08.262 DEBUG c.c.m.S.listConst - <==        Row: 1, 100, 文章分类, 1, 后端技术, 2019-03-04 20:13:48, 记录笔者在后端开发编程时接触的各种技术和问题解决方案
+2019-03-09 11:27:08.262 DEBUG c.c.m.S.listConst - <==        Row: 2, 100, 文章分类, 2, 网站前端, 2019-03-04 20:13:43, 记录笔者在网站页面开发时接触的各种技术和问题解决方案
+2019-03-09 11:27:08.263 DEBUG c.c.m.S.listConst - <==        Row: 3, 100, 文章分类, 3, 移动开发, 2019-03-04 20:14:08, 记录笔者在学习Android开发时接触的技术和问题解决方案
+2019-03-09 11:27:08.263 DEBUG c.c.m.S.listConst - <==        Row: 4, 100, 文章分类, , 文章汇总, 2019-03-04 20:14:28, 文章汇总
+2019-03-09 11:27:08.264 DEBUG c.c.m.S.listConst - <==        Row: 5, 100, 文章分类, 4, 数据库, 2019-03-04 20:14:42, 记录笔者在数据库开发时接触的各种技术和问题解决方案
+2019-03-09 11:27:08.264 DEBUG c.c.m.S.listConst - <==        Row: 6, 100, 文章分类, 5, 算法, 2019-03-04 20:15:16, 记录笔者接触的各种编程算法
+2019-03-09 11:27:08.265 DEBUG c.c.m.S.listConst - <==        Row: 7, 100, 文章分类, 6, 数据结构, 2019-03-04 20:57:00, 记录笔者接触的各种数据结构知识
+2019-03-09 11:27:08.265 DEBUG c.c.m.S.listConst - <==        Row: 8, 100, 文章分类, 7, 杂七杂八, 2019-03-04 20:57:30, 
+2019-03-09 11:27:08.288 INFO  c.c.c.MineController - POST 参数:{"serviceId":"MINE_ARTICLE_LIST","params":[null,null,null]}
+2019-03-09 11:27:08.308 DEBUG c.c.m.A.findArticle - ooo Using Connection [com.mysql.cj.jdbc.ConnectionImpl@471e7613]
+2019-03-09 11:27:08.309 DEBUG c.c.m.A.findArticle - ==>  Preparing: SELECT A.id,title,descs,A.updatetime,A.readingcount,A.url,A.praisecount,type,B.ms typeName FROM mine_articles A INNER JOIN mine_sysconst B ON A.type = B.dm AND B.lb = '100' ORDER BY A.updatetime DESC 
+2019-03-09 11:27:08.310 DEBUG c.c.m.A.findArticle - ==> Parameters: 
+2019-03-09 11:27:08.337 DEBUG c.c.m.A.findArticle - <==    Columns: id, title, descs, updatetime, readingcount, url, praisecount, type, ms
+2019-03-09 11:27:08.338 DEBUG c.c.m.A.findArticle - <==        Row: 99, android模拟器Genymotion的使用, 在开发android项目时，我们经常需要使用到仿真模拟器。, 2019-03-04 21:37:30, 13, null, 1, 3, 移动开发
+2019-03-09 11:27:08.340 DEBUG c.c.m.A.findArticle - <==        Row: 98, Android中使用ContentProvider对外共享数据 , ContentProvider，也叫内容提供者, 是Android的四大组件之一，本文记录下如何使用ContentProvider对外共享数据 , 2019-03-04 21:28:47, 5, null, 0, 3, 移动开发
+2019-03-09 11:27:08.342 DEBUG c.c.m.A.findArticle - <==        Row: 97, 在SQLite中如何使用事务, 记录在SQLite中如何使用事务, 2019-03-04 21:23:11, 3, null, 0, 3, 移动开发
+2019-03-09 11:27:08.343 DEBUG c.c.m.A.findArticle - <==        Row: 96, Android中用pull解析器解析xml文件, Android中用pull解析器解析xml文件示例, 2019-03-04 21:20:44, 4, null, 0, 3, 移动开发
+2019-03-09 11:27:08.344 DEBUG c.c.m.A.findArticle - <==        Row: 95, Android设置背景颜色的方法 , 记录下在android开发中如何修改背景颜色, 2019-03-04 21:16:11, 3, null, 0, 3, 移动开发
+2019-03-09 11:27:08.345 DEBUG c.c.m.A.findArticle - <==        Row: 94, SqlServer数据库中的分页语句, SqlServer分页SQL语句特点: 一次查询，数据库只返回一页的数据，而不是取出所有的数据, 2019-03-04 21:10:25, 4, null, 1, 4, 数据库
+2019-03-09 11:27:08.346 DEBUG c.c.m.A.findArticle - <==        Row: 79, JAVA服务端通用数据导入导出组件V1.0, 工作中经常会遇到excel文件导入导出这类业务需求, 这些需求其实从根本上看都是对excel的解析处理,因此本人特地花了两天时间用JAVA写了一套通用的导入导出工具组件，为以后实现这类需求提高效率。组件源码地址：https://github.com/CodingGyd/project/tree/master/excel-utils, 2019-03-04 21:07:04, 3, null, 0, 1, 后端技术
+2019-03-09 11:27:08.346 DEBUG c.c.m.A.findArticle - <==        Row: 27, sqlserver数据库数据类型与java数据类型对应表, sqlserver数据库数据类型与java数据类型对应表, 2019-03-04 21:06:42, 3, null, 0, 4, 数据库
+2019-03-09 11:27:08.347 DEBUG c.c.m.A.findArticle - <==        Row: 78, 分布式文件系统FastDFS《一》, 博客文章需要用到图片文件，图片资源是保存在单独的文件服务器上。本博客的文件服务器是由FastDFS搭建的。FastDFS是一个开源的轻量级分布式文件系统，它对文件进行管理，功能包括：文件存储、文件同步、文件访问（文件上传、文件下载）等，解决了大容量存储和负载均衡的问题。特别适合以文件为载体的在线服务，如相册网站、视频网站等等。, 2019-03-04 21:05:51, 7, null, 0, 1, 后端技术
+2019-03-09 11:27:08.347 DEBUG c.c.m.A.findArticle - <==        Row: 33, 资料网站合集(持续更新中...), 这里记录博主平常学习时会逛的IT资讯、工具网站地址, 2019-03-04 21:05:34, 4, null, 1, 7, 杂七杂八
+2019-03-09 11:27:08.348 DEBUG c.c.m.A.findArticle - <==        Row: 35, 个人博客版本更新记录(持续更新中...), 这里记录博主开发本博客的版本更新记录, 2019-03-04 21:05:00, 1, null, 0, 7, 杂七杂八
+2019-03-09 11:27:08.348 DEBUG c.c.m.A.findArticle - <==        Row: 28, 立正向前走, 立正向前走, 2019-03-04 21:03:34, 3, null, 0, 7, 杂七杂八
+2019-03-09 11:27:08.349 DEBUG c.c.m.A.findArticle - <==        Row: 36, 个人博客网站开发-域名备案流程, 简单记录一下本网站从域名申请到可以直接通过域名访问所需要完成的一些操作, 2019-03-04 21:01:04, 25, null, 4, 7, 杂七杂八
