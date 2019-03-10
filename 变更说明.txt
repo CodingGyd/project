@@ -9,6 +9,7 @@
 常用工具方法集合(common-utils)
 
 日期 				变更情况
+20190310.1			新版个人网站开发完成,V1.0基线封板
 20190204.1			将mine-server下的common-utils单独抽离成独立组件服务
 20180412.1			引入开源博客框架My-Blog-master工程
 20180219.1			新增java桌面数据导入工具程序DataImportClient
