@@ -38,13 +38,6 @@ public class LoggerServiceImpl implements ILoggerService{
 	@Override
 	public void saveLoggerInfo(List<LoggerEntity> datas) {
 		
-		try {
-			String s = mapper.writeValueAsString(datas);
-			System.out.println(s);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		List<Object> params = new ArrayList<>();
 		params.add(datas);
 		Map<String,Object> dataMap = new HashMap<>();
