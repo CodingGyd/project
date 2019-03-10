@@ -46,6 +46,7 @@
 		<module>mine-job</module>
 	<!-- 	<module>common-utils</module> -->
     <module>mine-siteinfo</module>
+    <module>mine-logger</module>
   </modules>
 	<dependencyManagement>
 		<dependencies>
@@ -94,6 +95,12 @@
 			<dependency>
 				<groupId>com.codinggyd</groupId>
 				<artifactId>mine-siteinfo</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.codinggyd</groupId>
+				<artifactId>mine-logger</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>

@@ -26,7 +26,7 @@ import com.codinggyd.service.ISiteInformationService;
  */
 @Service
 @MineService
-@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=false)
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 public class SiteInformationServiceImpl implements ISiteInformationService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());

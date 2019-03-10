@@ -28,7 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @author: guoyd
  * @Date: 2019年2月12日下午20:29:45
  *
- * Copyright @ 2017 Corpration Name
+ * Copyright @ 2019 Corpration Name
  */
 @Service
 public class SiteInformationServiceImpl implements ISiteInformationService{

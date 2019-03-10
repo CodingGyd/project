@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>   
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.codinggyd.mapper.LoggerMapper">
+	<insert id="addLogger">
+	
+		 
+			INSERT INTO mine_loginfo(
+					ip,
+					url,
+					type,
+					method,
+					paramData,
+					sessionId,
+					time,
+					httpStatusCode,
+					timeConsuming,
+					returnTime,
+					returnData
+				)
+				VALUES <foreach collection="list" item="item" index="index" separator=",">
+				(		 
+						 #{item.ip},
+						 #{item.url},
+						 #{item.type},
+						 #{item.method,jdbcType=VARCHAR},
+						 #{item.paramData,jdbcType=VARCHAR},
+						 #{item.sessionId,jdbcType=INTEGER},
+		 				 #{item.time,jdbcType=TIMESTAMP},
+						 #{item.httpStatusCode,jdbcType=VARCHAR},
+						 #{item.timeConsuming,jdbcType=INTEGER},
+						 #{item.returnTime,jdbcType=VARCHAR},
+						 #{item.returnData,jdbcType=VARCHAR}
+			  			 )
+				</foreach>
+	</insert>
+</mapper>

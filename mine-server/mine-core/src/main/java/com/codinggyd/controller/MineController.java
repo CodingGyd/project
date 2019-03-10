@@ -13,6 +13,7 @@ import com.codinggyd.bean.requ.MineRequestBean;
 import com.codinggyd.constant.SYSSecurityConstant;
 import com.codinggyd.core.MineServiceExecuter;
 import com.codinggyd.utils.AESUtils;
+import com.codinggyd.utils.CommonUtils;
 import com.codinggyd.utils.ZipUtils;
 
  
@@ -44,7 +45,7 @@ public class MineController extends BaseController{
 		data = AESUtils.decrypt(data, SYSSecurityConstant.HTTP_POST_AES_KEY, 16);
 		data = ZipUtils.gunzip(data);
 		String requestJson = new String(data);
-		MineRequestBean mineRequestBean = objectMapper.readValue(requestJson, MineRequestBean.class);
+		MineRequestBean mineRequestBean = CommonUtils.getMappingInstance().readValue(requestJson, MineRequestBean.class);
 		logger.info("POST 参数:{}",requestJson);
  		String result = MineServiceExecuter.invoke(mineRequestBean);
 		response(request, response, result,mineRequestBean);

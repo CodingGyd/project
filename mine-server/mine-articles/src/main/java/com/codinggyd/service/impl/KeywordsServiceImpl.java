@@ -28,7 +28,7 @@ import com.codinggyd.service.IKeywordsService;
  */
 @Service
 @MineService
-@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=false)
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 public class KeywordsServiceImpl implements IKeywordsService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());

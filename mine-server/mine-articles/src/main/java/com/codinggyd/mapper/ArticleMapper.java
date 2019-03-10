@@ -31,7 +31,7 @@ public interface ArticleMapper {
 			"	FROM mine_articles A "+
 			"	INNER JOIN mine_sysconst B "+
 			"	ON A.type = B.dm AND B.lb = '100' "+
-			" ORDER BY A.readingcount DESC LIMIT 5 " )
+			" ORDER BY A.readingcount DESC LIMIT 10 " )
 	public List<Article> findArticleOrderByClickCount(@Param("rankTop") Integer rankTop);
 
 	//文章详情

@@ -36,13 +36,13 @@ import com.github.miemiedev.mybatis.paginator.domain.PageBounds;
  */
 @Service
 @MineService
-@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=false)
+@Transactional(value="mineTransactionManager",propagation=Propagation.NOT_SUPPORTED,readOnly=true)
 public class ArticleServiceImpl implements IArticleSiteService{
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
 	@Autowired
 	private ArticleMapper mapper;
-	private static final String REDIS_KEY_ARTICLE = "mine_articles_";
+//	private static final String REDIS_KEY_ARTICLE = "mine_articles_";
 	@Override
 	public List<Article> listArticle(String type,String label,String[] pageInfo) {
 		List<Article> articleList = null;

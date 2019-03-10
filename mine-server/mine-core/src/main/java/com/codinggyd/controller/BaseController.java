@@ -11,7 +11,6 @@ import com.codinggyd.bean.requ.MineRequestBean;
 import com.codinggyd.constant.SYSSecurityConstant;
 import com.codinggyd.log.Log;
 import com.codinggyd.util.FuncHttpUtils;
-import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * 
  * @Title:  BaseController
@@ -25,9 +24,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  */
 public abstract class BaseController {
 	final Logger logger = LoggerFactory.getLogger(getClass());
-	
-	ObjectMapper objectMapper = new ObjectMapper();
-	
+	 
 	/**
 	 * 返回数据给客户端
 	 * @param request
