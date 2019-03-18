@@ -8,7 +8,7 @@ import com.codinggyd.excel.annotation.ExcelSheetConfig;
 import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 
-@ExcelSheetConfig(titleRowStartIndex=0,contentRowStartIndex=1,excelSuffix=ExcelConst.EXCEL_FORMAT_XLSX,sheetName="证券信息")
+@ExcelSheetConfig(titleRowStartIndex=1,contentRowStartIndex=2,excelSuffix=ExcelConst.EXCEL_FORMAT_XLSX,sheetName="证券信息")
 public class Position implements Serializable{
 
 	/**

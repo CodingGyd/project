@@ -14,8 +14,13 @@ import java.util.List;
  * Copyright @ 2019 Corpration Name
  */
 public class ArticlePageBean<E> extends MinePageBean<E> {
-   
+   /**
+    * 文章类型信息
+    */
 	private ArticleType articleType;
+	/**
+	 * 文章关键字信息
+	 */
 	private ArticleKeyWordRelation keyWordRelation;
 	public ArticlePageBean(ArticleType articleType,Paginator paginator, List<E> data) {
 		super(paginator,data);

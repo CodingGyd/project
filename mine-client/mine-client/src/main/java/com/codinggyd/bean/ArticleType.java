@@ -21,6 +21,9 @@ public class ArticleType implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -8736749011130769481L;
+	/**
+	 * 文章分类ID
+	 */
 	private Integer id;
 	/**
 	 * 常量类别代码

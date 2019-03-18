@@ -9,7 +9,7 @@ import com.codinggyd.excel.annotation.ExcelSheetConfig;
 import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 
-@ExcelSheetConfig(titleRowStartIndex=0,contentRowStartIndex=1,excelSuffix=ExcelConst.EXCEL_FORMAT_XLSX,sheetName="男人")
+@ExcelSheetConfig(titleRowStartIndex=1,contentRowStartIndex=2,excelSuffix=ExcelConst.EXCEL_FORMAT_XLSX,sheetName="男人")
 public class Man implements Serializable{
 
 	/**
@@ -23,7 +23,7 @@ public class Man implements Serializable{
 					@ExcelFieldRule(content = "深圳", replace = "90") })
 	private String name;
 	@ExcelFieldConfig(titleConfig=@ExcelFieldTitleConfig(name="valuex"),
-			index=1,javaType=JavaFieldType.TYPE_STRING,fillPatternColor=33,fillPatternTypeCode=1)
+			index=1,javaType=JavaFieldType.TYPE_STRING,fillPatternColor=53,fillPatternTypeCode=1)
 	private String value;
 	public String getName() {
 		return name;

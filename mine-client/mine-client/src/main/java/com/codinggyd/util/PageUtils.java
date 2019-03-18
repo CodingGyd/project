@@ -8,6 +8,18 @@ import org.apache.commons.collections.CollectionUtils;
 import com.codinggyd.bean.PageList;
 import com.codinggyd.bean.Paginator;
 
+/**
+ * 
+ * 
+ * @Title: PageUtils.java
+ * @Package: com.codinggyd.util
+ * @Description: 通用分页工具类
+ * 
+ * @Author: guoyd
+ * @Date: 2019年3月18日 下午1:32:29
+ *
+ * Copyright @ 2019 Corpration Name
+ */
 public class PageUtils {
 	/**
 	 * java 代码层分页

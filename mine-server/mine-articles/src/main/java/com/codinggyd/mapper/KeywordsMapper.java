@@ -11,7 +11,7 @@ import com.codinggyd.bean.Keywords;
  * 
  * @Title:  KeywordsMapper.java
  * @Package: com.codinggyd.mapper
- * @Description: 
+ * @Description: 文章关键字表操作类
  *
  * @author: guoyd
  * @Date: 2019年2月13日下午2:28:18

@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * 
  * @Title: HttpClientUtil.java
  * @Package: com.codinggyd.util
- * @Description:
+ * @Description:HTTP请求操作工具类
  *
  * @author: guoyd
  * @Date: 2017年8月27日 下午12:02:12

@@ -13,7 +13,7 @@ import com.codinggyd.annotation.MineFuncData;
  * 
  * @Title: LearnSite.java
  * @Package: com.codinggyd.bean
- * @Description: IT资讯对象实体类
+ * @Description: 文章实体类
  * 
  * @author: guoyd
  * @Date: 2017年2月18日下午2:26:40

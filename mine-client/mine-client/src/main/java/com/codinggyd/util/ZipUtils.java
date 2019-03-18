@@ -8,7 +8,18 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
-
+/**
+ * 
+ * 
+ * @Title: ZipUtils.java
+ * @Package: com.codinggyd.util
+ * @Description: 数据压缩工具类
+ * 
+ * @Author: guoyd
+ * @Date: 2019年3月18日 下午1:32:40
+ *
+ * Copyright @ 2019 Corpration Name
+ */
 public class ZipUtils {
 	private static final int BUFFER_SIZE = 4096;
 

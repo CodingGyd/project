@@ -16,7 +16,7 @@ import com.github.miemiedev.mybatis.paginator.domain.PageList;
  * 
  * @Title:  ArticleMapper.java
  * @Package: com.codinggyd.mapper
- * @Description: 
+ * @Description: 文章相关表操作类
  *
  * @author: guoyd
  * @Date: 2017年2月18日下午2:28:18

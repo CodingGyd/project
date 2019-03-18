@@ -14,7 +14,9 @@ import java.util.Collection;
  */
 public class PageList<E> extends ArrayList<E> {
     private static final long serialVersionUID = 1412759446332294208L;
-    
+    /**
+     * 分页信息
+     */
     private Paginator paginator;
 
     public PageList() {}

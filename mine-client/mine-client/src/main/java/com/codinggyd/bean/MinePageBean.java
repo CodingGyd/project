@@ -16,9 +16,13 @@ import java.util.List;
  */
 public class MinePageBean<E> {
    
-    
+    /**
+     * 分页信息
+     */
     private Paginator paginator;
-    
+    /**
+     * 实体信息
+     */
     private List<E> data;
     
     public MinePageBean() {}

@@ -25,6 +25,7 @@ import org.apache.poi.ss.util.CellRangeAddressList;
 import org.apache.poi.xssf.usermodel.XSSFDataValidation;
 
 import com.codinggyd.excel.annotation.ExcelFieldConfig;
+import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 import com.codinggyd.excel.core.Common;
 import com.codinggyd.excel.core.exportexcel.bean.SheetData;
@@ -281,7 +282,14 @@ public abstract class CommonExporter extends Common{
 			sheet.setColumnWidth(field.index(), field.width());//设置整列的宽度
 			createCell(row,field.index(),cellStyle,field.titleConfig().name());
 		}
-		sheet.createFreezePane( 0, 1, 0, 1 );   //冻结第一行	
+// 		sheet.createFreezePane(1,0,1,0):冻结第一列，冻结列右侧的第一列为B列
+// 		sheet.createFreezePane(2,0,5,0):冻结左侧两列，冻结列右侧的第一列为F列
+// 		sheet.createFreezePane(0,1,0,1):冻结第一行,冻结行下侧第一行的左边框显示“2”
+ 		if (sheetConfig.excelSuffix().equals(ExcelConst.EXCEL_FORMAT_XLSX)) {
+ 			sheet.createFreezePane( 0, sheetConfig.titleRowStartIndex(), 0, 1 ); //标题行冻结
+ 		} else if (sheetConfig.excelSuffix().equals(ExcelConst.EXCEL_FORMAT_XLS)) {
+ 			sheet.createFreezePane( 0, sheetConfig.titleRowStartIndex(), 0, sheetConfig.titleRowStartIndex() ); //标题行冻结
+ 		}
 
 	}
 	 

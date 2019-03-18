@@ -21,7 +21,7 @@ import com.codinggyd.service.IKeywordsService;
   * 
   * @Title: KeywordController.java
   * @Package: com.codinggyd.controller
-  * @Description: 文章关键字操作相关接口
+  * @Description: 文章关键字操作相关接口层
   * 
   * @Author: guoyd
   * @Date: 2019年2月21日 下午5:44:07
@@ -35,7 +35,12 @@ public class KeywordController {
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
  
-	//关键字列表
+	/**
+	 * 关键字列表-接口
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value={"/keywords"})
 	public @ResponseBody List<Keywords> keywords(HttpServletRequest request,HttpServletResponse response) {
 		return keywordsService.listKeywords();

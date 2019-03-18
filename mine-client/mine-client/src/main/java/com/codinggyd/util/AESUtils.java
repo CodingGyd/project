@@ -10,7 +10,18 @@ import javax.crypto.spec.SecretKeySpec;
 
 import com.codinggyd.log.Log;
 
-
+/**
+ * 
+ * 
+ * @Title: AESUtils.java
+ * @Package: com.codinggyd.util
+ * @Description: AES加减密操作工具类
+ * 
+ * @Author: guoyd
+ * @Date: 2019年3月18日 下午1:31:39
+ *
+ * Copyright @ 2019 Corpration Name
+ */
 public class AESUtils {
 
 	/**

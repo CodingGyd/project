@@ -30,7 +30,10 @@ public class SiteController {
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
  
-	//查询站点信息
+	/**
+	 * 查询站点信息
+	 * @return
+	 */
 	@RequestMapping("/siteinfo")
 	public @ResponseBody SiteInformation getsiteinfo() {
 		return siteInformationService.getSiteInformation();

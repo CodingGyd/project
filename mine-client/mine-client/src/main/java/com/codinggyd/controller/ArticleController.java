@@ -36,7 +36,7 @@ import com.codinggyd.util.SysConstant;
  * 
  * @Title: ArticleController.java
  * @Package: com.codinggyd.controller
- * @Description: 文章信息操作相关接口
+ * @Description: 文章信息操作相关接口层
  * 
  * @Author: guoyd
  * @Date: 2019年2月21日 下午5:43:27
@@ -51,7 +51,12 @@ public class ArticleController {
 
 	final Logger logger = LoggerFactory.getLogger(getClass());
  
-	//分页获取文章列表
+	/**
+	 * 分页获取文章列表-接口
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value={"/article_page"})
 	public @ResponseBody ArticlePageBean<Article> page(HttpServletRequest request,HttpServletResponse response) {
 		String page = request.getParameter("page");
@@ -89,18 +94,33 @@ public class ArticleController {
 		return data;
 	}
 	
-	//最新文章
+	/**
+	 * 最新文章-接口
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value={"/latest_article"})
 	public @ResponseBody MinePageBean<Article> latestArticle(HttpServletRequest request,HttpServletResponse response) {
 		MinePageBean<Article> data = articleService.getLatestArticleList();
 		return data;
 	}
-	//点击排行前10的文章
+	/**
+	 * 点击排行前10的文章-接口
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value={"/rank_article"})
 	public @ResponseBody List<Article> rankArticle(HttpServletRequest request,HttpServletResponse response) {
 		return articleService.getRankArticleList(10);
 	}
-	//文章详情
+	/**
+	 * 文章详情-接口
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/article_dt/{id}")
 	public String article_dt(@PathVariable String id,Map<String,Object> model) {
 
@@ -112,7 +132,12 @@ public class ArticleController {
 		return "v2/article_dt";
 	}
 	
-	//文章分类
+	/**
+	 * 文章分类-接口
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value={"/article_types"})
 	public @ResponseBody List<ArticleType> listTypes(HttpServletRequest request,HttpServletResponse response) {
 		List<ArticleType> articleTypes = articleService.findArticleTypes(Arrays.asList(SysConstant.ARTICLE_CONST_LB),null);
@@ -131,7 +156,11 @@ public class ArticleController {
 		});
 		return articleTypes;
 	}
-	
+	/**
+	 * 文章点赞-接口
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value={"/dopraise"})
 	public @ResponseBody ResponseBean dopraise(@RequestParam("id") Integer id) {
 		String msg = articleService.doPraise(id, null);
@@ -141,7 +170,13 @@ public class ArticleController {
 		return result;
 	}
   
-	//点击排行前10的文章
+	/**
+	 * 点击排行前10的文章
+	 * @param request
+	 * @param response
+	 * @return
+	 * @throws UnsupportedEncodingException
+	 */
 	@RequestMapping(value={"/article_search"})
 	public @ResponseBody List<Article> searcharticle(HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
 		String condition = request.getParameter("searchcontent");

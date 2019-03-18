@@ -13,10 +13,22 @@ package com.codinggyd.bean;
  * Copyright @ 2019 Corpration Name
  */
 public class SiteInformation {
-	private String timeOfSiteCreate;//建站时间
-	private Integer numOfArticles;//文章数量
-	private Integer numOfComment;//评论数量
-	private String remarks;//备注
+	/**
+	 * 建站时间
+	 */
+	private String timeOfSiteCreate; 
+	/**
+	 * 文章数量
+	 */
+	private Integer numOfArticles;
+	/**
+	 * 评论数量
+	 */
+	private Integer numOfComment;
+	/**
+	 * 备注
+	 */
+	private String remarks;
 	
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;

@@ -10,7 +10,7 @@ import com.codinggyd.bean.Keywords;
  * 
  * @Title:  IKeywordsService.java
  * @Package: com.codinggyd.service
- * @Description: 
+ * @Description: 文章关键字操作接口层
  *
  * @author: guoyd
  * @Date: 2019年2月13日 下午4:08:24

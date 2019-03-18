@@ -18,6 +18,18 @@ import com.codinggyd.utils.CommonUtils;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * 
+ * 
+ * @Title: LoggerInterceptor.java
+ * @Package: com.codinggyd.interceptor
+ * @Description: 网站访问信息记录-拦截器
+ * 
+ * @Author: guoyd
+ * @Date: 2019年3月18日 下午1:22:22
+ *
+ * Copyright @ 2019 Corpration Name
+ */
 @Service
 public class LoggerInterceptor implements HandlerInterceptor {
     //请求开始时间标记

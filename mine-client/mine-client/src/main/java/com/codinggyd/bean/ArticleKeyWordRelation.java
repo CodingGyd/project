@@ -19,10 +19,25 @@ public class ArticleKeyWordRelation implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -2192272855376241743L;
+	/**
+	 * 记录ID
+	 */
 	private Integer id;
+	/**
+	 * 文章ID
+	 */
 	private Integer articleId;
+	/**
+	 * 关键字ID
+	 */
 	private Integer keyWordId;
+	/**
+	 * 关键字名称
+	 */
 	private String keyName;
+	/**
+	 * 数据更新时间
+	 */
 	private String updatetime;
 	public Integer getId() {
 		return id;

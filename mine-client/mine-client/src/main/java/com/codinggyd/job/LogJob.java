@@ -12,6 +12,18 @@ import org.springframework.stereotype.Service;
 
 import com.codinggyd.bean.LoggerEntity;
 import com.codinggyd.service.ILoggerService;
+/**
+ * 
+ * 
+ * @Title: LogJob.java
+ * @Package: com.codinggyd.job
+ * @Description: 定时将队列中的网站访问记录上传服务端进行保存
+ * 
+ * @Author: guoyd
+ * @Date: 2019年3月18日 下午1:22:49
+ *
+ * Copyright @ 2019 Corpration Name
+ */
 @Service
 public class LogJob {
 	

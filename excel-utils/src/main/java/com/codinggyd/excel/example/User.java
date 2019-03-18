@@ -11,7 +11,7 @@ import com.codinggyd.excel.annotation.ExcelSheetConfig;
 import com.codinggyd.excel.constant.ExcelConst;
 import com.codinggyd.excel.constant.JavaFieldType;
 
-@ExcelSheetConfig(titleRowStartIndex=1,contentRowStartIndex=2,excelSuffix=ExcelConst.EXCEL_FORMAT_XLSX,sheetName="人类")
+@ExcelSheetConfig(titleRowStartIndex=2,contentRowStartIndex=3,excelSuffix=ExcelConst.EXCEL_FORMAT_XLSX,sheetName="人类")
 public class User implements Serializable{
 
 	/**

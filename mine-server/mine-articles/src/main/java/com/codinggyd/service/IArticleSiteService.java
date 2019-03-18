@@ -10,7 +10,7 @@ import com.codinggyd.bean.Article;
  * 
  * @Title:  ArticleSiteService.java
  * @Package: com.codinggyd.service
- * @Description: 
+ * @Description: 文章操作接口层
  *
  * @author: guoyd
  * @Date: 2017年9月17日 下午4:08:24

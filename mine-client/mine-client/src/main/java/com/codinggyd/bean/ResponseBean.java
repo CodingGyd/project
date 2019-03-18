@@ -8,8 +8,13 @@ public class ResponseBean implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 5017240916836817308L;
-
+	/**
+	 * 响应码
+	 */
 	private Integer code;
+	/**
+	 * 响应信息
+	 */
 	private String msg;
 	public Integer getCode() {
 		return code;

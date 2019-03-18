@@ -18,9 +18,9 @@ import junit.framework.TestCase;
 /**
  * 
  * <pre>
- * 类名:  TestExcelParser.java
+ * 类名:  TestXlsxExcelParser.java
  * 包名:  com.codinggyd.excel.example
- * 描述:  Excel解析方法测试
+ * 描述:  Xlsx格式的Excel解析方法测试
  * 
  * 作者:  guoyd
  * 日期:  2017年12月3日
@@ -28,7 +28,7 @@ import junit.framework.TestCase;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public class TestExcelParser extends TestCase  {
+public class TestXlsxExcelParser extends TestCase  {
 	
 //	测试ExcelParserUtils#parse(InputStream is,Class<T> clazz,String format)
 	public void testParse1() throws Exception {
@@ -39,9 +39,9 @@ public class TestExcelParser extends TestCase  {
 		FileInputStream fis = new FileInputStream(new File(file));
 		ResultList<User> result = ExcelParserUtils.parse(fis, User.class, format);
 		System.out.println("错误报告:"+result.getMsg());
-//		for (User user:result) {
-//			System.out.println(user.toString());
-//		}
+		for (User user:result) {
+			System.out.println(user.toString());
+		}
 		System.out.println("解析数据量"+result.size()+"条,耗时"+(System.currentTimeMillis()-start)+"ms");
 
 	}

@@ -17,9 +17,9 @@ import junit.framework.TestCase;
 /**
  * 
  * <pre>
- * 类名:  TestExcelExporter.java
+ * 类名:  TestXlsxExcelExporter.java
  * 包名:  com.codinggyd.excel.example
- * 描述:  Excel生成方法测试
+ * 描述:  XLSX格式的Excel生成方法测试
  * 
  * 作者:  guoyd
  * 日期:  2017年12月3日
@@ -27,7 +27,7 @@ import junit.framework.TestCase;
  * Copyright @ 2017 Corpration Name
  * </pre>
  */
-public class TestExcelExporter extends TestCase  {
+public class TestXlsxExcelExporter extends TestCase  {
 	
 //	测试ExcelExporterUtils#export(String format,Class<?> clazz,List<T> data) 
 	public void testExporter1() throws Exception {
@@ -42,7 +42,7 @@ public class TestExcelExporter extends TestCase  {
 			t.setName("测试"+i);
 			t.setMoney(1d*i);
 			t.setCreateTime(new Date());
-//			t.setTtt(Arrays.asList("a","b"+i));
+			t.setTtt(Arrays.asList("a","b"+i));
 			data.add(t);
 		}
 		//一行代码调用生成
@@ -100,7 +100,7 @@ public class TestExcelExporter extends TestCase  {
 		}
 		
 		List<Man> manData = new ArrayList<Man>();
-		for (int i=0;i<100000;i++) {
+		for (int i=0;i<10000;i++) {
 			Man t = new Man();
 			t.setName("测试"+i);
 			t.setValue(i+"");

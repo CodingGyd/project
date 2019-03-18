@@ -30,9 +30,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * 
  * 
- * @Title:  UtilFunctionServiceImpl.java
+ * @Title:  ArticleServiceImpl.java
  * @Package: com.codinggyd.service.impl
- * @Description: 
+ * @Description: 文章信息操作业务层
  *
  * @author: guoyd
  * @Date: 2017年1月21日下午7:07:45

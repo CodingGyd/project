@@ -13,7 +13,9 @@ package com.codinggyd.bean;
  * Copyright @ 2019 Corpration Name
  */
 public class UserInfo {
-
+	/**
+	 * 访客IP
+	 */
 	private String ip;
 	
 }

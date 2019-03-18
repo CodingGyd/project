@@ -20,6 +20,10 @@ public class Article implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -4785066758102282805L;
+	
+	/**
+	 * 文章编号
+	 */
 	private Integer id;
 	/**
 	 * 标题
