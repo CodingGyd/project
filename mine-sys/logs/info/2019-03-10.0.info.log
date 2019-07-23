@@ -1,4 +1,0 @@
-2019-03-10 13:36:49.705 INFO  o.h.v.i.u.Version - HV000001: Hibernate Validator 5.2.2.Final
-2019-03-10 13:36:49.769 INFO  c.c.SysApp - Starting SysApp on WINDOWS-GUOYD with PID 19952 (E:\personal_workspace\git_code\project\mine-sys\target\classes started by guoyd in E:\personal_workspace\git_code\project\mine-sys)
-2019-03-10 13:36:49.769 DEBUG c.c.SysApp - Running with Spring Boot v1.3.0.RELEASE, Spring v4.2.3.RELEASE
-2019-03-10 13:36:49.769 INFO  c.c.SysApp - No profiles are active
