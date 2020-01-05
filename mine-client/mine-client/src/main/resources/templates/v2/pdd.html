@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+ <head th:include="v2/base/head ::common_header"></head>
+ 
+<body>
+
+<!--top begin-->
+		<div th:include="v2/base/top :: top"></div>
+<!--top end-->
+<article> 
+  <!--lbox begin-->
+  <div >
+     <script  >
+ document.title ='多多分享_分享多多优惠价格信息';
+ </script>
+    <div class="zhuanti  whitebg">
+      <h2 class="htitle"><span class="hnav"></span>优惠商品信息</h2>
+       <section id="knowledge" class="viewBlock">
+       	<ul>
+            <li >
+                <img style="width: 100%;height: 300px" src="http://47.111.1.180/images/20200105/7b76b351283b451480e283718bade8e7.jpeg"/>
+            </li>
+
+        </ul>
+		</section>
+<!--效果html结束-->
+    </div>
+    
+    <!--bloglist end--> 
+  </div>
+ 
+</article>
+	<!--footer start-->
+	<div th:replace="v2/base/bottom :: bottom"></div>
+	<!--footer end-->
+</body>
+</html>
