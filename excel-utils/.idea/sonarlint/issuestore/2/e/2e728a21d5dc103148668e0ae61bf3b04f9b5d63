@@ -1,0 +1,20 @@
+
+lsquid:S1192-"PDefine a constant instead of duplicating this literal "è§£ææ•°æ®é‡" 3 times.(™µ­Úøÿÿÿÿ
+T
+squid:S106-"9Replace this use of System.out or System.err by a logger.(™µ­Úøÿÿÿÿ
+csquid:S00112""FDefine and throw a dedicated exception instead of using a generic one.(¨—Æ´ÿÿÿÿÿ
+T
+squid:S106)"9Replace this use of System.out or System.err by a logger.(¡ú”Óùÿÿÿÿ
+hsquid:S1192%"LDefine a constant instead of duplicating this literal "D:/test.xls" 3 times.(Éİ˜Ÿıÿÿÿÿ
+csquid:S00112@"FDefine and throw a dedicated exception instead of using a generic one.(Ëšôùÿÿÿÿ
+T
+squid:S106Q"9Replace this use of System.out or System.err by a logger.(™µ­Úøÿÿÿÿ
+usquid:S2293F"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚±Çåıÿÿÿÿ
+^squid:S001122"FDefine and throw a dedicated exception instead of using a generic one.(´ÌÖÁ
+O
+squid:S106O"9Replace this use of System.out or System.err by a logger.(º ¤ì
+gsquid:CommentedOutCodeLine*"<This block of commented-out lines of code should be removed.(Ì Æøÿÿÿÿ
+O
+squid:S106:"9Replace this use of System.out or System.err by a logger.(º ¤ì
+T
+squid:S106<"9Replace this use of System.out or System.err by a logger.(™µ­Úøÿÿÿÿ
