@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport"/>
+</head>
+
+<script src="v2/js/jquery.min.js" type="text/javascript"></script>
+<script src="v2/js/jquery.fireworks.js" type="text/javascript"></script>
+
+<style type="text/css">
+    *{ -webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-box-sizing: border-box; box-sizing: border-box; }
+    html{ width: 100%; height: 100%; }
+    body{ max-width: 600px; margin: 0 auto; background: #0b3443; color: #f0f0f0;}
+    .share_img{ width: 0; height: 0; overflow: hidden; opacity: 0; }
+    .content{ padding: 80px 20px;}
+    .text_wrapper{ display: -webkit-box; display: flex; }
+    .text_wrapper .text{ padding-top: 20px; padding-left: 20px; }
+    .hide{ display: none !important; }
+    p{ margin: 0; }
+    .btn-groups{ padding-right: 20px; text-align: center; }
+    .heart-btn{ display: inline-block; animation: breath 0.8s linear 0s infinite both; -webkit-animation: breath 0.8s linear 0s infinite both; }
+    .btn{ position: relative; display: inline-block; width: 60px; height: 60px; margin: 0 30px; transform: rotate(45deg); -webkit-transform: rotate(45deg);}
+    .btn span{ display: block; width: 100%; height: 100%; line-height: 60px; margin-top: -10px; margin-left: -10px; text-align: center; transform: rotate(-45deg); -webkit-transform: rotate(-45deg); }
+    .btn-a{ background: #d26ae5; }
+    .btn-b{ background: #c9c9c9; }
+    .btn-a:before{ content: ''; position: absolute; display: block; width: 30px; height: 60px; background: #d26ae5; left: -29px; top: 0; border-top-left-radius: 60px; border-bottom-left-radius: 60px; }
+    .btn-a:after{ content: ''; position: absolute; display: block; width: 60px; height: 30px; background: #d26ae5; left: 0; top: -29px; border-top-left-radius: 60px; border-top-right-radius: 60px;}
+    .btn-b:before{ content: ''; position: absolute; display: block; width: 30px; height: 60px; background: #c9c9c9; left: -29px; top: 0; border-top-left-radius: 60px; border-bottom-left-radius: 60px; }
+    .btn-b:after{ content: ''; position: absolute; display: block; width: 60px; height: 30px; background: #c9c9c9; left: 0; top: -29px; border-top-left-radius: 60px; border-top-right-radius: 60px;}
+    .container{  }
+    .container .mask{ position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.3); }
+    .container .modal{ width: 80%; height: 160px; position: absolute; top: 50%; left: 50%; padding: 20px 15px; border-radius: 5px; transform: translate(-50%, -70%); -webkit-transform: translate(-50%，-70%); background: #f3f3f3;}
+    .container .modal p{ margin-top: 20px; margin-bottom: 20px; font-size: 16px; color: #353535; text-align: center;}
+    .confirm{ display: block; width: 120px; height: 40px; margin: 0 auto; border: none; font-size: 16px; border-radius: 5px; color: #ffffff; background: #f45cae; }
+    .type_words{ padding: 12px 20px; }
+    @keyframes breath {
+        0% {
+            transform: scale3d(1,1,1);
+            -webkit-transform: scale3d(1,1,1);
+            transform-origin: 50% 50%;
+        }
+        50%{
+            transform: scale3d(1.02,1.02,1.02);
+            -webkit-transform: scale3d(1.02,1.02,1.02);
+            transform-origin: 50% 50%;
+        }
+        100%{
+            transform: scale3d(1,1,1);
+            -webkit-transform: scale3d(1,1,1);
+            transform-origin: 50% 50%;
+        }
+    }
+</style>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+            $('#yes').click(function (event) {
+                var bgmusic = document.getElementById("bgmusic");
+                bgmusic.play();
+                modal('我就知道你一定会愿意的。(^_^)', function () {
+                    $('.page_one').addClass('hide');
+                    $('.page_two').removeClass('hide');
+                    // typeWrite();
+                    fireworks();
+                });
+            });
+            $('#no').click(function (event) {
+                var bgmusic = document.getElementById("bgmusic");
+                bgmusic.play();
+                modal('明人不说暗话！', A);
+            });
+        });
+
+        function A() {
+            modal('我喜欢你！', B);
+        }
+
+        function B() {
+            modal('我知道你在等我这一句话', C);
+        }
+
+        function C() {
+            modal('请不要拒绝我', D);
+        }
+
+        function D() {
+            modal('拒绝我，不存在的', E);
+        }
+
+        function E() {
+            modal('这辈子都不想让你离开我', F);
+        }
+
+        function F() {
+            modal('跟我走吧', G);
+        }
+
+        function G() {
+            modal('我可以学做饭', H);
+        }
+
+        function H() {
+            modal('喜欢你。么么哒！', J);
+        }
+
+        function J() {
+            modal('行，我们去看烟花吧', function () {
+                fireworks();
+            });
+        }
+
+        function fireworks() {
+            $('.page_one').addClass('hide');
+            $('.page_two').removeClass('hide');
+            $('.page_two').fireworks({
+                sound: false,
+                opacity: 0.9,
+                width: '100%',
+                height: '100%'
+            });
+        }
+
+        function modal(content, callback) {
+            var tpl = '<div class="container">' +
+                '<div class="mask"></div>' +
+                '<div class="modal">' +
+                '<p>' + content + '</p>' +
+                '<button type="button" id="confirm" class="confirm">确定</button>' +
+                '</div>' +
+                '</div>';
+            $('body').append(tpl);
+            $(document).on('click', '.confirm', function () {
+                $('.container').remove();
+                callback();
+            });
+        }
+
+        var myWords = ' 能够遇见你是我最大的幸运，有了你生活变得丰富多彩，有了你，世界变得如此迷人；你是我的世界，我的世界是你，对我来说，不是在最美好的时光遇见了你，而是遇见你后都是最美好的时光！';
+        var x = 0;
+        var speed = 150;
+        var current = 0;
+
+        function typeWrite() {
+            $('.type_words').html(myWords.substring(0, x++) + '_');
+            var timer = setTimeout("typeWrite()", speed);
+            if (x == myWords.length) {
+                x = myWords.length;
+                clearTimeout(timer)
+            }
+        }
+
+</script>
+
+<script>
+   pwd();
+    function pwd(){
+        var password="";
+        password=prompt('请输入密码:','');
+        if (password != 'lvqi')
+        {
+            alert("密码不正确,无法进入!!");
+            $("#content").visible = false;
+            window.opener=null;
+            window.open('','_self');
+            window.close();
+            pwd();
+        } else {
+            return;
+        }
+    }
+</script>
+<body style="background-color: #ffffff" id = "body">
+<div id="content">
+<div class="body_left">
+    <audio id="bgmusic" class="bgmusic" controls="controls">
+        <source src="v2/love.mp3" type="audio/mp3" />
+    </audio>
+    <img src="v2/images/lvqi/biubiubiu.gif" alt="" ondragstart='return false;'/>
+</div>
+
+<script type="text/javascript" src="v2/js/love.js"></script>
+
+<div class="share_img"><img src="v2/images/lvqi/a8b.png" alt=""/></div>
+<div class="page_one">
+    <div class="content">
+        <div class="text_wrapper">
+            <img src="v2/images/lvqi/a8.png" alt=""/>
+            <div class="text" style="color: #0b3443">
+                吕齐，我好喜欢你，你愿意做我女朋友吗？
+            </div>
+        </div>
+    </div>
+    <div class="btn-groups">
+        <div class="heart-btn">
+            <div id="yes" class="btn btn-a"><span>愿意</span></div>
+        </div>
+        <div id="no" class="btn btn-b"><span>不愿意</span></div>
+    </div>
+</div>
+<div class="page_two hide">
+    <div class="type_words"></div>
+</div>
+</div>
+</body>
+
+</html>

@@ -1,4 +1,6 @@
 $(function(){
+	//自动播放
+	bfVidio();
 	//最后一个页出不来，暂未解决
 	var pageNum = 0;
 	var length = $('.runPage').length;
@@ -57,4 +59,18 @@ $(function(){
 			element.children('img').css('z-index',length-index-1);		
 		},1000);
 	}
+
+
+	function bfVidio(){
+		var audio = document.getElementById('audio');
+		if(audio!==null){
+			//检测播放是否已暂停.audio.paused 在播放器播放时返回false.
+			if(audio.paused)                     {
+				audio.play();//audio.play();// 这个就是播放
+			}else{
+				audio.pause();// 这个就是暂停
+			}
+		}
+	}
+
 });

@@ -38,5 +38,10 @@ public class SiteController {
 	public @ResponseBody SiteInformation getsiteinfo() {
 		return siteInformationService.getSiteInformation();
 	}
-  
+
+	@RequestMapping("/pwd")
+	public String getPwd() {
+		return "lvqi";
+	}
+
 }

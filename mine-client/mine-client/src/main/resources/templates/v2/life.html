@@ -8,15 +8,26 @@
 		<script src="v2/js/life.js" ></script>
 		 <script src="v2/js/canvas-nest.js"></script>
 		 <script >
- document.title ='照片墙_记录值得纪念的瞬间';
+ document.title ='照片墙_记录值得记录的';
  </script>
+    <script>
+        var password="";
+        password=prompt('请输入密码 (本相册需输入密码才可进入):','');
+        if (password != 'lvqi')
+        {
+            alert("密码不正确,无法进入本站!!");
+            window.opener=null; window.close();
+        }
+    </script>
 <!--top begin-->
 		<div th:include="v2/base/top :: top"></div>
 <!--top end-->
 <article> 
   <!--lbox begin-->
   <div >
-    
+      <audio class="bgmusic" controls="controls"   autoplay="autoplay">
+          <source src="http://47.111.1.180/images/audio/bg_music.mp3" type="audio/mp3" />
+      </audio>
     <div class="zhuanti  whitebg">
       <h2 class="htitle"><span class="hnav"></span>照片墙</h2>
        <section id="knowledge" class="viewBlock">
@@ -31,21 +42,46 @@
     <div class="bookPage runPage">
       <div class="bookWord"> <span>毕业</span> 那年. <span class="pageNumber">3</span> </div>
       <img src="v2/images/album_3.jpg" /> </div>
-      
+
            <div class="bookPage runPage">
       <div class="bookWord"> <span>旅游</span>青海湖环湖360公里骑行 . <span class="pageNumber">4</span> </div>
       <img src="v2/images/album_4.jpg" /> </div>
-      
+
                <div class="bookPage runPage">
       <div class="bookWord"> <span>旅游</span>青海湖环湖360公里骑行 . <span class="pageNumber">5</span> </div>
       <img src="v2/images/album_5.jpg" /> </div>
-      
+
                  <div class="bookPage runPage">
       <div class="bookWord"> <span>旅游</span>青海湖环湖360公里骑行 . <span class="pageNumber">6</span> </div>
       <img src="v2/images/album_6.jpg" /> </div>
-      
-      
-                   <div class="bookPage runPage">
+
+      <!-- lvqi -->
+      <div class="bookPage runPage">
+          <div class="bookWord"> <span>小鲁班</span>这里是小鲁班的马赛克 . <span class="pageNumber">7</span> </div>
+          <img src="v2/images/lvqi/1.jpeg" /> </div>
+      <div class="bookPage runPage">
+          <div class="bookWord"> <span>小鲁班</span>这里是小鲁班的马赛克 . <span class="pageNumber">8</span> </div>
+          <img src="v2/images/lvqi/lv2.jpeg" /> </div>
+      <div class="bookPage runPage">
+          <div class="bookWord"> <span>小鲁班</span>这里是小鲁班的马赛克 . <span class="pageNumber">9</span> </div>
+          <img src="v2/images/lvqi/lv3.jpeg" /> </div>
+
+      <div class="bookPage runPage">
+          <div class="bookWord"> <span>小鲁班</span>这里是小鲁班的马赛克 . <span class="pageNumber">10</span> </div>
+          <img src="v2/images/lvqi/lv4.jpeg" /> </div>
+
+      <div class="bookPage runPage">
+          <div class="bookWord"> <span>小鲁班</span>这里是小鲁班的马赛克 . <span class="pageNumber">11</span> </div>
+          <img src="v2/images/lvqi/lv5.jpeg" /> </div>
+      <div class="bookPage runPage">
+          <div class="bookWord"> <span>小鲁班</span>这里是小鲁班的马赛克. <span class="pageNumber">12</span> </div>
+          <img src="v2/images/lvqi/lv6.jpeg" /> </div>
+      <div class="bookPage runPage">
+          <div class="bookWord"> <span>小鲁班</span>这里是小鲁班的马赛克 . <span class="pageNumber">13</span> </div>
+          <img src="v2/images/lvqi/lv7.jpeg" /> </div>
+
+
+      <div class="bookPage runPage">
       <div class="bookWord"> <span></span>没有啦 . <span class="pageNumber">7</span> </div>
       <img src="v2/images/avatar.jpg" /> </div>
       

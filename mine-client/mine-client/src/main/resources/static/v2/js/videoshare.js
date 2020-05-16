@@ -1,5 +1,5 @@
 $(function(){
-	var videos = document.getElementsByTagName('video');
+    var videos = document.getElementsByTagName('video');
     for (var i = videos.length - 1; i >= 0; i--) {
         (function(){
             var p = i;
@@ -14,4 +14,3 @@ $(function(){
         }
     };
 });
- 
