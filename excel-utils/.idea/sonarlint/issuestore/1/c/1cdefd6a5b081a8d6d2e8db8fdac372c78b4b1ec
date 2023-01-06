@@ -1,18 +1,0 @@
-
-^squid:S00112!"FDefine and throw a dedicated exception instead of using a generic one.(şÊ‚
-^squid:S00112V"FDefine and throw a dedicated exception instead of using a generic one.(ÇüƒŠ
-U
-squid:S106Š"9Replace this use of System.out or System.err by a logger.(ãÖåùüÿÿÿÿ
-usquid:S2293\"YReplace the type specification in this constructor call with the diamond operator ("<>").(¨ÙÇƒşÿÿÿÿ
-usquid:S2293f"YReplace the type specification in this constructor call with the diamond operator ("<>").(§ó³Õüÿÿÿÿ
-psquid:S2293x"YReplace the type specification in this constructor call with the diamond operator ("<>").(Šõ“ï
-usquid:S2293&"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ç‰¸óúÿÿÿÿ
-csquid:S00112="FDefine and throw a dedicated exception instead of using a generic one.(ñÑüùÿÿÿÿ
-psquid:S2293y"YReplace the type specification in this constructor call with the diamond operator ("<>").(Åıí®
-O
-squid:S1068"9Replace this use of System.out or System.err by a logger.( ›İå
-O
-squid:S106O"9Replace this use of System.out or System.err by a logger.(ÑÂİÄ
-psquid:S2293n"YReplace the type specification in this constructor call with the diamond operator ("<>").(«ÑŒÄ
-usquid:S2293C"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ç‰¸óúÿÿÿÿ
-osquid:S2293w"YReplace the type specification in this constructor call with the diamond operator ("<>").(‚’¶

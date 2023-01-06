@@ -7,4 +7,6 @@
 
 /.settings/
 /bin/
-/logs
+**/logs
+/**/.idea/*
+**/*.iml

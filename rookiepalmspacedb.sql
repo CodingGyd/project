@@ -133,10 +133,11 @@ CREATE TABLE IF NOT EXISTS `mine_articles` (
   `updatetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `readingcount` int(11) NOT NULL DEFAULT '0',
   `type` int(11) NOT NULL COMMENT '分类代码,关联系统常量表获取名称',
+  `praisecount` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='mine工程-文章信息表' AUTO_INCREMENT=80 ;
-
---
+ 
+ 
 -- 转存表中的数据 `mine_articles`
 --
 
@@ -258,6 +259,8 @@ CREATE TABLE IF NOT EXISTS `mine_sysconst` (
   `lbmc` varchar(50) DEFAULT NULL COMMENT '常量类别名称',
   `dm` varchar(20) DEFAULT NULL COMMENT '常量代码',
   `ms` varchar(50) DEFAULT NULL COMMENT '常量名称',
+    `remarks` varchar(50) DEFAULT NULL COMMENT '注释',
+
   `updatetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='系统常量表' AUTO_INCREMENT=4 ;
@@ -266,10 +269,10 @@ CREATE TABLE IF NOT EXISTS `mine_sysconst` (
 -- 转存表中的数据 `mine_sysconst`
 --
 
-INSERT INTO `mine_sysconst` (`id`, `lb`, `lbmc`, `dm`, `ms`, `updatetime`) VALUES
-(1, '100', '文章分类', '1', '资料网站', '2017-09-22 23:48:20'),
-(2, '100', '文章分类', '2', '生活文摘', '2017-09-22 23:48:20'),
-(3, '100', '文章分类', '3', '技术笔记', '2017-09-22 23:48:20');
+INSERT INTO `mine_sysconst` (`id`, `lb`, `lbmc`, `dm`, `ms`, `remarks`,`updatetime`) VALUES
+(1, '100', '文章分类', '1', '资料网站', '资料网站','2017-09-22 23:48:20'),
+(2, '100', '文章分类', '2', '生活文摘', '生活文摘','2017-09-22 23:48:20'),
+(3, '100', '文章分类', '3', '技术笔记', '技术笔记','2017-09-22 23:48:20');
 
 -- --------------------------------------------------------
 
@@ -622,3 +625,46 @@ INSERT INTO `versioninfo` (`id`, `versionCode`, `versionName`, `content`, `downl
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+--
+-- 表的结构 `mine_sysconst`
+--
+
+CREATE TABLE IF NOT EXISTS `mine_loginfo` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+
+  `ip` varchar(20) DEFAULT NULL COMMENT 'ip',
+  `url` varchar(20) DEFAULT NULL COMMENT '地址',
+  `type` varchar(50) DEFAULT NULL COMMENT '类型',
+  `method` varchar(20) DEFAULT NULL COMMENT '方法',
+  `paramData` varchar(50) DEFAULT NULL COMMENT '参数',
+    `sessionId` varchar(50) DEFAULT NULL COMMENT 'session',
+
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      `returnTime` varchar(50) DEFAULT NULL COMMENT '返回时间',
+    `returnData` varchar(50) DEFAULT NULL COMMENT '返回数据',
+    `httpStatusCode` varchar(50) DEFAULT NULL COMMENT '响应码',
+    `timeConsuming` int(20) DEFAULT NULL COMMENT '耗时',
+
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='日志记录表' AUTO_INCREMENT=1 ;
+ 
+ 
+ 
+ --
+-- 表的结构 `mine_siteinformation`
+--
+
+CREATE TABLE IF NOT EXISTS `mine_siteinformation` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `site_create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+   `remarks` varchar(50) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='建站信息' AUTO_INCREMENT=1 ;
+ 	 
+INSERT INTO `mine_siteinformation` (`remarks`) VALUES
+('站点信息'),
